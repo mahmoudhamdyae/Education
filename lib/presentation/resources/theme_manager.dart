@@ -17,6 +17,7 @@ ThemeData getApplicationTheme() {
         elevation: AppSize.s4,
         shadowColor: ColorManager.lightPrimary,
         titleTextStyle:
-        getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white)),
+        getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white)
+    ),
   );
 }

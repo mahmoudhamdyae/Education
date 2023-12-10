@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/app_prefs.dart';
@@ -57,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
             key: formState,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
                   onSaved: (val) {
@@ -111,13 +113,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: AppSize.s40,
-                  child: ElevatedButton(
+                  child: FilledButton(
                     onPressed: () async {
                       await logIn();
                     },
-                    child: Text(
+                    child: const Text(
                       AppStrings.login,
-                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),
@@ -132,9 +133,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(
                             context, Routes.registerRoute);
                       },
-                      child: Text(AppStrings.registerText,
-                          style:
-                          Theme.of(context).textTheme.titleMedium),
+                      child: const Row(
+                        children: [
+                          Text(AppStrings.registerText1,
+                              style: TextStyle(color: ColorManager.black)),
+                          Text(AppStrings.registerText2,
+                              style: TextStyle(color: ColorManager.blue)),
+                        ],
+                      ),
                     )
                   ],
                 )

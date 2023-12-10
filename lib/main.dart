@@ -22,9 +22,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
       initialRoute: Routes.splashRoute,
-      home: const Scaffold(
-        body: SplashScreen(),
-      ),
+      builder: (BuildContext context, Widget? child) {
+        return Directionality(textDirection: TextDirection.rtl, child: child!);
+      },
+      home: const SplashScreen(),
+      // home: const Scaffold(
+      //   body: SplashScreen(),
+      // ),
     );
   }
 }

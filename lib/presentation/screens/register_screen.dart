@@ -168,13 +168,12 @@ class _RegisterViewState extends State<RegisterScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: AppSize.s40,
-                  child: ElevatedButton(
+                  child: FilledButton(
                     onPressed: () async {
                       await signUp();
                     },
-                    child: Text(
+                    child: const Text(
                       AppStrings.register,
-                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),
@@ -185,8 +184,14 @@ class _RegisterViewState extends State<RegisterScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(AppStrings.alreadyHaveAccount,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  child: const Row(
+                    children: [
+                      Text(AppStrings.alreadyHaveAccount1,
+                          style: TextStyle(color: ColorManager.black)),
+                      Text(AppStrings.alreadyHaveAccount2,
+                          style: TextStyle(color: ColorManager.blue)),
+                    ],
+                  ),
                 )
               ],
             )),

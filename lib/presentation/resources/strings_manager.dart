@@ -9,7 +9,8 @@ class AppStrings {
   static const passwordConfirm = "تأكيد كلمة السر";
   static const passwordError = "كلمة المرور لا يمكن أن تكون فارغة";
   static const login = "تسجيل الدخول";
-  static const registerText = "لم تقم بالتسجيل؟ سجل الان";
+  static const registerText1 = "لم تقم بالتسجيل؟ ";
+  static const registerText2 = "سجل الان";
   static const loading = "جاري التحميل...";
   static const retryAgain = "حاول مرة أخرى";
   static const ok = "موافق";
@@ -19,7 +20,8 @@ class AppStrings {
   static const String mobileNumberInvalid = "رقم الهاتف غير صالح";
   static const String passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
   static const String passwordConfirmInvalid = "كلمة المرور غير متطابقة";
-  static const String alreadyHaveAccount = "لديك حساب بالفعل؟ قم بتسجيل الدخول";
+  static const String alreadyHaveAccount1 = "لديك حساب بالفعل؟ ";
+  static const String alreadyHaveAccount2 = "قم بتسجيل الدخول";
   static const register = "التسجيل";
   static const mobileNumber = "رقم الهاتف";
   static const home = "الرئيسية";
