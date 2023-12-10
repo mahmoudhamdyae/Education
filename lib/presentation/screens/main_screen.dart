@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
   List<Widget> _buildScreens() {
     return [
-      HomeScreen(),
+      const HomeScreen(),
       SubscriptionScreen(),
       NotificationsScreen(),
       MeScreen(),

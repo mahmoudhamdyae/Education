@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/models/HomeUI.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
 class GridViewItem extends StatelessWidget {
-  const GridViewItem({super.key, required String itemName, required IconData itemIcon, required Function action}) : _itemName = itemName, _itemIcon = itemIcon, _action = action;
+  const GridViewItem({super.key, required HomeUI item}) : _item = item;
 
-  final String _itemName;
-  final IconData _itemIcon;
-  final Function _action;
+  final HomeUI _item;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +24,16 @@ class GridViewItem extends StatelessWidget {
               top: 0,
               bottom: 0,
               child: InkWell(
-              onTap: () { _action(); },
+              onTap: () { _item.action(); },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(_itemIcon, color: ColorManager.white, size: AppSize.s40,),
+                  Icon(_item.icon, color: ColorManager.white, size: AppSize.s40,),
                   const SizedBox(height: AppSize.s16,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      _itemName,
+                      _item.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: AppSize.s18,

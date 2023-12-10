@@ -38,7 +38,7 @@ class RouteGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case Routes.homeRoute:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.coursesRoute:
         return MaterialPageRoute(builder: (_) => const CoursesScreen());
       case Routes.examsAndBanksRoute:
