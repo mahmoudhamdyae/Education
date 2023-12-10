@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 showError(context, String message) {
   return AlertDialog(
+    // The background color
+    backgroundColor: Colors.white,
     // The shape of the dialog
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)),
