@@ -26,4 +26,10 @@ class AppStrings {
   static const mobileNumber = "رقم الهاتف";
   static const home = "الرئيسية";
   static const String logout = "تسجيل الخروج";
+
+  // Main Screen
+  static const String onlineCourses = "كورسات أونلاين مباشر";
+  static const String examsAndBanks = "اختبارات سابقة وبنوك";
+  static const String notes = "مذكرات";
+  static const String recordedCourses = "كورسات مسجلة";
 }

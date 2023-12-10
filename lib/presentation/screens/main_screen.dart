@@ -1,9 +1,25 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_grid_view.dart';
+
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  MainScreen({super.key});
+
+  final List<String> _stringsList = [
+    AppStrings.onlineCourses,
+    AppStrings.examsAndBanks,
+    AppStrings.notes,
+    AppStrings.recordedCourses,
+  ];
+
+  final List<IconData> _iconsList = [
+    Icons.person,
+    Icons.person,
+    Icons.person,
+    Icons.person,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +27,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.appName),
       ),
-      drawer: const Drawer(
-        child: Placeholder(),
-      ),
-      body: const Placeholder(),
+      body: CustomGridView(_stringsList, _iconsList),
     );
   }
 }
