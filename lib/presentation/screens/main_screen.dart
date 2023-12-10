@@ -17,8 +17,8 @@ class MainScreen extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      const SubscriptionScreen(),
-      const NotificationsScreen(),
+      SubscriptionScreen(),
+      NotificationsScreen(),
       MeScreen(),
     ];
   }
