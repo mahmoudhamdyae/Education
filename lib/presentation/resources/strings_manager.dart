@@ -3,33 +3,34 @@ class AppStrings {
   static const appName = "Education";
 
   // Authentication
-  static const phone = "رقم الهاتف";
-  static const username = "اسم المستخدم";
-  static const password = "كلمة السر";
-  static const passwordConfirm = "تأكيد كلمة السر";
-  static const passwordError = "كلمة المرور لا يمكن أن تكون فارغة";
+  static const phoneHint = "رقم الهاتف";
+  static const usernameHint = "اسم المستخدم";
+  static const passwordHint = "كلمة السر";
+  static const passwordConfirmHint = "تأكيد كلمة السر";
   static const login = "تسجيل الدخول";
   static const registerText1 = "لم تقم بالتسجيل؟ ";
   static const registerText2 = "سجل الان";
-  static const loading = "جاري التحميل...";
-  static const retryAgain = "حاول مرة أخرى";
-  static const ok = "موافق";
-  static const String emailHint = 'البريذ الالكتروني';
-  static const String success = "تم النجاح";
   static const String userNameInvalid = "اسم المستخدم لا يمكن أن يكون فارغا";
   static const String mobileNumberInvalid = "رقم الهاتف غير صالح";
-  static const String passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
+  static const passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
   static const String passwordConfirmInvalid = "كلمة المرور غير متطابقة";
   static const String alreadyHaveAccount1 = "لديك حساب بالفعل؟ ";
   static const String alreadyHaveAccount2 = "قم بتسجيل الدخول";
   static const register = "التسجيل";
-  static const mobileNumber = "رقم الهاتف";
-  static const home = "الرئيسية";
-  static const String logout = "تسجيل الخروج";
+  // Logout
+  static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
+  static const String logoutOk = "تسجيل الخروج";
+  static const String cancel = "الغاء";
+
+  // Dialogs
+  static const loading = "جاري التحميل...";
+  static const retryAgain = "حاول مرة أخرى";
 
   // Main Screen
-  static const String onlineCourses = "كورسات أونلاين مباشر";
-  static const String examsAndBanks = "اختبارات سابقة وبنوك";
-  static const String notes = "مذكرات";
   static const String recordedCourses = "كورسات مسجلة";
+  static const String printedNotes = "مذكرات مطبوعة";
+  static const String courses = "كورسات حضورى";
+  static const String onlineCourses = "كورسات أونلاين";
+  static const String teacher = "مدرس خصوصى";
+  static const String examsAndBanks = "اختبارات و بنوك";
 }

@@ -21,8 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
   final AccountService _accountService = instance<AccountService>();
 
-  String? number, password;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
   bool _obscureText = true;
 
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formData.save();
       try {
         showLoading();
-        await _accountService.logIn(number!, password!).then((userCredential) {
+        await _accountService.logIn(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
         });
@@ -60,10 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Phone Number Edit Text
                 TextFormField(
-                  onSaved: (val) {
-                    number = val;
-                  },
+                  controller: phoneController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.phone,
                   validator: (val) {
@@ -74,21 +73,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.phone),
-                      hintText: AppStrings.phone,
+                      hintText: AppStrings.phoneHint,
                       border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s28,
                 ),
+                // Password Edit Text
                 TextFormField(
-                  onSaved: (val) {
-                    password = val;
-                  },
+                  controller: passwordTextController,
                   textInputAction: TextInputAction.done,
                   validator: (val) {
                     if (val == null || val.isEmpty) {
-                      return AppStrings.passwordError;
+                      return AppStrings.passwordInvalid;
                     }
                     return null;
                   },
@@ -103,13 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           _toggle();
                         },
                       ),
-                      hintText: AppStrings.password,
+                      hintText: AppStrings.passwordHint,
                       border: const OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s28,
                 ),
+                // Login Button
                 SizedBox(
                   width: double.infinity,
                   height: AppSize.s40,
@@ -125,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: AppSize.s8,
                 ),
+                // Navigate to Register Screen
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

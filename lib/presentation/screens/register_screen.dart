@@ -72,6 +72,7 @@ class _RegisterViewState extends State<RegisterScreen> {
             key: formState,
             child: Column(
               children: [
+                // User Name Edit Text
                 TextFormField(
                   controller: nameController,
                   textInputAction: TextInputAction.next,
@@ -84,13 +85,14 @@ class _RegisterViewState extends State<RegisterScreen> {
                   },
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.person),
-                      hintText: AppStrings.username,
+                      hintText: AppStrings.usernameHint,
                       border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s28,
                 ),
+                // Phone Number Edit Text
                 TextFormField(
                   controller: numberController,
                   textInputAction: TextInputAction.next,
@@ -104,19 +106,20 @@ class _RegisterViewState extends State<RegisterScreen> {
                   },
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.phone),
-                      hintText: AppStrings.phone,
+                      hintText: AppStrings.phoneHint,
                       border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s28,
                 ),
+                // Password Edit Text
                 TextFormField(
                   controller: passController,
                   textInputAction: TextInputAction.next,
                   validator: (val) {
                     if (val == null || val.isEmpty) {
-                      return AppStrings.passwordError;
+                      return AppStrings.passwordInvalid;
                     }
                     return null;
                   },
@@ -131,13 +134,14 @@ class _RegisterViewState extends State<RegisterScreen> {
                           _toggle();
                         },
                       ),
-                      hintText: AppStrings.password,
+                      hintText: AppStrings.passwordHint,
                       border: const OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s28,
                 ),
+                // Repeat Password Edit Text
                 TextFormField(
                   controller: confirmPassController,
                   textInputAction: TextInputAction.done,
@@ -158,13 +162,14 @@ class _RegisterViewState extends State<RegisterScreen> {
                           _toggle();
                         },
                       ),
-                      hintText: AppStrings.passwordConfirm,
+                      hintText: AppStrings.passwordConfirmHint,
                       border: const OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
                 const SizedBox(
                   height: AppSize.s40,
                 ),
+                // Register Button
                 SizedBox(
                   width: double.infinity,
                   height: AppSize.s40,
@@ -180,6 +185,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                 const SizedBox(
                   height: AppSize.s18,
                 ),
+                // Navigate To Login Screen
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();

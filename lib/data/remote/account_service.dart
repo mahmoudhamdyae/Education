@@ -3,7 +3,7 @@ import '../../core/app_prefs.dart';
 abstract class AccountService {
   Future register(String userName, String phone, String password);
   Future logIn(String phone, String password);
-  signOut();
+  Future signOut();
 }
 
 class AccountServiceImpl implements AccountService {
@@ -23,7 +23,7 @@ class AccountServiceImpl implements AccountService {
   }
 
   @override
-  signOut() {
+  Future signOut() async {
     _appPreferences.setToken("");
   }
 }
