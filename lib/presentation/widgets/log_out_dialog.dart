@@ -23,41 +23,56 @@ class LogOutDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        icon: const Icon(Icons.exit_to_app, color: ColorManager.white,),
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) => Dialog(
-                child:  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text(AppStrings.logoutDialogText),
-                      const SizedBox(height: 15),
-                      Row(
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              _signOut(context);
-                            },
-                            child: const Text(AppStrings.logoutOk),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(AppStrings.cancel),
-                          ),
-                        ],
-                      ),
-                    ],
+    return FutureBuilder(
+        future: _appPreferences.isUserLoggedIn(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data == true) {
+              return IconButton(
+                  icon: const Icon(
+                    Icons.exit_to_app,
+                    color: ColorManager.white,
                   ),
-                ),
-              )
-          );
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => Dialog(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const Text(AppStrings.logoutDialogText),
+                                    const SizedBox(height: 15),
+                                    Row(
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {
+                                            _signOut(context);
+                                          },
+                                          child:
+                                              const Text(AppStrings.logoutOk),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(AppStrings.cancel),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ));
+                  });
+            } else {
+              return Container();
+            }
+          } else {
+            return Container();
+          }
         });
   }
 }

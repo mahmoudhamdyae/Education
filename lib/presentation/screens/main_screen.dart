@@ -53,7 +53,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.appName),
         actions: [
-          LogOutDialog()
+          LogOutDialog(),
         ],
         leading: null,
       ),

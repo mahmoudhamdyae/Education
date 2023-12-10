@@ -19,23 +19,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
-
   _startDelay() {
-    _timer = Timer(const Duration(seconds: AppConstants.splashDelay), () => _goNext());
-  }
-
-  _goNext() async {
-    _appPreferences.isUserLoggedIn().then((isUserLoggedIn) => {
-      if (isUserLoggedIn) {
-        // Navigate to main screen
+    _timer = Timer(const Duration(seconds: AppConstants.splashDelay), () =>
         Navigator.pushReplacementNamed(context, Routes.mainRoute)
-      }
-      else {
-        // Navigate to login screen
-        Navigator.pushReplacementNamed(context, Routes.loginRoute)
-      }
-    });
+    );
   }
 
   @override

@@ -17,6 +17,8 @@ class AppStrings {
   static const String alreadyHaveAccount1 = "لديك حساب بالفعل؟ ";
   static const String alreadyHaveAccount2 = "قم بتسجيل الدخول";
   static const register = "التسجيل";
+  static const requireLogIn = "قم بتسجيل الدخول أولا";
+  static const requireLogInButton = "تسجيل دخول أو إنشاء حساب";
   // Logout
   static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
   static const String logoutOk = "تسجيل الخروج";
