@@ -19,7 +19,7 @@ class MainScreen extends StatelessWidget {
       HomeScreen(),
       const SubscriptionScreen(),
       const NotificationsScreen(),
-      const MeScreen(),
+      MeScreen(),
     ];
   }
   List<PersistentBottomNavBarItem> _navBarsItems() {

@@ -143,9 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     )
                   ],
-                )
+                ),
+                ElevatedButton(onPressed: () {
+                  Navigator.pushNamed(context, Routes.mainRoute);
+                }, child: const Text("Log in as a guest"))
               ],
-            )),
+            ),
+        ),
       ),
     );
   }
