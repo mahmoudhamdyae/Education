@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/screens/home_screen.dart';
 import 'package:education/presentation/screens/login_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:education/presentation/screens/register_screen.dart';
@@ -10,6 +11,7 @@ class Routes {
   static const String mainRoute = "/main";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
+  static const String homeRoute = "/home";
 }
 
 class RouteGenerator {
@@ -23,6 +25,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case Routes.homeRoute:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return unDefinedRoute();
     }

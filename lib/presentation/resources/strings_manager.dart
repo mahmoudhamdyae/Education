@@ -26,6 +26,12 @@ class AppStrings {
   static const loading = "جاري التحميل...";
   static const retryAgain = "حاول مرة أخرى";
 
+  // Bottom Bar
+  static const bottomBarHome = "الرئيسية";
+  static const bottomBarSubscription = "الاشتراكات";
+  static const bottomBarNotifications = "الاشعارات";
+  static const bottomBarMe = "الملف الشخصى";
+
   // Main Screen
   static const String recordedCourses = "كورسات مسجلة";
   static const String printedNotes = "مذكرات مطبوعة";
