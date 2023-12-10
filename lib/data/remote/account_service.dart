@@ -1,9 +1,9 @@
 import '../../core/app_prefs.dart';
 
 abstract class AccountService {
-  Future signUp(String userName, String password, String repeatedPassword, String phone);
-  // Future logIn(String phone, String password, {String userName});
-  Future signOut();
+  Future register(String userName, String phone, String password);
+  Future logIn(String phone, String password);
+  signOut();
 }
 
 class AccountServiceImpl implements AccountService {
@@ -12,22 +12,18 @@ class AccountServiceImpl implements AccountService {
 
   AccountServiceImpl(this._appPreferences);
 
-  // @override
-  // Future logIn(String phone, String password, String userName) {
-  //   // TODO: implement logIn
-  //   throw UnimplementedError();
-  // }
-
   @override
-  Future signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future register(String userName, String phone, String password) async {
+    print("REGISTER");
   }
 
   @override
-  Future signUp(String userName, String password, String repeatedPassword,
-      String phone) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future logIn(String phone, String password) async {
+    print("LOGIN");
+  }
+
+  @override
+  signOut() {
+    _appPreferences.setToken("");
   }
 }
