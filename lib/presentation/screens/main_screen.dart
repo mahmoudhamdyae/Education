@@ -55,7 +55,7 @@ class MainScreen extends StatelessWidget {
         actions: [
           LogOutDialog(),
         ],
-        leading: null,
+        automaticallyImplyLeading: false,
       ),
       body: PersistentTabView(
         context,
