@@ -36,7 +36,8 @@ class GridViewItem extends StatelessWidget {
                       _item.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                        fontSize: AppSize.s18,
+                        fontSize: AppSize.s16,
+                        fontWeight: FontWeight.bold,
                         color: ColorManager.white
                       ),
                     ),
