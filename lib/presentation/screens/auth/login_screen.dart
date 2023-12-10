@@ -1,14 +1,14 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/app_prefs.dart';
-import '../../core/di.dart';
-import '../../data/remote/account_service.dart';
-import '../resources/routes_manager.dart';
-import '../resources/strings_manager.dart';
-import '../resources/values_manager.dart';
-import '../widgets/dialogs/error_dialog.dart';
-import '../widgets/dialogs/loading_dialog.dart';
+import '../../../core/app_prefs.dart';
+import '../../../core/di.dart';
+import '../../../data/remote/account_service.dart';
+import '../../resources/routes_manager.dart';
+import '../../resources/strings_manager.dart';
+import '../../resources/values_manager.dart';
+import '../../widgets/dialogs/error_dialog.dart';
+import '../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

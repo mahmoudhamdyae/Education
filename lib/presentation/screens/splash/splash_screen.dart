@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
-import '../../core/app_prefs.dart';
-import '../../core/di.dart';
-import '../resources/assets_manager.dart';
-import '../resources/color_manager.dart';
-import '../resources/constants_manager.dart';
-import '../resources/routes_manager.dart';
+import '../../resources/assets_manager.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/constants_manager.dart';
+import '../../resources/routes_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:education/presentation/resources/routes_manager.dart';
 import 'package:education/presentation/resources/theme_manager.dart';
-import 'package:education/presentation/screens/splash_screen.dart';
+import 'package:education/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'core/di.dart';
