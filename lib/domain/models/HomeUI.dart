@@ -14,22 +14,22 @@ class HomeUI {
     return [
       HomeUI(
         AppStrings.recordedCourses,
-        Icons.person,
+        Icons.menu_book,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute),
       ),
       HomeUI(
         AppStrings.printedNotes,
-        Icons.person,
+        Icons.note_alt,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.printedNotesRoute),
       ),
       HomeUI(
         AppStrings.courses,
-        Icons.person,
+        Icons.school,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.coursesRoute),
       ),
       HomeUI(
         AppStrings.onlineCourses,
-        Icons.person,
+        Icons.computer,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.onlineCoursesRoute),
       ),
       HomeUI(
@@ -39,7 +39,7 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        Icons.person,
+        Icons.checklist,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.examsAndBanksRoute),
       ),
 
