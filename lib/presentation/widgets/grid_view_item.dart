@@ -28,10 +28,10 @@ class GridViewItem extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(_item.icon, color: ColorManager.white, size: AppSize.s40,),
+                  Image.asset(_item.icon, scale: AppSize.s8,),
                   const SizedBox(height: AppSize.s16,),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(AppPadding.p8),
                     child: Text(
                       _item.name,
                       textAlign: TextAlign.center,

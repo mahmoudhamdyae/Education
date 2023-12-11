@@ -4,7 +4,7 @@ class AppStrings {
 
   // Authentication
   static const phoneHint = "رقم الهاتف";
-  static const usernameHint = "اسم المستخدم";
+  static const usernameHint = "اسم الطالب";
   static const passwordHint = "كلمة السر";
   static const passwordConfirmHint = "تأكيد كلمة السر";
   static const login = "تسجيل الدخول";
@@ -19,6 +19,26 @@ class AppStrings {
   static const register = "التسجيل";
   static const requireLogIn = "قم بتسجيل الدخول أولا";
   static const requireLogInButton = "تسجيل دخول أو إنشاء حساب";
+  static const marhalaHint = "المرحلة";
+  static const primaryMarhala = "المرحلة الابتدائية";
+  static const mediumMarhala = "المرحلة المتوسطة";
+  static const secondaryMarhala = "المرحلة الثانوية";
+  static const qodoratMarhala = "القدرات";
+  static const toeflMarhala = "TOEFL";
+  static const ieltsMarhala = "IELTS";
+  static const saff1 = "الصف الأول";
+  static const saff2 = "الصف الثانى";
+  static const saff3 = "الصف الثالث";
+  static const saff4 = "الصف الرابع";
+  static const saff5 = "الصف الخامس";
+  static const saff6 = "الصف السادس";
+  static const saff7 = "الصف السابع";
+  static const saff8 = "الصف الثامن";
+  static const saff9 = "الصف التاسع";
+  static const saff10 = "الصف العاشر";
+  static const saff11 = "الصف الحادى عشر";
+  static const saff12 = "الصف الثانى عشر";
+  static const saff = "الصف";
   // Logout
   static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
   static const String logoutOk = "تسجيل الخروج";
