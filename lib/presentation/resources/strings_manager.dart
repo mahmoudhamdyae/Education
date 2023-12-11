@@ -39,6 +39,8 @@ class AppStrings {
   static const saff11 = "الصف الحادى عشر";
   static const saff12 = "الصف الثانى عشر";
   static const saff = "الصف";
+  static const marhalaInvalid = "يجب اختيار مرحلة";
+  static const saffInvalid = "يجب اختيار صف";
   // Logout
   static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
   static const String logoutOk = "تسجيل الخروج";

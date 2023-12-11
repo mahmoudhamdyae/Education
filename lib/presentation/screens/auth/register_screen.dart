@@ -28,6 +28,8 @@ class _RegisterViewState extends State<RegisterScreen> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   bool _obscureText = true;
 
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
   final List<String> _marahel = [
     AppStrings.primaryMarhala,
     AppStrings.mediumMarhala,
@@ -36,12 +38,12 @@ class _RegisterViewState extends State<RegisterScreen> {
     AppStrings.toeflMarhala,
     AppStrings.ieltsMarhala,
   ];
-  String _selectedMarhala = AppStrings.primaryMarhala;
+  String _selectedMarhala = AppStrings.marhalaHint;
 
   List<String> _sfoof = [
     AppStrings.saff1
   ];
-  String _selectedSaff = AppStrings.saff1;
+  String _selectedSaff = AppStrings.saff;
 
   // Toggles the password show status
   void _toggle() {
@@ -54,6 +56,16 @@ class _RegisterViewState extends State<RegisterScreen> {
     var formData = formState.currentState;
     if (formData!.validate()) {
       formData.save();
+
+      if (_selectedMarhala == AppStrings.marhalaHint) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(AppStrings.marhalaInvalid)));
+        return;
+      }
+
+      if (_selectedSaff == AppStrings.saff) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(AppStrings.saffInvalid)));
+        return;
+      }
 
       try {
         showLoading();
@@ -75,6 +87,7 @@ class _RegisterViewState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: ColorManager.white,
       appBar: AppBar(
         elevation: AppSize.s0,
@@ -134,8 +147,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                     border: OutlineInputBorder(),
                   ),
                   isExpanded: true,
-                  hint: const Text(AppStrings.marhalaHint), // Not necessary for Option 1
-                  value: _selectedMarhala,
+                  value: _marahel.first,
                   onChanged: (newValue) {
                     setState(() {
                       _selectedMarhala = newValue!;
@@ -200,7 +212,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                   ),
                   isExpanded: true,
                   hint: Text(_selectedSaff),
-                  value: _selectedSaff,
+                  value: _sfoof.first,
                   onChanged: (newValue) {
                     setState(() {
                       _selectedSaff = newValue!;
