@@ -1,37 +1,41 @@
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-showError(context, String message) {
-  return AlertDialog(
-    // The background color
-    backgroundColor: Colors.white,
-    // The shape of the dialog
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-    ),
-    // The title of the dialog
-    title: const Text('Oops! Something went wrong.'),
-    // The content of the dialog
-    content: const Text('Please check your internet connection and try again.'),
-    // The actions of the dialog
-    actions: [
-      // A button to cancel the operation
-      TextButton(
-        onPressed: () {
-          // Close the dialog
-          Navigator.of(context).pop();
-        },
-        child: const Text('Cancel'),
+showError(context, String message, Function retryAction) {
+  return showDialog(context: context, builder: (BuildContext context) {
+    return AlertDialog(
+      // The background color
+      backgroundColor: Colors.white,
+      // The shape of the dialog
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      // A button to retry the operation
-      TextButton(
-        onPressed: () {
-          // Close the dialog
-          Navigator.of(context).pop();
-          // Retry the operation
-          // _fetchData(context);
-        },
-        child: const Text('Retry'),
-      ),
-    ],
+      // The title of the dialog
+      title: const Text(AppStrings.errorDialogTitle),
+      // The content of the dialog
+      content: Text(message.replaceFirst('Exception: ', '')),
+      // The actions of the dialog
+      actions: [
+        // A button to cancel the operation
+        TextButton(
+          onPressed: () {
+            // Close the dialog
+            Navigator.of(context).pop();
+          },
+          child: const Text(AppStrings.cancel),
+        ),
+        // A button to retry the operation
+        TextButton(
+          onPressed: () {
+            // Close the dialog
+            Navigator.of(context).pop();
+            // Retry the operation
+            retryAction();
+          },
+          child: const Text(AppStrings.retryAgain),
+        ),
+      ],
+    );
+  }
   );
 }

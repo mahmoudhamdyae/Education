@@ -51,6 +51,7 @@ class AppStrings {
   // Dialogs
   static const loading = "جاري التحميل...";
   static const retryAgain = "حاول مرة أخرى";
+  static const errorDialogTitle = "خطأ!";
 
   // Bottom Bar
   static const bottomBarHome = "الرئيسية";

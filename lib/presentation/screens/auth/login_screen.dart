@@ -38,14 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formData!.validate()) {
       formData.save();
       try {
-        showLoading();
+        showLoading(context);
         await _accountService.logIn(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
         });
       } on Exception catch (e) {
         Navigator.of(context).pop();
-        showError(context, e.toString());
+        showError(context, e.toString(), () {});
       }
     }
   }

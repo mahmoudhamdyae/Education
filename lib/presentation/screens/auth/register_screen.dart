@@ -68,7 +68,7 @@ class _RegisterViewState extends State<RegisterScreen> {
       }
 
       try {
-        showLoading();
+        showLoading(context);
         await _accountService.register(_nameController.text, _numberController.text, _passController.text)
             .then((userCredential) {
           _accountService.logIn(_numberController.text, _passController.text).then((value) {
@@ -78,7 +78,7 @@ class _RegisterViewState extends State<RegisterScreen> {
         });
       } on Exception catch (e) {
         Navigator.of(context).pop();
-        showError(context, e.toString());
+        showError(context, e.toString(), () {});
       }
     }
   }
