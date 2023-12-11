@@ -38,19 +38,8 @@ class _RegisterViewState extends State<RegisterScreen> {
   ];
   String _selectedMarhala = AppStrings.primaryMarhala;
 
-  final List<String> _sfoof = [
-    AppStrings.saff1,
-    AppStrings.saff2,
-    AppStrings.saff3,
-    AppStrings.saff4,
-    AppStrings.saff5,
-    AppStrings.saff6,
-    AppStrings.saff7,
-    AppStrings.saff8,
-    AppStrings.saff9,
-    AppStrings.saff10,
-    AppStrings.saff11,
-    AppStrings.saff12,
+  List<String> _sfoof = [
+    AppStrings.saff1
   ];
   String _selectedSaff = AppStrings.saff1;
 
@@ -150,6 +139,48 @@ class _RegisterViewState extends State<RegisterScreen> {
                   onChanged: (newValue) {
                     setState(() {
                       _selectedMarhala = newValue!;
+                      switch(_selectedMarhala) {
+                        case AppStrings.primaryMarhala:
+                          _sfoof = [
+                            AppStrings.saff1,
+                            AppStrings.saff2,
+                            AppStrings.saff3,
+                            AppStrings.saff4,
+                            AppStrings.saff5,
+                          ];
+                          break;
+                        case AppStrings.mediumMarhala:
+                          _sfoof = [
+                            AppStrings.saff6,
+                            AppStrings.saff7,
+                            AppStrings.saff8,
+                            AppStrings.saff9,
+                          ];
+                          break;
+                        case AppStrings.secondaryMarhala:
+                          _sfoof = [
+                            AppStrings.saff10,
+                            AppStrings.saff11,
+                            AppStrings.saff12,
+                          ];
+                          break;
+                        case AppStrings.qodoratMarhala:
+                          _sfoof = [
+                            AppStrings.qodoratMarhala,
+                          ];
+                          break;
+                        case AppStrings.toeflMarhala:
+                          _sfoof = [
+                            AppStrings.toeflMarhala,
+                          ];
+                          break;
+                        case AppStrings.ieltsMarhala:
+                          _sfoof = [
+                            AppStrings.ieltsMarhala,
+                          ];
+                          break;
+                      }
+                      _selectedSaff = _sfoof.first;
                     });
                   },
                   items: _marahel.map((marhala) {
@@ -168,7 +199,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                     border: OutlineInputBorder(),
                   ),
                   isExpanded: true,
-                  hint: const Text(AppStrings.saff), // Not necessary for Option 1
+                  hint: Text(_selectedSaff),
                   value: _selectedSaff,
                   onChanged: (newValue) {
                     setState(() {
