@@ -1,6 +1,6 @@
 class AppStrings {
   static const noRouteFound = "noRouteFound";
-  static const appName = "Education";
+  static const appName = "Smart Student";
 
   // Authentication
   static const phoneHint = "رقم الهاتف";
@@ -60,7 +60,7 @@ class AppStrings {
   static const bottomBarMe = "الملف الشخصى";
 
   // Main Screen
-  static const String header = "يمكنك الحصول على شروحات واختبارات من خلال منصتنا";
+  static const String header = "منصة تعليمية شاملة توفر جميع الخدمات الطلابية";
   static const String recordedCourses = "كورسات مسجلة";
   static const String printedNotes = "مذكرات مطبوعة";
   static const String courses = "كورسات حضورى";
