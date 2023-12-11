@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   top: 0,
                   bottom: 0,
                   child: Padding(
-                    padding: EdgeInsets.all(AppPadding.p28),
+                    padding: EdgeInsets.all(AppPadding.p20),
                     child: Text(
                       AppStrings.header,
                       textAlign: TextAlign.center,

@@ -2,7 +2,6 @@ import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/routes_manager.dart';
@@ -15,7 +14,7 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          SizedBox(
               height: double.infinity,
               child: Image.asset(
                 ImageAssets.start,
