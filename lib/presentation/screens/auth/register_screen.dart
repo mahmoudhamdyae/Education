@@ -213,9 +213,13 @@ class _RegisterViewState extends State<RegisterScreen> {
                   isExpanded: true,
                   hint: Text(_selectedSaff),
                   value: _sfoof.first,
-                  onChanged: (newValue) {
+                  onChanged: (
+                      _selectedSaff == AppStrings.qodoratMarhala ||
+                          _selectedSaff == AppStrings.toeflMarhala ||
+                          _selectedSaff == AppStrings.ieltsMarhala
+                  ) ? null : (newValue) {
                     setState(() {
-                      _selectedSaff = newValue!;
+                      _selectedSaff = newValue.toString();
                     });
                   },
                   items: _sfoof.map((saff) {
