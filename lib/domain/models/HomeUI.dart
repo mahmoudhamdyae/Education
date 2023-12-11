@@ -15,7 +15,7 @@ class HomeUI {
     return [
       HomeUI(
         AppStrings.recordedCourses,
-        ImageAssets.onlineCourses,
+        ImageAssets.recordedCourses,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute),
       ),
       HomeUI(
@@ -25,7 +25,7 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.courses,
-        ImageAssets.onlineCourses,
+        ImageAssets.courses,
             () => Navigator.of(context, rootNavigator: true).pushNamed(Routes.coursesRoute),
       ),
       HomeUI(
