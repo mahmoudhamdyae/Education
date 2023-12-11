@@ -8,12 +8,14 @@ import 'package:education/presentation/screens/home/printed_notes/printed_notes_
 import 'package:education/presentation/screens/home/recorded_courses/recorded_courses_screen.dart';
 import 'package:education/presentation/screens/home/teacher/teacher_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
+import 'package:education/presentation/screens/start/start_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/auth/register_screen.dart';
 import '../screens/splash/splash_screen.dart';
 
 class Routes {
   static const String splashRoute = "/";
+  static const String startRoute = "/start";
   static const String mainRoute = "/main";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -31,6 +33,8 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case Routes.startRoute:
+        return MaterialPageRoute(builder: (_) => const StartScreen());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) => MainScreen());
       case Routes.loginRoute:

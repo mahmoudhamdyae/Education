@@ -43,6 +43,9 @@ class AppStrings {
   static const saffInvalid = "يجب اختيار صف";
   static const previouslyUser = "هذا الرقم مسجل مسبقا";
   static const wrongPhoneOrPassword = "رقم الهاتف أو كلمة المرور خاطئة";
+  static const registerButton = "إنشاء حساب جديد";
+  static const loginButton = "تسجيل دخول";
+  static const loginAsAGuestButton = "الدخول كزائر";
   // Logout
   static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
   static const String logoutOk = "تسجيل الخروج";
