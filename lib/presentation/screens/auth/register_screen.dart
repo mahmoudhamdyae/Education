@@ -69,7 +69,7 @@ class _RegisterViewState extends State<RegisterScreen> {
 
       try {
         showLoading(context);
-        await _accountService.register(_nameController.text, _numberController.text, _passController.text)
+        await _accountService.register(_nameController.text, _numberController.text, _passController.text, _selectedMarhala, _selectedSaff)
             .then((userCredential) {
           _accountService.logIn(_numberController.text, _passController.text).then((value) {
             _appPreferences.setUserLoggedIn();
@@ -126,8 +126,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.phone,
                   validator: (val) {
-                    if (val.toString().length == 11 &&
-                        val.toString().startsWith("01")) {
+                    if (val.toString().length == 8) {
                       return null;
                     }
                     return AppStrings.mobileNumberInvalid;
