@@ -1,4 +1,5 @@
 const String imagePath = "assets/images";
+const String jsonPath = "assets/json";
 
 class ImageAssets {
   static const String splashLogo = "$imagePath/splash_logo.png";
@@ -9,4 +10,8 @@ class ImageAssets {
   static const String printedNotes = "$imagePath/books.png";
   static const String courses = "$imagePath/courses.png";
   static const String recordedCourses = "$imagePath/recorded_courses.png";
+}
+
+class JsonAssets {
+  static const String login = "$jsonPath/login.json";
 }
