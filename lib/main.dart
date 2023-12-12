@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
         return Directionality(textDirection: TextDirection.rtl, child: child!);
       },
       home: const SplashScreen(),
-      // home: const Scaffold(
-      //   body: SplashScreen(),
-      // ),
     );
   }
 }
