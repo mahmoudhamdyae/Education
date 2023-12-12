@@ -38,11 +38,11 @@ class AccountServiceImpl implements AccountService {
     if (responseData["access_token"] == null) {
       throw Exception(AppStrings.wrongPhoneOrPassword);
     }
-    _appPreferences.setToken(responseData["access_token"]);
+    _appPreferences.setUserId(responseData['user']['id']);
   }
 
   @override
   Future signOut() async {
-    _appPreferences.setToken("");
+    _appPreferences.setUserId(0);
   }
 }

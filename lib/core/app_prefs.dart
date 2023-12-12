@@ -1,8 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String prefsKeyLang = "PREFS_KEY_LANG";
 const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
-const String prefsKeyToken = "PREFS_KEY_TOKEN";
+const String prefsUserId = "PREFS_USER_ID";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -23,11 +22,11 @@ class AppPreferences {
     _sharedPreferences.remove(prefsKeyIsUserLoggedIn);
   }
 
-  Future<void> setToken(String token) async {
-    _sharedPreferences.setString(prefsKeyToken, token);
+  Future<void> setUserId(int id) async {
+    _sharedPreferences.setInt(prefsUserId, id);
   }
 
-  Future<String> getToken() async {
-    return _sharedPreferences.getString(prefsKeyToken) ?? "";
+  Future<int> getUserId() async {
+    return _sharedPreferences.getInt(prefsUserId) ?? 0;
   }
 }
