@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/widgets/dialogs/choose_marhala_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -26,9 +27,16 @@ class GridViewItem extends StatelessWidget {
               bottom: 0,
               child: InkWell(
               onTap: () {
-                showChooseMarhalaDialog(context, (marhala, saff) {
-                  _item.action(marhala, saff);
-                });
+                if (
+                _item.name == AppStrings.recordedCourses ||
+                _item.name == AppStrings.examsAndBanks
+                ) {
+                  showChooseMarhalaDialog(context, (marhala, saff) {
+                    _item.action(marhala, saff);
+                  });
+                } else {
+                  _item.action('', '');
+                };
                 },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
