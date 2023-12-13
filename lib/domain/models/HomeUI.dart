@@ -24,8 +24,9 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.printedNotes,
-        ImageAssets.printedNotes, (String marhala, String saff) =>
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.printedNotesRoute),
+        ImageAssets.printedNotes, (String marhala, String saff) {
+          Navigator.of(context, rootNavigator: true).pushNamed(Routes.printedNotesRoute, arguments: [marhala, saff]);
+        }
       ),
       HomeUI(
         AppStrings.courses,

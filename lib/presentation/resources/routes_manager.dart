@@ -50,7 +50,7 @@ class RouteGenerator {
       case Routes.onlineCoursesRoute:
         return MaterialPageRoute(builder: (_) => const OnlineCoursesScreen());
       case Routes.printedNotesRoute:
-        return MaterialPageRoute(builder: (_) => const PrintedNotesScreen());
+        return MaterialPageRoute(builder: (_) => PrintedNotesScreen(parameters: settings.arguments as List<String>,));
       case Routes.recordedCoursesRoute:
         return MaterialPageRoute(builder: (_) => RecordedCoursesScreen(parameters: settings.arguments as List<String>,));
       case Routes.teacherRoute:
