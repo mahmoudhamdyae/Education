@@ -7,6 +7,8 @@ import '../../core/app_prefs.dart';
 import '../../core/constants.dart';
 import 'package:http/http.dart' as http;
 
+import '../../core/converts.dart';
+
 abstract class AccountService {
   Future register(String userName, String phone, String password, String grade, String group);
   Future logIn(String phone, String password);
@@ -21,7 +23,7 @@ class AccountServiceImpl implements AccountService {
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
-    String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${_convertMarhala(grade)}&group=${_convertSaff(group)}";
+    String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=${convertSaff(group)}";
     final response = await http.post(Uri.parse(url));
 
     final responseData = await json.decode(response.body);
@@ -47,22 +49,5 @@ class AccountServiceImpl implements AccountService {
   @override
   Future signOut() async {
     _appPreferences.setUserId(0);
-  }
-
-  String _convertMarhala(String marhala) {
-    switch(marhala) {
-      case AppStrings.primaryMarhala:
-        return 'ابتدائى';
-      case AppStrings.mediumMarhala:
-        return 'متوسط';
-      case AppStrings.secondaryMarhala:
-        return 'ثانوى';
-      default:
-        return '';
-    }
-  }
-
-  String _convertSaff(String saff) {
-    return saff.replaceFirst('الصف ', '');
   }
 }
