@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/app_prefs.dart';
+import '../../core/di.dart';
 import '../../presentation/resources/assets_manager.dart';
 import '../../presentation/resources/routes_manager.dart';
 import '../../presentation/resources/strings_manager.dart';
@@ -37,9 +39,13 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.teacher,
-        ImageAssets.teacher, (String marhala, String saff) {
-          // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
+        ImageAssets.teacher, (String marhala, String saff) async {
+        final AppPreferences appPreferences = instance<AppPreferences>();
+        if (await appPreferences.isUserLoggedIn()) {
+          Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
+        } else {
           showRequireAuthDialog(context);
+        }
       }
       ),
       HomeUI(
