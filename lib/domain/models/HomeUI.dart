@@ -16,7 +16,7 @@ class HomeUI {
       HomeUI(
         AppStrings.recordedCourses,
         ImageAssets.recordedCourses, (String marhala, String saff) {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute, arguments: marhala);
+          Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute, arguments: [marhala, saff]);
           },
       ),
       HomeUI(
