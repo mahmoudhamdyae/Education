@@ -26,8 +26,8 @@ class GridViewItem extends StatelessWidget {
               bottom: 0,
               child: InkWell(
               onTap: () {
-                showChooseMarhalaDialog(context, (marhala) {
-                  _item.action(marhala);
+                showChooseMarhalaDialog(context, (marhala, saff) {
+                  _item.action(marhala, saff);
                 });
                 },
               child: Column(

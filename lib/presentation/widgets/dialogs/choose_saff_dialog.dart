@@ -1,9 +1,10 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
-import 'package:education/presentation/widgets/dialogs/choose_saff_dialog.dart';
 import 'package:flutter/material.dart';
 
-showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
+showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTap) {
+  final List<String> sfoof = _getSfoof(marhala);
+  print('============ sfoof $sfoof');
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -22,10 +23,10 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               ),
               // المرحلة الابتدائية
               InkWell(
-                onTap: () {
-                  showChooseSaffDialog(context, AppStrings.primaryMarhala, (saff) =>
-                      onTap(AppStrings.primaryMarhala, saff));
-                },
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    onTap(AppStrings.primaryMarhala);
+                  },
                   child: const ListTile(
                       title: Text(AppStrings.primaryMarhala)
                   )
@@ -33,8 +34,8 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               // المرحلة المتوسطة
               InkWell(
                   onTap: () {
-                    showChooseSaffDialog(context, AppStrings.mediumMarhala, (saff) =>
-                        onTap(AppStrings.mediumMarhala, saff));
+                    Navigator.of(context).pop();
+                    onTap(AppStrings.mediumMarhala);
                   },
                   child: const ListTile(
                       title: Text(AppStrings.mediumMarhala)
@@ -43,8 +44,8 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               // المرحلة الثانوية
               InkWell(
                   onTap: () {
-                    showChooseSaffDialog(context, AppStrings.secondaryMarhala, (saff) =>
-                        onTap(AppStrings.secondaryMarhala, saff));
+                    Navigator.of(context).pop();
+                    onTap(AppStrings.secondaryMarhala);
                   },
                   child: const ListTile(
                       title: Text(AppStrings.secondaryMarhala)
@@ -54,7 +55,7 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
-                    onTap(AppStrings.qodoratMarhala, '');
+                    onTap(AppStrings.qodoratMarhala);
                   },
                   child: const ListTile(
                       title: Text(AppStrings.qodoratMarhala)
@@ -65,4 +66,32 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
         );
       }
   );
+}
+
+List<String> _getSfoof(String marhala) {
+  switch (marhala) {
+    case AppStrings.primaryMarhala:
+      return [
+        AppStrings.saff1,
+        AppStrings.saff2,
+        AppStrings.saff3,
+        AppStrings.saff4,
+        AppStrings.saff5,
+      ];
+    case AppStrings.mediumMarhala:
+      return [
+        AppStrings.saff6,
+        AppStrings.saff7,
+        AppStrings.saff8,
+        AppStrings.saff9,
+      ];
+    case AppStrings.secondaryMarhala:
+      return [
+        AppStrings.saff10,
+        AppStrings.saff11,
+        AppStrings.saff12,
+      ];
+    default:
+      return [];
+  }
 }

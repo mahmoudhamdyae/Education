@@ -9,8 +9,6 @@ class RecordedCoursesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final arguments = (ModalRoute.of(context)?.settings.arguments);
-    print('===============argumentsaaaa $name');
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.recordedCourses),

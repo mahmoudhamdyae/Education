@@ -7,7 +7,7 @@ import '../../presentation/resources/strings_manager.dart';
 class HomeUI {
   String name;
   String icon;
-  Function(String) action;
+  Function(String, String) action;
 
   HomeUI(this.name, this.icon, this.action);
 
@@ -15,33 +15,33 @@ class HomeUI {
     return [
       HomeUI(
         AppStrings.recordedCourses,
-        ImageAssets.recordedCourses, (String marhala) {
+        ImageAssets.recordedCourses, (String marhala, String saff) {
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute, arguments: marhala);
           },
       ),
       HomeUI(
         AppStrings.printedNotes,
-        ImageAssets.printedNotes, (String marhala) =>
+        ImageAssets.printedNotes, (String marhala, String saff) =>
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.printedNotesRoute),
       ),
       HomeUI(
         AppStrings.courses,
-        ImageAssets.courses, (String marhala) =>
+        ImageAssets.courses, (String marhala, String saff) =>
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.coursesRoute),
       ),
       HomeUI(
         AppStrings.onlineCourses,
-        ImageAssets.onlineCourses, (String marhala) =>
+        ImageAssets.onlineCourses, (String marhala, String saff) =>
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.onlineCoursesRoute),
       ),
       HomeUI(
         AppStrings.teacher,
-        ImageAssets.teacher, (String marhala) =>
+        ImageAssets.teacher, (String marhala, String saff) =>
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute),
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        ImageAssets.exam, (String marhala) =>
+        ImageAssets.exam, (String marhala, String saff) =>
           Navigator.of(context, rootNavigator: true).pushNamed(Routes.examsAndBanksRoute),
       ),
 

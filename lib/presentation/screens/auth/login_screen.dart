@@ -43,7 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
         showLoading(context);
         await _accountService.logIn(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
-          print("========== $userCredential");
           Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
         });
       } on Exception catch (e) {
