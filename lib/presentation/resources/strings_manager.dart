@@ -75,5 +75,5 @@ class AppStrings {
   static const String pleaseChooseMarhala = "برجاء اختيار المرحلة";
   // Require Auth Dialog
   static const String pleaseLogIn = "لاتمام عملية الشراء برجاء تسجيل الدخول";
-  static const String continueButton = "متابعة";
+  static const String continueButton = "تسجيل دخول";
 }
