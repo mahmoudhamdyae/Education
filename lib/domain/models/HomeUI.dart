@@ -41,10 +41,10 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        ImageAssets.exam, (String marhala, String saff) =>
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.examsAndBanksRoute),
+        ImageAssets.exam, (String marhala, String saff) {
+          Navigator.of(context, rootNavigator: true).pushNamed(Routes.examsAndBanksRoute, arguments: [marhala, saff]);
+        }
       ),
-
     ];
   }
 }

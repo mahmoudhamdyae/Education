@@ -4,10 +4,13 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
 
 class ExamsAndBanksScreen extends StatelessWidget {
-  const ExamsAndBanksScreen({super.key});
+  final List<String>? parameters;
+  const ExamsAndBanksScreen({super.key, required this.parameters});
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('passed marhala: ${parameters![0]}');
+    debugPrint('passed saff: ${parameters![1]}');
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.examsAndBanks),
