@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../presentation/resources/assets_manager.dart';
 import '../../presentation/resources/routes_manager.dart';
 import '../../presentation/resources/strings_manager.dart';
+import '../../presentation/widgets/dialogs/require_auth_dialog.dart';
 
 class HomeUI {
   String name;
@@ -36,8 +37,10 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.teacher,
-        ImageAssets.teacher, (String marhala, String saff) =>
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute),
+        ImageAssets.teacher, (String marhala, String saff) {
+          // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
+          showRequireAuthDialog(context);
+      }
       ),
       HomeUI(
         AppStrings.examsAndBanks,
