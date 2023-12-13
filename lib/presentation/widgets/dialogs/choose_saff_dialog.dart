@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTap) {
   final List<String> sfoof = _getSfoof(marhala);
-  print('============ sfoof $sfoof');
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -17,49 +16,19 @@ showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTa
           title: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(AppStrings.pleaseChooseMarhala),
+              Text(marhala),
               const SizedBox(
                 height: AppSize.s16,
               ),
-              // المرحلة الابتدائية
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    onTap(AppStrings.primaryMarhala);
-                  },
-                  child: const ListTile(
-                      title: Text(AppStrings.primaryMarhala)
-                  )
-              ),
-              // المرحلة المتوسطة
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    onTap(AppStrings.mediumMarhala);
-                  },
-                  child: const ListTile(
-                      title: Text(AppStrings.mediumMarhala)
-                  )
-              ),
-              // المرحلة الثانوية
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    onTap(AppStrings.secondaryMarhala);
-                  },
-                  child: const ListTile(
-                      title: Text(AppStrings.secondaryMarhala)
-                  )
-              ),
-              // القدرات
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    onTap(AppStrings.qodoratMarhala);
-                  },
-                  child: const ListTile(
-                      title: Text(AppStrings.qodoratMarhala)
-                  )
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: List.generate(sfoof.length, (index) =>
+                      ListTile(
+                        title: Text(sfoof[index]),
+                      )
+                  ),
+                ),
               ),
             ],
           ),
