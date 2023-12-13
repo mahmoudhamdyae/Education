@@ -38,7 +38,7 @@ class GridViewItem extends StatelessWidget {
                   });
                 } else {
                   _item.action('', '');
-                };
+                }
                 },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

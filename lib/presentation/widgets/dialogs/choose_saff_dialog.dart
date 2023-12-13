@@ -27,7 +27,6 @@ showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTa
                       InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
-                          Navigator.of(context).pop();
                           onTap(sfoof[index]);
                         },
                         child: ListTile(

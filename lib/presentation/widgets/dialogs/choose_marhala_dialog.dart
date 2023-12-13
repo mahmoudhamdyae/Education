@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/widgets/dialogs/choose_saff_dialog.dart';
@@ -23,6 +25,7 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               // المرحلة الابتدائية
               InkWell(
                 onTap: () {
+                  Navigator.of(context).pop();
                   showChooseSaffDialog(context, AppStrings.primaryMarhala, (saff) =>
                       onTap(AppStrings.primaryMarhala, saff));
                 },
@@ -33,6 +36,7 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               // المرحلة المتوسطة
               InkWell(
                   onTap: () {
+                    Navigator.of(context).pop();
                     showChooseSaffDialog(context, AppStrings.mediumMarhala, (saff) =>
                         onTap(AppStrings.mediumMarhala, saff));
                   },
@@ -43,6 +47,7 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
               // المرحلة الثانوية
               InkWell(
                   onTap: () {
+                    Navigator.of(context).pop();
                     showChooseSaffDialog(context, AppStrings.secondaryMarhala, (saff) =>
                         onTap(AppStrings.secondaryMarhala, saff));
                   },

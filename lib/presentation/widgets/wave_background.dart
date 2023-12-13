@@ -1,5 +1,4 @@
 // كلاس مخصص لتحديد شكل الموجة
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WaveClipper extends CustomClipper<Path> {
