@@ -1,14 +1,13 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 showError(context, String message, Function retryAction) {
   return showDialog(context: context, builder: (BuildContext context) {
     return AlertDialog(
-      // The background color
-      backgroundColor: Colors.white,
       // The shape of the dialog
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
       // The title of the dialog
       title: const Text(AppStrings.errorDialogTitle),

@@ -4,10 +4,13 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
 
 class RecordedCoursesScreen extends StatelessWidget {
-  const RecordedCoursesScreen({super.key});
+  final Object? name;
+  const RecordedCoursesScreen({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
+    // final arguments = (ModalRoute.of(context)?.settings.arguments);
+    print('===============argumentsaaaa $name');
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.recordedCourses),

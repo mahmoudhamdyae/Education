@@ -70,4 +70,7 @@ class AppStrings {
   static const String onlineCourses = "كورسات أونلاين";
   static const String teacher = "مدرس خصوصى";
   static const String examsAndBanks = "اختبارات و بنوك";
+
+  // Choose Marhala Dialog
+  static const String pleaseChooseMarhala = "برجاء اختيار المرحلة";
 }

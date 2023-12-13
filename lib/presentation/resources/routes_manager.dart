@@ -52,7 +52,7 @@ class RouteGenerator {
       case Routes.printedNotesRoute:
         return MaterialPageRoute(builder: (_) => const PrintedNotesScreen());
       case Routes.recordedCoursesRoute:
-        return MaterialPageRoute(builder: (_) => const RecordedCoursesScreen());
+        return MaterialPageRoute(builder: (_) => RecordedCoursesScreen(name: settings.arguments,));
       case Routes.teacherRoute:
         return MaterialPageRoute(builder: (_) => const TeacherScreen());
       default:

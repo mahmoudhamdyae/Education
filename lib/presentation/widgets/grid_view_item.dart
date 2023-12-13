@@ -1,3 +1,4 @@
+import 'package:education/presentation/widgets/dialogs/choose_marhala_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/HomeUI.dart';
@@ -24,7 +25,11 @@ class GridViewItem extends StatelessWidget {
               top: 0,
               bottom: 0,
               child: InkWell(
-              onTap: () { _item.action(); },
+              onTap: () {
+                showChooseMarhalaDialog(context, (marhala) {
+                  _item.action(marhala);
+                });
+                },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

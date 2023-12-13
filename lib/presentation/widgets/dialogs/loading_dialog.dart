@@ -1,13 +1,13 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../resources/values_manager.dart';
+
 showLoading(BuildContext context) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
         return const AlertDialog(
-          // The background color
-          backgroundColor: Colors.white,
           // The shape of the dialog
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -21,7 +21,7 @@ showLoading(BuildContext context) {
                 // The loading indicator
                 CircularProgressIndicator(),
                 SizedBox(
-                  height: 15,
+                  height: AppSize.s16,
                 ),
                 // Some text
                 Text(AppStrings.loading)
