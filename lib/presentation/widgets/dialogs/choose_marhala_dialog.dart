@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/widgets/dialogs/choose_saff_dialog.dart';
