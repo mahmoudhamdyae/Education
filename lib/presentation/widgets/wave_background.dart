@@ -45,10 +45,8 @@ class WaveBackground extends StatelessWidget {
   // دالة لبناء الويدجت
   @override
   Widget build(BuildContext context) {
-    // إرجاع حاوية مرنة تملأ كل المساحة المتاحة
-    return Flexible(
-      // إرجاع حاوية ملونة باللون الأساسي
-      child: Container(
+    // إرجاع حاوية ملونة باللون الأساسي
+    return Container(
         color: baseColor,
         // إرجاع ويدجت لقص الخلفية بشكل موجة
         child: ClipPath(
@@ -59,7 +57,6 @@ class WaveBackground extends StatelessWidget {
             color: waveColor,
           ),
         ),
-      ),
     );
   }
 }
