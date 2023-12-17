@@ -139,11 +139,21 @@ class _SubjectScreenState extends State<SubjectScreen> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                    child: Text(
-                        wehda.lessons[lessonIndex].title,
-                      style: TextStyle(
-                        color: isUserLoggedIn ? ColorManager.primary : index == 0 && lessonIndex == 0 ? ColorManager.primary : Colors.grey
-                      ),
+                    child: Row(
+                      children: [
+                        isUserLoggedIn ? Container() : index == 0 && lessonIndex == 0 ?
+                        const Icon(
+                          Icons.remove_red_eye,
+                          color: ColorManager.primary,
+                        ) : const Icon(Icons.lock, color: Colors.grey,),
+                        isUserLoggedIn ? Container() : const SizedBox(width: AppSize.s8,),
+                        Text(
+                            wehda.lessons[lessonIndex].title,
+                          style: TextStyle(
+                            color: isUserLoggedIn ? ColorManager.primary : index == 0 && lessonIndex == 0 ? ColorManager.primary : Colors.grey
+                          ),
+                        ),
+                      ],
                     ),
                   )
               );
