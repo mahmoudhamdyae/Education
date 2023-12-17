@@ -19,7 +19,7 @@ class LessonScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: 200,
         child: VimeoVideoPlayer(
