@@ -1,4 +1,3 @@
-import 'package:education/domain/models/course.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/home/courses/courses_screen.dart';
 import 'package:education/presentation/screens/home/exams_and_banks/exams_and_banks_screen.dart';
@@ -12,6 +11,7 @@ import 'package:education/presentation/screens/home/teacher/teacher_screen.dart'
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:education/presentation/screens/start/start_screen.dart';
 import 'package:flutter/material.dart';
+import '../../domain/models/courses/course.dart';
 import '../screens/auth/register_screen.dart';
 import '../screens/lesson/lesson_screen.dart';
 import '../screens/splash/splash_screen.dart';
@@ -63,7 +63,7 @@ class RouteGenerator {
       case Routes.subjectRoute:
         return MaterialPageRoute(builder: (_) => SubjectScreen(course: settings.arguments as Course));
       case Routes.lessonRoute:
-        return MaterialPageRoute(builder: (_) => const LessonScreen());
+        return MaterialPageRoute(builder: (_) => LessonScreen(lessonName: settings.arguments as String));
       default:
         return unDefinedRoute();
     }

@@ -1,6 +1,4 @@
-import 'package:education/domain/models/class_model.dart';
-import 'package:education/domain/models/course.dart';
-import 'package:education/domain/models/baqa.dart';
+import 'package:education/domain/models/courses/baqa.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/home/recorded_courses/course_item.dart';
@@ -8,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/app_prefs.dart';
 import '../../../../core/di.dart';
+import '../../../../domain/models/courses/class_model.dart';
+import '../../../../domain/models/courses/course.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../widgets/dialogs/require_auth_dialog.dart';
