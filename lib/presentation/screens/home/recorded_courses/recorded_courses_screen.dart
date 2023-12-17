@@ -72,7 +72,7 @@ class RecordedCoursesScreen extends StatelessWidget {
                   if (await appPreferences.isUserLoggedIn()) {
                   // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                   } else {
-                  showRequireAuthDialog(context);
+                    if (context.mounted) showRequireAuthDialog(context);
                   }
                 },
                 child: Container(
@@ -104,7 +104,7 @@ class RecordedCoursesScreen extends StatelessWidget {
                   if (await appPreferences.isUserLoggedIn()) {
                   // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                   } else {
-                  showRequireAuthDialog(context);
+                    if (context.mounted) showRequireAuthDialog(context);
                   }
                 },
                 child: Container(

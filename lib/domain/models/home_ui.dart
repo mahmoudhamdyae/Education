@@ -43,9 +43,9 @@ class HomeUI {
         ImageAssets.teacher, (String marhala, String saff) async {
         final AppPreferences appPreferences = instance<AppPreferences>();
         if (await appPreferences.isUserLoggedIn()) {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
+          if (context.mounted) Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
         } else {
-          showRequireAuthDialog(context);
+          if (context.mounted) showRequireAuthDialog(context);
         }
       }
       ),

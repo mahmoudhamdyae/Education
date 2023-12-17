@@ -46,7 +46,7 @@ class CourseItem extends StatelessWidget {
                         if (await appPreferences.isUserLoggedIn()) {
                         // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                         } else {
-                        showRequireAuthDialog(context);
+                          if (context.mounted) showRequireAuthDialog(context);
                         }
                       },
                       child: Padding(
@@ -77,7 +77,7 @@ class CourseItem extends StatelessWidget {
                         if (await appPreferences.isUserLoggedIn()) {
                         // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                         } else {
-                        showRequireAuthDialog(context);
+                          if (context.mounted) showRequireAuthDialog(context);
                         }
                       },
                       child: Padding(
