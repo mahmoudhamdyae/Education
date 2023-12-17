@@ -1,6 +1,7 @@
 import 'package:education/domain/models/course.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/font_manager.dart';
+import 'package:education/presentation/resources/routes_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +19,16 @@ class CourseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-      },
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSize.s8),
-          color: ColorManager.primary,
-        ),
+    return Container(
+      padding: const EdgeInsets.all(AppPadding.p16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        color: ColorManager.primary,
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed(Routes.subjectRoute, arguments: course);
+        },
         child: Column(
           children: [
             Text(

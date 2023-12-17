@@ -1,3 +1,4 @@
+import 'package:education/domain/models/course.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/home/courses/courses_screen.dart';
 import 'package:education/presentation/screens/home/exams_and_banks/exams_and_banks_screen.dart';
@@ -6,11 +7,13 @@ import 'package:education/presentation/screens/auth/login_screen.dart';
 import 'package:education/presentation/screens/home/online_courses/online_courses_screen.dart';
 import 'package:education/presentation/screens/home/printed_notes/printed_notes_screen.dart';
 import 'package:education/presentation/screens/home/recorded_courses/recorded_courses_screen.dart';
+import 'package:education/presentation/screens/home/subject/subject_screen.dart';
 import 'package:education/presentation/screens/home/teacher/teacher_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:education/presentation/screens/start/start_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/auth/register_screen.dart';
+import '../screens/lesson/lesson_screen.dart';
 import '../screens/splash/splash_screen.dart';
 
 class Routes {
@@ -26,6 +29,8 @@ class Routes {
   static const String printedNotesRoute = "/printed_notes";
   static const String recordedCoursesRoute = "/recorded_courses";
   static const String teacherRoute = "/teacher";
+  static const String subjectRoute = "/subject";
+  static const String lessonRoute = "/lesson";
 }
 
 class RouteGenerator {
@@ -55,6 +60,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => RecordedCoursesScreen(parameters: settings.arguments as List<String>,));
       case Routes.teacherRoute:
         return MaterialPageRoute(builder: (_) => const TeacherScreen());
+      case Routes.subjectRoute:
+        return MaterialPageRoute(builder: (_) => SubjectScreen(course: settings.arguments as Course));
+      case Routes.lessonRoute:
+        return MaterialPageRoute(builder: (_) => const LessonScreen());
       default:
         return unDefinedRoute();
     }
