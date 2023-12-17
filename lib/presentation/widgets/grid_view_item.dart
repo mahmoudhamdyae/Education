@@ -3,7 +3,7 @@ import 'package:education/presentation/widgets/dialogs/choose_marhala_dialog.dar
 import 'package:education/presentation/widgets/wave_background.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/models/HomeUI.dart';
+import '../../domain/models/home_ui.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 

@@ -1,7 +1,7 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/models/HomeUI.dart';
+import '../../../domain/models/home_ui.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/custom_grid_view.dart';

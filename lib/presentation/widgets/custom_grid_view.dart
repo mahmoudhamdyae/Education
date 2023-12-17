@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../domain/models/HomeUI.dart';
+import '../../domain/models/home_ui.dart';
 import 'grid_view_item.dart';
 
 class CustomGridView extends StatelessWidget {

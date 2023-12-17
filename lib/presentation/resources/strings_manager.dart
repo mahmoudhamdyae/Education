@@ -76,4 +76,15 @@ class AppStrings {
   // Require Auth Dialog
   static const String pleaseLogIn = "لاتمام عملية الشراء برجاء تسجيل الدخول";
   static const String continueButton = "تسجيل دخول";
+
+  // Recorded Courses
+  static const String recordedCoursesTitleBar = "مواد";
+  static const String monthlySubscription = "اشتراك شهرى";
+  static const String termSubscription = "اشتراك ترم";
+  static const String dinar = "د.ك";
+  static const String subjectsAndNotes = "شروحات + مذكرات";
+  static const String subjects = "باقة شروحات ترم كامل";
+  static const String subjectsLabel = "مواد شرح";
+  static const String notesLabel = "مذكرات";
+  static const String baqaPrice = "سعر الباقة";
 }
