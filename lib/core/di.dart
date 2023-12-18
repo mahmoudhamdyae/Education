@@ -1,7 +1,6 @@
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/data/repository/repository_impl.dart';
 import 'package:education/domain/repository/repository.dart';
-import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
