@@ -1,3 +1,4 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:education/presentation/screens/subscription/widgets/subscription_screen_body.dart';
@@ -19,7 +20,6 @@ class SubscriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _controller.getSubscription();
     return FutureBuilder(
         future: _appPreferences.isUserLoggedIn(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {

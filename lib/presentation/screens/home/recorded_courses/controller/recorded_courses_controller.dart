@@ -10,12 +10,19 @@ class RecordedCoursesController extends GetxController {
   final Rx<ClassModel> classModel = ClassModel([], []).obs;
 
   final Repository _repository;
+  final String _marhala;
 
-  RecordedCoursesController(this._repository);
+  RecordedCoursesController(this._repository, this._marhala);
 
-  getRecordedCourses(String marhala) async {
+  @override
+  void onInit() {
+    super.onInit();
+    _getRecordedCourses();
+  }
+
+  _getRecordedCourses() async {
     try {
-      await _repository.getRecordedCourses(marhala).then((remoteClassModel) {
+      await _repository.getRecordedCourses(_marhala).then((remoteClassModel) {
         isLoading.value = false;
         error.value = '';
         classModel.value = remoteClassModel;

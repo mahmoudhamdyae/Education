@@ -13,7 +13,14 @@ class SubscriptionController extends GetxController {
 
   SubscriptionController(this._repository);
 
-  getSubscription() async {
+
+  @override
+  void onInit() {
+    super.onInit();
+    _getSubscription();
+  }
+
+  _getSubscription() async {
     try {
       await _repository.getSubscriptions().then((remoteCourses) {
         isLoading.value = false;

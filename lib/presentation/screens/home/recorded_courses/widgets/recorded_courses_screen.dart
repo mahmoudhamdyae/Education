@@ -1,9 +1,9 @@
 import 'package:education/core/di.dart';
-import 'package:education/domain/models/courses/class_model.dart';
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen_body.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
@@ -13,13 +13,14 @@ import '../../../../widgets/loading_screen.dart';
 class RecordedCoursesScreen extends StatelessWidget {
   
   final List<String>? parameters;
-  final RecordedCoursesController _controller = instance<RecordedCoursesController>();
+  late final RecordedCoursesController _controller;
 
-  RecordedCoursesScreen({super.key, required this.parameters});
+  RecordedCoursesScreen({super.key, required this.parameters}) {
+    _controller = Get.put(RecordedCoursesController(instance<Repository>(), parameters![1]));
+  }
 
   @override
   Widget build(BuildContext context) {
-    _controller.getRecordedCourses(parameters![1]);
     debugPrint('passed marhala: ${parameters![0]}');
     debugPrint('passed saff: ${parameters![1]}');
     return Scaffold(
