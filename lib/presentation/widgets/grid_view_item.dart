@@ -14,54 +14,51 @@ class GridViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(AppPadding.p16),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppPadding.p16),
-        child: Stack(
-          children: [
-            const WaveBackground(baseColor: ColorManager.primary, waveColor: ColorManager.lightPrimary),
-            Positioned(
-              right: 0,
-              left: 0,
-              top: 0,
-              bottom: 0,
-              child: InkWell(
-              onTap: () {
-                if (
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppSize.s16),
+      child: Stack(
+        children: [
+          const WaveBackground(baseColor: ColorManager.primary, waveColor: ColorManager.lightPrimary),
+          Positioned(
+            right: 0,
+            left: 0,
+            top: 0,
+            bottom: 0,
+            child: InkWell(
+            onTap: () {
+              if (
                 _item.name == AppStrings.recordedCourses ||
                 _item.name == AppStrings.examsAndBanks ||
                 _item.name == AppStrings.printedNotes
-                ) {
-                  showChooseMarhalaDialog(context, (marhala, saff) {
-                    _item.action(marhala, saff);
-                  });
-                } else {
-                  _item.action('', '');
-                }
-                },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(_item.icon, scale: AppSize.s8,),
-                  const SizedBox(height: AppSize.s16,),
-                  Padding(
-                    padding: const EdgeInsets.all(AppPadding.p8),
-                    child: Text(
-                      _item.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: AppSize.s16,
-                        fontWeight: FontWeight.bold,
-                        color: ColorManager.white
-                      ),
+              ) {
+                showChooseMarhalaDialog(context, (marhala, saff) {
+                  _item.action(marhala, saff);
+                });
+              } else {
+                _item.action('', '');
+              }
+              },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(_item.icon, scale: AppSize.s8,),
+                const SizedBox(height: AppSize.s16,),
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  child: Text(
+                    _item.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: AppSize.s16,
+                      fontWeight: FontWeight.bold,
+                      color: ColorManager.white
                     ),
                   ),
-                ],
-              ),
-                        ),
-            )],
-        ),
+                ),
+              ],
+            ),
+                      ),
+          )],
       ),
     );
   }
