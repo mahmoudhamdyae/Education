@@ -56,9 +56,9 @@ class GridViewItem extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-                      ),
-          )],
+            ),),
+          )
+        ],
       ),
     );
   }
