@@ -58,7 +58,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
 
 flutter_native_splash:
-  color: "#0016A8"
+  color: "#ffffff"
   image: assets/images/splash_logo.png
   android: true
   ios: true
@@ -66,11 +66,11 @@ flutter_native_splash:
   android_gravity: center
   android_12:
     android_gravity: center
-    color: "#0016A8"
+    color: "#ffffff"
     image: assets/images/splash_logo.png
-    icon_background_color: "#0016A8"
+    icon_background_color: "#ffffff"
     image_dark: assets/images/splash_logo.png
-    icon_background_color_dark: "#0016A8"
+    icon_background_color_dark: "#ffffff"
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

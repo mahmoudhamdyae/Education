@@ -5,10 +5,10 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/app_prefs.dart';
-import '../../../../core/di.dart';
-import '../../../../domain/models/courses/course.dart';
-import '../../../widgets/dialogs/require_auth_dialog.dart';
+import '../../../../../core/app_prefs.dart';
+import '../../../../../core/di.dart';
+import '../../../../../domain/models/courses/course.dart';
+import '../../../../widgets/dialogs/require_auth_dialog.dart';
 
 class CourseItem extends StatelessWidget {
 

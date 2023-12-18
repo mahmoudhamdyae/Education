@@ -1,15 +1,15 @@
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/screens/subscription/subscription_controller.dart';
-import 'package:education/presentation/screens/subscription/subscription_screen_body.dart';
+import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
+import 'package:education/presentation/screens/subscription/widgets/subscription_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:education/presentation/widgets/error_screen.dart';
 import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_prefs.dart';
-import '../../../core/di.dart';
-import '../../widgets/require_log_in_view.dart';
+import '../../../../core/app_prefs.dart';
+import '../../../../core/di.dart';
+import '../../../widgets/require_log_in_view.dart';
 
 class SubscriptionScreen extends StatelessWidget {
   SubscriptionScreen({super.key});

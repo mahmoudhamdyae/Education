@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../domain/models/courses/course.dart';
-import '../../../domain/repository/repository.dart';
+import '../../../../domain/models/courses/course.dart';
+import '../../../../domain/repository/repository.dart';
 
 class SubscriptionController extends GetxController {
 
