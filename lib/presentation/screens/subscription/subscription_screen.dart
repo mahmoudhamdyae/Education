@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/subscription/subscription_controller.dart';
+import 'package:education/presentation/screens/subscription/subscription_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:education/presentation/widgets/error_screen.dart';
 import 'package:education/presentation/widgets/loading_screen.dart';
@@ -34,16 +35,7 @@ class SubscriptionScreen extends StatelessWidget {
                   return const EmptyScreen(emptyString: AppStrings.emptySubscriptions);
                 } else {
                   final courses = _controller.courses;
-                  return ListView.builder(
-                      itemCount: courses.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            title: Text(courses[index].name),
-                          ),
-                        );
-                      }
-                  );
+                  return SubscriptionScreenBody(courses: courses);
                 }
               });
             } else {
