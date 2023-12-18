@@ -10,6 +10,8 @@ class ImageAssets {
   static const String printedNotes = "$imagePath/books.png";
   static const String courses = "$imagePath/courses.png";
   static const String recordedCourses = "$imagePath/recorded_courses.png";
+  static const String empty = "$imagePath/empty.svg";
+  static const String error = "$imagePath/error.svg";
 }
 
 class JsonAssets {

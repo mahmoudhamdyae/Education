@@ -1,3 +1,7 @@
+import 'package:education/data/remote/remote_data_source.dart';
+import 'package:education/data/repository/repository_impl.dart';
+import 'package:education/domain/repository/repository.dart';
+import 'package:education/presentation/screens/subscription/subscription_controller.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/remote/account_service.dart';
@@ -20,4 +24,16 @@ Future<void> initAppModule() async {
   // AccountService
   instance.registerLazySingleton<AccountService>(
           () => AccountServiceImpl(instance<AppPreferences>()));
+
+  // Remote Data Source
+  instance.registerLazySingleton<RemoteDataSource>(
+          () => RemoteDataSource());
+
+  // Repository
+  instance.registerLazySingleton<Repository>(
+          () => RepositoryImpl(instance<RemoteDataSource>()));
+
+  // Controllers
+  instance.registerLazySingleton<SubscriptionController>(
+          () => SubscriptionController(instance<Repository>()));
 }
