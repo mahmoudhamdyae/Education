@@ -20,12 +20,12 @@ class EmptyScreen extends StatelessWidget {
             ImageAssets.empty,
             height: AppSize.s190,
           ),
-          const SizedBox(height: AppSize.s16,),
+          const SizedBox(height: AppSize.s40,),
           Text(
             emptyString,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: FontSize.s16
+              fontSize: FontSize.s16,
             ),
           ),
         ],

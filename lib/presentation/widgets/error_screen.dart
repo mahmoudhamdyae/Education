@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
+import '../resources/font_manager.dart';
 import '../resources/values_manager.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -20,11 +21,13 @@ class ErrorScreen extends StatelessWidget {
               ImageAssets.error,
               height: AppSize.s190,
             ),
-            const SizedBox(height: AppSize.s16,),
+            const SizedBox(height: AppSize.s40,),
             Text(
               error,
               style: const TextStyle(
                 color: ColorManager.error,
+                  fontWeight: FontWeight.w500,
+                  fontSize: FontSize.s16,
               ),
             ),
           ],

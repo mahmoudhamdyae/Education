@@ -10,8 +10,6 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<List<Course>> getSubscriptions() async {
-    await Future.delayed(const Duration(seconds: 2));
-    throw Exception('Test Exeption');
     return _remoteDataSource.getSubscriptions();
   }
 }
