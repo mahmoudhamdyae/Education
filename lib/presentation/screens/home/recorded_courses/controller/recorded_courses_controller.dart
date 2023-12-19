@@ -1,4 +1,5 @@
 import 'package:education/domain/models/courses/class_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../../domain/repository/repository.dart';
@@ -10,22 +11,28 @@ class RecordedCoursesController extends GetxController {
   final Rx<ClassModel> classModel = ClassModel([], []).obs;
 
   final Repository _repository;
-  final String _marhala;
 
-  RecordedCoursesController(this._repository, this._marhala);
+  RecordedCoursesController(this._repository);
 
-  @override
-  void onInit() {
-    super.onInit();
-    _getRecordedCourses();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   _getRecordedCourses();
+  // }
 
-  _getRecordedCourses() async {
+  getRecordedCourses(String marhala) async {
+    classModel.value = ClassModel([], []);
+    isLoading.value = true;
+    debugPrint('=========================class model1 ${classModel.value}');
     try {
-      await _repository.getRecordedCourses(_marhala).then((remoteClassModel) {
+      await _repository.getRecordedCourses(marhala).then((remoteClassModel) {
         isLoading.value = false;
         error.value = '';
+        remoteClassModel.courses.forEach((element) {
+          debugPrint('=========================${element.name}');
+        });
         classModel.value = remoteClassModel;
+        debugPrint('=========================class model ${classModel.value}');
       });
     } on Exception catch (e) {
       error.value = e.toString();

@@ -1,5 +1,4 @@
 import 'package:education/core/di.dart';
-import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen_body.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +12,15 @@ import '../../../../widgets/loading_screen.dart';
 class RecordedCoursesScreen extends StatelessWidget {
   
   final List<String>? parameters;
-  late final RecordedCoursesController _controller;
+  late final RecordedCoursesController _controller = instance<RecordedCoursesController>();
 
-  RecordedCoursesScreen({super.key, required this.parameters}) {
-    _controller = Get.put(RecordedCoursesController(instance<Repository>(), parameters![1]));
-  }
+  RecordedCoursesScreen({super.key, required this.parameters});
 
   @override
   Widget build(BuildContext context) {
     debugPrint('passed marhala: ${parameters![0]}');
     debugPrint('passed saff: ${parameters![1]}');
+    _controller.getRecordedCourses(parameters![1]);
     return Scaffold(
       appBar: AppBar(
         title: Text(parameters![1] == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} ${parameters![1]}'),

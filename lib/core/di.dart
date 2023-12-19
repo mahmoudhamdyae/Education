@@ -7,6 +7,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/network_info.dart';
 import '../data/remote/account_service.dart';
+import '../presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'app_prefs.dart';
 
 final instance = GetIt.instance;
@@ -40,6 +41,8 @@ Future<void> initAppModule() async {
           () => RepositoryImpl(instance<RemoteDataSource>()));
 
   // Controllers
+  instance.registerLazySingleton<RecordedCoursesController>(
+          () => RecordedCoursesController(instance<Repository>()));
   instance.registerLazySingleton<SubscriptionController>(
           () => SubscriptionController(instance<Repository>()));
 }

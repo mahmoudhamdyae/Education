@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../core/constants.dart';
@@ -19,18 +20,45 @@ class RemoteDataSource {
     debugPrint('Get Recorded Courses Response: $responseData');
 
     List<Course> courses = [];
-    for (var singleCourse in responseData["courses"]) {
+    String s = '';
+    switch(marhala) {
+      case AppStrings.saff6:
+        s = 'coursesix';
+        break;
+      case AppStrings.saff7:
+        s = 'courseseven';
+        break;
+      case AppStrings.saff8:
+        s = 'courseeight';
+        break;
+      case AppStrings.saff9:
+        s = 'coursenine';
+        break;
+      case AppStrings.saff10:
+        s = 'courseten';
+        break;
+      case AppStrings.saff11:
+        s = 'courseeleven';
+        break;
+      case AppStrings.saff12:
+        s = 'coursetwelve';
+        break;
+    }
+    for (var singleCourse in responseData[s]) {
       Course course = Course.fromJson(singleCourse);
-      courses.add(course);
+      debugPrint('Get Recorded Courses Response: $marhala');
+      // if (course.marhala == marhala) {
+        courses.add(course);
+      // }
     }
 
-    return Future(() => ClassModel(
+    return ClassModel(
         courses,
         [
           Baqa(8, 7, 60),
           Baqa(7, 0, 38),
         ]
-    ));
+    );
   }
 
   Future<List<Course>> getSubscriptions() {
