@@ -91,4 +91,7 @@ class AppStrings {
 
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';
+
+  // Error Handler
+  static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
 }

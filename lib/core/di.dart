@@ -3,7 +3,9 @@ import 'package:education/data/repository/repository_impl.dart';
 import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../data/network_info.dart';
 import '../data/remote/account_service.dart';
 import 'app_prefs.dart';
 
@@ -21,9 +23,13 @@ Future<void> initAppModule() async {
   instance
       .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
+  // Network info
+  instance.registerLazySingleton<NetworkInfo>(
+          () => NetworkInfoImpl(InternetConnectionChecker()));
+
   // AccountService
   instance.registerLazySingleton<AccountService>(
-          () => AccountServiceImpl(instance<AppPreferences>()));
+          () => AccountServiceImpl(instance<AppPreferences>(), instance<NetworkInfo>()));
 
   // Remote Data Source
   instance.registerLazySingleton<RemoteDataSource>(

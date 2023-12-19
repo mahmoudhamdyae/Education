@@ -8,6 +8,7 @@ import '../../core/constants.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/converts.dart';
+import '../network_info.dart';
 
 abstract class AccountService {
   Future register(String userName, String phone, String password, String grade, String group);
@@ -17,9 +18,10 @@ abstract class AccountService {
 
 class AccountServiceImpl implements AccountService {
 
+  final NetworkInfo _networkInfo;
   final AppPreferences _appPreferences;
 
-  AccountServiceImpl(this._appPreferences);
+  AccountServiceImpl(this._appPreferences, this._networkInfo);
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
@@ -49,5 +51,12 @@ class AccountServiceImpl implements AccountService {
   @override
   Future signOut() async {
     _appPreferences.setUserId(0);
+  }
+
+  _checkNetwork() async {
+    if (await _networkInfo.isConnected) {
+    } else {
+      throw Exception(AppStrings.noInternetError);
+    }
   }
 }

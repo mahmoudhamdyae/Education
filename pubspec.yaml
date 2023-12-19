@@ -43,6 +43,7 @@ dependencies:
   vimeo_video_player: ^0.0.10
   get: ^4.6.6
   flutter_svg: ^2.0.9
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
