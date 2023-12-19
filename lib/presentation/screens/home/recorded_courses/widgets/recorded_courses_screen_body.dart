@@ -124,11 +124,11 @@ class RecordedCoursesScreenBody extends StatelessWidget {
       children: [
         Text(
           '$subjects ${AppStrings.subjectsLabel} $notesString',
-          style: const TextStyle(color: Colors.yellow),
+          style: const TextStyle(color: Color(0xFFCCCCCC)),
         ),
         Text(
           '${AppStrings.baqaPrice} :$price ${AppStrings.dinar}',
-          style: const TextStyle(color: Colors.yellow),
+          style: const TextStyle(color: Color(0xFFCCCCCC)),
         ),
       ],
     );

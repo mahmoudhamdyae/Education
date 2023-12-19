@@ -44,6 +44,7 @@ class CourseItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: FilledButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF008B8B))),
                       onPressed: () async {
                         if (await appPreferences.isUserLoggedIn()) {
                         // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
@@ -75,6 +76,7 @@ class CourseItem extends StatelessWidget {
                 const SizedBox(width: AppSize.s16,),
                 Expanded(
                   child: FilledButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF008B8B))),
                       onPressed: () async {
                         if (await appPreferences.isUserLoggedIn()) {
                         // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);

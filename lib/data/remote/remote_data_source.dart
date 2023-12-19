@@ -47,9 +47,7 @@ class RemoteDataSource {
     for (var singleCourse in responseData[s]) {
       Course course = Course.fromJson(singleCourse);
       debugPrint('Get Recorded Courses Response: $marhala');
-      // if (course.marhala == marhala) {
-        courses.add(course);
-      // }
+      courses.add(course);
     }
 
     return ClassModel(

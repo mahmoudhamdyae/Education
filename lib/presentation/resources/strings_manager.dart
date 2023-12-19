@@ -88,6 +88,7 @@ class AppStrings {
   static const String subjectsLabel = "مواد شرح";
   static const String notesLabel = "مذكرات";
   static const String baqaPrice = "سعر الباقة";
+  static const String noCourses = "لا يوجد حاليا كورسات مسجلة حاليا فى هذه المرحلة";
 
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';
