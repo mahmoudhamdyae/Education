@@ -1,6 +1,11 @@
 class Lesson {
   String title;
-  Function clickAction;
 
-  Lesson(this.title, this.clickAction);
+  Lesson(this.title);
+
+  factory Lesson.fromJson(Map<String, dynamic> json) {
+    return Lesson(
+      json['title'] as String? ?? '',
+    );
+  }
 }

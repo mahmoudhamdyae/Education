@@ -26,14 +26,14 @@ class _SubjectScreenState extends State<SubjectScreen> {
   late bool isUserLoggedIn;
   List<Wehda> wehdat = [
     Wehda('كان و أخواتها - الفضل الدراسى الأول', [
-      Lesson('التشبيه و أركانه', () {}),
-      Lesson('تدريبات', () {}),
-      Lesson('أنواع خبر كان', () {}),
+      Lesson('التشبيه و أركانه'),
+      Lesson('تدريبات'),
+      Lesson('أنواع خبر كان'),
     ]),
     Wehda('2كان و أخواتها - الفضل الدراسى الأول', [
-      Lesson('2التشبيه و أركانه', () {}),
-      Lesson('2تدريبات', () {}),
-      Lesson('2أنواع خبر كان', () {}),
+      Lesson('2التشبيه و أركانه'),
+      Lesson('2تدريبات'),
+      Lesson('2أنواع خبر كان'),
     ]),
   ];
 
