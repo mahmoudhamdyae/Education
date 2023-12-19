@@ -80,7 +80,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
           return ListView.builder(
               itemCount: wehdat.length,
               itemBuilder: (context, index) {
-                return _buildLessonItem(wehdat[index], index, expanded, (index) {
+                return _buildLessonItem(wehdat, wehdat[index], index, expanded, (index) {
                   setState(() {
                     if (expanded == index) {
                       expanded = -1;
@@ -95,7 +95,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
     );
   }
 
-  Widget _buildLessonItem(Wehda wehda, int index, int expanded, Function(int) expand) {
+  Widget _buildLessonItem(List<Wehda> wehdat, Wehda wehda, int index, int expanded, Function(int) expand) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -138,10 +138,10 @@ class _SubjectScreenState extends State<SubjectScreen> {
               return InkWell(
                   onTap: () {
                     if (isUserLoggedIn) {
-                      Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: wehda.lessons[lessonIndex].title);
+                      Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
                     } else {
                       if (lessonIndex == 0) {
-                        Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: wehda.lessons[lessonIndex].title);
+                        Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
                       } else {
                         showRequireAuthDialog(context);
                       }

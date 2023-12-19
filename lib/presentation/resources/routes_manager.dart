@@ -63,7 +63,7 @@ class RouteGenerator {
       case Routes.subjectRoute:
         return MaterialPageRoute(builder: (_) => SubjectScreen(course: settings.arguments as Course));
       case Routes.lessonRoute:
-        return MaterialPageRoute(builder: (_) => LessonScreen(lessonName: settings.arguments as String));
+        return MaterialPageRoute(builder: (_) => LessonScreen(parameters: settings.arguments as List<dynamic>,));
       default:
         return unDefinedRoute();
     }
