@@ -12,6 +12,7 @@ class ImageAssets {
   static const String recordedCourses = "$imagePath/recorded_courses.png";
   static const String empty = "$imagePath/empty.svg";
   static const String error = "$imagePath/error.svg";
+  static const String serverDown = "$imagePath/server_down.svg";
 }
 
 class JsonAssets {

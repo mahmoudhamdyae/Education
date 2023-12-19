@@ -55,6 +55,7 @@ class AppStrings {
   static const loading = "جاري التحميل...";
   static const retryAgain = "حاول مرة أخرى";
   static const errorDialogTitle = "خطأ!";
+  static const serverDown = "لا يمكن الاتصال بالسيرفر!";
 
   // Bottom Bar
   static const bottomBarHome = "الرئيسية";
