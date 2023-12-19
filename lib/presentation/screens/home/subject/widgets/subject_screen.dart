@@ -1,14 +1,19 @@
-import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../../../core/app_prefs.dart';
-import '../../../../core/di.dart';
-import '../../../../domain/models/courses/course.dart';
-import '../../../../domain/models/lesson/wehda.dart';
-import '../../../resources/color_manager.dart';
-import '../../../resources/routes_manager.dart';
+import '../../../../../core/app_prefs.dart';
+import '../../../../../core/di.dart';
+import '../../../../../domain/models/courses/course.dart';
+import '../../../../../domain/models/lesson/wehda.dart';
+import '../../../../resources/color_manager.dart';
+import '../../../../resources/routes_manager.dart';
+import '../../../../resources/strings_manager.dart';
+import '../../../../widgets/empty_screen.dart';
+import '../../../../widgets/error_screen.dart';
+import '../../../../widgets/loading_screen.dart';
+import '../controller/subject_controller.dart';
 
 class SubjectScreen extends StatefulWidget {
 
@@ -24,20 +29,10 @@ class SubjectScreen extends StatefulWidget {
 class _SubjectScreenState extends State<SubjectScreen> {
   int expanded = -1;
   late bool isUserLoggedIn;
-  List<Wehda> wehdat = [
-    Wehda('كان و أخواتها - الفضل الدراسى الأول', [
-      Lesson('التشبيه و أركانه'),
-      Lesson('تدريبات'),
-      Lesson('أنواع خبر كان'),
-    ]),
-    Wehda('2كان و أخواتها - الفضل الدراسى الأول', [
-      Lesson('2التشبيه و أركانه'),
-      Lesson('2تدريبات'),
-      Lesson('2أنواع خبر كان'),
-    ]),
-  ];
+  bool firstCreate = true;
 
   final AppPreferences appPreferences = instance<AppPreferences>();
+  final SubjectController _controller = instance<SubjectController>();
 
   @override
   void initState() {
@@ -56,6 +51,10 @@ class _SubjectScreenState extends State<SubjectScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (firstCreate) {
+      _controller.getTutorials(widget.course.id);
+      firstCreate = false;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.course.name),
@@ -69,19 +68,30 @@ class _SubjectScreenState extends State<SubjectScreen> {
           ),
         ),
       ),
-      body: ListView.builder(
-          itemCount: wehdat.length,
-          itemBuilder: (context, index) {
-            return _buildLessonItem(wehdat[index], index, expanded, (index) {
-              setState(() {
-                if (expanded == index) {
-                  expanded = -1;
-                } else {
-                  expanded = index;
-                }
+      body: Obx(() {
+        if (_controller.isLoading.value) {
+          return const LoadingScreen();
+        } else if (_controller.error.value != '') {
+          return ErrorScreen(error: _controller.error.value);
+        } else if (_controller.wehdat.isEmpty) {
+          return const EmptyScreen(emptyString: AppStrings.emptyTutorials);
+        } else {
+          final wehdat = _controller.wehdat;
+          return ListView.builder(
+              itemCount: wehdat.length,
+              itemBuilder: (context, index) {
+                return _buildLessonItem(wehdat[index], index, expanded, (index) {
+                  setState(() {
+                    if (expanded == index) {
+                      expanded = -1;
+                    } else {
+                      expanded = index;
+                    }
+                  });
+                });
               });
-            });
-          }),
+        }
+      }),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -59,8 +60,21 @@ class RemoteDataSource {
     );
   }
 
-  // Future<> getTutorials() {
-  // }
+  Future<List<Wehda>> getTutorials(int courseId) async {
+    String url = "${Constants.baseUrl}tutorial/$courseId";
+    final response = await http.get(Uri.parse(url));
+
+    final responseData = await json.decode(response.body);
+    debugPrint('Get Tutorials Response: $responseData');
+
+    List<Wehda> wehdat = [];
+    for (var singleCourse in responseData['tutorial']) {
+      Wehda wehda = Wehda.fromJson(singleCourse);
+      wehdat.add(wehda);
+    }
+
+    return wehdat;
+  }
 
   Future<List<Course>> getSubscriptions() {
     return Future(() => []);

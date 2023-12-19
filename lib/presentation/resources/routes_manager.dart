@@ -5,7 +5,7 @@ import 'package:education/presentation/screens/home/home_screen.dart';
 import 'package:education/presentation/screens/auth/login_screen.dart';
 import 'package:education/presentation/screens/home/online_courses/online_courses_screen.dart';
 import 'package:education/presentation/screens/home/printed_notes/printed_notes_screen.dart';
-import 'package:education/presentation/screens/home/subject/subject_screen.dart';
+import 'package:education/presentation/screens/home/subject/widgets/subject_screen.dart';
 import 'package:education/presentation/screens/home/teacher/teacher_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:education/presentation/screens/start/start_screen.dart';

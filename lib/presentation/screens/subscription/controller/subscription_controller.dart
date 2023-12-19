@@ -13,7 +13,6 @@ class SubscriptionController extends GetxController {
 
   SubscriptionController(this._repository);
 
-
   @override
   void onInit() {
     super.onInit();

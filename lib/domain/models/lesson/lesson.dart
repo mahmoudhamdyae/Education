@@ -5,7 +5,7 @@ class Lesson {
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
     return Lesson(
-      json['title'] as String? ?? '',
+      json['name'] as String? ?? '',
     );
   }
 }
