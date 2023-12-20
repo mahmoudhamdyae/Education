@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import '../../domain/models/courses/course.dart';
 import '../screens/auth/register_screen.dart';
 import '../screens/home/recorded_courses/widgets/recorded_courses_screen.dart';
-import '../screens/lesson/lesson_screen.dart';
+import '../screens/lesson/widgets/lesson_screen.dart';
 import '../screens/splash/splash_screen.dart';
 
 class Routes {

@@ -1,14 +1,15 @@
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
-import 'package:education/presentation/screens/lesson/vimeo_video_widget.dart';
+import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/app_prefs.dart';
-import '../../../core/di.dart';
-import '../../../domain/models/lesson/lesson.dart';
-import '../../resources/color_manager.dart';
+import '../../../../core/app_prefs.dart';
+import '../../../../core/di.dart';
+import '../../../../domain/models/lesson/lesson.dart';
+import '../../../resources/color_manager.dart';
+import '../controller/lesson_controller.dart';
 
 class LessonScreen extends StatefulWidget {
 
@@ -37,9 +38,11 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  late bool isUserLoggedIn;
-
+  final LessonController _controller = instance<LessonController>();
   final AppPreferences appPreferences = instance<AppPreferences>();
+
+  late bool isUserLoggedIn;
+  final TextEditingController _askController = TextEditingController();
 
   @override
   void initState() {
@@ -70,7 +73,7 @@ class _LessonScreenState extends State<LessonScreen> {
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           // Vimeo Video
           SizedBox(
@@ -97,6 +100,30 @@ class _LessonScreenState extends State<LessonScreen> {
                   ),
                 ],
               ),
+            )
+          ),
+          // Ask Question
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p16),
+            child: TextFormField(
+              controller: _askController,
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  hintText: AppStrings.writeQuestionTextField,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1)
+                  )
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
+            child: FilledButton(
+                onPressed: () {
+                  _controller.askQuestion(_askController.text);
+                },
+                child: const Text(AppStrings.sendButton)
             ),
           ),
           // Lessons List
@@ -106,6 +133,7 @@ class _LessonScreenState extends State<LessonScreen> {
             style: TextStyle(
               fontSize: FontSize.s20
             ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppSize.s16,),
           LessonsWidget(isUserLoggedIn: false, wehdat: widget.parameters[0], isInLessonScreen: true,),
