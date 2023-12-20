@@ -79,4 +79,9 @@ class RemoteDataSource {
   Future<List<Course>> getSubscriptions() {
     return Future(() => []);
   }
+
+  Future<String> downloadNote(String link) {
+    Future.delayed(const Duration(seconds: 4));
+    return Future(() => '');
+  }
 }

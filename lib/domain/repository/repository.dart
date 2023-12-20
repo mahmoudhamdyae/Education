@@ -8,4 +8,5 @@ abstract class Repository {
   Future<ClassModel> getRecordedCourses(String marhala);
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Course>> getSubscriptions();
+  Future<String> downloadNote(String link);
 }

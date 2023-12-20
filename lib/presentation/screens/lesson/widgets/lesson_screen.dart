@@ -1,3 +1,4 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
@@ -9,6 +10,8 @@ import '../../../../core/app_prefs.dart';
 import '../../../../core/di.dart';
 import '../../../../domain/models/lesson/lesson.dart';
 import '../../../resources/color_manager.dart';
+import '../../../widgets/dialogs/error_dialog.dart';
+import '../../../widgets/dialogs/loading_dialog.dart';
 import '../controller/lesson_controller.dart';
 
 class LessonScreen extends StatefulWidget {
@@ -39,6 +42,7 @@ class LessonScreen extends StatefulWidget {
 
 class _LessonScreenState extends State<LessonScreen> {
   final LessonController _controller = instance<LessonController>();
+  final Repository _repository = instance<Repository>();
   final AppPreferences appPreferences = instance<AppPreferences>();
 
   late bool isUserLoggedIn;
@@ -56,6 +60,18 @@ class _LessonScreenState extends State<LessonScreen> {
       isUserLoggedIn = true;
     } else {
       isUserLoggedIn = false;
+    }
+  }
+
+  _downloadNote(String link) async {
+    try {
+      showLoading(context);
+      await _repository.downloadNote(link).then((value) {
+        Navigator.of(context).pop();
+      });
+    } on Exception catch (e) {
+      if (context.mounted) Navigator.of(context).pop();
+      if (context.mounted) showError(context, e.toString(), () => _downloadNote(link));
     }
   }
 
@@ -84,8 +100,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: AppSize.s16,),
           // مذكرة الدرس PDF
           InkWell(
-            onTap: () {
-            },
+            onTap: () { _downloadNote(''); },
             child: const Padding(
               padding: EdgeInsets.all(AppPadding.p8),
               child: Row(

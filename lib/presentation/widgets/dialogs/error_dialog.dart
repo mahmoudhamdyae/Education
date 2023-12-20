@@ -2,7 +2,7 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
-showError(context, String message, Function retryAction) {
+showError(BuildContext context, String message, Function retryAction) {
   return showDialog(context: context, builder: (BuildContext context) {
     return AlertDialog(
       // The shape of the dialog

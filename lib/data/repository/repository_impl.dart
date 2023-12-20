@@ -25,4 +25,9 @@ class RepositoryImpl extends Repository {
   Future<List<Course>> getSubscriptions() async {
     return _remoteDataSource.getSubscriptions();
   }
+
+  @override
+  Future<String> downloadNote(String link) {
+    return _remoteDataSource.downloadNote(link);
+  }
 }

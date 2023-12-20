@@ -21,6 +21,9 @@ class LessonController extends GetxController {
       //   error.value = '';
       //   wehdat.value = tutorials;
       // });
+      Future.delayed(const Duration(seconds: 4));
+      isLoading.value = false;
+      error.value = '';
     } on Exception catch (e) {
       error.value = e.toString();
       isLoading.value = false;
