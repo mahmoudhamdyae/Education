@@ -17,4 +17,5 @@ class ImageAssets {
 
 class JsonAssets {
   static const String login = "$jsonPath/login.json";
+  static const String done = "$jsonPath/done.json";
 }

@@ -1,6 +1,9 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../resources/assets_manager.dart';
 
 showSuccess(BuildContext context, String message) {
   return showDialog(context: context, builder: (BuildContext context) {
@@ -14,7 +17,12 @@ showSuccess(BuildContext context, String message) {
       // The content of the dialog
       content: Column(
         children: [
-          // todo Success Image
+          // Success Image
+          SizedBox(
+              height: 200,
+              width: 200,
+              child: Lottie.asset(JsonAssets.done)
+          ),
           // Message Text
           Text(message),
           // Ok Button

@@ -56,9 +56,8 @@ class AppStrings {
   static const retryAgain = "حاول مرة أخرى";
   static const errorDialogTitle = "خطأ!";
   static const serverDown = "لا يمكن الاتصال بالسيرفر!";
-  // todo change this
-  static const successDialogTitle = "";
-  static const successDialogAction = "";
+  static const successDialogTitle = "عملية ناجحة";
+  static const successDialogAction = "حسنا";
 
   // Bottom Bar
   static const bottomBarHome = "الرئيسية";
