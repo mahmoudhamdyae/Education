@@ -82,7 +82,7 @@ class _LessonScreenState extends State<LessonScreen> {
             child: PlayVideoFromVimeo(vimeoVideoUrl: widget._vimeoVideoUrl),
           ),
           const SizedBox(height: AppSize.s16,),
-          // Download PDF
+          // مذكرة الدرس PDF
           InkWell(
             onTap: () {
             },
@@ -102,7 +102,7 @@ class _LessonScreenState extends State<LessonScreen> {
               ),
             )
           ),
-          // Ask Question
+          // Ask Question - استفسار
           Padding(
             padding: const EdgeInsets.all(AppPadding.p16),
             child: TextFormField(
@@ -117,6 +117,7 @@ class _LessonScreenState extends State<LessonScreen> {
               ),
             ),
           ),
+          // إرسال Button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
             child: FilledButton(
@@ -126,8 +127,8 @@ class _LessonScreenState extends State<LessonScreen> {
                 child: const Text(AppStrings.sendButton)
             ),
           ),
-          // Lessons List
           const SizedBox(height: AppSize.s12,),
+          // قائمة دروس المادة
           const Text(
             AppStrings.lessonsList,
             style: TextStyle(
@@ -136,7 +137,11 @@ class _LessonScreenState extends State<LessonScreen> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppSize.s16,),
-          LessonsWidget(isUserLoggedIn: false, wehdat: widget.parameters[0], isInLessonScreen: true,),
+          LessonsWidget(
+            isUserLoggedIn: false,
+            wehdat: widget.parameters[0],
+            isInLessonScreen: true,
+          ),
         ],
       ),
     );
