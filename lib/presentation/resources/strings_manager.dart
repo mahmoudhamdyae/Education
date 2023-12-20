@@ -94,6 +94,12 @@ class AppStrings {
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';
 
+  // Lesson Screen
+  static const String lessonNote = 'مذكرة الدرس';
+  static const String writeQuestionTextField = 'اكتب استفسارك إلى معلم المادة هنا';
+  static const String sendButton = 'إرسال';
+  static const String lessonsList = 'قائمة دروس المادة';
+
   // Error Handler
   static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
 }
