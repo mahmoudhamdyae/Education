@@ -68,6 +68,8 @@ class _LessonScreenState extends State<LessonScreen> {
         Navigator.of(context).pop();
         if (error != '' && context.mounted) {
           showError(context, error, () => _downloadNote(link));
+        } else {
+          // todo add success dialog
         }
       });
     } on Exception catch (e) {
@@ -85,6 +87,8 @@ class _LessonScreenState extends State<LessonScreen> {
         Navigator.of(context).pop();
         if (error != '' && context.mounted) {
           showError(context, error, () => _askQuestion(question));
+        } else {
+          // todo add success dialog
         }
       });
     } on Exception catch (e) {
