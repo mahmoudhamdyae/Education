@@ -3,6 +3,7 @@ import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
+import 'package:education/presentation/widgets/dialogs/success_dialog.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +70,7 @@ class _LessonScreenState extends State<LessonScreen> {
         if (error != '' && context.mounted) {
           showError(context, error, () => _downloadNote(link));
         } else {
-          // todo add success dialog
+          showSuccess(context, AppStrings.downloadNoteSuccess);
         }
       });
     } on Exception catch (e) {
@@ -88,7 +89,7 @@ class _LessonScreenState extends State<LessonScreen> {
         if (error != '' && context.mounted) {
           showError(context, error, () => _askQuestion(question));
         } else {
-          // todo add success dialog
+          showSuccess(context, AppStrings.askQuestionSuccess);
         }
       });
     } on Exception catch (e) {

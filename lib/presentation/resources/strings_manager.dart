@@ -56,6 +56,9 @@ class AppStrings {
   static const retryAgain = "حاول مرة أخرى";
   static const errorDialogTitle = "خطأ!";
   static const serverDown = "لا يمكن الاتصال بالسيرفر!";
+  // todo change this
+  static const successDialogTitle = "";
+  static const successDialogAction = "";
 
   // Bottom Bar
   static const bottomBarHome = "الرئيسية";
@@ -99,6 +102,8 @@ class AppStrings {
   static const String writeQuestionTextField = 'اكتب استفسارك إلى معلم المادة هنا';
   static const String sendButton = 'إرسال';
   static const String lessonsList = 'قائمة دروس المادة';
+  static const String downloadNoteSuccess = 'تم تحميل الدرس بنجاح';
+  static const String askQuestionSuccess = 'تم الإرسال بنجاح';
 
   // Error Handler
   static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
