@@ -12,7 +12,6 @@ import '../../../../domain/models/lesson/lesson.dart';
 import '../../../resources/color_manager.dart';
 import '../../../widgets/dialogs/error_dialog.dart';
 import '../../../widgets/dialogs/loading_dialog.dart';
-import '../controller/lesson_controller.dart';
 
 class LessonScreen extends StatefulWidget {
 
@@ -41,7 +40,6 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  final LessonController _controller = instance<LessonController>();
   final Repository _repository = instance<Repository>();
   final AppPreferences appPreferences = instance<AppPreferences>();
 
@@ -66,12 +64,34 @@ class _LessonScreenState extends State<LessonScreen> {
   _downloadNote(String link) async {
     try {
       showLoading(context);
-      await _repository.downloadNote(link).then((value) {
+      await _repository.downloadNote(link).then((error) {
         Navigator.of(context).pop();
+        if (error != '' && context.mounted) {
+          showError(context, error, () => _downloadNote(link));
+        }
       });
     } on Exception catch (e) {
-      if (context.mounted) Navigator.of(context).pop();
-      if (context.mounted) showError(context, e.toString(), () => _downloadNote(link));
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        showError(context, e.toString(), () => _downloadNote(link));
+      }
+    }
+  }
+
+  _askQuestion(String question) async {
+    try {
+      showLoading(context);
+      await _repository.askQuestion(question).then((error) {
+        Navigator.of(context).pop();
+        if (error != '' && context.mounted) {
+          showError(context, error, () => _askQuestion(question));
+        }
+      });
+    } on Exception catch (e) {
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        showError(context, e.toString(), () => _askQuestion(question));
+      }
     }
   }
 
@@ -142,7 +162,7 @@ class _LessonScreenState extends State<LessonScreen> {
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
             child: FilledButton(
                 onPressed: _askText.isEmpty ? null : () {
-                  _controller.askQuestion(_askText);
+                  _askQuestion(_askText);
                 },
                 child: const Text(AppStrings.sendButton)
             ),

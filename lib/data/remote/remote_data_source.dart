@@ -84,4 +84,9 @@ class RemoteDataSource {
     Future.delayed(const Duration(seconds: 4));
     return Future(() => '');
   }
+
+  Future<String> askQuestion(String question) {
+    Future.delayed(const Duration(seconds: 4));
+    return Future(() => '');
+  }
 }

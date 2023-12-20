@@ -9,4 +9,5 @@ abstract class Repository {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Course>> getSubscriptions();
   Future<String> downloadNote(String link);
+  Future<String> askQuestion(String question);
 }

@@ -49,6 +49,4 @@ Future<void> initAppModule() async {
           () => SubscriptionController(instance<Repository>()));
   instance.registerLazySingleton<SubjectController>(
           () => SubjectController(instance<Repository>()));
-  instance.registerLazySingleton<LessonController>(
-          () => LessonController(instance<Repository>()));
 }
