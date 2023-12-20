@@ -42,7 +42,7 @@ class _LessonScreenState extends State<LessonScreen> {
   final AppPreferences appPreferences = instance<AppPreferences>();
 
   late bool isUserLoggedIn;
-  final TextEditingController _askController = TextEditingController();
+  String _askText = '';
 
   @override
   void initState() {
@@ -105,12 +105,17 @@ class _LessonScreenState extends State<LessonScreen> {
           // Ask Question - استفسار
           Padding(
             padding: const EdgeInsets.all(AppPadding.p16),
-            child: TextFormField(
-              controller: _askController,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.text,
+            child: TextField(
+              onChanged: (text) {
+                setState(() {
+                  _askText = text;
+                });
+              },
+              textInputAction: TextInputAction.newline,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               decoration: const InputDecoration(
-                  hintText: AppStrings.writeQuestionTextField,
+                  labelText: AppStrings.writeQuestionTextField,
                   border: OutlineInputBorder(
                       borderSide: BorderSide(width: 1)
                   )
@@ -121,8 +126,8 @@ class _LessonScreenState extends State<LessonScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
             child: FilledButton(
-                onPressed: () {
-                  _controller.askQuestion(_askController.text);
+                onPressed: _askText.isEmpty ? null : () {
+                  _controller.askQuestion(_askText);
                 },
                 child: const Text(AppStrings.sendButton)
             ),
