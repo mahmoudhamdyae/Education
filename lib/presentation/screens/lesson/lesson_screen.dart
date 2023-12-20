@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/lesson/vimeo_video_widget.dart';
@@ -77,21 +78,36 @@ class _LessonScreenState extends State<LessonScreen> {
             height: 200,
             child: PlayVideoFromVimeo(vimeoVideoUrl: widget._vimeoVideoUrl),
           ),
-          // Download PDF
           const SizedBox(height: AppSize.s16,),
+          // Download PDF
           InkWell(
             onTap: () {
             },
-            child: const Row(
-              children: [
-                Icon(Icons.download),
-                Text(AppStrings.lessonNote),
-              ],
+            child: const Padding(
+              padding: EdgeInsets.all(AppPadding.p8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.download, color: ColorManager.lightPrimary,),
+                  Text(
+                    AppStrings.lessonNote,
+                    style: TextStyle(
+                      color: ColorManager.lightPrimary
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           // Lessons List
+          const SizedBox(height: AppSize.s12,),
+          const Text(
+            AppStrings.lessonsList,
+            style: TextStyle(
+              fontSize: FontSize.s20
+            ),
+          ),
           const SizedBox(height: AppSize.s16,),
-          const Text(AppStrings.lessonsList),
           LessonsWidget(isUserLoggedIn: false, wehdat: widget.parameters[0], isInLessonScreen: true,),
         ],
       ),
