@@ -63,41 +63,41 @@ class _LessonScreenState extends State<LessonScreen> {
   }
 
   _downloadNote(String link) async {
-    try {
-      showLoading(context);
-      await _repository.downloadNote(link).then((error) {
-        Navigator.of(context).pop();
-        if (error != '' && context.mounted) {
-          showError(context, error, () => _downloadNote(link));
-        } else {
-          showSuccess(context, AppStrings.downloadNoteSuccess);
-        }
-      });
-    } on Exception catch (e) {
-      if (context.mounted) {
-        Navigator.of(context).pop();
-        showError(context, e.toString(), () => _downloadNote(link));
-      }
-    }
+    // try {
+    //   showLoading(context);
+    //   await _repository.downloadNote(link).then((error) {
+    //     Navigator.of(context).pop();
+    //     if (error != '' && context.mounted) {
+    //       showError(context, error, () => _downloadNote(link));
+    //     } else {
+    //       showSuccess(context, AppStrings.downloadNoteSuccess);
+    //     }
+    //   });
+    // } on Exception catch (e) {
+    //   if (context.mounted) {
+    //     Navigator.of(context).pop();
+    //     showError(context, e.toString(), () => _downloadNote(link));
+    //   }
+    // }
   }
 
   _askQuestion(String question) async {
-    try {
-      showLoading(context);
-      await _repository.askQuestion(question).then((error) {
-        Navigator.of(context).pop();
-        if (error != '' && context.mounted) {
-          showError(context, error, () => _askQuestion(question));
-        } else {
-          showSuccess(context, AppStrings.askQuestionSuccess);
-        }
-      });
-    } on Exception catch (e) {
-      if (context.mounted) {
-        Navigator.of(context).pop();
-        showError(context, e.toString(), () => _askQuestion(question));
-      }
-    }
+    // try {
+    //   showLoading(context);
+    //   await _repository.askQuestion(question).then((error) {
+    //     Navigator.of(context).pop();
+    //     if (error != '' && context.mounted) {
+    //       showError(context, error, () => _askQuestion(question));
+    //     } else {
+    //       showSuccess(context, AppStrings.askQuestionSuccess);
+    //     }
+    //   });
+    // } on Exception catch (e) {
+    //   if (context.mounted) {
+    //     Navigator.of(context).pop();
+    //     showError(context, e.toString(), () => _askQuestion(question));
+    //   }
+    // }
   }
 
   @override

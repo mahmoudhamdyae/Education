@@ -86,7 +86,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                     if (widget.isUserLoggedIn) {
                       Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
                     } else {
-                      if (lessonIndex == 0) {
+                      if (index == 0 && lessonIndex == 0) {
                         Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
                       } else {
                         showRequireAuthDialog(context);
