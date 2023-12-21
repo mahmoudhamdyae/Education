@@ -6,13 +6,16 @@ import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget
 import 'package:education/presentation/widgets/dialogs/success_dialog.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../core/app_prefs.dart';
+import '../../../../core/constants.dart';
 import '../../../../core/di.dart';
 import '../../../../domain/models/lesson/lesson.dart';
 import '../../../resources/color_manager.dart';
 import '../../../widgets/dialogs/error_dialog.dart';
 import '../../../widgets/dialogs/loading_dialog.dart';
+import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
 class LessonScreen extends StatefulWidget {
 
@@ -43,8 +46,9 @@ class LessonScreen extends StatefulWidget {
 class _LessonScreenState extends State<LessonScreen> {
   final Repository _repository = instance<Repository>();
   final AppPreferences appPreferences = instance<AppPreferences>();
+  final _flutterMediaDownloaderPlugin = MediaDownload();
 
-  late bool isUserLoggedIn;
+  bool isUserLoggedIn = false;
   String _askText = '';
 
   @override
@@ -79,6 +83,12 @@ class _LessonScreenState extends State<LessonScreen> {
     //     showError(context, e.toString(), () => _downloadNote(link));
     //   }
     // }
+    String url = '${Constants.baseUrl}filedownload/$link';
+    print('================url $url');
+    // _flutterMediaDownloaderPlugin.downloadFile(url, link, '', '');
+    _flutterMediaDownloaderPlugin.downloadMedia(context, url);
+    // _flutterMediaDownloaderPlugin.downloadMedia(
+    //     context, 'https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png');
   }
 
   _askQuestion(String question) async {
@@ -125,7 +135,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: AppSize.s16,),
           // مذكرة الدرس PDF
           InkWell(
-            onTap: () { _downloadNote(''); },
+            onTap: () { _downloadNote((widget.parameters[1] as Lesson).pdf); },
             child: const Padding(
               padding: EdgeInsets.all(AppPadding.p8),
               child: Row(
@@ -183,7 +193,7 @@ class _LessonScreenState extends State<LessonScreen> {
           ),
           const SizedBox(height: AppSize.s16,),
           LessonsWidget(
-            isUserLoggedIn: false,
+            isUserLoggedIn: isUserLoggedIn,
             wehdat: widget.parameters[0],
             isInLessonScreen: true,
           ),
