@@ -1,8 +1,8 @@
-import 'package:education/presentation/resources/routes_manager.dart';
 import 'package:education/presentation/resources/theme_manager.dart';
 import 'package:education/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'core/di.dart';
 
@@ -20,11 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
       builder: (BuildContext context, Widget? child) {
         return Directionality(textDirection: TextDirection.rtl, child: child!);
       },

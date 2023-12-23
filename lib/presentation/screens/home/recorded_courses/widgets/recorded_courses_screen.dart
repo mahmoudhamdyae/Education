@@ -12,19 +12,18 @@ import '../../../../widgets/loading_screen.dart';
 
 class RecordedCoursesScreen extends StatelessWidget {
   
-  final List<String>? parameters;
+  final String saff;
   late final RecordedCoursesController _controller = instance<RecordedCoursesController>();
 
-  RecordedCoursesScreen({super.key, required this.parameters});
+  RecordedCoursesScreen({super.key, required this.saff});
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('passed marhala: ${parameters![0]}');
-    debugPrint('passed saff: ${parameters![1]}');
-    _controller.getRecordedCourses(parameters![1]);
+    debugPrint('passed saff: $saff');
+    _controller.getRecordedCourses(saff);
     return Scaffold(
       appBar: AppBar(
-        title: Text(parameters![1] == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} ${parameters![1]}'),
+        title: Text(saff == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} $saff'),
         leading: IconButton(
           onPressed: () {Navigator.of(context).pop();},
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),

@@ -1,9 +1,15 @@
+import 'package:education/presentation/screens/home/courses/courses_screen.dart';
+import 'package:education/presentation/screens/home/exams_and_banks/exams_and_banks_screen.dart';
+import 'package:education/presentation/screens/home/online_courses/online_courses_screen.dart';
+import 'package:education/presentation/screens/home/printed_notes/printed_notes_screen.dart';
+import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen.dart';
+import 'package:education/presentation/screens/home/teacher/teacher_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/app_prefs.dart';
 import '../../core/di.dart';
 import '../../presentation/resources/assets_manager.dart';
-import '../../presentation/resources/routes_manager.dart';
 import '../../presentation/resources/strings_manager.dart';
 import '../../presentation/widgets/dialogs/require_auth_dialog.dart';
 
@@ -18,32 +24,30 @@ class HomeUI {
     return [
       HomeUI(
         AppStrings.recordedCourses,
-        ImageAssets.recordedCourses, (String marhala, String saff) {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.recordedCoursesRoute, arguments: [marhala, saff]);
-          },
+        ImageAssets.recordedCourses, (String marhala, String saff) =>
+          Get.to(RecordedCoursesScreen(saff: saff,)),
       ),
       HomeUI(
         AppStrings.printedNotes,
-        ImageAssets.printedNotes, (String marhala, String saff) {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.printedNotesRoute, arguments: [marhala, saff]);
-        }
+        ImageAssets.printedNotes, (String marhala, String saff) =>
+          Get.to(PrintedNotesScreen(saff: saff))
       ),
       HomeUI(
         AppStrings.courses,
         ImageAssets.courses, (String marhala, String saff) =>
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.coursesRoute),
+          Get.to(const CoursesScreen())
       ),
       HomeUI(
         AppStrings.onlineCourses,
         ImageAssets.onlineCourses, (String marhala, String saff) =>
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.onlineCoursesRoute),
+          Get.to(const OnlineCoursesScreen())
       ),
       HomeUI(
         AppStrings.teacher,
         ImageAssets.teacher, (String marhala, String saff) async {
         final AppPreferences appPreferences = instance<AppPreferences>();
         if (await appPreferences.isUserLoggedIn()) {
-          if (context.mounted) Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
+          Get.to(const TeacherScreen());
         } else {
           if (context.mounted) showRequireAuthDialog(context);
         }
@@ -51,9 +55,8 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        ImageAssets.exam, (String marhala, String saff) {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.examsAndBanksRoute, arguments: [marhala, saff]);
-        }
+        ImageAssets.exam, (String marhala, String saff) =>
+          Get.to(ExamsAndBanksScreen(saff: saff))
       ),
     ];
   }

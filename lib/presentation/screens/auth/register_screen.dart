@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';
 import '../../../data/remote/account_service.dart';
 import '../../resources/color_manager.dart';
-import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/dialogs/error_dialog.dart';
 import '../../widgets/dialogs/loading_dialog.dart';
+import '../main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -73,12 +74,12 @@ class _RegisterViewState extends State<RegisterScreen> {
             .then((userCredential) {
           _accountService.logIn(_numberController.text, _passController.text).then((value) {
             _appPreferences.setUserLoggedIn();
-            Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+            Get.offAll(MainScreen());
           });
         });
       } on Exception catch (e) {
-        Navigator.of(context).pop();
-        showError(context, e.toString(), () {});
+        Get.back();
+        if (context.mounted) showError(context, e.toString(), () {});
       }
     }
   }

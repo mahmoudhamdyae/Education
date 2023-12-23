@@ -1,9 +1,10 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/font_manager.dart';
-import 'package:education/presentation/resources/routes_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
+import 'package:education/presentation/screens/home/subject/widgets/subject_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../core/app_prefs.dart';
 import '../../../../../core/di.dart';
@@ -26,9 +27,8 @@ class CourseItem extends StatelessWidget {
         color: ColorManager.primary,
       ),
       child: InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed(Routes.subjectRoute, arguments: course);
-        },
+        onTap: () =>
+          Get.to(SubjectScreen(course: course)),
         child: Column(
           children: [
             Text(
@@ -79,7 +79,6 @@ class CourseItem extends StatelessWidget {
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF008B8B))),
                       onPressed: () async {
                         if (await appPreferences.isUserLoggedIn()) {
-                        // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                         } else {
                           if (context.mounted) showRequireAuthDialog(context);
                         }

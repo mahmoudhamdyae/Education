@@ -1,10 +1,11 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/app_prefs.dart';
 import '../../core/di.dart';
 import '../../data/remote/account_service.dart';
-import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
 
 class LogOutDialog extends StatelessWidget {
@@ -16,7 +17,7 @@ class LogOutDialog extends StatelessWidget {
   _signOut(BuildContext context) {
     _accountService.signOut().then((value) {
       _appPreferences.logout();
-      Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
+      Get.offAll(const LoginScreen());
     });
   }
 

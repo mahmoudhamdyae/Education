@@ -1,30 +1,27 @@
-import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
-import 'package:education/presentation/widgets/dialogs/success_dialog.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../core/app_prefs.dart';
 import '../../../../core/constants.dart';
 import '../../../../core/di.dart';
 import '../../../../domain/models/lesson/lesson.dart';
+import '../../../../domain/models/lesson/wehda.dart';
 import '../../../resources/color_manager.dart';
-import '../../../widgets/dialogs/error_dialog.dart';
-import '../../../widgets/dialogs/loading_dialog.dart';
 import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
 class LessonScreen extends StatefulWidget {
 
-  final List<dynamic> parameters;
+  final List<Wehda> wehdat;
+  final Lesson lesson;
   late final String _vimeoVideoUrl;
 
 
-  LessonScreen({super.key, required this.parameters}) {
-    _vimeoVideoUrl = extractVideoId((parameters[1] as Lesson).link);
+  LessonScreen({super.key, required this.wehdat, required this.lesson}) {
+    _vimeoVideoUrl = extractVideoId(lesson.link);
   }
 
   @visibleForTesting
@@ -44,7 +41,6 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  final Repository _repository = instance<Repository>();
   final AppPreferences appPreferences = instance<AppPreferences>();
   final _flutterMediaDownloaderPlugin = MediaDownload();
 
@@ -84,7 +80,7 @@ class _LessonScreenState extends State<LessonScreen> {
     //   }
     // }
     String url = '${Constants.baseUrl}filedownload/$link';
-    print('================url $url');
+    debugPrint('url: $url');
     // _flutterMediaDownloaderPlugin.downloadFile(url, link, '', '');
     _flutterMediaDownloaderPlugin.downloadMedia(context, url);
     // _flutterMediaDownloaderPlugin.downloadMedia(
@@ -112,13 +108,13 @@ class _LessonScreenState extends State<LessonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Passed Wehdat: ${widget.parameters[0]}');
-    debugPrint('Passed Lesson: ${widget.parameters[1]}');
-    debugPrint('Passed Link: ${(widget.parameters[1] as Lesson).link}'); // https://player.vimeo.com/video/861849145?h=ecfcceb429
+    debugPrint('Passed Wehdat: ${widget.wehdat}');
+    debugPrint('Passed Lesson: ${widget.lesson}');
+    debugPrint('Passed Link: ${widget.lesson.link}'); // https://player.vimeo.com/video/861849145?h=ecfcceb429
 
     return Scaffold(
       appBar: AppBar(
-        title: Text((widget.parameters[1] as Lesson).title),
+        title: Text(widget.lesson.title),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
@@ -135,7 +131,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: AppSize.s16,),
           // مذكرة الدرس PDF
           InkWell(
-            onTap: () { _downloadNote((widget.parameters[1] as Lesson).pdf); },
+            onTap: () { _downloadNote(widget.lesson.pdf); },
             child: const Padding(
               padding: EdgeInsets.all(AppPadding.p8),
               child: Row(
@@ -194,7 +190,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: AppSize.s16,),
           LessonsWidget(
             isUserLoggedIn: isUserLoggedIn,
-            wehdat: widget.parameters[0],
+            wehdat: widget.wehdat,
             isInLessonScreen: true,
           ),
         ],

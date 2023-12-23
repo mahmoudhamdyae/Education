@@ -1,6 +1,7 @@
-import 'package:education/presentation/resources/routes_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../resources/values_manager.dart';
 
@@ -29,8 +30,8 @@ showRequireAuthDialog(BuildContext context) {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pushNamed(Routes.loginRoute);
+                        Get.back();
+                        Get.to(const LoginScreen());
                       },
                       child: const Text(AppStrings.continueButton)
                   ),

@@ -1,8 +1,9 @@
+import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
-import '../resources/routes_manager.dart';
 import '../resources/values_manager.dart';
 import 'dialogs/require_auth_dialog.dart';
 
@@ -84,10 +85,10 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                       Navigator.of(context).pop();
                     }
                     if (widget.isUserLoggedIn) {
-                      Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
+                      Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[index],));
                     } else {
                       if (index == 0 && lessonIndex == 0) {
-                        Navigator.of(context).pushNamed(Routes.lessonRoute, arguments: [wehdat, wehda.lessons[index]]);
+                        Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[index],));
                       } else {
                         showRequireAuthDialog(context);
                       }

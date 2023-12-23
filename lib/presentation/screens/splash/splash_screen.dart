@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/constants_manager.dart';
-import '../../resources/routes_manager.dart';
+import '../main_screen.dart';
+import '../start/start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -29,10 +31,10 @@ class _SplashScreenState extends State<SplashScreen> {
     _appPreferences.isUserLoggedIn().then((isUserLoggedIn) => {
       if (isUserLoggedIn) {
         // Navigate to main screen
-        Navigator.pushReplacementNamed(context, Routes.mainRoute)
+        Get.offAll(MainScreen())
       } else {
         // Navigate to login screen
-        Navigator.pushReplacementNamed(context, Routes.startRoute)
+        Get.offAll(const StartScreen())
       }
     });
   }

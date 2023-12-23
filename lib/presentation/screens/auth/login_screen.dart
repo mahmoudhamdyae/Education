@@ -1,12 +1,14 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/screens/auth/register_screen.dart';
+import 'package:education/presentation/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';
 import '../../../data/remote/account_service.dart';
 import '../../resources/assets_manager.dart';
-import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/dialogs/error_dialog.dart';
@@ -43,11 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
         showLoading(context);
         await _accountService.logIn(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
-          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+          Get.offAll(MainScreen());
         });
       } on Exception catch (e) {
-        Navigator.of(context).pop();
-        showError(context, e.toString(), () {});
+        Get.back();
+        if (context.mounted) showError(context, e.toString(), () {});
       }
     }
   }
@@ -139,10 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, Routes.registerRoute);
-                          },
+                          onPressed: () => Get.to(const RegisterScreen()),
                           child: const Row(
                             children: [
                               Text(AppStrings.registerText1,

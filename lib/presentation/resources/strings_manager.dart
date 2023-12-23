@@ -66,7 +66,6 @@ class AppStrings {
   static const bottomBarMe = "الملف الشخصى";
 
   // Main Screen
-  static const String header = "منصة تعليمية شاملة توفر جميع الخدمات الطلابية";
   static const String recordedCourses = "كورسات مسجلة";
   static const String printedNotes = "مذكرات مطبوعة";
   static const String courses = "كورسات حضورى";
