@@ -26,11 +26,9 @@ class SubjectController extends GetxController {
       isLoading.value = true;
       error.value = '';
       wehdat.value = [];
-      print('========== ${(Get.arguments['course'] as Course).id}');
       await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
         isLoading.value = false;
         error.value = '';
-        print('=========tutorials $tutorials');
         wehdat.value = tutorials;
       });
     } on Exception catch (e) {
