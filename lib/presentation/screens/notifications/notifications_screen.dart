@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';

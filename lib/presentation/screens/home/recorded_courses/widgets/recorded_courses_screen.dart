@@ -1,4 +1,3 @@
-import 'package:education/core/di.dart';
 import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
