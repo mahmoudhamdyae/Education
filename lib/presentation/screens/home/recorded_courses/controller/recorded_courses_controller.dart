@@ -15,7 +15,6 @@ class RecordedCoursesController extends GetxController {
 
   RecordedCoursesController(this._repository, this._saff);
 
-
   @override
   void onInit() {
     super.onInit();

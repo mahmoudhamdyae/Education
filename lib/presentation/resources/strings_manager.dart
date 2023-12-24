@@ -91,6 +91,9 @@ class AppStrings {
   static const String baqaPrice = "سعر الباقة";
   static const String noCourses = "لا يوجد كورسات مسجلة حاليا فى هذه المرحلة";
   static const String emptyTutorials = 'لا يوجد وحدات';
+  static const String noteDownloaded = 'تم تحميل المذكرة';
+  static const String noteDownloading = 'جارى التحميل';
+  static const String noteDownloadError = 'حدث خطأ';
 
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';

@@ -4,6 +4,7 @@ import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
 import '../../../../core/constants.dart';
@@ -63,28 +64,37 @@ class _LessonScreenState extends State<LessonScreen> {
   }
 
   _downloadNote(String link) async {
-    // try {
-    //   showLoading(context);
-    //   await _repository.downloadNote(link).then((error) {
-    //     Navigator.of(context).pop();
-    //     if (error != '' && context.mounted) {
-    //       showError(context, error, () => _downloadNote(link));
-    //     } else {
-    //       showSuccess(context, AppStrings.downloadNoteSuccess);
-    //     }
-    //   });
-    // } on Exception catch (e) {
-    //   if (context.mounted) {
-    //     Navigator.of(context).pop();
-    //     showError(context, e.toString(), () => _downloadNote(link));
-    //   }
-    // }
     String url = '${Constants.baseUrl}filedownload/$link';
     debugPrint('url: $url');
-    // _flutterMediaDownloaderPlugin.downloadFile(url, link, '', '');
-    _flutterMediaDownloaderPlugin.downloadMedia(context, url);
-    // _flutterMediaDownloaderPlugin.downloadMedia(
-    //     context, 'https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png');
+    Get.showSnackbar(
+      const GetSnackBar(
+        title: null,
+        message: AppStrings.noteDownloading,
+        icon: Icon(Icons.download, color: ColorManager.white,),
+        duration: Duration(seconds: 3),
+      ),
+    );
+    _flutterMediaDownloaderPlugin.downloadMedia(context, url).catchError((error) {
+      if (Get.isSnackbarOpen) Get.back();
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: null,
+          message: AppStrings.noteDownloadError,
+          icon: Icon(Icons.error, color: ColorManager.white,),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }).then((value) {
+      if (Get.isSnackbarOpen) Get.back();
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: null,
+          message: AppStrings.noteDownloaded,
+          icon: Icon(Icons.download_done, color: ColorManager.white,),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    });
   }
 
   _askQuestion(String question) async {

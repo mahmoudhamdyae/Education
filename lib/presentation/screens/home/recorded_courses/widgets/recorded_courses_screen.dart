@@ -28,9 +28,7 @@ class RecordedCoursesScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
         ),
       ),
-      body:
-
-      GetX<RecordedCoursesController>(
+      body: GetX<RecordedCoursesController>(
         init: RecordedCoursesController(Get.find<Repository>(), saff),
         builder: (controller) {
           if (controller.isLoading.value) {
@@ -44,22 +42,7 @@ class RecordedCoursesScreen extends StatelessWidget {
             return RecordedCoursesScreenBody(classModel: classModel);
           }
         },
-      )
-
-
-
-      /*Obx(() {
-        if (_controller.isLoading.value) {
-          return const LoadingScreen();
-        } else if (_controller.error.value != '') {
-          return ErrorScreen(error: _controller.error.value);
-        } else if (_controller.classModel.value.courses.isEmpty){
-          return const EmptyScreen(emptyString: AppStrings.noCourses);
-        } else {
-          final classModel = _controller.classModel.value;
-          return RecordedCoursesScreenBody(classModel: classModel);
-        }
-      })*/,
+      ),
     );
   }
 }
