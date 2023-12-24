@@ -25,7 +25,7 @@ class HomeUI {
       HomeUI(
         AppStrings.recordedCourses,
         ImageAssets.recordedCourses, (String marhala, String saff) =>
-          Get.to(RecordedCoursesScreen(saff: saff,)),
+          Get.to(() => RecordedCoursesScreen(saff: saff,)),
       ),
       HomeUI(
         AppStrings.printedNotes,

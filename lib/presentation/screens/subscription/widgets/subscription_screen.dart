@@ -15,7 +15,7 @@ class SubscriptionScreen extends StatelessWidget {
   SubscriptionScreen({super.key});
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final SubscriptionController _controller = instance<SubscriptionController>();
+  final SubscriptionController _controller = Get.find<SubscriptionController>();
 
   @override
   Widget build(BuildContext context) {

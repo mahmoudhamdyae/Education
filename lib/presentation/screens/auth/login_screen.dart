@@ -23,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = instance<AccountService>();
+  final AccountService _accountService = Get.find<AccountService>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();

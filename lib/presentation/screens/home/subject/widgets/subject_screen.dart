@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../../core/app_prefs.dart';
@@ -15,9 +16,8 @@ import '../controller/subject_controller.dart';
 class SubjectScreen extends StatefulWidget {
 
   final Course course;
-  final AppPreferences appPreferences = instance<AppPreferences>();
 
-  SubjectScreen({super.key, required this.course});
+  const SubjectScreen({super.key, required this.course});
 
   @override
   State<SubjectScreen> createState() => _SubjectScreenState();
@@ -27,8 +27,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
   late bool isUserLoggedIn;
   bool firstCreate = true;
 
-  final AppPreferences appPreferences = instance<AppPreferences>();
-  final SubjectController _controller = instance<SubjectController>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final SubjectController _controller = Get.find<SubjectController>();
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
   }
 
   Future<void> _setUserLoggedIn() async {
-    if (await appPreferences.isUserLoggedIn()) {
+    if (await _appPreferences.isUserLoggedIn()) {
       isUserLoggedIn = true;
     } else {
       isUserLoggedIn = false;

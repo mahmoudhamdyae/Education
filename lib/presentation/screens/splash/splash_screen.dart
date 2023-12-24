@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final AppPreferences appPreferences = instance<AppPreferences>();
 
   _startDelay() {
     _timer = Timer(const Duration(seconds: AppConstants.splashDelay), () =>
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() async {
-    _appPreferences.isUserLoggedIn().then((isUserLoggedIn) => {
+    appPreferences.isUserLoggedIn().then((isUserLoggedIn) => {
       if (isUserLoggedIn) {
         // Navigate to main screen
         Get.offAll(MainScreen())

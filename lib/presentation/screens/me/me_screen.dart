@@ -2,6 +2,8 @@ import 'package:education/core/di.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/widgets/require_log_in_view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../core/app_prefs.dart';
 

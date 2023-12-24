@@ -12,7 +12,7 @@ class LogOutDialog extends StatelessWidget {
   LogOutDialog({super.key});
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = instance<AccountService>();
+  final AccountService _accountService = Get.find<AccountService>();
 
   _signOut(BuildContext context) {
     _accountService.signOut().then((value) {

@@ -20,7 +20,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterScreen> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = instance<AccountService>();
+  final AccountService _accountService = Get.find<AccountService>();
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();

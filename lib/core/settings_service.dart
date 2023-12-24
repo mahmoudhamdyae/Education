@@ -1,22 +1,17 @@
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String prefsUserId = "PREFS_USER_ID";
 
-class AppPreferences {
-  final SharedPreferences _sharedPreferences;
+class SettingsService extends GetxService {
 
-  AppPreferences(this._sharedPreferences);
+  late SharedPreferences _sharedPreferences;
 
-  // late final SharedPreferences _sharedPreferences;
-  //
-  //   factory AppPreferences() => AppPreferences._internal();
-  //
-  //   AppPreferences._internal();
-  //
-  //   Future<void> init() async {
-  //     _sharedPreferences = await SharedPreferences.getInstance();
-  //   }
+  Future<SettingsService> init() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
+    return this;
+  }
 
   // Authentication
 

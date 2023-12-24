@@ -28,7 +28,7 @@ class CourseItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () =>
-          Get.to(SubjectScreen(course: course)),
+          Get.to(() => SubjectScreen(course: course)),
         child: Column(
           children: [
             Text(

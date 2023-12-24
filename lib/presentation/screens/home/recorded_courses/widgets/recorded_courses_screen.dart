@@ -13,7 +13,7 @@ import '../../../../widgets/loading_screen.dart';
 class RecordedCoursesScreen extends StatelessWidget {
   
   final String saff;
-  late final RecordedCoursesController _controller = instance<RecordedCoursesController>();
+  late final RecordedCoursesController _controller = Get.find<RecordedCoursesController>();
 
   RecordedCoursesScreen({super.key, required this.saff});
 
