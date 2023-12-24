@@ -12,24 +12,23 @@ import '../../../../widgets/loading_screen.dart';
 
 class RecordedCoursesScreen extends StatelessWidget {
   
-  final String saff;
-  // late final RecordedCoursesController _controller = Get.find<RecordedCoursesController>();
+  // final String saff;
 
-  const RecordedCoursesScreen({super.key, required this.saff});
+  const RecordedCoursesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('passed saff: $saff');
+    debugPrint('passed saff: ${Get.arguments['saff']}');
     return Scaffold(
       appBar: AppBar(
-        title: Text(saff == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} $saff'),
+        title: Text(Get.arguments['saff'] == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} ${Get.arguments['saff']}'),
         leading: IconButton(
           onPressed: () {Navigator.of(context).pop();},
           icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
         ),
       ),
       body: GetX<RecordedCoursesController>(
-        init: RecordedCoursesController(Get.find<Repository>(), saff),
+        init: RecordedCoursesController(Get.find<Repository>()),
         builder: (controller) {
           if (controller.isLoading.value) {
             return const LoadingScreen();
