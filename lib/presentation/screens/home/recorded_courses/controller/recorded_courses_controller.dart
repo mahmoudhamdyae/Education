@@ -31,7 +31,8 @@ class RecordedCoursesController extends GetxController {
           saff == AppStrings.saff2 ||
           saff == AppStrings.saff3 ||
           saff == AppStrings.saff4 ||
-          saff == AppStrings.saff5
+          saff == AppStrings.saff5 ||
+          saff == ''
       ) {
         isLoading.value = false;
         error.value = '';

@@ -1,4 +1,3 @@
-import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
@@ -11,8 +10,6 @@ import '../../../../widgets/error_screen.dart';
 import '../../../../widgets/loading_screen.dart';
 
 class RecordedCoursesScreen extends StatelessWidget {
-  
-  // final String saff;
 
   const RecordedCoursesScreen({super.key});
 
@@ -28,7 +25,7 @@ class RecordedCoursesScreen extends StatelessWidget {
         ),
       ),
       body: GetX<RecordedCoursesController>(
-        init: RecordedCoursesController(Get.find<Repository>()),
+        init: Get.find<RecordedCoursesController>(),
         builder: (controller) {
           if (controller.isLoading.value) {
             return const LoadingScreen();
