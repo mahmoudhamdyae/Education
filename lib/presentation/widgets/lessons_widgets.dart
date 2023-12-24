@@ -2,16 +2,18 @@ import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/app_prefs.dart';
+import '../../core/di.dart';
 import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 import 'dialogs/require_auth_dialog.dart';
 
 class LessonsWidget extends StatefulWidget {
-  final bool isUserLoggedIn;
   final List<Wehda> wehdat;
   final bool isInLessonScreen;
-  const LessonsWidget({super.key, required this.isUserLoggedIn, required this.wehdat, required this.isInLessonScreen});
+
+  const LessonsWidget({super.key, required this.wehdat, required this.isInLessonScreen});
 
   @override
   State<LessonsWidget> createState() => _LessonsWidgetState();
@@ -19,6 +21,22 @@ class LessonsWidget extends StatefulWidget {
 
 class _LessonsWidgetState extends State<LessonsWidget> {
   int expanded = -1;
+  late final bool isUserLoggedIn;
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
+  @override
+  void initState() {
+    super.initState();
+    _setUserLoggedIn();
+  }
+
+  Future<void> _setUserLoggedIn() async {
+    if (await _appPreferences.isUserLoggedIn()) {
+      isUserLoggedIn = true;
+    } else {
+      isUserLoggedIn = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +99,17 @@ class _LessonsWidgetState extends State<LessonsWidget> {
             itemBuilder: (context, lessonIndex) {
               return InkWell(
                   onTap: () {
-                    if (widget.isInLessonScreen) {
-                      Navigator.of(context).pop();
-                    }
-                    if (widget.isUserLoggedIn) {
-                      Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[index],));
+                    if (isUserLoggedIn) {
+                      if (widget.isInLessonScreen) {
+                        Navigator.of(context).pop();
+                      }
+                      Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[lessonIndex],));
                     } else {
                       if (index == 0 && lessonIndex == 0) {
-                        Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[index],));
+                        if (widget.isInLessonScreen) {
+                          Navigator.of(context).pop();
+                        }
+                        Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[lessonIndex],));
                       } else {
                         showRequireAuthDialog(context);
                       }
@@ -98,16 +119,16 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
                     child: Row(
                       children: [
-                        widget.isUserLoggedIn ? Container() : index == 0 && lessonIndex == 0 ?
+                        isUserLoggedIn ? Container() : index == 0 && lessonIndex == 0 ?
                         const Icon(
                           Icons.remove_red_eye,
                           color: ColorManager.primary,
                         ) : const Icon(Icons.lock, color: Colors.grey,),
-                        widget.isUserLoggedIn ? Container() : const SizedBox(width: AppSize.s8,),
+                        isUserLoggedIn ? Container() : const SizedBox(width: AppSize.s8,),
                         Text(
                           wehda.lessons[lessonIndex].title,
                           style: TextStyle(
-                              color: widget.isUserLoggedIn ? ColorManager.primary : index == 0 && lessonIndex == 0 ? ColorManager.primary : Colors.grey
+                              color: isUserLoggedIn ? ColorManager.primary : index == 0 && lessonIndex == 0 ? ColorManager.primary : Colors.grey
                           ),
                         ),
                       ],

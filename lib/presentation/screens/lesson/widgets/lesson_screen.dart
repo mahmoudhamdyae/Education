@@ -45,23 +45,7 @@ class _LessonScreenState extends State<LessonScreen> {
   final AppPreferences appPreferences = instance<AppPreferences>();
   final _flutterMediaDownloaderPlugin = MediaDownload();
 
-  bool isUserLoggedIn = false;
   String _askText = '';
-
-  @override
-  void initState() {
-    super.initState();
-
-    _setUserLoggedIn();
-  }
-
-  Future<void> _setUserLoggedIn() async {
-    if (await appPreferences.isUserLoggedIn()) {
-      isUserLoggedIn = true;
-    } else {
-      isUserLoggedIn = false;
-    }
-  }
 
   _downloadNote(String link) async {
     String url = '${Constants.baseUrl}filedownload/$link';
@@ -199,7 +183,6 @@ class _LessonScreenState extends State<LessonScreen> {
           ),
           const SizedBox(height: AppSize.s16,),
           LessonsWidget(
-            isUserLoggedIn: isUserLoggedIn,
             wehdat: widget.wehdat,
             isInLessonScreen: true,
           ),

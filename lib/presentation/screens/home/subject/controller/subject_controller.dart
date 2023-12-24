@@ -1,3 +1,4 @@
+import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:get/get.dart';
 
@@ -13,14 +14,23 @@ class SubjectController extends GetxController {
 
   SubjectController(this._repository);
 
-  getTutorials(int courseId) async {
+
+  @override
+  void onInit() {
+    super.onInit();
+    _getTutorials();
+  }
+
+  _getTutorials() async {
     try {
       isLoading.value = true;
       error.value = '';
       wehdat.value = [];
-      await _repository.getTutorials(courseId).then((tutorials) {
+      print('========== ${(Get.arguments['course'] as Course).id}');
+      await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
         isLoading.value = false;
         error.value = '';
+        print('=========tutorials $tutorials');
         wehdat.value = tutorials;
       });
     } on Exception catch (e) {
