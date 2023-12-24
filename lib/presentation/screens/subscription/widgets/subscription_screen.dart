@@ -15,7 +15,6 @@ class SubscriptionScreen extends StatelessWidget {
   SubscriptionScreen({super.key});
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final SubscriptionController _controller = Get.find<SubscriptionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +24,21 @@ class SubscriptionScreen extends StatelessWidget {
           if (snapshot.hasData) {
             if (snapshot.data == true) {
               // User logged in
-              return Obx(() {
-                if (_controller.isLoading.value) {
-                  return const LoadingScreen();
-                } else if (_controller.error.value != '') {
-                  return ErrorScreen(error: _controller.error.value);
-                } else if (_controller.courses.isEmpty) {
-                  return const EmptyScreen(emptyString: AppStrings.emptySubscriptions);
-                } else {
-                  final courses = _controller.courses;
-                  return SubscriptionScreenBody(courses: courses);
-                }
-              });
+              return GetX<SubscriptionController>(
+                  init: Get.find<SubscriptionController>(),
+                  builder: (controller) {
+                      if (controller.isLoading.value) {
+                        return const LoadingScreen();
+                      } else if (controller.error.value != '') {
+                        return ErrorScreen(error: controller.error.value);
+                      } else if (controller.courses.isEmpty) {
+                        return const EmptyScreen(emptyString: AppStrings.emptySubscriptions);
+                      } else {
+                        final courses = controller.courses;
+                        return SubscriptionScreenBody(courses: courses);
+                      }
+                    },
+                );
             } else {
               // User not logged in
               return const RequireLogInView();
