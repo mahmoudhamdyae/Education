@@ -11,25 +11,33 @@ class RecordedCoursesController extends GetxController {
   final Rx<ClassModel> classModel = ClassModel([], []).obs;
 
   final Repository _repository;
+  final String _saff;
 
-  RecordedCoursesController(this._repository);
+  RecordedCoursesController(this._repository, this._saff);
 
-  getRecordedCourses(String marhala) async {
+
+  @override
+  void onInit() {
+    super.onInit();
+    getRecordedCourses();
+  }
+
+  getRecordedCourses() async {
     classModel.value = ClassModel([], []);
     isLoading.value = true;
     try {
       if (
-      marhala == AppStrings.saff1 ||
-      marhala == AppStrings.saff2 ||
-      marhala == AppStrings.saff3 ||
-      marhala == AppStrings.saff4 ||
-      marhala == AppStrings.saff5
+          _saff == AppStrings.saff1 ||
+          _saff == AppStrings.saff2 ||
+          _saff == AppStrings.saff3 ||
+          _saff == AppStrings.saff4 ||
+          _saff == AppStrings.saff5
       ) {
         isLoading.value = false;
         error.value = '';
         classModel.value = ClassModel([], []);
       } else {
-        await _repository.getRecordedCourses(marhala).then((remoteClassModel) {
+        await _repository.getRecordedCourses(_saff).then((remoteClassModel) {
           isLoading.value = false;
           error.value = '';
           classModel.value = remoteClassModel;

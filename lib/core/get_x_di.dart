@@ -21,8 +21,8 @@ class GetXDi implements Bindings {
     Get.lazyPut<RemoteDataSource>(() => RemoteDataSource(), fenix: true);
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>()), fenix: true);
 
-    Get.lazyPut(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut(() => SubjectController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut(() => SubscriptionController(Get.find<Repository>()), fenix: true);
+    // Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);
   }
 }
