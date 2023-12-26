@@ -62,7 +62,8 @@ class AppStrings {
   // Bottom Bar
   static const bottomBarHome = "الرئيسية";
   static const bottomBarSubscription = "الاشتراكات";
-  static const bottomBarNotifications = "الاشعارات";
+  static const notifications = "الاشعارات";
+  static const bottomBarCart = "سلة المشتريات";
   static const bottomBarMe = "الملف الشخصى";
 
   // Main Screen

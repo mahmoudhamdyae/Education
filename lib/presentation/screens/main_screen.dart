@@ -1,8 +1,8 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:education/presentation/screens/me/me_screen.dart';
-import 'package:education/presentation/screens/notifications/notifications_screen.dart';
 import 'package:education/presentation/screens/subscription/widgets/subscription_screen.dart';
-import 'package:education/presentation/widgets/log_out_dialog.dart';
+import 'package:education/presentation/widgets/app_bar_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../resources/color_manager.dart';
@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
     return [
       const HomeScreen(),
       SubscriptionScreen(),
-      NotificationsScreen(),
+      CartScreen(),
       MeScreen(),
     ];
   }
@@ -34,8 +34,8 @@ class MainScreen extends StatelessWidget {
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.notifications, color: ColorManager.white,),
-        title: AppStrings.bottomBarNotifications,
+        icon: const Icon(Icons.shopping_cart, color: ColorManager.white,),
+        title: AppStrings.bottomBarCart,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
@@ -51,9 +51,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.appName),
-        actions: [
-          LogOutDialog(),
-        ],
+        actions: [AppBarActions(),],
         automaticallyImplyLeading: false,
       ),
       body: PersistentTabView(
