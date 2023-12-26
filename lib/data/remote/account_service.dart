@@ -25,6 +25,7 @@ class AccountServiceImpl implements AccountService {
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
+    await _checkNetwork();
     String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=${convertSaff(group)}";
     final response = await http.post(Uri.parse(url));
 
@@ -37,6 +38,7 @@ class AccountServiceImpl implements AccountService {
 
   @override
   Future logIn(String phone, String password) async {
+    await _checkNetwork();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await http.post(Uri.parse(url));
 
@@ -57,6 +59,12 @@ class AccountServiceImpl implements AccountService {
     if (await _networkInfo.isConnected) {
     } else {
       throw Exception(AppStrings.noInternetError);
+    }
+  }
+
+  _checkServer(http.Response response) {
+    if (response.statusCode != 200) {
+      throw (Exception("لا يمكن الاتصال بالسيرفر"));
     }
   }
 }

@@ -10,9 +10,15 @@ import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../network_info.dart';
+
 class RemoteDataSource {
 
+  final NetworkInfo _networkInfo;
+  RemoteDataSource(this._networkInfo);
+
   Future<ClassModel> getRecordedCourses(String marhala) async {
+    await _checkNetwork();
 
     String url = "${Constants.baseUrl}courses";
     final response = await http.get(Uri.parse(url));
@@ -61,6 +67,8 @@ class RemoteDataSource {
   }
 
   Future<List<Wehda>> getTutorials(int courseId) async {
+    await _checkNetwork();
+
     String url = "${Constants.baseUrl}tutorial/$courseId";
     final response = await http.get(Uri.parse(url));
 
@@ -76,17 +84,27 @@ class RemoteDataSource {
     return wehdat;
   }
 
-  Future<List<Course>> getSubscriptions() {
+  Future<List<Course>> getSubscriptions() async {
+    await _checkNetwork();
     return Future(() => []);
   }
 
-  Future<String> downloadNote(String link) {
+  Future<String> askQuestion(String question) async {
+    await _checkNetwork();
     Future.delayed(const Duration(seconds: 4));
     return Future(() => '');
   }
 
-  Future<String> askQuestion(String question) {
-    Future.delayed(const Duration(seconds: 4));
-    return Future(() => '');
+  _checkNetwork() async {
+    if (await _networkInfo.isConnected) {
+    } else {
+      throw Exception(AppStrings.noInternetError);
+    }
+  }
+
+  _checkServer(http.Response response) {
+    if (response.statusCode != 200) {
+      throw (Exception("لا يمكن الاتصال بالسيرفر"));
+    }
   }
 }

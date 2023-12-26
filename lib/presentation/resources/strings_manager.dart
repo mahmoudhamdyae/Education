@@ -108,4 +108,5 @@ class AppStrings {
 
   // Error Handler
   static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
+  static const String serverError = "لا يمكن الاتصال بالسيرفر";
 }

@@ -18,7 +18,7 @@ class GetXDi implements Bindings {
   void dependencies() async {
     Get.lazyPut<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()), fenix: true);
     Get.lazyPut<AccountService>(() => AccountServiceImpl(instance<AppPreferences>(), Get.find<NetworkInfo>()), fenix: true);
-    Get.lazyPut<RemoteDataSource>(() => RemoteDataSource(), fenix: true);
+    Get.lazyPut<RemoteDataSource>(() => RemoteDataSource(Get.find<NetworkInfo>()), fenix: true);
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>()), fenix: true);
 
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);

@@ -27,11 +27,6 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<String> downloadNote(String link) {
-    return _remoteDataSource.downloadNote(link);
-  }
-
-  @override
   Future<String> askQuestion(String question) {
     return _remoteDataSource.askQuestion(question);
   }

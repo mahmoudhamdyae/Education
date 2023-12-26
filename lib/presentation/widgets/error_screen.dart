@@ -23,7 +23,7 @@ class ErrorScreen extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s40,),
             Text(
-              error,
+              error.replaceFirst('Exception: ', ''),
               style: const TextStyle(
                 color: ColorManager.error,
                   fontWeight: FontWeight.w500,
