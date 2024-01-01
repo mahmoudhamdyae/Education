@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
@@ -18,7 +19,7 @@ class RemoteDataSource {
   RemoteDataSource(this._networkInfo);
 
   Future<ClassModel> getRecordedCourses(String marhala) async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
 
     String url = "${Constants.baseUrl}courses";
     final response = await http.get(Uri.parse(url));
@@ -67,7 +68,7 @@ class RemoteDataSource {
   }
 
   Future<List<Wehda>> getTutorials(int courseId) async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
 
     String url = "${Constants.baseUrl}tutorial/$courseId";
     final response = await http.get(Uri.parse(url));
@@ -85,26 +86,33 @@ class RemoteDataSource {
   }
 
   Future<List<Course>> getSubscriptions() async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
     return Future(() => []);
   }
 
   Future<String> askQuestion(String question) async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
     Future.delayed(const Duration(seconds: 4));
     return Future(() => '');
   }
 
-  _checkNetwork() async {
+  _checkNetworkAndServer() async {
     if (await _networkInfo.isConnected) {
+      await _checkServer();
     } else {
       throw Exception(AppStrings.noInternetError);
     }
   }
 
-  _checkServer(http.Response response) {
-    if (response.statusCode != 200) {
-      throw (Exception("لا يمكن الاتصال بالسيرفر"));
+  _checkServer() async {
+    try {
+      final result = await InternetAddress.lookup(Constants.baseUrl);
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        debugPrint('connected');
+      }
+    } on SocketException catch (_) {
+      debugPrint(AppStrings.serverDown);
+      throw Exception(AppStrings.serverDown);
     }
   }
 }

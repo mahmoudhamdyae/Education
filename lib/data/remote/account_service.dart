@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,7 @@ class AccountServiceImpl implements AccountService {
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
     String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=${convertSaff(group)}";
     final response = await http.post(Uri.parse(url));
 
@@ -38,7 +39,7 @@ class AccountServiceImpl implements AccountService {
 
   @override
   Future logIn(String phone, String password) async {
-    await _checkNetwork();
+    await _checkNetworkAndServer();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await http.post(Uri.parse(url));
 
@@ -55,16 +56,23 @@ class AccountServiceImpl implements AccountService {
     _appPreferences.setUserId(0);
   }
 
-  _checkNetwork() async {
+  _checkNetworkAndServer() async {
     if (await _networkInfo.isConnected) {
+      await _checkServer();
     } else {
       throw Exception(AppStrings.noInternetError);
     }
   }
 
-  _checkServer(http.Response response) {
-    if (response.statusCode != 200) {
-      throw (Exception("لا يمكن الاتصال بالسيرفر"));
+  _checkServer() async {
+    try {
+      final result = await InternetAddress.lookup(Constants.baseUrl);
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        debugPrint('connected');
+      }
+    } on SocketException catch (_) {
+      debugPrint(AppStrings.serverDown);
+      throw Exception(AppStrings.serverDown);
     }
   }
 }
