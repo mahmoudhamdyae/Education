@@ -65,14 +65,14 @@ class AccountServiceImpl implements AccountService {
   }
 
   _checkServer() async {
-    try {
-      final result = await InternetAddress.lookup(Constants.baseUrl);
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        debugPrint('connected');
-      }
-    } on SocketException catch (_) {
-      debugPrint(AppStrings.serverDown);
-      throw Exception(AppStrings.serverDown);
-    }
+    // try {
+    //   final result = await InternetAddress.lookup(Constants.baseUrl);
+    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+    //     debugPrint('connected');
+    //   }
+    // } on SocketException catch (_) {
+    //   debugPrint(AppStrings.serverDown);
+    //   throw Exception(AppStrings.serverDown);
+    // }
   }
 }
