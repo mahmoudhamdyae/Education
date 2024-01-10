@@ -4,8 +4,9 @@ class Course {
   int month;
   int term;
   String marhala;
+  String type;
 
-  Course(this.id, this.name, this.month, this.term, this.marhala);
+  Course(this.id, this.name, this.month, this.term, this.marhala, this.type);
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
@@ -14,6 +15,7 @@ class Course {
       json['monthly_subscription_price'] as int? ?? 0,
       json['term_price'] as int? ?? 0,
       json['classroom'] as String? ?? '',
+      json['type'] as String? ?? '',
     );
   }
 }
