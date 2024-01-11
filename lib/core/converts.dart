@@ -12,7 +12,3 @@ String convertMarhala(String marhala) {
       return '';
   }
 }
-
-String convertSaff(String saff) {
-  return saff.replaceFirst('الصف ', '');
-}

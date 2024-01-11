@@ -27,7 +27,7 @@ class AccountServiceImpl implements AccountService {
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
     await _checkNetworkAndServer();
-    String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=${convertSaff(group)}";
+    String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=$group";
     final response = await http.post(Uri.parse(url));
 
     final responseData = await json.decode(response.body);
