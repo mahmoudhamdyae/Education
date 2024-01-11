@@ -5,7 +5,7 @@
     <application
         android:label="Education"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name="com.smart.smartstudent.MainActivity"
