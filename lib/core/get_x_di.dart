@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:education/core/app_prefs.dart';
-import 'package:education/core/di.dart';
+import 'package:education/data/local/local_data_source.dart';
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/data/repository/repository_impl.dart';
 import 'package:education/domain/repository/repository.dart';
+import 'package:education/presentation/screens/auth/login/controller/login_controller.dart';
+import 'package:education/presentation/screens/auth/register/controller/register_controller.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -30,9 +31,14 @@ class GetXDi implements Bindings {
     Get.lazyPut<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()), fenix: true);
     Get.put<Dio>(dio);
 
-    Get.lazyPut<RemoteDataSourceImpl>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), instance<AppPreferences>(), Get.find<Dio>()), fenix: true);
-    Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSourceImpl>()), fenix: true);
+    // Data Sources and Repository
+    Get.lazyPut<LocalDataSource>(() => LocalDataSourceImpl(), fenix: true);
+    Get.lazyPut<RemoteDataSource>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), Get.find<Dio>()), fenix: true);
+    Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>(), Get.find<LocalDataSource>()), fenix: true);
 
+    // Controllers
+    Get.lazyPut<LoginController>(() => LoginController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<RegisterController>(() => RegisterController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);

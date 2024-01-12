@@ -1,6 +1,6 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
-import 'package:education/presentation/screens/auth/login_screen.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class RequireLogInView extends StatelessWidget {
         const Text(AppStrings.requireLogIn),
         const SizedBox(height: AppSize.s8,),
         OutlinedButton(
-            onPressed: () => Get.to(const LoginScreen()),
+            onPressed: () => Get.to(LoginScreen()),
             child: const Text(AppStrings.requireLogInButton)
         )
       ],

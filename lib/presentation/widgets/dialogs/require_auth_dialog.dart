@@ -1,5 +1,5 @@
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/screens/auth/login_screen.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +31,7 @@ showRequireAuthDialog(BuildContext context) {
                   TextButton(
                       onPressed: () {
                         Get.back();
-                        Get.to(const LoginScreen());
+                        Get.to(LoginScreen());
                       },
                       child: const Text(AppStrings.continueButton)
                   ),

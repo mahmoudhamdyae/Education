@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:education/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/app_prefs.dart';
-import '../../../core/di.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/constants_manager.dart';
@@ -19,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
-  final AppPreferences appPreferences = instance<AppPreferences>();
+  final Repository appPreferences = Get.find<Repository>();
 
   _startDelay() {
     _timer = Timer(const Duration(seconds: AppConstants.splashDelay), () =>

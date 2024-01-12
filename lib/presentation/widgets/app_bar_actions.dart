@@ -1,31 +1,27 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/color_manager.dart';
-import 'package:education/presentation/screens/auth/login_screen.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:education/presentation/screens/notifications/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/app_prefs.dart';
-import '../../core/di.dart';
-import '../../data/remote/remote_data_source.dart';
 import '../resources/strings_manager.dart';
 
 class AppBarActions extends StatelessWidget {
   AppBarActions({super.key});
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
-  final RemoteDataSourceImpl _accountService = Get.find<RemoteDataSourceImpl>();
+  final Repository _repository = Get.find<Repository>();
 
   _signOut(BuildContext context) {
-    _accountService.signOut().then((value) {
-      _appPreferences.logout();
-      Get.offAll(const LoginScreen());
+    _repository.signOut().then((value) {
+      Get.offAll(LoginScreen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _appPreferences.isUserLoggedIn(),
+        future: _repository.isUserLoggedIn(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data == true) {

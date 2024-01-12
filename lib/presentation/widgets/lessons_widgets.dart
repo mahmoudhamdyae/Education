@@ -1,9 +1,8 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/app_prefs.dart';
-import '../../core/di.dart';
 import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
@@ -22,7 +21,7 @@ class LessonsWidget extends StatefulWidget {
 class _LessonsWidgetState extends State<LessonsWidget> {
   int expanded = -1;
   late final bool isUserLoggedIn;
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final Repository _appPreferences = Get.find<Repository>();
 
   @override
   void initState() {

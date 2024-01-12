@@ -1,3 +1,4 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/home/courses/courses_screen.dart';
 import 'package:education/presentation/screens/home/exams_and_banks/exams_and_banks_screen.dart';
 import 'package:education/presentation/screens/home/online_courses/online_courses_screen.dart';
@@ -7,8 +8,6 @@ import 'package:education/presentation/screens/home/teacher/teacher_screen.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/app_prefs.dart';
-import '../../core/di.dart';
 import '../../presentation/resources/assets_manager.dart';
 import '../../presentation/resources/strings_manager.dart';
 import '../../presentation/widgets/dialogs/require_auth_dialog.dart';
@@ -45,7 +44,7 @@ class HomeUI {
       HomeUI(
         AppStrings.teacher,
         ImageAssets.teacher, (String marhala, String saff) async {
-        final AppPreferences appPreferences = instance<AppPreferences>();
+        final Repository appPreferences = Get.find<Repository>();
         if (await appPreferences.isUserLoggedIn()) {
           Get.to(const TeacherScreen());
         } else {

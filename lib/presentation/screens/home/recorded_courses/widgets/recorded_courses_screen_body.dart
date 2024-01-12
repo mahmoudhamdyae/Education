@@ -1,7 +1,7 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../../../core/app_prefs.dart';
-import '../../../../../core/di.dart';
 import '../../../../../domain/models/courses/class_model.dart';
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/font_manager.dart';
@@ -12,7 +12,7 @@ import 'course_item.dart';
 
 class RecordedCoursesScreenBody extends StatelessWidget {
 
-  final AppPreferences appPreferences = instance<AppPreferences>();
+  final Repository appPreferences = Get.find<Repository>();
   final ClassModel classModel;
 
   RecordedCoursesScreenBody({super.key, required this.classModel});

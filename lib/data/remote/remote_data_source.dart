@@ -4,7 +4,6 @@ import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../core/app_prefs.dart';
 import '../../core/constants.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
@@ -13,16 +12,19 @@ import '../network_info.dart';
 
 abstract class RemoteDataSource {
   Future register(String userName, String phone, String password, String grade, String group);
-  Future logIn(String phone, String password);
-  Future signOut();
+  Future<int> logIn(String phone, String password);
+
+  Future<ClassModel> getRecordedCourses(String marhala);
+  Future<List<Wehda>> getTutorials(int courseId);
+  Future<List<Course>> getSubscriptions();
+  Future<String> askQuestion(String question);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
 
   final NetworkInfo _networkInfo;
-  final AppPreferences _appPreferences;
   final Dio _dio;
-  RemoteDataSourceImpl(this._networkInfo, this._appPreferences, this._dio);
+  RemoteDataSourceImpl(this._networkInfo, this._dio);
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
@@ -42,7 +44,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future logIn(String phone, String password) async {
+  Future<int> logIn(String phone, String password) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await _dio.post(url, data: {
@@ -54,14 +56,10 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     if (data["access_token"] == null) {
       throw Exception(AppStrings.wrongPhoneOrPassword);
     }
-    _appPreferences.setUserId(data['user']['id']);
+    return data['user']['id'];
   }
 
   @override
-  Future signOut() async {
-    _appPreferences.setUserId(0);
-  }
-
   Future<ClassModel> getRecordedCourses(String marhala) async {
     await _checkNetwork();
 
@@ -108,6 +106,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     );
   }
 
+  @override
   Future<List<Wehda>> getTutorials(int courseId) async {
     await _checkNetwork();
 
@@ -123,11 +122,13 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     return wehdat;
   }
 
+  @override
   Future<List<Course>> getSubscriptions() async {
     await _checkNetwork();
     return Future(() => []);
   }
 
+  @override
   Future<String> askQuestion(String question) async {
     await _checkNetwork();
     Future.delayed(const Duration(seconds: 4));

@@ -1,3 +1,4 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
@@ -6,15 +7,13 @@ import 'package:education/presentation/screens/home/subject/widgets/subject_scre
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../core/app_prefs.dart';
-import '../../../../../core/di.dart';
 import '../../../../../domain/models/courses/course.dart';
 import '../../../../widgets/dialogs/require_auth_dialog.dart';
 
 class CourseItem extends StatelessWidget {
 
   final Course course;
-  final AppPreferences appPreferences = instance<AppPreferences>();
+  final Repository appPreferences = Get.find<Repository>();
 
   CourseItem({super.key, required this.course});
 

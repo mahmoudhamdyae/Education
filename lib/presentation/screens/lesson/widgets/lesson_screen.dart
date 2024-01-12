@@ -1,3 +1,4 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
@@ -6,9 +7,7 @@ import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
 import '../../../../core/constants.dart';
-import '../../../../core/di.dart';
 import '../../../../domain/models/lesson/lesson.dart';
 import '../../../../domain/models/lesson/wehda.dart';
 import '../../../resources/color_manager.dart';
@@ -42,7 +41,7 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  final AppPreferences appPreferences = instance<AppPreferences>();
+  final Repository appPreferences = Get.find<Repository>();
   final _flutterMediaDownloaderPlugin = MediaDownload();
 
   String _askText = '';

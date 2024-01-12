@@ -1,14 +1,13 @@
-import 'package:education/core/di.dart';
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/widgets/require_log_in_view.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../../../core/app_prefs.dart';
+import 'package:get/get.dart';
 
 class MeScreen extends StatelessWidget {
   MeScreen({super.key});
 
-  final AppPreferences appPreferences = instance<AppPreferences>();
+  final Repository appPreferences = Get.find<Repository>();
 
   @override
   Widget build(BuildContext context) {

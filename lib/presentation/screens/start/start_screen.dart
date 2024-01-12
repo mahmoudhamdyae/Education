@@ -2,7 +2,7 @@ import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
-import 'package:education/presentation/screens/auth/login_screen.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +32,7 @@ class StartScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     FilledButton(
-                        onPressed: () => Get.to(const LoginScreen()),
+                        onPressed: () => Get.to(LoginScreen()),
                         child: const Padding(
                           padding: EdgeInsets.all(AppPadding.p8),
                           child: Text(

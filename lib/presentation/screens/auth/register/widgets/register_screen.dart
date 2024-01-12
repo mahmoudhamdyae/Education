@@ -1,15 +1,14 @@
+import 'package:education/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_prefs.dart';
-import '../../../core/di.dart';
-import '../../../data/remote/remote_data_source.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/strings_manager.dart';
-import '../../resources/values_manager.dart';
-import '../../widgets/dialogs/error_dialog.dart';
-import '../../widgets/dialogs/loading_dialog.dart';
-import '../main_screen.dart';
+import '../../../../../data/remote/remote_data_source.dart';
+import '../../../../resources/color_manager.dart';
+import '../../../../resources/strings_manager.dart';
+import '../../../../resources/values_manager.dart';
+import '../../../../widgets/dialogs/error_dialog.dart';
+import '../../../../widgets/dialogs/loading_dialog.dart';
+import '../../../main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -19,7 +18,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterScreen> {
-  final AppPreferences _appPreferences = instance<AppPreferences>();
   final RemoteDataSourceImpl _accountService = Get.find<RemoteDataSourceImpl>();
 
   final TextEditingController _nameController = TextEditingController();
@@ -73,7 +71,6 @@ class _RegisterViewState extends State<RegisterScreen> {
         await _accountService.register(_nameController.text, _numberController.text, _passController.text, _selectedMarhala, _selectedSaff)
             .then((userCredential) {
           _accountService.logIn(_numberController.text, _passController.text).then((value) {
-            _appPreferences.setUserLoggedIn();
             Get.offAll(MainScreen());
           });
         });
