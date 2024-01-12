@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../../core/app_prefs.dart';
 import '../../core/constants.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
-import '../../core/converts.dart';
 import '../network_info.dart';
 
 abstract class AccountService {
@@ -20,34 +16,41 @@ class AccountServiceImpl implements AccountService {
 
   final NetworkInfo _networkInfo;
   final AppPreferences _appPreferences;
+  final Dio _dio;
 
-  AccountServiceImpl(this._appPreferences, this._networkInfo);
+  AccountServiceImpl(this._appPreferences, this._networkInfo, this._dio);
 
   @override
   Future register(String userName, String phone, String password, String grade, String group) async {
-    await _checkNetworkAndServer();
-    String url = "${Constants.baseUrl}auth/register?name=$userName&password=$password&phone=$phone&grade=${convertMarhala(grade)}&group=$group";
-    final response = await http.post(Uri.parse(url));
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}auth/register";
+    Response response = await _dio.post(url, data: {
+      'name': userName,
+      'password': password,
+      'phone': phone,
+      'grade': grade,
+      'group': group,
+    });
 
-    final responseData = await json.decode(response.body);
-    debugPrint('Register Response: $responseData');
-    if (responseData["message"] == null) {
+    if (response.data["message"] == null) {
       throw Exception(AppStrings.previouslyUser);
     }
   }
 
   @override
   Future logIn(String phone, String password) async {
-    await _checkNetworkAndServer();
+    await _checkNetwork();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
-    final response = await http.post(Uri.parse(url));
+    final response = await _dio.post(url, data: {
+      'password': password,
+      'phone': phone,
+    });
 
-    var responseData = json.decode(response.body);
-    debugPrint('Login Response: $responseData');
-    if (responseData["access_token"] == null) {
+    final data = response.data;
+    if (data["access_token"] == null) {
       throw Exception(AppStrings.wrongPhoneOrPassword);
     }
-    _appPreferences.setUserId(responseData['user']['id']);
+    _appPreferences.setUserId(data['user']['id']);
   }
 
   @override
@@ -55,23 +58,9 @@ class AccountServiceImpl implements AccountService {
     _appPreferences.setUserId(0);
   }
 
-  _checkNetworkAndServer() async {
-    if (await _networkInfo.isConnected) {
-      await _checkServer();
-    } else {
+  _checkNetwork() async {
+    if (!await _networkInfo.isConnected) {
       throw Exception(AppStrings.noInternetError);
     }
-  }
-
-  _checkServer() async {
-    // try {
-    //   final result = await InternetAddress.lookup(Constants.baseUrl);
-    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    //     debugPrint('connected');
-    //   }
-    // } on SocketException catch (_) {
-    //   debugPrint(AppStrings.serverDown);
-    //   throw Exception(AppStrings.serverDown);
-    // }
   }
 }

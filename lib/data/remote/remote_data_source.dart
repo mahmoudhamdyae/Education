@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:dio/dio.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
@@ -9,23 +7,20 @@ import 'package:flutter/cupertino.dart';
 import '../../core/constants.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
-import 'package:http/http.dart' as http;
 
 import '../network_info.dart';
 
 class RemoteDataSource {
 
   final NetworkInfo _networkInfo;
-  RemoteDataSource(this._networkInfo);
+  final Dio _dio;
+  RemoteDataSource(this._networkInfo, this._dio);
 
   Future<ClassModel> getRecordedCourses(String marhala) async {
-    await _checkNetworkAndServer();
+    await _checkNetwork();
 
     String url = "${Constants.baseUrl}courses";
-    final response = await http.get(Uri.parse(url));
-
-    final responseData = await json.decode(response.body);
-    debugPrint('Get Recorded Courses Response: $responseData');
+    final response = await _dio.get(url);
 
     List<Course> courses = [];
     String s = '';
@@ -52,7 +47,7 @@ class RemoteDataSource {
         s = 'coursetwelve';
         break;
     }
-    for (var singleCourse in responseData[s]) {
+    for (var singleCourse in response.data[s]) {
       Course course = Course.fromJson(singleCourse);
       debugPrint('Get Recorded Courses Response: $marhala');
       courses.add(course);
@@ -68,16 +63,13 @@ class RemoteDataSource {
   }
 
   Future<List<Wehda>> getTutorials(int courseId) async {
-    await _checkNetworkAndServer();
+    await _checkNetwork();
 
     String url = "${Constants.baseUrl}tutorial/$courseId";
-    final response = await http.get(Uri.parse(url));
-
-    final responseData = await json.decode(response.body);
-    debugPrint('Get Tutorials Response: $responseData');
+    final response = await _dio.get(url);
 
     List<Wehda> wehdat = [];
-    for (var singleCourse in responseData['tutorial']) {
+    for (var singleCourse in response.data['tutorial']) {
       Wehda wehda = Wehda.fromJson(singleCourse);
       wehdat.add(wehda);
     }
@@ -86,33 +78,19 @@ class RemoteDataSource {
   }
 
   Future<List<Course>> getSubscriptions() async {
-    await _checkNetworkAndServer();
+    await _checkNetwork();
     return Future(() => []);
   }
 
   Future<String> askQuestion(String question) async {
-    await _checkNetworkAndServer();
+    await _checkNetwork();
     Future.delayed(const Duration(seconds: 4));
     return Future(() => '');
   }
 
-  _checkNetworkAndServer() async {
-    if (await _networkInfo.isConnected) {
-      await _checkServer();
-    } else {
+  _checkNetwork() async {
+    if (!await _networkInfo.isConnected) {
       throw Exception(AppStrings.noInternetError);
     }
-  }
-
-  _checkServer() async {
-    // try {
-    //   final result = await InternetAddress.lookup(Constants.baseUrl);
-    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    //     debugPrint('connected');
-    //   }
-    // } on SocketException catch (_) {
-    //   debugPrint(AppStrings.serverDown);
-    //   throw Exception(AppStrings.serverDown);
-    // }
   }
 }
