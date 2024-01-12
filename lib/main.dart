@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
   await initAppModule();
 
   runApp(const MyApp());
-  // FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
