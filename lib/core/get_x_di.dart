@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:education/core/app_prefs.dart';
 import 'package:education/core/di.dart';
-import 'package:education/data/remote/account_service.dart';
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/data/repository/repository_impl.dart';
 import 'package:education/domain/repository/repository.dart';
@@ -19,7 +18,6 @@ class GetXDi implements Bindings {
   @override
   void dependencies() async {
     Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger());
     dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
@@ -32,9 +30,8 @@ class GetXDi implements Bindings {
     Get.lazyPut<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()), fenix: true);
     Get.put<Dio>(dio);
 
-    Get.lazyPut<AccountService>(() => AccountServiceImpl(instance<AppPreferences>(), Get.find<NetworkInfo>(), Get.find<Dio>()), fenix: true);
-    Get.lazyPut<RemoteDataSource>(() => RemoteDataSource(Get.find<NetworkInfo>(), Get.find<Dio>()), fenix: true);
-    Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>()), fenix: true);
+    Get.lazyPut<RemoteDataSourceImpl>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), instance<AppPreferences>(), Get.find<Dio>()), fenix: true);
+    Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSourceImpl>()), fenix: true);
 
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);

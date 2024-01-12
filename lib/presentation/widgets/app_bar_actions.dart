@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 
 import '../../core/app_prefs.dart';
 import '../../core/di.dart';
-import '../../data/remote/account_service.dart';
+import '../../data/remote/remote_data_source.dart';
 import '../resources/strings_manager.dart';
 
 class AppBarActions extends StatelessWidget {
   AppBarActions({super.key});
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = Get.find<AccountService>();
+  final RemoteDataSourceImpl _accountService = Get.find<RemoteDataSourceImpl>();
 
   _signOut(BuildContext context) {
     _accountService.signOut().then((value) {

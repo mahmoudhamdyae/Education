@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';
-import '../../../data/remote/account_service.dart';
+import '../../../data/remote/remote_data_source.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
@@ -20,7 +20,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterScreen> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = Get.find<AccountService>();
+  final RemoteDataSourceImpl _accountService = Get.find<RemoteDataSourceImpl>();
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();

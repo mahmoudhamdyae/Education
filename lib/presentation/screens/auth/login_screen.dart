@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../core/app_prefs.dart';
 import '../../../core/di.dart';
-import '../../../data/remote/account_service.dart';
+import '../../../data/remote/remote_data_source.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
@@ -23,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
-  final AccountService _accountService = Get.find<AccountService>();
+  final RemoteDataSourceImpl _accountService = Get.find<RemoteDataSourceImpl>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();

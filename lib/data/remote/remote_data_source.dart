@@ -4,17 +4,63 @@ import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../core/app_prefs.dart';
 import '../../core/constants.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
 import '../network_info.dart';
 
-class RemoteDataSource {
+abstract class RemoteDataSource {
+  Future register(String userName, String phone, String password, String grade, String group);
+  Future logIn(String phone, String password);
+  Future signOut();
+}
+
+class RemoteDataSourceImpl extends RemoteDataSource {
 
   final NetworkInfo _networkInfo;
+  final AppPreferences _appPreferences;
   final Dio _dio;
-  RemoteDataSource(this._networkInfo, this._dio);
+  RemoteDataSourceImpl(this._networkInfo, this._appPreferences, this._dio);
+
+  @override
+  Future register(String userName, String phone, String password, String grade, String group) async {
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}auth/register";
+    Response response = await _dio.post(url, data: {
+      'name': userName,
+      'password': password,
+      'phone': phone,
+      'grade': grade,
+      'group': group,
+    });
+
+    if (response.data["message"] == null) {
+      throw Exception(AppStrings.previouslyUser);
+    }
+  }
+
+  @override
+  Future logIn(String phone, String password) async {
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
+    final response = await _dio.post(url, data: {
+      'password': password,
+      'phone': phone,
+    });
+
+    final data = response.data;
+    if (data["access_token"] == null) {
+      throw Exception(AppStrings.wrongPhoneOrPassword);
+    }
+    _appPreferences.setUserId(data['user']['id']);
+  }
+
+  @override
+  Future signOut() async {
+    _appPreferences.setUserId(0);
+  }
 
   Future<ClassModel> getRecordedCourses(String marhala) async {
     await _checkNetwork();

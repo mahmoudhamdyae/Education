@@ -17,20 +17,4 @@ Future<void> initAppModule() async {
   // App prefs instance
   instance
       .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
-  //
-  // // Network info
-  // instance.registerLazySingleton<NetworkInfo>(
-  //         () => NetworkInfoImpl(InternetConnectionChecker()));
-  //
-  // // AccountService
-  // instance.registerLazySingleton<AccountService>(
-  //         () => AccountServiceImpl(instance<AppPreferences>(), instance<NetworkInfo>()));
-  //
-  // // Remote Data Source
-  // instance.registerLazySingleton<RemoteDataSource>(
-  //         () => RemoteDataSource());
-  //
-  // // Repository
-  // instance.registerLazySingleton<Repository>(
-  //         () => RepositoryImpl(instance<RemoteDataSource>()));
 }

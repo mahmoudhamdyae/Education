@@ -7,7 +7,7 @@ import '../../domain/models/courses/class_model.dart';
 
 class RepositoryImpl extends Repository {
 
-  final RemoteDataSource _remoteDataSource;
+  final RemoteDataSourceImpl _remoteDataSource;
 
   RepositoryImpl(this._remoteDataSource);
 
