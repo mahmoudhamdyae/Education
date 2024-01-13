@@ -22,7 +22,11 @@ class RegisterController extends GetxController {
   RxString selectedMarhala = AppStrings.primaryMarhala.obs;
 
   RxList<String> sfoof = [
-    AppStrings.saff1
+    AppStrings.saff1,
+    AppStrings.saff2,
+    AppStrings.saff3,
+    AppStrings.saff4,
+    AppStrings.saff5,
   ].obs;
   RxString selectedSaff = AppStrings.saff1.obs;
 
