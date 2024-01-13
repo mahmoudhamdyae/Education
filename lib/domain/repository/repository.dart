@@ -6,8 +6,7 @@ import '../models/courses/class_model.dart';
 abstract class Repository {
 
   // Local Data Source
-  Future<bool> isUserLoggedIn();
-  Future<void> logout();
+  bool isUserLoggedIn();
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

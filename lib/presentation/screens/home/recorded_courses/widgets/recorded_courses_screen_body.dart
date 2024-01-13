@@ -39,7 +39,7 @@ class RecordedCoursesScreenBody extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () async {
-                if (await appPreferences.isUserLoggedIn()) {
+                if (appPreferences.isUserLoggedIn()) {
                   // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                 } else {
                   if (context.mounted) showRequireAuthDialog(context);
@@ -71,7 +71,7 @@ class RecordedCoursesScreenBody extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () async {
-                if (await appPreferences.isUserLoggedIn()) {
+                if (appPreferences.isUserLoggedIn()) {
                   // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                 } else {
                   if (context.mounted) showRequireAuthDialog(context);

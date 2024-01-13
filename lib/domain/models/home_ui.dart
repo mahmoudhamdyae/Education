@@ -45,7 +45,7 @@ class HomeUI {
         AppStrings.teacher,
         ImageAssets.teacher, (String marhala, String saff) async {
         final Repository appPreferences = Get.find<Repository>();
-        if (await appPreferences.isUserLoggedIn()) {
+        if (appPreferences.isUserLoggedIn()) {
           Get.to(const TeacherScreen());
         } else {
           if (context.mounted) showRequireAuthDialog(context);

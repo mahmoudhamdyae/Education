@@ -30,7 +30,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
   }
 
   Future<void> _setUserLoggedIn() async {
-    if (await _appPreferences.isUserLoggedIn()) {
+    if (_appPreferences.isUserLoggedIn()) {
       isUserLoggedIn = true;
     } else {
       isUserLoggedIn = false;

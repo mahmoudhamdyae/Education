@@ -32,7 +32,7 @@ class StartScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     FilledButton(
-                        onPressed: () => Get.to(LoginScreen()),
+                        onPressed: () => Get.to(() => const LoginScreen()),
                         child: const Padding(
                           padding: EdgeInsets.all(AppPadding.p8),
                           child: Text(

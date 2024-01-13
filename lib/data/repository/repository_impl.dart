@@ -16,13 +16,8 @@ class RepositoryImpl extends Repository {
   // Local Data Source
 
   @override
-  Future<bool> isUserLoggedIn() {
+  bool isUserLoggedIn() {
     return _localDataSource.isUserLoggedIn();
-  }
-
-  @override
-  Future<void> logout() {
-    return _localDataSource.logout();
   }
 
   // Account Service
@@ -42,7 +37,7 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<void> signOut() async {
-    return _localDataSource.logout();
+    return _localDataSource.signOut();
   }
 
   // Remote Data Source

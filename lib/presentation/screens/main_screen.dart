@@ -16,9 +16,9 @@ class MainScreen extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
-      SubscriptionScreen(),
-      CartScreen(),
-      MeScreen(),
+      const SubscriptionScreen(),
+      const CartScreen(),
+      const MeScreen(),
     ];
   }
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -51,7 +51,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.appName),
-        actions: [AppBarActions(),],
+        actions: const [AppBarActions(),],
         automaticallyImplyLeading: false,
       ),
       body: PersistentTabView(

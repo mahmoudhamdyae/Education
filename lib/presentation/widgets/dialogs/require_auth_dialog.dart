@@ -31,7 +31,7 @@ showRequireAuthDialog(BuildContext context) {
                   TextButton(
                       onPressed: () {
                         Get.back();
-                        Get.to(LoginScreen());
+                        Get.to(() => const LoginScreen());
                       },
                       child: const Text(AppStrings.continueButton)
                   ),

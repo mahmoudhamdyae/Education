@@ -1,44 +1,44 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 
 abstract class LocalDataSource {
   Future<void> setUserLoggedIn();
-  Future<bool> isUserLoggedIn();
-  Future<void> logout();
+  bool isUserLoggedIn();
+  Future<void> signOut();
   Future<void> setUserId(int id);
-  Future<int> getUserId();
+  int getUserId();
 }
 
-const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
-const String prefsUserId = "PREFS_USER_ID";
+const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
+const String keyUserId = "KEY_USER_ID";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
-  final SharedPreferences _sharedPreferences;
-  LocalDataSourceImpl(this._sharedPreferences);
+  final Box _box;
+  LocalDataSourceImpl(this._box);
 
   @override
   Future<void> setUserLoggedIn() async {
-    _sharedPreferences.setBool(prefsKeyIsUserLoggedIn, true);
+    return await _box.put(keyIsUserLoggedIn, true);
   }
 
   @override
-  Future<bool> isUserLoggedIn() async {
-    return _sharedPreferences.getBool(prefsKeyIsUserLoggedIn) ?? false;
+  bool isUserLoggedIn() {
+    return _box.get(keyIsUserLoggedIn, defaultValue: false);
   }
 
   @override
-  Future<void> logout() async {
-    _sharedPreferences.remove(prefsKeyIsUserLoggedIn);
+  Future<void> signOut() async {
+    await _box.put(keyIsUserLoggedIn, false);
     setUserId(0);
   }
 
   @override
   Future<void> setUserId(int id) async {
-    _sharedPreferences.setInt(prefsUserId, id);
+    return await _box.put(keyUserId, id);
   }
 
   @override
-  Future<int> getUserId() async {
-    return _sharedPreferences.getInt(prefsUserId) ?? 0;
+  int getUserId() {
+    return _box.get(keyUserId, defaultValue: 0);
   }
 }

@@ -45,7 +45,7 @@ class CourseItem extends StatelessWidget {
                   child: FilledButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF008B8B))),
                       onPressed: () async {
-                        if (await appPreferences.isUserLoggedIn()) {
+                        if (appPreferences.isUserLoggedIn()) {
                         // Navigator.of(context, rootNavigator: true).pushNamed(Routes.teacherRoute);
                         } else {
                           if (context.mounted) showRequireAuthDialog(context);
@@ -77,7 +77,7 @@ class CourseItem extends StatelessWidget {
                   child: FilledButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF008B8B))),
                       onPressed: () async {
-                        if (await appPreferences.isUserLoggedIn()) {
+                        if (appPreferences.isUserLoggedIn()) {
                         } else {
                           if (context.mounted) showRequireAuthDialog(context);
                         }

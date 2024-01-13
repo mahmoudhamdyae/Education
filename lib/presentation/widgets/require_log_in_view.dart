@@ -15,7 +15,7 @@ class RequireLogInView extends StatelessWidget {
         const Text(AppStrings.requireLogIn),
         const SizedBox(height: AppSize.s8,),
         OutlinedButton(
-            onPressed: () => Get.to(LoginScreen()),
+            onPressed: () => Get.to(() => const LoginScreen()),
             child: const Text(AppStrings.requireLogInButton)
         )
       ],
