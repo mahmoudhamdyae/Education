@@ -13,12 +13,8 @@ const String prefsUserId = "PREFS_USER_ID";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
-  late final SharedPreferences _sharedPreferences;
-  LocalDataSourceImpl() { init(); }
-
-  void init() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
-  }
+  final SharedPreferences _sharedPreferences;
+  LocalDataSourceImpl(this._sharedPreferences);
 
   @override
   Future<void> setUserLoggedIn() async {

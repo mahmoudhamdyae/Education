@@ -28,14 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formData!.validate()) {
       formData.save();
       showLoading(context);
-      final controller = Get.find<LoginController>();
+      final LoginController controller = Get.find<LoginController>();
       controller.login().then((value) {
-        if (controller.status == RxStatus.loading()) {
-          showLoading(context);
-        } else if (controller.status == RxStatus.error()) {
+        if (controller.status.isError) {
+          Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
+        } else {
+          Get.offAll(() => MainScreen());
         }
-        Get.offAll(MainScreen());
       });
     }
   }

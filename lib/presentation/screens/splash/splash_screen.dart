@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
-import '../../resources/constants_manager.dart';
 import '../main_screen.dart';
 import '../start/start_screen.dart';
 
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   final Repository appPreferences = Get.find<Repository>();
 
   _startDelay() {
-    _timer = Timer(const Duration(seconds: AppConstants.splashDelay), () =>
+    _timer = Timer(const Duration(seconds: 0), () =>
         _goNext()
     );
   }
