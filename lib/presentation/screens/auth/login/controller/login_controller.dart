@@ -7,8 +7,8 @@ class LoginController extends GetxController {
   final TextEditingController phone = TextEditingController();
   final TextEditingController  password = TextEditingController();
   final RxBool obscureText = true.obs;
-  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
 
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
 
   final Repository _repository;

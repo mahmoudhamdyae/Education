@@ -6,9 +6,10 @@ import '../../../../../domain/repository/repository.dart';
 
 class RecordedCoursesController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
   final Rx<ClassModel> classModel = ClassModel([], []).obs;
+
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
 
   final Repository _repository;
 
@@ -22,7 +23,7 @@ class RecordedCoursesController extends GetxController {
 
   _getRecordedCourses() async {
     classModel.value = ClassModel([], []);
-    isLoading.value = true;
+    _status.value = RxStatus.loading();
     Map<String, dynamic> args = Get.arguments;
     String saff = args['saff'];
     try {
@@ -34,19 +35,16 @@ class RecordedCoursesController extends GetxController {
           saff == AppStrings.saff5 ||
           saff == ''
       ) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         classModel.value = ClassModel([], []);
       } else {
         await _repository.getRecordedCourses(saff).then((remoteClassModel) {
-          isLoading.value = false;
-          error.value = '';
+          _status.value = RxStatus.success();
           classModel.value = remoteClassModel;
         });
       }
     } on Exception catch (e) {
-      error.value = e.toString();
-      isLoading.value = false;
+      _status.value = RxStatus.error(e.toString());
       classModel.value = ClassModel([], []);
     }
   }

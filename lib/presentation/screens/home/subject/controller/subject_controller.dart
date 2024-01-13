@@ -6,9 +6,10 @@ import '../../../../../domain/repository/repository.dart';
 
 class SubjectController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
   final RxList<Wehda> wehdat = RxList.empty();
+
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
 
   final Repository _repository;
 
@@ -23,17 +24,14 @@ class SubjectController extends GetxController {
 
   _getTutorials() async {
     try {
-      isLoading.value = true;
-      error.value = '';
+      _status.value = RxStatus.loading();
       wehdat.value = [];
       await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         wehdat.value = tutorials;
       });
     } on Exception catch (e) {
-      error.value = e.toString();
-      isLoading.value = false;
+      _status.value = RxStatus.error(e.toString());
       wehdat.value = [];
     }
   }

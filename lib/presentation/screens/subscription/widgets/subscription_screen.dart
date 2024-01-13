@@ -26,10 +26,10 @@ class SubscriptionScreen extends StatelessWidget {
               return GetX<SubscriptionController>(
                   init: Get.find<SubscriptionController>(),
                   builder: (controller) {
-                      if (controller.isLoading.value) {
+                      if (controller.status.isLoading) {
                         return const LoadingScreen();
-                      } else if (controller.error.value != '') {
-                        return ErrorScreen(error: controller.error.value);
+                      } else if (controller.status.isError) {
+                        return ErrorScreen(error: controller.status.errorMessage ?? '');
                       } else if (controller.courses.isEmpty) {
                         return const EmptyScreen(emptyString: AppStrings.emptySubscriptions);
                       } else {

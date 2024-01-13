@@ -27,10 +27,10 @@ class RecordedCoursesScreen extends StatelessWidget {
       body: GetX<RecordedCoursesController>(
         init: Get.find<RecordedCoursesController>(),
         builder: (controller) {
-          if (controller.isLoading.value) {
+          if (controller.status.isLoading) {
             return const LoadingScreen();
-          } else if (controller.error.value != '') {
-            return ErrorScreen(error: controller.error.value);
+          } else if (controller.status.isError) {
+            return ErrorScreen(error: controller.status.errorMessage ?? '');
           } else if (controller.classModel.value.courses.isEmpty){
             return const EmptyScreen(emptyString: AppStrings.noCourses);
           } else {

@@ -37,10 +37,10 @@ class _SubjectScreenState extends State<SubjectScreen> {
       body: GetX<SubjectController>(
           init: Get.find<SubjectController>(),
           builder: (controller) {
-            if (controller.isLoading.value) {
+            if (controller.status.isLoading) {
               return const LoadingScreen();
-            } else if (controller.error.value != '') {
-              return ErrorScreen(error: controller.error.value);
+            } else if (controller.status.isError) {
+              return ErrorScreen(error: controller.status.errorMessage ?? '');
             } else if (controller.wehdat.isEmpty) {
               return const EmptyScreen(emptyString: AppStrings.emptyTutorials);
             } else {

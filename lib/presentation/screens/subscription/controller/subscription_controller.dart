@@ -5,9 +5,10 @@ import '../../../../domain/repository/repository.dart';
 
 class SubscriptionController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
   final RxList<Course> courses = RxList.empty();
+
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
 
   final Repository _repository;
 
@@ -20,15 +21,14 @@ class SubscriptionController extends GetxController {
   }
 
   _getSubscription() async {
+    _status.value = RxStatus.loading();
     try {
       await _repository.getSubscriptions().then((remoteCourses) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         courses.value = remoteCourses;
       });
     } on Exception catch (e) {
-      error.value = e.toString();
-      isLoading.value = false;
+      _status.value = RxStatus.error(e.toString());
       courses.value = [];
     }
   }
