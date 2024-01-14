@@ -19,6 +19,7 @@ class ImageAssets {
   static const String baqatLeft = "$imagePath/baqatLeft.png";
   static const String baqatRight = "$imagePath/baqatRight.png";
   static const String baqatRightDown = "$imagePath/baqatRightDown.png";
+  static const String course = "$imagePath/course.png";
 }
 
 class JsonAssets {

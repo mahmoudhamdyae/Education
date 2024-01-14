@@ -73,7 +73,7 @@ class Baqat extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       AppStrings.baqat1,
                       style: TextStyle(
                         fontSize: 16,
@@ -82,7 +82,7 @@ class Baqat extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6.0,),
-                    Text(
+                    const Text(
                       AppStrings.baqat2,
                       style: TextStyle(
                         fontSize: 14,
@@ -106,7 +106,7 @@ class Baqat extends StatelessWidget {
                           onPressed: () {
                             // Show
                           },
-                          child: Text(
+                          child: const Text(
                             AppStrings.show,
                             style: TextStyle(
                               fontSize: 14,

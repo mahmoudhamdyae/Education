@@ -1,6 +1,7 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 
 class Suggestions extends StatelessWidget {
@@ -50,7 +51,7 @@ class Suggestions extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: SizedBox(
-            height: 100,
+            height: 280,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: subjects.length,
@@ -66,44 +67,89 @@ class Suggestions extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            subjects[index]['name'],
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            '${subjects[index]['price']} د.ك',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
+                      Image.asset(
+                        ImageAssets.course,
+                        height: 150,
+                        width: 225,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            subjects[index]['teacher'],
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff808080),
+                      SizedBox(
+                        width: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              subjects[index]['name'],
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                          Text(
-                            subjects[index]['rate'].toString(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: ColorManager.primary,
+                            Text(
+                              '${subjects[index]['price']} د.ك',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      SizedBox(
+                        width: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              subjects[index]['teacher'],
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff808080),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  subjects[index]['rate'].toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorManager.primary,
+                                  ),
+                                ),
+                                const SizedBox(width: 4.0,),
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: FilledButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                  )
+                              ),
+                              backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+                            ),
+                            onPressed: () {
+                            },
+                            child: const Text(
+                              AppStrings.buy,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: ColorManager.white,
+                              ),
+                            )
+                        ),
+                      )
                     ],
                   ),
                 );

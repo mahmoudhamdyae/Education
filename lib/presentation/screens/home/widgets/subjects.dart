@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 class Subjects extends StatelessWidget {
 
   final List<String> subjects = [
-    'موسيقى',
     'اللغة العربية',
-    'رياضيات',
-    'رسم',
-    'علوم',
+    'الرياضيات',
+    'الإجتماعيات',
+    'العلوم',
+    'الكيمياء',
+    'الأحياء',
+    'التاريخ',
   ];
   Subjects({super.key});
 

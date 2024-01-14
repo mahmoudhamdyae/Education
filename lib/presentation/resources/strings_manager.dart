@@ -124,4 +124,5 @@ class AppStrings {
   static const String homeSubjects = 'المواد';
   static const String suggestions = 'الاقتراحات';
   static const String seeAll = 'مشاهدة الكل';
+  static const String buy = 'شراء';
 }
