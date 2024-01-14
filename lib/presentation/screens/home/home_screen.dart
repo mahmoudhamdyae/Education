@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const HomeAppBar(),
+        HomeAppBar(),
         const Baqat(),
         Subjects(),
         Suggestions(),

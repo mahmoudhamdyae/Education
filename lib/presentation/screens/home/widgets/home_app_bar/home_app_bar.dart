@@ -1,10 +1,25 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/account_column.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/userImage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../auth/auth_controller.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+
+  final AuthController _controller = Get.find<AuthController>();
+  HomeAppBar({super.key});
+
+  void _login() {
+    if (_controller.isUserLoggedIn()) {
+      // Navigate to Profile
+    } else {
+      // Navigate to login screen
+      Get.to(() => const LoginScreen());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +34,9 @@ class HomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const UserImage(),
+          InkWell(onTap: _login, child: const UserImage()),
           const SizedBox(width: 8,),
-          const AccountColumn(),
+          InkWell(onTap: _login, child: AccountColumn()),
           Expanded(child: Container()),
           // Search Button
           Container(
