@@ -20,6 +20,7 @@ class ImageAssets {
   static const String baqatRight = "$imagePath/baqatRight.png";
   static const String baqatRightDown = "$imagePath/baqatRightDown.png";
   static const String course = "$imagePath/course.png";
+  static const String bookmark = "$imagePath/bookmark.svg";
 }
 
 class JsonAssets {
