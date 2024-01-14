@@ -1,5 +1,9 @@
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../domain/models/courses/course.dart';
+import '../subject/widgets/subject_screen.dart';
 
 class Subjects extends StatelessWidget {
 
@@ -37,20 +41,25 @@ class Subjects extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: subjects.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                    shape: BoxShape.rectangle,
-                    border: Border.all(color: const Color(0xffF2F2F2))
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-                    child: Text(
-                      subjects[index],
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                return InkWell(
+                  onTap: () {
+                    Get.to(() => const SubjectScreen(), arguments: { 'course': Course(1, '', 1, 1, 'المتوسطة', 'type') });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                      shape: BoxShape.rectangle,
+                      border: Border.all(color: const Color(0xffF2F2F2))
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                      child: Text(
+                        subjects[index],
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ),
