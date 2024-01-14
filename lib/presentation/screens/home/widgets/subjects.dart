@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/courses/course.dart';
+import '../../course/widgets/course_screen.dart';
 import '../subject/widgets/subject_screen.dart';
 
 class Subjects extends StatelessWidget {
@@ -43,7 +44,7 @@ class Subjects extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => const SubjectScreen(), arguments: { 'course': Course(1, '', 1, 1, 'المتوسطة', 'type') });
+                    Get.to(() => const CourseScreen());
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8.0),

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
+import '../../course/widgets/course_screen.dart';
 
 class Suggestions extends StatelessWidget {
 
@@ -62,7 +63,7 @@ class Suggestions extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => const SubjectScreen(), arguments: { 'course': Course(1, '', 1, 1, 'المتوسطة', 'type') });
+                    Get.to(() => const CourseScreen());
                   },
                   child: Stack(
                     children: [
