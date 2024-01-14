@@ -25,10 +25,7 @@ class MainScreen extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-            ImageAssets.home,
-          // colorFilter: ColorFilter.mode(Colors.white, BlendMode.colorBurn),
-        ),
+        icon: SvgPicture.asset(ImageAssets.home,),
         title: AppStrings.bottomBarHome,
         activeColorPrimary: ColorManager.white,
       ),
@@ -59,10 +56,13 @@ class MainScreen extends StatelessWidget {
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor: ColorManager.primary,
+        // backgroundColor: ColorManager.primary,
         decoration: const NavBarDecoration(
           colorBehindNavBar: ColorManager.white,
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          boxShadow: [
+            BoxShadow(color: Colors.black26, blurRadius: 12, spreadRadius: 4),
+          ],
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,
