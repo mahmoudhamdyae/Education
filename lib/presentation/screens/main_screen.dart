@@ -1,9 +1,10 @@
+import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:education/presentation/screens/me/me_screen.dart';
 import 'package:education/presentation/screens/subscription/widgets/subscription_screen.dart';
-import 'package:education/presentation/widgets/app_bar_actions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
@@ -24,22 +25,25 @@ class MainScreen extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home, color: ColorManager.white,),
+        icon: SvgPicture.asset(
+            ImageAssets.home,
+          // colorFilter: ColorFilter.mode(Colors.white, BlendMode.colorBurn),
+        ),
         title: AppStrings.bottomBarHome,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.subscriptions_outlined, color: ColorManager.white,),
+        icon: SvgPicture.asset(ImageAssets.subscription,),
         title: AppStrings.bottomBarSubscription,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.shopping_cart, color: ColorManager.white,),
+        icon: SvgPicture.asset(ImageAssets.fav,),
         title: AppStrings.bottomBarCart,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.person, color: ColorManager.white,),
+        icon: SvgPicture.asset(ImageAssets.me,),
         title: AppStrings.bottomBarMe,
         activeColorPrimary: ColorManager.white,
       ),
@@ -58,6 +62,7 @@ class MainScreen extends StatelessWidget {
         backgroundColor: ColorManager.primary,
         decoration: const NavBarDecoration(
           colorBehindNavBar: ColorManager.white,
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,
@@ -70,7 +75,7 @@ class MainScreen extends StatelessWidget {
           curve: Curves.ease,
           duration: Duration(milliseconds: AppConstants.sliderAnimationTime),
         ),
-        navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
+        navBarStyle: NavBarStyle.style13, // Choose the nav bar style with this property.
       ),
     );
   }
