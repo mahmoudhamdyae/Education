@@ -106,8 +106,22 @@ class AppStrings {
   static const String lessonsList = 'قائمة دروس المادة';
   static const String downloadNoteSuccess = 'تم تحميل الدرس بنجاح';
   static const String askQuestionSuccess = 'تم الإرسال بنجاح';
+  static const String tabLessons = 'الدروس';
+  static const String tabAttachments = 'المرفقات';
+  static const String tabTests = 'اختبار';
 
   // Error Handler
   static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
   static const String serverError = "لا يمكن الاتصال بالسيرفر";
+
+  // Home Screen
+  static const String welcome = 'مرحبا بك';
+  static const String welcomeBack = 'مرحبا بعودتك';
+  static const String pleaseLogin = 'قم بتسجيل الدخول';
+  static const String baqat1 = 'تعرف على باقاتنا اليومية';
+  static const String baqat2 = 'احجز ثلاث مواد معا';
+  static const String show = 'عرض';
+  static const String homeSubjects = 'المواد';
+  static const String suggestions = 'الاقتراحات';
+  static const String seeAll = 'مشاهدة الكل';
 }

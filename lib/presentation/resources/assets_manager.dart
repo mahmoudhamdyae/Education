@@ -13,6 +13,12 @@ class ImageAssets {
   static const String empty = "$imagePath/empty.svg";
   static const String error = "$imagePath/error.svg";
   static const String serverDown = "$imagePath/server_down.svg";
+  static const String user = "$imagePath/user.svg";
+  static const String baqat1 = "$imagePath/baqat1.png";
+  static const String baqat2 = "$imagePath/baqat2.png";
+  static const String baqatLeft = "$imagePath/baqatLeft.png";
+  static const String baqatRight = "$imagePath/baqatRight.png";
+  static const String baqatRightDown = "$imagePath/baqatRightDown.png";
 }
 
 class JsonAssets {

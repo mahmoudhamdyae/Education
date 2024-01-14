@@ -7,6 +7,7 @@ import 'grid_view_item.dart';
 class CustomGridView extends StatelessWidget {
 
   final List<HomeUI> _items;
+  // todo delete this file
   const CustomGridView(this._items, {super.key});
 
   @override

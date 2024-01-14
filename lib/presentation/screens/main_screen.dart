@@ -49,11 +49,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.appName),
-        actions: const [AppBarActions(),],
-        automaticallyImplyLeading: false,
-      ),
       body: PersistentTabView(
         context,
         controller: _controller,

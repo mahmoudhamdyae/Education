@@ -10,14 +10,14 @@ ThemeData getApplicationTheme() {
     // main colors
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.lightPrimary,
+    backgroundColor: ColorManager.white,
     // app bar theme
     appBarTheme: AppBarTheme(
         centerTitle: true,
         color: ColorManager.primary,
         elevation: AppSize.s4,
         shadowColor: ColorManager.lightPrimary,
-        titleTextStyle:
-        getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white)
+        titleTextStyle: getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
     ),
   );
 }

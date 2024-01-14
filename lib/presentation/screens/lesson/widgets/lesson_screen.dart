@@ -13,6 +13,9 @@ import '../../../../domain/models/lesson/wehda.dart';
 import '../../../resources/color_manager.dart';
 import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
+import 'course_lessons_widget.dart';
+import 'course_tabs.dart';
+
 class LessonScreen extends StatefulWidget {
 
   final List<Wehda> wehdat;
@@ -80,24 +83,8 @@ class _LessonScreenState extends State<LessonScreen> {
     });
   }
 
-  _askQuestion(String question) async {
-    // try {
-    //   showLoading(context);
-    //   await _repository.askQuestion(question).then((error) {
-    //     Navigator.of(context).pop();
-    //     if (error != '' && context.mounted) {
-    //       showError(context, error, () => _askQuestion(question));
-    //     } else {
-    //       showSuccess(context, AppStrings.askQuestionSuccess);
-    //     }
-    //   });
-    // } on Exception catch (e) {
-    //   if (context.mounted) {
-    //     Navigator.of(context).pop();
-    //     showError(context, e.toString(), () => _askQuestion(question));
-    //   }
-    // }
-  }
+  // _askQuestion(String question) async {
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +93,15 @@ class _LessonScreenState extends State<LessonScreen> {
     debugPrint('Passed Link: ${widget.lesson.link}'); // https://player.vimeo.com/video/861849145?h=ecfcceb429
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.lesson.title),
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
-        ),
-      ),
-      body: ListView(
+      // appBar: AppBar(
+      //   title: Text(widget.lesson.title),
+      //   leading: IconButton(
+      //     onPressed: () => Navigator.of(context).pop(),
+      //     icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
+      //   ),
+      // ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Vimeo Video
           SizedBox(
@@ -121,69 +109,102 @@ class _LessonScreenState extends State<LessonScreen> {
             height: 200,
             child: PlayVideoFromVimeo(vimeoVideoUrl: widget._vimeoVideoUrl),
           ),
-          const SizedBox(height: AppSize.s16,),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 16.0,
+                right: 16.0,
+                left: 16.0,
+                bottom: 0.0,
+            ),
+            child: Text(
+              'كورس الرياضيات',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 0.0,
+              right: 16.0,
+              left: 16.0,
+              bottom: 16.0,
+            ),
+            child: Text(
+              'احمد السعدني',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff808080),
+              ),
+            ),
+          ),
+          // const SizedBox(height: AppSize.s16,),
           // مذكرة الدرس PDF
-          InkWell(
-            onTap: () { _downloadNote(widget.lesson.pdf); },
-            child: const Padding(
-              padding: EdgeInsets.all(AppPadding.p8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.download, color: ColorManager.lightPrimary,),
-                  Text(
-                    AppStrings.lessonNote,
-                    style: TextStyle(
-                      color: ColorManager.lightPrimary
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ),
+          // InkWell(
+          //   onTap: () { _downloadNote(widget.lesson.pdf); },
+          //   child: const Padding(
+          //     padding: EdgeInsets.all(AppPadding.p8),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Icon(Icons.download, color: ColorManager.lightPrimary,),
+          //         Text(
+          //           AppStrings.lessonNote,
+          //           style: TextStyle(
+          //             color: ColorManager.lightPrimary
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   )
+          // ),
           // Ask Question - استفسار
-          Padding(
-            padding: const EdgeInsets.all(AppPadding.p16),
-            child: TextField(
-              onChanged: (text) {
-                setState(() {
-                  _askText = text;
-                });
-              },
-              textInputAction: TextInputAction.newline,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              decoration: const InputDecoration(
-                  labelText: AppStrings.writeQuestionTextField,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1)
-                  )
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(AppPadding.p16),
+          //   child: TextField(
+          //     onChanged: (text) {
+          //       setState(() {
+          //         _askText = text;
+          //       });
+          //     },
+          //     textInputAction: TextInputAction.newline,
+          //     keyboardType: TextInputType.multiline,
+          //     maxLines: null,
+          //     decoration: const InputDecoration(
+          //         labelText: AppStrings.writeQuestionTextField,
+          //         border: OutlineInputBorder(
+          //             borderSide: BorderSide(width: 1)
+          //         )
+          //     ),
+          //   ),
+          // ),
           // إرسال Button
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
-            child: FilledButton(
-                onPressed: _askText.isEmpty ? null : () {
-                  _askQuestion(_askText);
-                },
-                child: const Text(AppStrings.sendButton)
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
+          //   child: FilledButton(
+          //       onPressed: _askText.isEmpty ? null : () {
+          //         _askQuestion(_askText);
+          //       },
+          //       child: const Text(AppStrings.sendButton)
+          //   ),
+          // ),
+          // const SizedBox(height: AppSize.s12,),
+          //// قائمة دروس المادة
+          // const Text(
+          //   AppStrings.lessonsList,
+          //   style: TextStyle(
+          //     fontSize: FontSize.s20
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
+          // const SizedBox(height: AppSize.s16,),
+          Expanded(
+            child: CourseTabs(
+              wehdat: widget.wehdat,
+              isInLessonScreen: true,
             ),
-          ),
-          const SizedBox(height: AppSize.s12,),
-          // قائمة دروس المادة
-          const Text(
-            AppStrings.lessonsList,
-            style: TextStyle(
-              fontSize: FontSize.s20
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppSize.s16,),
-          LessonsWidget(
-            wehdat: widget.wehdat,
-            isInLessonScreen: true,
           ),
         ],
       ),
