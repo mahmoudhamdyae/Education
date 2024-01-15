@@ -19,7 +19,6 @@ class LessonScreen extends StatefulWidget {
 
   @visibleForTesting
   String extractVideoId(String url) {
-    debugPrint('------------------ $url');
     RegExp regExp = RegExp(r'/(\d+)\??');
     Match? match = regExp.firstMatch(url);
 
