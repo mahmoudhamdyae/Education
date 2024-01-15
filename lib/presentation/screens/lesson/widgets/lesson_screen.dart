@@ -43,9 +43,7 @@ class _LessonScreenState extends State<LessonScreen> {
   final Repository appPreferences = Get.find<Repository>();
   final _flutterMediaDownloaderPlugin = MediaDownload();
 
-  String _askText = '';
-
-  _downloadNote(String link) async {
+  void _downloadNote(String link) async {
     String url = '${Constants.baseUrl}filedownload/$link';
     debugPrint('url: $url');
     Get.showSnackbar(
@@ -79,9 +77,6 @@ class _LessonScreenState extends State<LessonScreen> {
     });
   }
 
-  // _askQuestion(String question) async {
-  // }
-
   @override
   Widget build(BuildContext context) {
     debugPrint('Passed Wehdat: ${widget.wehdat}');
@@ -89,13 +84,6 @@ class _LessonScreenState extends State<LessonScreen> {
     debugPrint('Passed Link: ${widget.lesson.link}'); // https://player.vimeo.com/video/861849145?h=ecfcceb429
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.lesson.title),
-      //   leading: IconButton(
-      //     onPressed: () => Navigator.of(context).pop(),
-      //     icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
-      //   ),
-      // ),
       body: Stack(
         children: [
           Column(
@@ -107,8 +95,8 @@ class _LessonScreenState extends State<LessonScreen> {
                 height: 200,
                 child: PlayVideoFromVimeo(vimeoVideoUrl: widget._vimeoVideoUrl),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                     top: 16.0,
                     right: 16.0,
                     left: 16.0,
@@ -122,8 +110,8 @@ class _LessonScreenState extends State<LessonScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                   top: 0.0,
                   right: 16.0,
                   left: 16.0,
@@ -138,66 +126,6 @@ class _LessonScreenState extends State<LessonScreen> {
                   ),
                 ),
               ),
-              // const SizedBox(height: AppSize.s16,),
-              // مذكرة الدرس PDF
-              // InkWell(
-              //   onTap: () { _downloadNote(widget.lesson.pdf); },
-              //   child: const Padding(
-              //     padding: EdgeInsets.all(AppPadding.p8),
-              //     child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       children: [
-              //         Icon(Icons.download, color: ColorManager.lightPrimary,),
-              //         Text(
-              //           AppStrings.lessonNote,
-              //           style: TextStyle(
-              //             color: ColorManager.lightPrimary
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   )
-              // ),
-              // Ask Question - استفسار
-              // Padding(
-              //   padding: const EdgeInsets.all(AppPadding.p16),
-              //   child: TextField(
-              //     onChanged: (text) {
-              //       setState(() {
-              //         _askText = text;
-              //       });
-              //     },
-              //     textInputAction: TextInputAction.newline,
-              //     keyboardType: TextInputType.multiline,
-              //     maxLines: null,
-              //     decoration: const InputDecoration(
-              //         labelText: AppStrings.writeQuestionTextField,
-              //         border: OutlineInputBorder(
-              //             borderSide: BorderSide(width: 1)
-              //         )
-              //     ),
-              //   ),
-              // ),
-              // إرسال Button
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
-              //   child: FilledButton(
-              //       onPressed: _askText.isEmpty ? null : () {
-              //         _askQuestion(_askText);
-              //       },
-              //       child: const Text(AppStrings.sendButton)
-              //   ),
-              // ),
-              // const SizedBox(height: AppSize.s12,),
-              //// قائمة دروس المادة
-              // const Text(
-              //   AppStrings.lessonsList,
-              //   style: TextStyle(
-              //     fontSize: FontSize.s20
-              //   ),
-              //   textAlign: TextAlign.center,
-              // ),
-              // const SizedBox(height: AppSize.s16,),
               Expanded(
                 child: CourseTabs(
                   wehdat: widget.wehdat,

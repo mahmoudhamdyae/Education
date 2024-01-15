@@ -2,20 +2,13 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/courses/course.dart';
 import '../../course/widgets/course_screen.dart';
 
 class Subjects extends StatelessWidget {
 
-  final List<String> subjects = [
-    'اللغة العربية',
-    'الرياضيات',
-    'الإجتماعيات',
-    'العلوم',
-    'الكيمياء',
-    'الأحياء',
-    'التاريخ',
-  ];
-  Subjects({super.key});
+  final List<Course> subjects;
+  const Subjects({super.key, required this.subjects});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +47,7 @@ class Subjects extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                       child: Text(
-                        subjects[index],
+                        subjects[index].name,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,

@@ -25,6 +25,11 @@ class RepositoryImpl extends Repository {
     return _localDataSource.getUserName();
   }
 
+  @override
+  String getGrade() {
+    return _localDataSource.getGrade();
+  }
+
   // Account Service
 
   @override
@@ -32,6 +37,7 @@ class RepositoryImpl extends Repository {
     return _remoteDataSource.logIn(phone, password).then((data) {
       _localDataSource.setUserId(data['user']['id']);
       _localDataSource.setUserName(data['user']['name']);
+      _localDataSource.setGrade(data['user']['group']);
       _localDataSource.setUserLoggedIn();
     });
   }

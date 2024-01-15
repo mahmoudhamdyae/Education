@@ -3,19 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/courses/course.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../course/widgets/course_screen.dart';
 
 class Suggestions extends StatelessWidget {
 
-  final List subjects = List.generate(3, (index) => {
-    'name': 'كورس العلوم',
-    'price': 35,
-    'teacher': 'أحمد السعدنى',
-    'rate': 4.3,
-  });
-  Suggestions({super.key});
+  final List<Course> subjects;
+  const Suggestions({super.key, required this.subjects});
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +83,14 @@ class Suggestions extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    subjects[index]['name'],
+                                    subjects[index].name,
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                   Text(
-                                    '${subjects[index]['price']} د.ك',
+                                    '${subjects[index].term} د.ك',
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
@@ -108,9 +104,9 @@ class Suggestions extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    subjects[index]['teacher'],
-                                    style: const TextStyle(
+                                  const Text(
+                                    'أحمد السعدنى',
+                                    style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                       color: Color(0xff808080),
@@ -119,7 +115,7 @@ class Suggestions extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        subjects[index]['rate'].toString(),
+                                        subjects[index].rate.toString(),
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,
