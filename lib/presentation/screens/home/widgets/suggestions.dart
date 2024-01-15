@@ -129,7 +129,7 @@ class Suggestions extends StatelessWidget {
                                       const SizedBox(width: 4.0,),
                                       const Icon(
                                         Icons.star,
-                                        color: Colors.amber,
+                                        color: ColorManager.primary,
                                       ),
                                     ],
                                   ),

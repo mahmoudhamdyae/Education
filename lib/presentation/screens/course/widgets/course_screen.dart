@@ -32,23 +32,58 @@ class CourseScreen extends StatelessWidget {
               // Subject Name
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  subject['name'],
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      subject['name'],
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      '${subject['price'].toString()} د.ك',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: ColorManager.secondary,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               // 5 وحدات - 32 درس
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  '5 وحدات - 32 درس',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      '5 وحدات - 32 درس',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          subject['rate'].toString(),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: ColorManager.primary,
+                          ),
+                        ),
+                        const SizedBox(width: 4.0,),
+                        const Icon(
+                          Icons.star,
+                          color: ColorManager.primary,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const Padding(
