@@ -109,6 +109,6 @@ class LocalDataSourceImpl extends LocalDataSource {
         desiredKey = key;
       }
     });
-    favBox.delete(desiredKey).then((value) => debugPrint('***************** ${desiredKey.toString()}'));
+    favBox.delete(desiredKey);
   }
 }
