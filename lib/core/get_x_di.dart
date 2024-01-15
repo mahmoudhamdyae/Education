@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:education/data/local/local_data_source.dart';
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/data/repository/repository_impl.dart';
+import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/auth/login/controller/login_controller.dart';
 import 'package:education/presentation/screens/auth/register/controller/register_controller.dart';
+import 'package:education/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -40,8 +42,13 @@ class GetXDi implements Bindings {
       return box;
     }, permanent: true);
 
+    await Get.putAsync<Box<Course>>(() async {
+      final Box<Course> box = await Hive.openBox<Course>('auth');
+      return box;
+    }, permanent: true);
+
     // Data Sources and Repository
-    Get.lazyPut<LocalDataSource>(() => LocalDataSourceImpl(Get.find<Box>()), fenix: true);
+    Get.lazyPut<LocalDataSource>(() => LocalDataSourceImpl(Get.find<Box>(), Get.find<Box<Course>>()), fenix: true);
     Get.lazyPut<RemoteDataSource>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), Get.find<Dio>()), fenix: true);
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>(), Get.find<LocalDataSource>()), fenix: true);
 
@@ -54,5 +61,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<FavController>(() => FavController(Get.find<Repository>()), fenix: true);
   }
 }

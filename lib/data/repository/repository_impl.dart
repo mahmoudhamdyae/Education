@@ -30,6 +30,16 @@ class RepositoryImpl extends Repository {
     return _localDataSource.getGrade();
   }
 
+  @override
+  Future<void> setFav(Course course) {
+    return _localDataSource.setFav(course);
+  }
+
+  @override
+  List<Course> getFav() {
+    return _localDataSource.getFav();
+  }
+
   // Account Service
 
   @override

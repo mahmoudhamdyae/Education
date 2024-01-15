@@ -9,6 +9,8 @@ abstract class Repository {
   bool isUserLoggedIn();
   String getUserName();
   String getGrade();
+  Future<void> setFav(Course course);
+  List<Course> getFav();
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

@@ -1,5 +1,7 @@
 import 'package:hive/hive.dart';
 
+import '../../domain/models/courses/course.dart';
+
 abstract class LocalDataSource {
   Future<void> setUserLoggedIn();
   bool isUserLoggedIn();
@@ -10,6 +12,8 @@ abstract class LocalDataSource {
   String getUserName();
   Future<void> setGrade(String grade);
   String getGrade();
+  Future<int> setFav(Course course);
+  List<Course> getFav();
 }
 
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
@@ -20,7 +24,8 @@ const String keyGrade = "KEY_Grade";
 class LocalDataSourceImpl extends LocalDataSource {
 
   final Box _box;
-  LocalDataSourceImpl(this._box);
+  final Box<Course> _favBox;
+  LocalDataSourceImpl(this._box, this._favBox);
 
   @override
   Future<void> setUserLoggedIn() async {
@@ -66,5 +71,15 @@ class LocalDataSourceImpl extends LocalDataSource {
   @override
   String getGrade() {
     return _box.get(keyGrade, defaultValue: '');
+  }
+
+  @override
+  Future<int> setFav(Course course) async {
+    return await _box.add(course);
+  }
+
+  @override
+  List<Course> getFav() {
+    return _favBox.values.toList();
   }
 }
