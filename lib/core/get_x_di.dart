@@ -12,6 +12,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../data/network_info.dart';
 import '../presentation/screens/auth/auth_controller.dart';
+import '../presentation/screens/home/controller/home_controller.dart';
 import '../presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import '../presentation/screens/home/subject/controller/subject_controller.dart';
 import '../presentation/screens/subscription/controller/subscription_controller.dart';
@@ -47,6 +48,7 @@ class GetXDi implements Bindings {
     Get.lazyPut<LoginController>(() => LoginController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<RegisterController>(() => RegisterController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<AuthController>(() => AuthController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);

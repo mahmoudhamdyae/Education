@@ -10,20 +10,21 @@ import '../../resources/strings_manager.dart';
 import '../../widgets/empty_screen.dart';
 import '../../widgets/error_screen.dart';
 import '../../widgets/loading_screen.dart';
+import 'controller/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.find<RecordedCoursesController>().getRecordedCourses();
+    Get.find<HomeController>().getRecordedCourses();
     return ListView(
       children: [
         HomeAppBar(),
         const Baqat(),
-        GetX<RecordedCoursesController>(
-          init: Get.find<RecordedCoursesController>(),
-          builder: (RecordedCoursesController controller) {
+        GetX<HomeController>(
+          init: Get.find<HomeController>(),
+          builder: (HomeController controller) {
             if (controller.status.isLoading) {
               return const LoadingScreen();
             } else if (controller.status.isError) {
