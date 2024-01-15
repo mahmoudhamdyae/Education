@@ -32,7 +32,9 @@ class TabCourseLessons extends StatelessWidget {
                       child: Text(
                         index < 9 ? '0${index + 1}' : '${index + 1}',
                         style: const TextStyle(
-                            color: ColorManager.secondary
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: ColorManager.secondary,
                         ),
                       ),
                     ),
@@ -45,7 +47,25 @@ class TabCourseLessons extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Container()
+                  Expanded(child: Container()),
+                  InkWell(
+                    onTap: () {
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: ColorManager.primary, width: 1.5)
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(2.0),
+                        child: Icon(
+                          Icons.bookmark_border,
+                          color: ColorManager.primary,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
