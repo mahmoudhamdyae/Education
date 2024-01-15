@@ -27,6 +27,7 @@ class FavController extends GetxController {
       _repository.getFav().then((localCourses) {
         _status.value = RxStatus.success();
         courses.value = localCourses;
+        debugPrint('----------------- get $localCourses');
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -58,7 +59,7 @@ class FavController extends GetxController {
   }
 
   bool isFav(Course course) {
-    bool x = courses.contains(course);
+    bool x = courses.any((element) => element.id == course.id);
     debugPrint('----------------- $x');
     return x;
   }

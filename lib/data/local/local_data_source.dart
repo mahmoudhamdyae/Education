@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/models/courses/course.dart';
@@ -12,7 +13,7 @@ abstract class LocalDataSource {
   String getUserName();
   Future<void> setGrade(String grade);
   String getGrade();
-  Future<int> setFav(Course course);
+  Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
 }
@@ -74,9 +75,22 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  Future<int> setFav(Course course) async {
+  Future<void> setFav(Course course) async {
     var favBox = await Hive.openBox<Course>('course');
-    return await favBox.add(course);
+
+    final Map<dynamic, Course> courseMap = favBox.toMap();
+    dynamic desiredKey;
+    courseMap.forEach((key, value){
+      if (value.id == course.id) {
+        desiredKey = key;
+      }
+    });
+    if (desiredKey == null) {
+      // Add
+      await favBox.add(course);
+    } else {
+      // Update
+    }
   }
 
   @override
@@ -95,6 +109,6 @@ class LocalDataSourceImpl extends LocalDataSource {
         desiredKey = key;
       }
     });
-    favBox.delete(desiredKey);
+    favBox.delete(desiredKey).then((value) => debugPrint('***************** ${desiredKey.toString()}'));
   }
 }
