@@ -46,7 +46,7 @@ class StartScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSize.s16),
                     OutlinedButton(
-                        onPressed: () => Get.to(MainScreen()),
+                        onPressed: () => Get.to(const MainScreen()),
                         child: const Padding(
                           padding: EdgeInsets.all(AppPadding.p8),
                           child: Text(

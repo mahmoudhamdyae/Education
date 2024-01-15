@@ -43,7 +43,7 @@ class _RegisterViewState extends State<RegisterScreen> {
           Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
         } else {
-          Get.offAll(() => MainScreen());
+          Get.offAll(() => const MainScreen());
         }
       });
     }

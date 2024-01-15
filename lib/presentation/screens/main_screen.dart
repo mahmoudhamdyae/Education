@@ -10,10 +10,18 @@ import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
 import 'home/home_screen.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
 
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  int _selectedIndex = 0;
+
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
@@ -22,25 +30,50 @@ class MainScreen extends StatelessWidget {
       const MeScreen(),
     ];
   }
+
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(ImageAssets.home,),
+        onPressed: (BuildContext? context) {
+          setState(() {
+            _selectedIndex = 0;
+            _controller.index = 0;
+          });
+        },
+        icon: _selectedIndex == 0 ? SvgPicture.asset(ImageAssets.home,) : SvgPicture.asset(ImageAssets.home,),
         title: AppStrings.bottomBarHome,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(ImageAssets.subscription,),
+        onPressed: (BuildContext? context) {
+          setState(() {
+            _selectedIndex = 1;
+            _controller.index = 1;
+          });
+        },
+        icon: _selectedIndex == 1 ? SvgPicture.asset(ImageAssets.subscription,) : SvgPicture.asset(ImageAssets.subscription,),
         title: AppStrings.bottomBarSubscription,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(ImageAssets.fav,),
+        onPressed: (BuildContext? context) {
+          setState(() {
+            _selectedIndex = 2;
+            _controller.index = 2;
+          });
+        },
+        icon: _selectedIndex == 2 ? SvgPicture.asset(ImageAssets.fav,) : SvgPicture.asset(ImageAssets.fav,),
         title: AppStrings.bottomBarCart,
         activeColorPrimary: ColorManager.white,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(ImageAssets.me,),
+        onPressed: (BuildContext? context) {
+          setState(() {
+            _selectedIndex = 3;
+            _controller.index = 3;
+          });
+        },
+        icon: _selectedIndex == 3 ? SvgPicture.asset(ImageAssets.me,) : SvgPicture.asset(ImageAssets.me,),
         title: AppStrings.bottomBarMe,
         activeColorPrimary: ColorManager.white,
       ),

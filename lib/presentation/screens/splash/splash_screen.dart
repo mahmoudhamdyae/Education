@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _goNext() async {
     if (appPreferences.isUserLoggedIn()) {
       // Navigate to main screen
-      Get.offAll(MainScreen());
+      Get.offAll(const MainScreen());
     } else {
       // Navigate to login screen
       Get.offAll(const StartScreen());
