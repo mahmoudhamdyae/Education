@@ -5,14 +5,9 @@ import 'package:education/presentation/screens/lesson/widgets/tab_morfaqat.dart'
 import 'package:education/presentation/screens/lesson/widgets/tab_tests.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/models/lesson/wehda.dart';
-
 class CourseTabs extends StatefulWidget {
 
-  final List<Wehda> wehdat;
-  final bool isInLessonScreen;
-
-  const CourseTabs({super.key, required this.wehdat, required this.isInLessonScreen});
+  const CourseTabs({super.key});
 
   @override
   State<CourseTabs> createState() => _CourseTabsState();
@@ -129,10 +124,7 @@ class _CourseTabsState extends State<CourseTabs> {
           ],
         ),
         // const SizedBox(height: 16,),
-        selectedTab == 0 ? TabCourseLessons(
-          wehdat: widget.wehdat,
-          isInLessonScreen: widget.isInLessonScreen,
-        ) : selectedTab == 1 ?
+        selectedTab == 0 ? TabCourseLessons() : selectedTab == 1 ?
         const TabMorfaqat():
         const TabTests(),
       ],

@@ -15,9 +15,17 @@ class RecordedCoursesController extends GetxController {
 
   RecordedCoursesController(this._repository);
 
-  getRecordedCourses() async {
+  @override
+  void onInit() {
+    super.onInit();
+    _getRecordedCourses();
+  }
+
+  _getRecordedCourses() async {
     classModel.value = ClassModel([], []);
-    String saff = _repository.getGrade();
+    _status.value = RxStatus.loading();
+    Map<String, dynamic> args = Get.arguments;
+    String saff = args['saff'];
     try {
       if (
           saff == AppStrings.saff1 ||

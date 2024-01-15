@@ -1,5 +1,4 @@
 import 'package:education/domain/models/courses/course.dart';
-import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
@@ -137,7 +136,7 @@ class CourseScreen extends StatelessWidget {
                       ),
                     ),
                       onPressed: () {
-                      Get.to(() => LessonScreen(wehdat: [], lesson: Lesson('title', 'https://player.vimeo.com/video/70591644', 'sample PDF.pdf', 'free')));
+                      Get.to(() => const LessonScreen(), arguments: { 'course': subject });
                       },
                       child: const Text(
                         AppStrings.watchFirstLesson,

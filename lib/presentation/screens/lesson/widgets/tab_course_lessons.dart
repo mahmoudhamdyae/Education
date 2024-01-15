@@ -3,18 +3,12 @@ import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/lesson/wehda.dart';
-
 class TabCourseLessons extends StatelessWidget {
 
-  final List<Wehda> wehdat;
-  final bool isInLessonScreen;
-  // todo del !
-  final bool isUserLoggedIn = !Get.find<AuthController>().isUserLoggedIn();
-
+  final bool isUserLoggedIn = Get.find<AuthController>().isUserLoggedIn();
   final lessons = List.generate(10, (index) => 'اسم الدرس');
 
-  TabCourseLessons({super.key, required this.wehdat, required this.isInLessonScreen});
+  TabCourseLessons({super.key});
 
   @override
   Widget build(BuildContext context) {

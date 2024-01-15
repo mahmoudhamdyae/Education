@@ -1,11 +1,10 @@
-import 'package:education/domain/models/courses/course.dart';
-import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:get/get.dart';
 
-import '../../../../../domain/repository/repository.dart';
+import '../../../../domain/models/courses/course.dart';
+import '../../../../domain/models/lesson/wehda.dart';
+import '../../../../domain/repository/repository.dart';
 
-class SubjectController extends GetxController {
-
+class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
@@ -13,7 +12,7 @@ class SubjectController extends GetxController {
 
   final Repository _repository;
 
-  SubjectController(this._repository);
+  LessonController(this._repository);
 
   @override
   void onInit() {

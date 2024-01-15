@@ -1,12 +1,15 @@
 import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
+import 'package:education/presentation/widgets/empty_screen.dart';
+import 'package:education/presentation/widgets/error_screen.dart';
+import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants.dart';
-import '../../../../domain/models/lesson/lesson.dart';
-import '../../../../domain/models/lesson/wehda.dart';
+import '../../../../domain/models/courses/course.dart';
 import '../../../resources/color_manager.dart';
 import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
@@ -14,14 +17,7 @@ import 'course_tabs.dart';
 
 class LessonScreen extends StatefulWidget {
 
-  final List<Wehda> wehdat;
-  final Lesson lesson;
-  late final String _vimeoVideoUrl;
-
-
-  LessonScreen({super.key, required this.wehdat, required this.lesson}) {
-    _vimeoVideoUrl = extractVideoId(lesson.link);
-  }
+  const LessonScreen({super.key});
 
   @visibleForTesting
   String extractVideoId(String url) {
@@ -79,60 +75,65 @@ class _LessonScreenState extends State<LessonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Passed Wehdat: ${widget.wehdat}');
-    debugPrint('Passed Lesson: ${widget.lesson}');
-    debugPrint('Passed Link: ${widget.lesson.link}'); // https://player.vimeo.com/video/861849145?h=ecfcceb429
-
     return Scaffold(
       body: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Vimeo Video
-              SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: PlayVideoFromVimeo(vimeoVideoUrl: widget._vimeoVideoUrl),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(
-                    top: 16.0,
-                    right: 16.0,
-                    left: 16.0,
-                    bottom: 0.0,
-                ),
-                child: Text(
-                  'كورس الرياضيات',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+          GetX<LessonController>(
+            init: Get.find<LessonController>(),
+            builder: (LessonController controller) {
+              if (controller.status.isLoading) {
+                return const LoadingScreen();
+              } else if (controller.status.isError) {
+                return ErrorScreen(error: controller.status.errorMessage ?? '');
+              } else if (controller.wehdat.isEmpty) {
+                return const EmptyScreen(emptyString: AppStrings.emptyTutorials);
+              }
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Vimeo Video
+                  SizedBox(
+                    width: double.infinity,
+                    height: 200,
+                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.wehdat[0].lessons[0].link)),
                   ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(
-                  top: 0.0,
-                  right: 16.0,
-                  left: 16.0,
-                  bottom: 16.0,
-                ),
-                child: Text(
-                  'احمد السعدني',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xff808080),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16.0,
+                      right: 16.0,
+                      left: 16.0,
+                      bottom: 0.0,
+                    ),
+                    child: Text(
+                      (Get.arguments['course'] as Course).name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: CourseTabs(
-                  wehdat: widget.wehdat,
-                  isInLessonScreen: true,
-                ),
-              ),
-            ],
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 0.0,
+                      right: 16.0,
+                      left: 16.0,
+                      bottom: 16.0,
+                    ),
+                    child: Text(
+                      'احمد السعدني',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff808080),
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: CourseTabs(),
+                  ),
+                ],
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(top: 32.0, right: 8.0),

@@ -102,13 +102,13 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                       if (widget.isInLessonScreen) {
                         Navigator.of(context).pop();
                       }
-                      Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[lessonIndex],));
+                      Get.to(const LessonScreen());
                     } else {
                       if (index == 0 && lessonIndex == 0) {
                         if (widget.isInLessonScreen) {
                           Navigator.of(context).pop();
                         }
-                        Get.to(LessonScreen(wehdat: wehdat, lesson: wehda.lessons[lessonIndex],));
+                        Get.to(const LessonScreen());
                       } else {
                         showRequireAuthDialog(context);
                       }
