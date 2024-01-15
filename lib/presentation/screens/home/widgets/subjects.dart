@@ -2,9 +2,7 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/courses/course.dart';
 import '../../course/widgets/course_screen.dart';
-import '../subject/widgets/subject_screen.dart';
 
 class Subjects extends StatelessWidget {
 
@@ -44,7 +42,7 @@ class Subjects extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => const CourseScreen());
+                    Get.to(() => CourseScreen());
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8.0),

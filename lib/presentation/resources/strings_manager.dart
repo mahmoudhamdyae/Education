@@ -125,4 +125,7 @@ class AppStrings {
   static const String suggestions = 'اقتراحات';
   static const String seeAll = 'مشاهدة الكل';
   static const String buy = 'شراء';
+  static const String courseTeacher = 'المدرس';
+  static const String watchFirstLesson = 'شاهد الدرس الأول';
+  static const String buyCourse = 'شراء الكورس';
 }

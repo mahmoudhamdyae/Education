@@ -25,6 +25,7 @@ class ImageAssets {
   static const String subscription = "$imagePath/subscription.svg";
   static const String fav = "$imagePath/fav.svg";
   static const String me = "$imagePath/me.svg";
+  static const String courseTeacher = "$imagePath/courseTeacher.png";
 }
 
 class JsonAssets {

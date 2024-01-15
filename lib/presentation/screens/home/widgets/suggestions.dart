@@ -1,6 +1,4 @@
-import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/color_manager.dart';
-import 'package:education/presentation/screens/home/subject/widgets/subject_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -63,7 +61,7 @@ class Suggestions extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => const CourseScreen());
+                    Get.to(() => CourseScreen());
                   },
                   child: Stack(
                     children: [
