@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class CourseTabs extends StatefulWidget {
 
-  const CourseTabs({super.key});
+  final String link;
+  const CourseTabs({super.key, required this.link});
 
   @override
   State<CourseTabs> createState() => _CourseTabsState();
@@ -125,7 +126,7 @@ class _CourseTabsState extends State<CourseTabs> {
         ),
         // const SizedBox(height: 16,),
         selectedTab == 0 ? TabCourseLessons() : selectedTab == 1 ?
-        const TabMorfaqat():
+        TabMorfaqat(link: widget.link,):
         const TabTests(),
       ],
     );

@@ -8,10 +8,8 @@ import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/constants.dart';
 import '../../../../domain/models/courses/course.dart';
 import '../../../resources/color_manager.dart';
-import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
 import 'course_tabs.dart';
 
@@ -21,6 +19,7 @@ class LessonScreen extends StatefulWidget {
 
   @visibleForTesting
   String extractVideoId(String url) {
+    debugPrint('------------------ $url');
     RegExp regExp = RegExp(r'/(\d+)\??');
     Match? match = regExp.firstMatch(url);
 
@@ -37,41 +36,6 @@ class LessonScreen extends StatefulWidget {
 
 class _LessonScreenState extends State<LessonScreen> {
   final Repository appPreferences = Get.find<Repository>();
-  final _flutterMediaDownloaderPlugin = MediaDownload();
-
-  void _downloadNote(String link) async {
-    String url = '${Constants.baseUrl}filedownload/$link';
-    debugPrint('url: $url');
-    Get.showSnackbar(
-      const GetSnackBar(
-        title: null,
-        message: AppStrings.noteDownloading,
-        icon: Icon(Icons.download, color: ColorManager.white,),
-        duration: Duration(seconds: 3),
-      ),
-    );
-    _flutterMediaDownloaderPlugin.downloadMedia(context, url).catchError((error) {
-      if (Get.isSnackbarOpen) Get.back();
-      Get.showSnackbar(
-        const GetSnackBar(
-          title: null,
-          message: AppStrings.noteDownloadError,
-          icon: Icon(Icons.error, color: ColorManager.white,),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    }).then((value) {
-      if (Get.isSnackbarOpen) Get.back();
-      Get.showSnackbar(
-        const GetSnackBar(
-          title: null,
-          message: AppStrings.noteDownloaded,
-          icon: Icon(Icons.download_done, color: ColorManager.white,),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,8 +92,8 @@ class _LessonScreenState extends State<LessonScreen> {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: CourseTabs(),
+                  Expanded(
+                    child: CourseTabs(link: controller.wehdat[0].lessons[0].pdf,),
                   ),
                 ],
               );
