@@ -1,6 +1,8 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_course_lessons.dart';
+import 'package:education/presentation/screens/lesson/widgets/tab_morfaqat.dart';
+import 'package:education/presentation/screens/lesson/widgets/tab_tests.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/models/lesson/wehda.dart';
@@ -131,8 +133,8 @@ class _CourseTabsState extends State<CourseTabs> {
           wehdat: widget.wehdat,
           isInLessonScreen: widget.isInLessonScreen,
         ) : selectedTab == 1 ?
-        const Center(child: Text('morfa'),) :
-        Center(child: Text('moral2'),),
+        const TabMorfaqat():
+        const TabTests(),
       ],
     );
   }
