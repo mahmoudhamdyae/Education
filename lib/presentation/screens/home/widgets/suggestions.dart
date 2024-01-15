@@ -173,7 +173,11 @@ class Suggestions extends StatelessWidget {
                                 }
                               },
                               icon: controller.isFav(subjects[index]) ?
-                                  const Icon(Icons.bookmark, color: ColorManager.primary,)
+                                  const Icon(
+                                    Icons.bookmark,
+                                    color: ColorManager.primary,
+                                    size: 40,
+                                  )
                                   :
                               SvgPicture.asset(
                                 ImageAssets.bookmark,
