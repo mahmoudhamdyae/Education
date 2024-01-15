@@ -1,3 +1,4 @@
+import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/courses/course.dart';
@@ -6,6 +7,7 @@ import '../../../../domain/repository/repository.dart';
 
 class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
+  final RxString videoLink = ''.obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -27,6 +29,7 @@ class LessonController extends GetxController {
       await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
+        videoLink.value = wehdat[0].lessons[0].link;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

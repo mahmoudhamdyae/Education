@@ -58,7 +58,7 @@ class _LessonScreenState extends State<LessonScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 200,
-                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.wehdat[0].lessons[0].link)),
+                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.videoLink.value)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

@@ -27,7 +27,7 @@ class TabCourseLessons extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: InkWell(
                       onTap: () {
-                        // Get.replace(const LessonScreen());
+                        // Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
                       },
                       child: Row(
                         children: [
