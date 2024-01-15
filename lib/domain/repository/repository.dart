@@ -7,6 +7,7 @@ abstract class Repository {
 
   // Local Data Source
   bool isUserLoggedIn();
+  String getUserName();
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

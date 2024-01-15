@@ -6,10 +6,13 @@ abstract class LocalDataSource {
   Future<void> signOut();
   Future<void> setUserId(int id);
   int getUserId();
+  Future<void> setUserName(String name);
+  String getUserName();
 }
 
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
 const String keyUserId = "KEY_USER_ID";
+const String keyUserName = "KEY_USER_NAME";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
@@ -40,5 +43,15 @@ class LocalDataSourceImpl extends LocalDataSource {
   @override
   int getUserId() {
     return _box.get(keyUserId, defaultValue: 0);
+  }
+
+  @override
+  Future<void> setUserName(String name) async {
+    return await _box.put(keyUserName, name);
+  }
+
+  @override
+  String getUserName() {
+    return _box.get(keyUserName, defaultValue: '');
   }
 }

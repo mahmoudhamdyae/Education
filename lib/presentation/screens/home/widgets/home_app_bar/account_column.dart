@@ -24,7 +24,7 @@ class AccountColumn extends StatelessWidget {
           ),
         ),
         Text(
-          _controller.isUserLoggedIn() ? 'اسم المستخدم' : AppStrings.pleaseLogin,
+          _controller.isUserLoggedIn() ? _controller.getUserName() : AppStrings.pleaseLogin,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,

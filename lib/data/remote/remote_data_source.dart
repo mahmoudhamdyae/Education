@@ -12,7 +12,7 @@ import '../network_info.dart';
 
 abstract class RemoteDataSource {
   Future register(String userName, String phone, String password, String grade, String group);
-  Future<int> logIn(String phone, String password);
+  Future<dynamic> logIn(String phone, String password);
 
   Future<ClassModel> getRecordedCourses(String marhala);
   Future<List<Wehda>> getTutorials(int courseId);
@@ -44,7 +44,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<int> logIn(String phone, String password) async {
+  Future<dynamic> logIn(String phone, String password) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await _dio.post(url, data: {
@@ -56,7 +56,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     if (data["access_token"] == null) {
       throw Exception(AppStrings.wrongPhoneOrPassword);
     }
-    return data['user']['id'];
+    return data;
   }
 
   @override

@@ -20,12 +20,18 @@ class RepositoryImpl extends Repository {
     return _localDataSource.isUserLoggedIn();
   }
 
+  @override
+  String getUserName() {
+    return _localDataSource.getUserName();
+  }
+
   // Account Service
 
   @override
   Future<void> logIn(String phone, String password) {
-    return _remoteDataSource.logIn(phone, password).then((userId) {
-      _localDataSource.setUserId(userId);
+    return _remoteDataSource.logIn(phone, password).then((data) {
+      _localDataSource.setUserId(data['user']['id']);
+      _localDataSource.setUserName(data['user']['name']);
       _localDataSource.setUserLoggedIn();
     });
   }

@@ -14,4 +14,8 @@ class AuthController extends GetxController {
   bool isUserLoggedIn() {
     return _repository.isUserLoggedIn();
   }
+
+  String getUserName() {
+    return _repository.getUserName();
+  }
 }
