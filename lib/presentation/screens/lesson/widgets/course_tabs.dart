@@ -24,84 +24,115 @@ class _CourseTabsState extends State<CourseTabs> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedTab = 0;
-                    });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            children: [
+              Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedTab = 0;
+                      });
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
                         AppStrings.tabLessons,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(height: 16,),
-                      Divider(
+                    ),
+                  )
+              ),
+              Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedTab = 1;
+                      });
+                    },
+                    child: const Center(
+                      child: Text(
+                        AppStrings.tabAttachments,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  )
+              ),
+              Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedTab = 2;
+                      });
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(right: 40.0),
+                      child: Text(
+                        AppStrings.tabTests,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+              ),
+            ],
+          ),
+        ),
+        Stack(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(),
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: selectedTab == 0 ? const Divider(
                         color: ColorManager.primary,
-                        height: 2,
-                      )
-                    ],
-                  ),
-                )
-            ),
-            Expanded(
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedTab = 1;
-                    });
-                  },
-                  child: const Center(
-                    child: Text(
-                      AppStrings.tabAttachments,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                      ),
+                        thickness: 3,
+                      ) : Container(),
                     ),
-                  ),
-                )
-            ),
-            Expanded(
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedTab = 0;
-                    });
-                  },
-                  child: const Center(
-                    child: Text(
-                      AppStrings.tabTests,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: selectedTab == 1 ? const Divider(
+                      color: ColorManager.primary,
+                      thickness: 3,
+                    ) : Container(),
                   ),
                 ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: selectedTab == 2 ? const Divider(
+                      color: ColorManager.primary,
+                      thickness: 3,
+                    ) : Container(),
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-        // const SizedBox(height: 8,),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Divider(),
         ),
         // const SizedBox(height: 16,),
         selectedTab == 0 ? TabCourseLessons(
           wehdat: widget.wehdat,
           isInLessonScreen: widget.isInLessonScreen,
         ) : selectedTab == 1 ?
-        Center(child: Text('morfa'),) :
-        Center(child: Text('morfa'),),
+        const Center(child: Text('morfa'),) :
+        Center(child: Text('moral2'),),
       ],
     );
   }
