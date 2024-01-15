@@ -1,9 +1,14 @@
+import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/screens/home/subject/controller/subject_controller.dart';
+import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../domain/models/lesson/wehda.dart';
 
 class CourseScreen extends StatelessWidget {
 
@@ -99,6 +104,7 @@ class CourseScreen extends StatelessWidget {
                 ),
               ),
               Expanded(child: Container()),
+              // شاهد الدرس الأول
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: SizedBox(
@@ -114,6 +120,7 @@ class CourseScreen extends StatelessWidget {
                       ),
                     ),
                       onPressed: () {
+                      Get.to(() => LessonScreen(wehdat: [], lesson: Lesson('title', 'https://player.vimeo.com/video/70591644', 'sample PDF.pdf', 'free')));
                       },
                       child: const Text(
                         AppStrings.watchFirstLesson,
@@ -126,6 +133,7 @@ class CourseScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              // شراء الكورس
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: SizedBox(

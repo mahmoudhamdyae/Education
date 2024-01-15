@@ -1,9 +1,6 @@
 import 'package:education/domain/repository/repository.dart';
-import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
-import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +10,6 @@ import '../../../../domain/models/lesson/wehda.dart';
 import '../../../resources/color_manager.dart';
 import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 
-import 'course_lessons_widget.dart';
 import 'course_tabs.dart';
 
 class LessonScreen extends StatefulWidget {
