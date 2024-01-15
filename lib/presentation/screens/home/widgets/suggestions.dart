@@ -167,9 +167,9 @@ class Suggestions extends StatelessWidget {
                             return IconButton(
                               onPressed: () {
                                 if (controller.isFav(subjects[index])) {
-                                  controller.setFav(subjects[index]);
-                                } else {
                                   controller.removeFav(subjects[index]);
+                                } else {
+                                  controller.setFav(subjects[index]);
                                 }
                               },
                               icon: controller.isFav(subjects[index]) ?
