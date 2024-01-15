@@ -38,27 +38,6 @@ class HomeAppBar extends StatelessWidget {
           const SizedBox(width: 8,),
           InkWell(onTap: _login, child: AccountColumn()),
           Expanded(child: Container()),
-          // Search Button
-          Container(
-            height: 32,
-            width: 32,
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(color: ColorManager.secondary)
-            ),
-            child: IconButton(
-              onPressed: () {
-                // Search
-              },
-              icon: const Icon(
-                Icons.search,
-                size: 15,
-                color: ColorManager.secondary,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8,),
           // Notifications Button
           Container(
             height: 32,
