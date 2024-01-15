@@ -36,8 +36,13 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  List<Course> getFav() {
+  Future<List<Course>> getFav() {
     return _localDataSource.getFav();
+  }
+
+  @override
+  Future<void> removeFav(int courseId) {
+    return _localDataSource.removeFav(courseId);
   }
 
   // Account Service

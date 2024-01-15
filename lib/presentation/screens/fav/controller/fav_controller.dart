@@ -1,4 +1,5 @@
 import 'package:education/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/courses/course.dart';
@@ -23,8 +24,10 @@ class FavController extends GetxController {
   _getFav() async {
     _status.value = RxStatus.loading();
     try {
-      courses.value = _repository.getFav();
-      _status.value = RxStatus.success();
+      _repository.getFav().then((localCourses) {
+        _status.value = RxStatus.success();
+        courses.value = localCourses;
+      });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
       courses.value = [];
@@ -35,6 +38,19 @@ class FavController extends GetxController {
     try {
       _repository.setFav(course).then((value) {
         _status.value = RxStatus.success();
+        courses.add(course);
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+    }
+  }
+
+  void removeFav(Course course) {
+    try {
+      _repository.removeFav(course.id)
+          .then((value) {
+            _status.value = RxStatus.success();
+            courses.remove(course);
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -42,6 +58,8 @@ class FavController extends GetxController {
   }
 
   bool isFav(Course course) {
-    return courses.contains(course);
+    bool x = courses.contains(course);
+    debugPrint('----------------- $x');
+    return x;
   }
 }

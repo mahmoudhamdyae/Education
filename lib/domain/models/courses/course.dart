@@ -1,10 +1,20 @@
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 0)
 class Course {
+  @HiveField(0)
   int id;
+  @HiveField(1)
   String name;
+  @HiveField(2)
   int month;
+  @HiveField(3)
   int term;
+  @HiveField(4)
   String marhala;
+  @HiveField(5)
   String type;
+  @HiveField(6)
   String rate;
 
   Course(this.id, this.name, this.month, this.term, this.marhala, this.type, this.rate);

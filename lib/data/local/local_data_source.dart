@@ -13,7 +13,8 @@ abstract class LocalDataSource {
   Future<void> setGrade(String grade);
   String getGrade();
   Future<int> setFav(Course course);
-  List<Course> getFav();
+  Future<List<Course>> getFav();
+  Future<void> removeFav(int courseId);
 }
 
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
@@ -24,8 +25,7 @@ const String keyGrade = "KEY_Grade";
 class LocalDataSourceImpl extends LocalDataSource {
 
   final Box _box;
-  final Box<Course> _favBox;
-  LocalDataSourceImpl(this._box, this._favBox);
+  LocalDataSourceImpl(this._box);
 
   @override
   Future<void> setUserLoggedIn() async {
@@ -75,11 +75,26 @@ class LocalDataSourceImpl extends LocalDataSource {
 
   @override
   Future<int> setFav(Course course) async {
-    return await _box.add(course);
+    var favBox = await Hive.openBox<Course>('course');
+    return await favBox.add(course);
   }
 
   @override
-  List<Course> getFav() {
-    return _favBox.values.toList();
+  Future<List<Course>> getFav() async {
+    var favBox = await Hive.openBox<Course>('course');
+    return favBox.values.toList();
+  }
+
+  @override
+  Future<void> removeFav(int courseId) async {
+    var favBox = await Hive.openBox<Course>('course');
+    final Map<dynamic, Course> courseMap = favBox.toMap();
+    dynamic desiredKey;
+    courseMap.forEach((key, value){
+      if (value.id == courseId) {
+        desiredKey = key;
+      }
+    });
+    favBox.delete(desiredKey);
   }
 }

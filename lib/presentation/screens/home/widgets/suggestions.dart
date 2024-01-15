@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -161,15 +162,26 @@ class Suggestions extends StatelessWidget {
                       Positioned(
                         top: 0,
                         left: 8,
-                        child: IconButton(
-                            onPressed: () {
-                              // Add to fav
-                            },
-                            icon: SvgPicture.asset(
-                              ImageAssets.bookmark,
-                              height: 32,
-                              width: 20,
-                            ),
+                        child: GetX<FavController>(
+                          builder: (FavController controller) {
+                            return IconButton(
+                              onPressed: () {
+                                if (controller.isFav(subjects[index])) {
+                                  controller.setFav(subjects[index]);
+                                } else {
+                                  controller.removeFav(subjects[index]);
+                                }
+                              },
+                              icon: controller.isFav(subjects[index]) ?
+                                  const Icon(Icons.bookmark, color: ColorManager.primary,)
+                                  :
+                              SvgPicture.asset(
+                                ImageAssets.bookmark,
+                                height: 32,
+                                width: 20,
+                              ),
+                            );
+                          },
                         ),
                       )
                     ],

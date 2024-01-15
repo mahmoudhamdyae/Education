@@ -10,7 +10,8 @@ abstract class Repository {
   String getUserName();
   String getGrade();
   Future<void> setFav(Course course);
-  List<Course> getFav();
+  Future<List<Course>> getFav();
+  Future<void> removeFav(int courseId);
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);
