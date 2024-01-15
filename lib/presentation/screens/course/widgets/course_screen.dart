@@ -1,3 +1,4 @@
+import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
@@ -9,13 +10,8 @@ import 'package:get/get.dart';
 
 class CourseScreen extends StatelessWidget {
 
-  final dynamic subject = {
-    'name': 'كورس العلوم',
-    'price': 35,
-    'teacher': 'أحمد السعدنى',
-    'rate': 4.3,
-  };
-  CourseScreen({super.key});
+  final Course subject;
+  const CourseScreen({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +32,14 @@ class CourseScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      subject['name'],
+                      subject.name,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
-                      '${subject['price'].toString()} د.ك',
+                      '${subject.term.toString()} د.ك',
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -69,7 +65,7 @@ class CourseScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          subject['rate'].toString(),
+                          subject.rate.toString(),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -110,27 +106,15 @@ class CourseScreen extends StatelessWidget {
                       height: 40,
                       width: 40,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        children: [
-                          // Teacher Name
-                          Text(
-                            subject['teacher'],
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff2B7CB3),
-                            ),
-                          ),
-                          const Text(
-                            'موجه لغة عربية',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                    // Teacher Name
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        'أحمد السعدنى',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],

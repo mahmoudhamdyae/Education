@@ -35,7 +35,7 @@ class Subjects extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => CourseScreen());
+                    Get.to(() => CourseScreen(subject: subjects[index],));
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8.0),

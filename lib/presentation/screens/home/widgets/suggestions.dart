@@ -57,7 +57,7 @@ class Suggestions extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Get.to(() => CourseScreen());
+                    Get.to(() => CourseScreen(subject: subjects[index],));
                   },
                   child: Stack(
                     children: [
