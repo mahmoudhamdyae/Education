@@ -18,7 +18,7 @@ class AccountColumn extends StatelessWidget {
       children: [
         Text(
           _controller.isUserLoggedIn() ? AppStrings.welcomeBack : AppStrings.welcome,
-          style: getSmallStyle(color: ColorManager.secondary, height: 20),
+          style: getSmallStyle(color: ColorManager.secondary),
         ),
         Text(
           _controller.isUserLoggedIn() ? _controller.getUserName() : AppStrings.pleaseLogin,
