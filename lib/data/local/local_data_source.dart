@@ -44,6 +44,9 @@ class LocalDataSourceImpl extends LocalDataSource {
   Future<void> signOut() async {
     await _box.put(keyIsUserLoggedIn, false);
     setUserId(0);
+    setPhoneNumber('');
+    setGrade('');
+    setUserName('');
   }
 
   @override

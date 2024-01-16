@@ -135,4 +135,11 @@ class AppStrings {
   static const String favVideos = 'الفيديوهات';
   static const String saves = 'المحفوظات';
   static const String emptyFav = 'لا يوجد محفوظات';
+  // Me Screen
+  static const String editProfile = 'تعديل البروفايل';
+  static const String baqat = 'باقات الاشتراك';
+  static const String helpCenter = 'مركز المساعدات';
+  static const String whoAreWe = 'من نحن';
+  static const String delAccount = 'حذف الحساب';
+  static const String signOut = 'تسجيل الخروج';
 }

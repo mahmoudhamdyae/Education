@@ -33,6 +33,12 @@ class ImageAssets {
   static const String courseTeacher = "$imagePath/courseTeacher.png";
   static const String download = "$imagePath/download.svg";
   static const String done = "$imagePath/done.svg";
+  static const String editProfile = "$imagePath/edit_profile.svg";
+  static const String baqat = "$imagePath/baqat.svg";
+  static const String helpCenter = "$imagePath/help_center.svg";
+  static const String whoAreWe = "$imagePath/who_are_we.svg";
+  static const String delAccount = "$imagePath/del_account.svg";
+  static const String signOut = "$imagePath/sign_out.svg";
 }
 
 class JsonAssets {
