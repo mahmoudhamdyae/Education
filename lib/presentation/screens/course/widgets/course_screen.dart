@@ -3,8 +3,8 @@ import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
+import 'package:education/presentation/widgets/bookmark_course.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CourseScreen extends StatelessWidget {
@@ -135,10 +135,10 @@ class CourseScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                      onPressed: () {
+                    onPressed: () {
                       Get.to(() => const LessonScreen(), arguments: { 'course': subject });
                       },
-                      child: const Text(
+                    child: const Text(
                         AppStrings.watchFirstLesson,
                         style: TextStyle(
                           fontSize: 14,
@@ -195,12 +195,7 @@ class CourseScreen extends StatelessWidget {
           Positioned(
               top: 32.0,
               left: 16.0,
-              child: IconButton(
-                onPressed: () {
-                  // Add or Remove fav
-                },
-                icon: SvgPicture.asset(ImageAssets.bookmark,),
-              )
+              child: BookmarkCourse(course: subject),
           )
         ],
       ),
