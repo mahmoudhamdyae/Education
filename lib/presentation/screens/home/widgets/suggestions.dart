@@ -1,5 +1,7 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
+import 'package:education/presentation/widgets/buy_button.dart';
+import 'package:education/presentation/widgets/buy_widget.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
@@ -102,27 +104,7 @@ class Suggestions extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              width: 200,
-                              child: FilledButton(
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                        )
-                                    ),
-                                    backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-                                  ),
-                                  onPressed: () {
-                                  },
-                                  child: Text(
-                                    AppStrings.buy,
-                                    style: getSmallStyle(
-                                      color: ColorManager.white,
-                                    ),
-                                  )
-                              ),
-                            )
+                            BuyWidget(course: subjects[index]),
                           ],
                         ),
                       ),
