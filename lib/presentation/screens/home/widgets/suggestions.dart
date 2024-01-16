@@ -104,7 +104,7 @@ class Suggestions extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            BuyWidget(course: subjects[index]),
+                            BuyWidget(course: subjects[index], width: 200,),
                           ],
                         ),
                       ),

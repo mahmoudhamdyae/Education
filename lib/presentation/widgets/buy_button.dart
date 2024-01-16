@@ -12,26 +12,23 @@ class BuyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      child: FilledButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-                const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                )
-            ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+    return FilledButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+              const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              )
           ),
-          onPressed: () {
-          },
-          child: Text(
-            AppStrings.buy,
-            style: getSmallStyle(
-              color: ColorManager.white,
-            ),
-          )
-      ),
+          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        ),
+        onPressed: () {
+        },
+        child: Text(
+          AppStrings.buy,
+          style: getSmallStyle(
+            color: ColorManager.white,
+          ),
+        )
     );
   }
 }

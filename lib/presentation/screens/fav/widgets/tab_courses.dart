@@ -4,6 +4,7 @@ import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
+import 'package:education/presentation/widgets/buy_widget.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:education/presentation/widgets/error_screen.dart';
 import 'package:education/presentation/widgets/loading_screen.dart';
@@ -55,7 +56,10 @@ class TabCourses extends StatelessWidget {
                             Image.asset(
                               ImageAssets.course,
                               height: 88,
+                              width: 86,
+                              fit: BoxFit.fitHeight,
                             ),
+                            const SizedBox(width: 2.0,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -74,7 +78,7 @@ class TabCourses extends StatelessWidget {
                                 Row(
                                   children: [
                                     RateWidget(rate: favCourses[index].rate),
-                                    const SizedBox(width: 16.0,),
+                                    const SizedBox(width: 12.0,),
                                     PriceWidget(price: favCourses[index].term),
                                   ],
                                 )
@@ -86,9 +90,13 @@ class TabCourses extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                        top: 0,
                         left: 0,
                         child: BookmarkCourse(course: favCourses[index])
+                    ),
+                    Positioned(
+                        bottom: 8,
+                        left: 12,
+                        child: BuyWidget(course: favCourses[index], width: 100,)
                     ),
                   ],
                 );
