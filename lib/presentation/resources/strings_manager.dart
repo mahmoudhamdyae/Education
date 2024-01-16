@@ -130,4 +130,7 @@ class AppStrings {
   static const String buyCourse = 'شراء الكورس';
   static const String notes = 'المذكرات';
   static const String pdf = 'ملف PDF';
+  static const String favCourses = 'الكورسات';
+  static const String favVideos = 'الفيديوهات';
+  static const String saves = 'المحفوظات';
 }
