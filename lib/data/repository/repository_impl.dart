@@ -31,6 +31,11 @@ class RepositoryImpl extends Repository {
   }
 
   @override
+  String getPhoneNumber() {
+    return _localDataSource.getPhoneNumber();
+  }
+
+  @override
   Future<void> setFav(Course course) {
     return _localDataSource.setFav(course);
   }
@@ -53,6 +58,7 @@ class RepositoryImpl extends Repository {
       _localDataSource.setUserId(data['user']['id']);
       _localDataSource.setUserName(data['user']['name']);
       _localDataSource.setGrade(data['user']['group']);
+      _localDataSource.setPhoneNumber(data['user']['phone']);
       _localDataSource.setUserLoggedIn();
     });
   }

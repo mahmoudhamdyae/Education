@@ -18,4 +18,8 @@ class AuthController extends GetxController {
   String getUserName() {
     return _repository.getUserName();
   }
+
+  String getPhoneNumber() {
+    return _repository.getPhoneNumber();
+  }
 }

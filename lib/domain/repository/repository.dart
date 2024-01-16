@@ -9,6 +9,7 @@ abstract class Repository {
   bool isUserLoggedIn();
   String getUserName();
   String getGrade();
+  String getPhoneNumber();
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);

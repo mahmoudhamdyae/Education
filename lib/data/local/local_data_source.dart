@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/models/courses/course.dart';
@@ -13,6 +12,8 @@ abstract class LocalDataSource {
   String getUserName();
   Future<void> setGrade(String grade);
   String getGrade();
+  Future<void> setPhoneNumber(String number);
+  String getPhoneNumber();
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
@@ -21,7 +22,8 @@ abstract class LocalDataSource {
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
 const String keyUserId = "KEY_USER_ID";
 const String keyUserName = "KEY_USER_NAME";
-const String keyGrade = "KEY_Grade";
+const String keyGrade = "KEY_GRADE";
+const String keyPhoneNumber = "KEY_PHONE_NUMBER";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
@@ -72,6 +74,16 @@ class LocalDataSourceImpl extends LocalDataSource {
   @override
   String getGrade() {
     return _box.get(keyGrade, defaultValue: '');
+  }
+
+  @override
+  Future<void> setPhoneNumber(String number) async {
+    return await _box.put(keyPhoneNumber, number);
+  }
+
+  @override
+  String getPhoneNumber() {
+    return _box.get(keyPhoneNumber, defaultValue: '');
   }
 
   @override
