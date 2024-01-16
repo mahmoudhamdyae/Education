@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
+import '../../../../resources/styles_manager.dart';
 
 class AccountColumn extends StatelessWidget {
 
@@ -17,18 +18,11 @@ class AccountColumn extends StatelessWidget {
       children: [
         Text(
           _controller.isUserLoggedIn() ? AppStrings.welcomeBack : AppStrings.welcome,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: ColorManager.secondary,
-          ),
+          style: getSmallStyle(color: ColorManager.secondary, height: 20),
         ),
         Text(
           _controller.isUserLoggedIn() ? _controller.getUserName() : AppStrings.pleaseLogin,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
+          style: getLargeStyle(),
         ),
       ],
     );

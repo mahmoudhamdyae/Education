@@ -31,10 +31,15 @@ class BookmarkCourse extends StatelessWidget {
             size: 40,
           )
               :
-          SvgPicture.asset(
+          /*SvgPicture.asset(
             ImageAssets.bookmark,
             height: 32,
             width: 20,
+          )*/
+          const Icon(
+            Icons.bookmark_border,
+            color: ColorManager.primary,
+            size: 40,
           ),
         );
       },

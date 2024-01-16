@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,26 +23,18 @@ class Suggestions extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Row(
             children: [
-              const Text(
+              Text(
                 AppStrings.suggestions,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: getLargeStyle(),
               ),
               Expanded(child: Container()),
               InkWell(
                 onTap: () {
                   // See All
                 },
-                child: const Text(
+                child: Text(
                   AppStrings.seeAll,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xff2B7CB3),
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: getSmallStyle(color: ColorManager.secondary, decoration: TextDecoration.underline),
                 ),
               ),
             ],
@@ -84,15 +77,13 @@ class Suggestions extends StatelessWidget {
                                 children: [
                                   Text(
                                     subjects[index].name,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
+                                    style: getLargeStyle(
+                                        fontWeight: FontWeight.w400
                                     ),
                                   ),
                                   Text(
                                     '${subjects[index].term} د.ك',
-                                    style: const TextStyle(
-                                      fontSize: 20,
+                                    style: getLargeStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -104,21 +95,17 @@ class Suggestions extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'أحمد السعدنى',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff808080),
+                                    style: getSmallStyle(
+                                      color: const Color(0xff808080),
                                     ),
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         subjects[index].rate.toString(),
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
+                                        style: getLargeStyle(
                                           color: ColorManager.primary,
                                         ),
                                       ),
@@ -145,11 +132,9 @@ class Suggestions extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                   },
-                                  child: const Text(
+                                  child: Text(
                                     AppStrings.buy,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
+                                    style: getSmallStyle(
                                       color: ColorManager.white,
                                     ),
                                   )

@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,14 +16,11 @@ class Subjects extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
             AppStrings.homeSubjects,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
+            style: getLargeStyle(),
           ),
         ),
         Padding(
@@ -48,10 +46,7 @@ class Subjects extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                       child: Text(
                         subjects[index].name,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: getSmallStyle(),
                       ),
                     ),
                   ),

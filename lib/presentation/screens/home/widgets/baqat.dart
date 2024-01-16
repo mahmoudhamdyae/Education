@@ -1,6 +1,7 @@
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 
 class Baqat extends StatelessWidget {
@@ -73,22 +74,14 @@ class Baqat extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       AppStrings.baqat1,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: ColorManager.white,
-                      ),
+                      style: getLargeStyle(color: ColorManager.white,),
                     ),
                     const SizedBox(height: 6.0,),
-                    const Text(
+                    Text(
                       AppStrings.baqat2,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: ColorManager.white,
-                      ),
+                      style: getSmallStyle(color: ColorManager.white,),
                     ),
                     const SizedBox(height: 16.0,),
                     // Show Button
@@ -106,13 +99,9 @@ class Baqat extends StatelessWidget {
                           onPressed: () {
                             // Show
                           },
-                          child: const Text(
+                          child: Text(
                             AppStrings.show,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: ColorManager.white,
-                            ),
+                            style: getSmallStyle(color: ColorManager.white,),
                           )
                       ),
                     )
