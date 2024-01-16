@@ -1,10 +1,91 @@
+import 'package:education/domain/models/courses/course.dart';
+import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/resources/font_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
+import 'package:education/presentation/widgets/bookmark_course.dart';
+import 'package:education/presentation/widgets/price_widget.dart';
+import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
+import 'package:hive/hive.dart';
+
+import '../../../resources/assets_manager.dart';
+import '../controller/fav_controller.dart';
 
 class TabCourses extends StatelessWidget {
   const TabCourses({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GetX<FavController>(
+      builder: (FavController controller) {
+        List<Course> favCourses = controller.courses;
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemCount: favCourses.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xffF2F2F2),
+                        width: 1,
+                      ),
+                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                  ),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              ImageAssets.course,
+                              height: 88,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  favCourses[index].name,
+                                  style: getLargeStyle(
+                                      fontSize: FontSize.s14,
+                                      color: ColorManager.secondary
+                                  ),
+                                ),
+                                Text(
+                                  'وليد أبو قمر',
+                                  style: getSmallStyle(fontSize: 13),
+                                ),
+                                const SizedBox(height: 16.0,),
+                                Row(
+                                  children: [
+                                    RateWidget(rate: favCourses[index].rate),
+                                    const SizedBox(width: 16.0,),
+                                    PriceWidget(price: favCourses[index].term),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Expanded(child: Container()),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                          left: 0,
+                          child: BookmarkCourse(course: favCourses[index])
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
   }
 }

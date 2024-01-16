@@ -1,5 +1,7 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
+import 'package:education/presentation/widgets/price_widget.dart';
+import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,7 +63,7 @@ class Suggestions extends StatelessWidget {
                             border: Border.all(
                                 color: const Color(0xffF2F2F2),
                                 width: 1,
-                            )
+                            ),
                         ),
                         child: Column(
                           children: [
@@ -81,12 +83,7 @@ class Suggestions extends StatelessWidget {
                                         fontWeight: FontWeight.w400
                                     ),
                                   ),
-                                  Text(
-                                    '${subjects[index].term} د.ك',
-                                    style: getLargeStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                                  PriceWidget(price: subjects[index].term),
                                 ],
                               ),
                             ),
@@ -101,25 +98,7 @@ class Suggestions extends StatelessWidget {
                                       color: const Color(0xff808080),
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        subjects[index].rate.toString(),
-                                        style: getLargeStyle(
-                                          color: ColorManager.primary,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4.0,),
-                                      const Padding(
-                                        padding: EdgeInsets.only(bottom: 4.0),
-                                        child: Icon(
-                                          Icons.star,
-                                          color: ColorManager.primary,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                  RateWidget(rate: subjects[index].rate),
                                 ],
                               ),
                             ),
