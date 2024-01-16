@@ -135,6 +135,7 @@ class AppStrings {
   static const String favVideos = 'الفيديوهات';
   static const String saves = 'المحفوظات';
   static const String emptyFav = 'لا يوجد محفوظات';
+  static const String emptyVideos = 'لا يوجد فيديوهات محفوظة';
   // Me Screen
   static const String editProfile = 'تعديل البروفايل';
   static const String baqat = 'باقات الاشتراك';

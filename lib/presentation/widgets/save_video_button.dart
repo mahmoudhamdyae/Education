@@ -32,20 +32,18 @@ class SaveVideoButton extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: ColorManager.primary, width: 1.5)
             ),
+            height: 21.5,
+            width: 21.5,
             child: Padding(
               padding: const EdgeInsets.all(2.0),
               child: controller.isSaved(lesson) ?
               SvgPicture.asset(
                 ImageAssets.bookmarkSelected,
-                  height: 18,
-                  width: 18,
                   color: ColorManager.primary,
               )
               :
               SvgPicture.asset(
                 ImageAssets.bookmark,
-                height: 18,
-                width: 18,
                 color: ColorManager.primary,
               ) ,
             ),
