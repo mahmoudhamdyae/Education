@@ -1,5 +1,7 @@
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../resources/color_manager.dart';
 import '../resources/strings_manager.dart';
@@ -14,22 +16,31 @@ class BuyedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200,
-      child: FilledButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-                const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                )
+      child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(
+              width: 1.0,
+              color: ColorManager.secondary,
             ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
           ),
           onPressed: () {
           },
-          child: Text(
-            AppStrings.buyed,
-            style: getSmallStyle(
-              color: ColorManager.white,
-            ),
+          child: Row(
+            children: [
+              Text(
+                AppStrings.buyed,
+                style: getSmallStyle(
+                  color: ColorManager.secondary,
+                ),
+              ),
+              Expanded(child: Container()),
+              SvgPicture.asset(
+                ImageAssets.done
+              ),
+            ],
           )
       ),
     );

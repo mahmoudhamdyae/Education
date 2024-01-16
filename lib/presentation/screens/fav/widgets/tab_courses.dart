@@ -96,7 +96,7 @@ class TabCourses extends StatelessWidget {
                     Positioned(
                         bottom: 8,
                         left: 12,
-                        child: BuyWidget(course: favCourses[index], width: 100,)
+                        child: BuyWidget(course: favCourses[index], width: 115,)
                     ),
                   ],
                 );
