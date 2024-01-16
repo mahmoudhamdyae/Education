@@ -5,6 +5,8 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
+import 'package:education/presentation/widgets/price_widget.dart';
+import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,12 +37,7 @@ class CourseScreen extends StatelessWidget {
                       subject.name,
                       style: getLargeStyle(),
                     ),
-                    Text(
-                      '${subject.term.toString()} د.ك',
-                      style: getLargeStyle(
-                        color: ColorManager.secondary,
-                      ),
-                    ),
+                    PriceWidget(price: subject.term),
                   ],
                 ),
               ),
@@ -54,25 +51,7 @@ class CourseScreen extends StatelessWidget {
                       '5 وحدات - 32 درس',
                       style: getSmallStyle(),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          subject.rate.toString(),
-                          style: getLargeStyle(
-                            color: ColorManager.primary,
-                          ),
-                        ),
-                        const SizedBox(width: 4.0,),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 4.0),
-                          child: Icon(
-                            Icons.star,
-                            color: ColorManager.primary,
-                            size: 16,
-                          ),
-                        ),
-                      ],
-                    ),
+                    RateWidget(rate: subject.rate.toString()),
                   ],
                 ),
               ),
