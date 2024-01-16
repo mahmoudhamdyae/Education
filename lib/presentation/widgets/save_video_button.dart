@@ -27,26 +27,22 @@ class SaveVideoButton extends StatelessWidget {
               controller.saveVideo(course, lesson);
             }
           },
-          child: Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: ColorManager.primary, width: 1.5)
-            ),
-            height: 21.5,
-            width: 21.5,
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: controller.isSaved(lesson) ?
-              SvgPicture.asset(
-                ImageAssets.bookmarkSelected,
-                  color: ColorManager.primary,
-              )
-              :
-              SvgPicture.asset(
-                ImageAssets.bookmark,
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: controller.isSaved(lesson) ?
+            SvgPicture.asset(
+              ImageAssets.bookmarkSelectedVideo,
+              height: 21.5,
+              width: 21.5,
                 color: ColorManager.primary,
-              ) ,
-            ),
+            )
+            :
+            SvgPicture.asset(
+              height: 21.5,
+              width: 21.5,
+              ImageAssets.bookmarkVideo,
+              color: ColorManager.primary,
+            ) ,
           ),
         );
       },

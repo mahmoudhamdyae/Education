@@ -22,6 +22,8 @@ class ImageAssets {
   static const String course = "$imagePath/course.png";
   static const String bookmark = "$imagePath/bookmark.svg";
   static const String bookmarkSelected = "$imagePath/bookmark_selected.svg";
+  static const String bookmarkVideo = "$imagePath/bookmark_video.svg";
+  static const String bookmarkSelectedVideo = "$imagePath/bookmark_selected_video.svg";
   static const String homeSelected = "$imagePath/home_selected.svg";
   static const String home = "$imagePath/home.svg";
   static const String subscription = "$imagePath/subscription.svg";
