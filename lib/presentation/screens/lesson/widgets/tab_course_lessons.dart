@@ -1,9 +1,11 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
+import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/courses/course.dart';
 import '../../../resources/styles_manager.dart';
 
 class TabCourseLessons extends StatelessWidget {
@@ -52,24 +54,7 @@ class TabCourseLessons extends StatelessWidget {
                             style: getSmallStyle(),
                           ),
                           Expanded(child: Container()),
-                          InkWell(
-                            onTap: () {
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: ColorManager.primary, width: 1.5)
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(2.0),
-                                child: Icon(
-                                  Icons.bookmark_border,
-                                  color: ColorManager.primary,
-                                  size: 18,
-                                ),
-                              ),
-                            ),
-                          )
+                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: controller.wehdat[0].lessons[index],),
                         ],
                       ),
                     ),
