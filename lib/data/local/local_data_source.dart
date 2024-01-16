@@ -1,3 +1,5 @@
+import 'package:education/domain/models/lesson/lesson.dart';
+import 'package:education/domain/models/returned_video.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/models/courses/course.dart';
@@ -17,6 +19,9 @@ abstract class LocalDataSource {
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
+  Future<void> saveVideo(Course course, Lesson lesson);
+  Future<List<ReturnedVideo>> getVideos();
+  Future<void> removeVideo(int courseId, int lessonId);
 }
 
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
@@ -125,5 +130,58 @@ class LocalDataSourceImpl extends LocalDataSource {
       }
     });
     favBox.delete(desiredKey);
+  }
+
+  @override
+  Future<void> saveVideo(Course course, Lesson lesson) async {
+    var videosBox = await Hive.openBox<Course>('videos');
+
+    final Map<dynamic, Course> courseMap = videosBox.toMap();
+    dynamic desiredKey;
+    courseMap.forEach((key, value){
+      if (value.id == course.id) {
+        desiredKey = key;
+      }
+    });
+    if (desiredKey == null) {
+      // Add
+      await videosBox.add(course);
+      _saveLesson(course.id, lesson);
+    } else {
+      // Update
+    }
+  }
+
+  Future<void> _saveLesson(int courseId, Lesson lesson) async {
+    var lessonBox = await Hive.openBox<Lesson>('lesson');
+    lessonBox.put(courseId, lesson);
+  }
+
+  @override
+  Future<List<ReturnedVideo>> getVideos() async {
+    List<ReturnedVideo> returnedVideos = [];
+
+    var videosBox = await Hive.openBox<Course>('videos');
+    List<Course> courses =  videosBox.values.toList();
+    var lessonBox = await Hive.openBox<Lesson>('lesson');
+    for (var element in courses) {
+      returnedVideos.add(ReturnedVideo(element, lessonBox.get(element.id)!));
+    }
+    return returnedVideos;
+  }
+
+  @override
+  Future<void> removeVideo(int courseId, int lessonId) async {
+    var videosBox = await Hive.openBox<Course>('videos');
+    final Map<dynamic, Course> courseMap = videosBox.toMap();
+    dynamic desiredKey;
+    courseMap.forEach((key, value) async {
+      if (value.id == courseId) {
+        desiredKey = key;
+        var lessonBox = await Hive.openBox<Lesson>('lesson');
+        lessonBox.delete(courseId);
+      }
+    });
+    videosBox.delete(desiredKey);
   }
 }

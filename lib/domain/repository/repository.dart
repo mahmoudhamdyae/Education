@@ -2,6 +2,8 @@ import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 
 import '../models/courses/class_model.dart';
+import '../models/lesson/lesson.dart';
+import '../models/returned_video.dart';
 
 abstract class Repository {
 
@@ -13,6 +15,9 @@ abstract class Repository {
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
+  Future<void> saveVideo(Course course, Lesson lesson);
+  Future<List<ReturnedVideo>> getVideos();
+  Future<void> removeVideo(int courseId, int lessonId);
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

@@ -4,6 +4,8 @@ import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/repository/repository.dart';
 
 import '../../domain/models/courses/class_model.dart';
+import '../../domain/models/lesson/lesson.dart';
+import '../../domain/models/returned_video.dart';
 import '../local/local_data_source.dart';
 
 class RepositoryImpl extends Repository {
@@ -48,6 +50,21 @@ class RepositoryImpl extends Repository {
   @override
   Future<void> removeFav(int courseId) {
     return _localDataSource.removeFav(courseId);
+  }
+
+  @override
+  Future<void> saveVideo(Course course, Lesson lesson) {
+    return _localDataSource.saveVideo(course, lesson);
+  }
+
+  @override
+  Future<List<ReturnedVideo>> getVideos() {
+    return _localDataSource.getVideos();
+  }
+
+  @override
+  Future<void> removeVideo(int courseId, int lessonId) {
+    return _localDataSource.removeVideo(courseId, lessonId);
   }
 
   // Account Service
