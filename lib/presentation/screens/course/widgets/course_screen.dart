@@ -2,6 +2,7 @@ import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
 import 'package:flutter/material.dart';
@@ -32,16 +33,11 @@ class CourseScreen extends StatelessWidget {
                   children: [
                     Text(
                       subject.name,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: getLargeStyle(),
                     ),
                     Text(
                       '${subject.term.toString()} د.ك',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
+                      style: getLargeStyle(
                         color: ColorManager.secondary,
                       ),
                     ),
@@ -54,27 +50,26 @@ class CourseScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       '5 وحدات - 32 درس',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: getSmallStyle(),
                     ),
                     Row(
                       children: [
                         Text(
                           subject.rate.toString(),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
+                          style: getLargeStyle(
                             color: ColorManager.primary,
                           ),
                         ),
                         const SizedBox(width: 4.0,),
-                        const Icon(
-                          Icons.star,
-                          color: ColorManager.primary,
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 4.0),
+                          child: Icon(
+                            Icons.star,
+                            color: ColorManager.primary,
+                            size: 16,
+                          ),
                         ),
                       ],
                     ),
@@ -86,14 +81,11 @@ class CourseScreen extends StatelessWidget {
                 child: Divider(height: 1,),
               ),
               // المدرس
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   AppStrings.courseTeacher,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: getLargeStyle(),
                 ),
               ),
               Padding(
@@ -106,14 +98,11 @@ class CourseScreen extends StatelessWidget {
                       width: 40,
                     ),
                     // Teacher Name
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
                         'أحمد السعدنى',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: getSmallStyle(),
                       ),
                     ),
                   ],
@@ -138,11 +127,9 @@ class CourseScreen extends StatelessWidget {
                     onPressed: () {
                       Get.to(() => const LessonScreen(), arguments: { 'course': subject });
                       },
-                    child: const Text(
+                    child: Text(
                         AppStrings.watchFirstLesson,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                        style: getSmallStyle(
                           color: ColorManager.primary,
                         ),
                       ),
@@ -165,11 +152,9 @@ class CourseScreen extends StatelessWidget {
                       ),
                       onPressed: () {
                       },
-                      child: const Text(
+                      child: Text(
                         AppStrings.buyCourse,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                        style: getSmallStyle(
                           color: ColorManager.white,
                         ),
                       )
