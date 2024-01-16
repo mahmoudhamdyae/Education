@@ -22,31 +22,41 @@ class MeScreenBody extends StatelessWidget {
     return ListView(
       children: [
         Center(
-          child: Text(
-            AppStrings.bottomBarMe,
-            style: getLargeStyle(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Text(
+              AppStrings.bottomBarMe,
+              style: getLargeStyle(),
+            ),
           ),
         ),
-        Row(
-          children: [
-            const UserImage(),
-            Column(
-              children: [
-                Text(
-                  Get.find<AuthController>().getUserName(),
-                  style: getLargeStyle(
-                    color: ColorManager.secondary
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            children: [
+              const UserImage(),
+              const SizedBox(width: 8.0,),
+              Column(
+                children: [
+                  Text(
+                    Get.find<AuthController>().getUserName(),
+                    style: getLargeStyle(
+                      color: ColorManager.secondary
+                    ),
                   ),
-                ),
-                Text(
-                  Get.find<AuthController>().getPhoneNumber(),
-                  style: getSmallStyle(),
-                ),
-              ],
-            )
-          ],
+                  Text(
+                    Get.find<AuthController>().getPhoneNumber(),
+                    style: getSmallStyle(),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
-        const Divider(),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Divider(color: Color(0xffE4E4E4),),
+        ),
         MeItem(
             icon: ImageAssets.editProfile,
             title: AppStrings.editProfile,
