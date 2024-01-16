@@ -12,9 +12,12 @@ class FavScreen extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40.0),
       child: Column(
         children: [
-          Text(
-            AppStrings.saves,
-            style: getLargeStyle(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Text(
+              AppStrings.saves,
+              style: getLargeStyle(),
+            ),
           ),
           const Expanded(child: FavTabs()),
         ],
