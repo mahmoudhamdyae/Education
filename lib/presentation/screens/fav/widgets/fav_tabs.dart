@@ -34,9 +34,11 @@ class _FavTabsState extends State<FavTabs> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        AppStrings.favCourses,
-                        style: selectedTab == 0 ? getLargeStyle() : getLargeStyle(color: ColorManager.grey),
+                      child: Center(
+                        child: Text(
+                          AppStrings.favCourses,
+                          style: selectedTab == 0 ? getLargeStyle() : getLargeStyle(color: ColorManager.grey),
+                        ),
                       ),
                     ),
                   )
