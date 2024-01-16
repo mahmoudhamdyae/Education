@@ -1,13 +1,16 @@
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/font_manager.dart';
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
+import 'package:education/presentation/widgets/empty_screen.dart';
+import 'package:education/presentation/widgets/error_screen.dart';
+import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
-import 'package:hive/hive.dart';
 
 import '../../../resources/assets_manager.dart';
 import '../controller/fav_controller.dart';
@@ -20,25 +23,32 @@ class TabCourses extends StatelessWidget {
     return GetX<FavController>(
       builder: (FavController controller) {
         List<Course> favCourses = controller.courses;
+        if (controller.status.isLoading) {
+          return const LoadingScreen();
+        } else if (controller.status.isError) {
+          return ErrorScreen(error: controller.status.errorMessage ?? '');
+        } else if (favCourses.isEmpty) {
+          return const Expanded(child: EmptyScreen(emptyString: AppStrings.emptyFav));
+        }
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               itemCount: favCourses.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color(0xffF2F2F2),
-                        width: 1,
+                return Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color(0xffF2F2F2),
+                            width: 1,
+                          ),
+                        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                       ),
-                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                  ),
-                  child: Stack(
-                    children: [
-                      Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
@@ -74,12 +84,13 @@ class TabCourses extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Positioned(
-                          left: 0,
-                          child: BookmarkCourse(course: favCourses[index])
-                      ),
-                    ],
-                  ),
+                    ),
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        child: BookmarkCourse(course: favCourses[index])
+                    ),
+                  ],
                 );
               },
             ),
