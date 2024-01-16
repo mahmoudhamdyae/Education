@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import '../../../../domain/models/courses/course.dart';
 import '../../../resources/color_manager.dart';
 
+import '../../../resources/styles_manager.dart';
 import 'course_tabs.dart';
 
 class LessonScreen extends StatefulWidget {
@@ -69,14 +70,11 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                     child: Text(
                       (Get.arguments['course'] as Course).name,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: getLargeStyle(),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       top: 0.0,
                       right: 16.0,
                       left: 16.0,
@@ -84,10 +82,8 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                     child: Text(
                       'احمد السعدني',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff808080),
+                      style: getSmallStyle(
+                        color: const Color(0xff808080),
                       ),
                     ),
                   ),
