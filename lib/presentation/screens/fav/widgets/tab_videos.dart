@@ -27,9 +27,7 @@ class TabVideos extends StatelessWidget {
           }
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Expanded(
-              child: VideosList(courses: returnedVideos,),
-            ),
+            child: VideosList(courses: returnedVideos,),
           );
         },
       ),

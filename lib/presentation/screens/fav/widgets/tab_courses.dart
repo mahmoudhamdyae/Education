@@ -26,9 +26,7 @@ class TabCourses extends StatelessWidget {
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Expanded(
-            child: CoursesList(courses: favCourses,),
-          ),
+          child: CoursesList(courses: favCourses,),
         );
       },
     );
