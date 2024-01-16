@@ -13,7 +13,7 @@ class BuyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: width,
-        child: BuyButton(course: course)
+        child: BuyButton(course: course),
     );
   }
 }
