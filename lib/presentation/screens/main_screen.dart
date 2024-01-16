@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 0;
           });
         },
-        icon: _selectedIndex == 0 ? SvgPicture.asset(ImageAssets.home,) : SvgPicture.asset(ImageAssets.home,),
+        icon: _selectedIndex == 0 ? SvgPicture.asset(ImageAssets.homeSelected,) : SvgPicture.asset(ImageAssets.home,),
         title: AppStrings.bottomBarHome,
         activeColorPrimary: ColorManager.white,
       ),
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 1;
           });
         },
-        icon: _selectedIndex == 1 ? SvgPicture.asset(ImageAssets.subscription,) : SvgPicture.asset(ImageAssets.subscription,),
+        icon: _selectedIndex == 1 ? SvgPicture.asset(ImageAssets.subscriptionSelected,) : SvgPicture.asset(ImageAssets.subscription,),
         title: AppStrings.bottomBarSubscription,
         activeColorPrimary: ColorManager.white,
       ),
@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 2;
           });
         },
-        icon: _selectedIndex == 2 ? SvgPicture.asset(ImageAssets.fav,) : SvgPicture.asset(ImageAssets.fav,),
+        icon: _selectedIndex == 2 ? SvgPicture.asset(ImageAssets.favSelected,) : SvgPicture.asset(ImageAssets.fav,),
         title: AppStrings.bottomBarCart,
         activeColorPrimary: ColorManager.white,
       ),
@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 3;
           });
         },
-        icon: _selectedIndex == 3 ? SvgPicture.asset(ImageAssets.me,) : SvgPicture.asset(ImageAssets.me,),
+        icon: _selectedIndex == 3 ? SvgPicture.asset(ImageAssets.meSelected,) : SvgPicture.asset(ImageAssets.me,),
         title: AppStrings.bottomBarMe,
         activeColorPrimary: ColorManager.white,
       ),

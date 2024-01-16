@@ -21,10 +21,14 @@ class ImageAssets {
   static const String baqatRightDown = "$imagePath/baqatRightDown.png";
   static const String course = "$imagePath/course.png";
   static const String bookmark = "$imagePath/bookmark.svg";
+  static const String homeSelected = "$imagePath/home_selected.svg";
   static const String home = "$imagePath/home.svg";
   static const String subscription = "$imagePath/subscription.svg";
+  static const String subscriptionSelected = "$imagePath/subscription_selected.svg";
   static const String fav = "$imagePath/fav.svg";
+  static const String favSelected = "$imagePath/fav_selected.svg";
   static const String me = "$imagePath/me.svg";
+  static const String meSelected = "$imagePath/me_selected.svg";
   static const String courseTeacher = "$imagePath/courseTeacher.png";
   static const String download = "$imagePath/download.svg";
 }
