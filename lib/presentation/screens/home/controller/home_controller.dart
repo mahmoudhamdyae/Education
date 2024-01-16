@@ -15,6 +15,12 @@ class HomeController extends GetxController {
 
   HomeController(this._repository);
 
+  @override
+  void onInit() {
+    super.onInit();
+    getRecordedCourses();
+  }
+
   getRecordedCourses() async {
     classModel.value = ClassModel([], []);
     String saff = _repository.getGrade();

@@ -17,10 +17,10 @@ class FavController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getFav();
+    getFav();
   }
 
-  _getFav() async {
+  getFav() async {
     _status.value = RxStatus.loading();
     try {
       _repository.getFav().then((localCourses) {

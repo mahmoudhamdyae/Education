@@ -14,23 +14,25 @@ class TabVideos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<VideoController>(
-      builder: (VideoController controller) {
-        List<ReturnedVideo> returnedVideos = controller.courses;
-        if (controller.status.isLoading) {
-          return const LoadingScreen();
-        } else if (controller.status.isError) {
-          return ErrorScreen(error: controller.status.errorMessage ?? '');
-        } else if (returnedVideos.isEmpty) {
-          return const Expanded(child: EmptyScreen(emptyString: AppStrings.emptyVideos));
-        }
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Expanded(
-            child: VideosList(courses: returnedVideos,),
-          ),
-        );
-      },
+    return Expanded(
+      child: GetX<VideoController>(
+        builder: (VideoController controller) {
+          List<ReturnedVideo> returnedVideos = controller.courses;
+          if (controller.status.isLoading) {
+            return const LoadingScreen();
+          } else if (controller.status.isError) {
+            return ErrorScreen(error: controller.status.errorMessage ?? '');
+          } else if (returnedVideos.isEmpty) {
+            return const EmptyScreen(emptyString: AppStrings.emptyVideos);
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Expanded(
+              child: VideosList(courses: returnedVideos,),
+            ),
+          );
+        },
+      ),
     );
   }
 }

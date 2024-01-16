@@ -165,7 +165,7 @@ class LocalDataSourceImpl extends LocalDataSource {
     List<Course> courses =  videosBox.values.toList();
     var lessonBox = await Hive.openBox<Lesson>('lesson');
     for (var element in courses) {
-      returnedVideos.add(ReturnedVideo(element, lessonBox.get(element.id)!));
+      returnedVideos.add(ReturnedVideo(element, lessonBox.get(element.id) ?? Lesson(0, '', '', '', '')));
     }
     return returnedVideos;
   }

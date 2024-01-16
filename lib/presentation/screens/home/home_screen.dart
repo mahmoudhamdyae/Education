@@ -12,11 +12,11 @@ import '../../widgets/loading_screen.dart';
 import 'controller/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
+
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.find<HomeController>().getRecordedCourses();
     return ListView(
       children: [
         HomeAppBar(),
