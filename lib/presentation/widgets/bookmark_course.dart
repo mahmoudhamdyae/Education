@@ -25,21 +25,16 @@ class BookmarkCourse extends StatelessWidget {
             }
           },
           icon: controller.isFav(course) ?
-          const Icon(
-            Icons.bookmark,
-            color: ColorManager.primary,
-            size: 40,
+          SvgPicture.asset(
+            ImageAssets.bookmarkSelected,
+            height: 32,
+            width: 20,
           )
               :
-          /*SvgPicture.asset(
+          SvgPicture.asset(
             ImageAssets.bookmark,
             height: 32,
             width: 20,
-          )*/
-          const Icon(
-            Icons.bookmark_border,
-            color: ColorManager.primary,
-            size: 40,
           ),
         );
       },

@@ -1,4 +1,3 @@
-import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import 'package:education/presentation/screens/home/widgets/baqat.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/home_app_bar.dart';
 import 'package:education/presentation/screens/home/widgets/subjects.dart';
