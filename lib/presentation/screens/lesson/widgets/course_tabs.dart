@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_course_lessons.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_morfaqat.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_tests.dart';
@@ -33,14 +34,11 @@ class _CourseTabsState extends State<CourseTabs> {
                         selectedTab = 0;
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         AppStrings.tabLessons,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: getLargeStyle(),
                       ),
                     ),
                   )
@@ -52,13 +50,10 @@ class _CourseTabsState extends State<CourseTabs> {
                         selectedTab = 1;
                       });
                     },
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         AppStrings.tabAttachments,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                        ),
+                        style: getLargeStyle(),
                       ),
                     ),
                   )
@@ -70,14 +65,11 @@ class _CourseTabsState extends State<CourseTabs> {
                         selectedTab = 2;
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.only(right: 40.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 40.0),
                       child: Text(
                         AppStrings.tabTests,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                        ),
+                        style: getLargeStyle(),
                       ),
                     ),
                   ),

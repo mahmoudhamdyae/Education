@@ -1,11 +1,10 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
-import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/courses/course.dart';
+import '../../../resources/styles_manager.dart';
 
 class TabCourseLessons extends StatelessWidget {
 
@@ -40,8 +39,7 @@ class TabCourseLessons extends StatelessWidget {
                               padding: const EdgeInsets.all(6.0),
                               child: Text(
                                 index < 9 ? '0${index + 1}' : '${index + 1}',
-                                style: const TextStyle(
-                                  fontSize: 16,
+                                style: getLargeStyle(
                                   fontWeight: FontWeight.w400,
                                   color: ColorManager.secondary,
                                 ),
@@ -51,10 +49,7 @@ class TabCourseLessons extends StatelessWidget {
                           const SizedBox(width: 8.0,),
                           Text(
                             controller.wehdat[0].lessons[index].title,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: getSmallStyle(),
                           ),
                           Expanded(child: Container()),
                           InkWell(

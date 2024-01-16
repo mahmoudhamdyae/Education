@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -64,12 +65,9 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 AppStrings.notes,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: getSmallStyle(),
               ),
               IconButton(
                   onPressed: () {
@@ -81,12 +79,9 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   AppStrings.pdf,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: getSmallStyle(),
                 ),
                 IconButton(
                   onPressed: () {
