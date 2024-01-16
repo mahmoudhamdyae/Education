@@ -13,6 +13,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../data/network_info.dart';
 import '../presentation/screens/auth/auth_controller.dart';
+import '../presentation/screens/fav/controller/video_controller.dart';
 import '../presentation/screens/home/controller/home_controller.dart';
 import '../presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
 import '../presentation/screens/home/subject/controller/subject_controller.dart';
@@ -56,5 +57,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<FavController>(() => FavController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<VideoController>(() => VideoController(Get.find<Repository>()), fenix: true);
   }
 }

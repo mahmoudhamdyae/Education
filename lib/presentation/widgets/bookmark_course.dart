@@ -4,7 +4,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 
 import '../../domain/models/courses/course.dart';
 import '../resources/assets_manager.dart';
-import '../resources/color_manager.dart';
 import '../screens/fav/controller/fav_controller.dart';
 
 class BookmarkCourse extends StatelessWidget {
