@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
+import 'package:education/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:education/presentation/screens/subscription/widgets/subscription_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
@@ -8,6 +9,7 @@ import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../widgets/courses_list.dart';
 import '../../../widgets/require_log_in_view.dart';
 
 class SubscriptionScreen extends StatelessWidget {
@@ -18,7 +20,7 @@ class SubscriptionScreen extends StatelessWidget {
     return Get.find<AuthController>().isUserLoggedIn() ?
     GetX<SubscriptionController>(
       init: Get.find<SubscriptionController>(),
-      builder: (controller) {
+      builder: (SubscriptionController controller) {
         if (controller.status.isLoading) {
           return const LoadingScreen();
         } else if (controller.status.isError) {
@@ -27,7 +29,10 @@ class SubscriptionScreen extends StatelessWidget {
           return const EmptyScreen(emptyString: AppStrings.emptySubscriptions);
         } else {
           final courses = controller.courses;
-          return SubscriptionScreenBody(courses: courses);
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Expanded(child: CoursesList(courses: courses)),
+          );
         }
       },
     ) : const RequireLogInView();
