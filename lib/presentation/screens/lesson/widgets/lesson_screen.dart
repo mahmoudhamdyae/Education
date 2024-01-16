@@ -1,4 +1,3 @@
-import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/vimeo_video_widget.dart';
@@ -35,8 +34,6 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  final Repository appPreferences = Get.find<Repository>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
