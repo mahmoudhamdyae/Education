@@ -55,7 +55,7 @@ class CoursesList extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'وليد أبو قمر',
+                          courses[index].teacher,
                           style: getSmallStyle(fontSize: 13),
                         ),
                         const SizedBox(height: 16.0,),
