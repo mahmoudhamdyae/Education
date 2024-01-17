@@ -1,6 +1,7 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
+import 'package:education/presentation/widgets/lessons_widgets.dart';
 import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,56 +19,14 @@ class TabCourseLessons extends StatelessWidget {
     return Expanded(
       child: Stack(
         children: [
-          GetX<LessonController>(
-            init: Get.find<LessonController>(),
-            builder: (LessonController controller) {
-              return ListView.separated(
-                itemCount: controller.wehdat[0].lessons.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: InkWell(
-                      onTap: () {
-                        // Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
-                      },
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: ColorManager.secondary, width: 1)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                index < 9 ? '0${index + 1}' : '${index + 1}',
-                                style: getLargeStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: ColorManager.secondary,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8.0,),
-                          Text(
-                            controller.wehdat[0].lessons[index].title,
-                            style: getSmallStyle(),
-                          ),
-                          Expanded(child: Container()),
-                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: controller.wehdat[0].lessons[index],),
-                        ],
-                      ),
-                    ),
-                  );
-                }, separatorBuilder: (BuildContext context, int index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                  child: Divider(color: ColorManager.grey, thickness: 0.08,),
-                );
-              },
-              );
-            },
-          ),
+          // GetX<LessonController>(
+          //   init: Get.find<LessonController>(),
+          //   builder: (LessonController controller) {
+          //     return
+                LessonsWidget(wehdat: Get.find<LessonController>().wehdat, isInLessonScreen: false,),
+          //     ;
+          //   },
+          // ),
           isUserLoggedIn ? Container():  Container(
             color: const Color(0x00000000),
             height: 80.0,

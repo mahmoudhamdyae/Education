@@ -1,10 +1,13 @@
+import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
+import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
+import '../resources/styles_manager.dart';
 import '../resources/values_manager.dart';
 import 'dialogs/require_auth_dialog.dart';
 
@@ -70,20 +73,20 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                 padding: const EdgeInsets.all(AppPadding.p8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppSize.s4),
-                    color: ColorManager.primary
+                    color: ColorManager.white
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      expanded == index ? Icons.expand_less : Icons.expand_more,
-                      color: ColorManager.white,
-                    ),
-                    const SizedBox(width: AppSize.s4,),
                     Text(
                       wehda.title,
                       style: const TextStyle(
-                          color: ColorManager.white
+                          color: ColorManager.black
                       ),
+                    ),
+                    const SizedBox(width: AppSize.s4,),
+                    Icon(
+                      expanded == index ? Icons.expand_less : Icons.expand_more,
+                      color: ColorManager.black,
                     ),
                   ],
                 )
@@ -93,7 +96,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
         expanded == index ?
         ListView.builder(
             shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: wehda.lessons.length,
             itemBuilder: (context, lessonIndex) {
               return InkWell(
@@ -116,21 +119,37 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                    child: Row(
-                      children: [
-                        isUserLoggedIn ? Container() : index == 0 && lessonIndex == 0 ?
-                        const Icon(
-                          Icons.remove_red_eye,
-                          color: ColorManager.primary,
-                        ) : const Icon(Icons.lock, color: Colors.grey,),
-                        isUserLoggedIn ? Container() : const SizedBox(width: AppSize.s8,),
-                        Text(
-                          wehda.lessons[lessonIndex].title,
-                          style: TextStyle(
-                              color: isUserLoggedIn ? ColorManager.primary : index == 0 && lessonIndex == 0 ? ColorManager.primary : Colors.grey
+                    child: InkWell(
+                      onTap: () {
+                        // Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
+                      },
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: ColorManager.secondary, width: 1)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Text(
+                                index < 9 ? '0${index + 1}' : '${index + 1}',
+                                style: getLargeStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorManager.secondary,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 8.0,),
+                          Text(
+                            widget.wehdat[0].lessons[index].title,
+                            style: getSmallStyle(),
+                          ),
+                          Expanded(child: Container()),
+                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: widget.wehdat[0].lessons[index],),
+                        ],
+                      ),
                     ),
                   )
               );
