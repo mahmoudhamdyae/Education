@@ -21,7 +21,7 @@ class SaveVideoButton extends StatelessWidget {
       builder: (VideoController controller) {
         return InkWell(
           onTap: () {
-            if (controller.isSaved(lesson)) {
+            if (controller.isSaved(course, lesson)) {
               controller.removeVideo(course, lesson);
             } else {
               controller.saveVideo(course, lesson);
@@ -29,7 +29,7 @@ class SaveVideoButton extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.all(2.0),
-            child: controller.isSaved(lesson) ?
+            child: controller.isSaved(course, lesson) ?
             SvgPicture.asset(
               ImageAssets.bookmarkSelectedVideo,
               height: 21.5,

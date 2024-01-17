@@ -1,5 +1,6 @@
 import 'package:education/domain/models/returned_video.dart';
 import 'package:education/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/courses/course.dart';
@@ -28,6 +29,7 @@ class VideoController extends GetxController {
       _repository.getVideos().then((localCourses) {
         _status.value = RxStatus.success();
         courses.value = localCourses;
+        debugPrint('--------- get -- ${courses.length}');
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -40,6 +42,9 @@ class VideoController extends GetxController {
       _repository.saveVideo(course, lesson).then((value) {
         _status.value = RxStatus.success();
         courses.add(ReturnedVideo(course, lesson));
+        debugPrint('--------- save courses ${course.id} ${course.name}');
+        debugPrint('--------- save lessons ${lesson.id} ${lesson.title}');
+        debugPrint('--------- save -- ${courses.length}');
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -50,15 +55,18 @@ class VideoController extends GetxController {
     try {
       _repository.removeVideo(course.id, lesson.id).then((value) {
         _status.value = RxStatus.success();
-        courses.remove(ReturnedVideo(course, lesson));
+        // courses.remove(ReturnedVideo(course, lesson));
+        _getVideos();
+        debugPrint('--------- remove courses ${course.id} ${course.name}');
+        debugPrint('--------- remove lessons ${lesson.id} ${lesson.title}');
+        debugPrint('--------- remove -- ${courses.length}');
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
     }
   }
 
-  bool isSaved(Lesson lesson) {
-    bool x = courses.any((element) => element.lesson.id == lesson.id);
-    return x;
+  bool isSaved(Course course, Lesson lesson) {
+    return courses.any((element) => element.course.id == course.id && element.lesson.id == lesson.id);
   }
 }

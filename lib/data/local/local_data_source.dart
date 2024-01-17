@@ -1,5 +1,6 @@
 import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/domain/models/returned_video.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/models/courses/course.dart';
@@ -154,7 +155,7 @@ class LocalDataSourceImpl extends LocalDataSource {
 
   Future<void> _saveLesson(int courseId, Lesson lesson) async {
     var lessonBox = await Hive.openBox<Lesson>('lesson');
-    lessonBox.put(courseId, lesson);
+    lessonBox.put('$courseId-${lesson.id}', lesson);
   }
 
   @override
@@ -164,8 +165,10 @@ class LocalDataSourceImpl extends LocalDataSource {
     var videosBox = await Hive.openBox<Course>('videos');
     List<Course> courses =  videosBox.values.toList();
     var lessonBox = await Hive.openBox<Lesson>('lesson');
-    for (var element in courses) {
-      returnedVideos.add(ReturnedVideo(element, lessonBox.get(element.id) ?? Lesson(0, '', '', '', '')));
+    List<Lesson> lessons =  lessonBox.values.toList();
+    for (var singleLesson in lessons) {
+      Course? course = courses.firstWhereOrNull((element) => element.id == singleLesson.tutorialId);
+      returnedVideos.add(ReturnedVideo(course ?? Course(-1, '', 0, 0, '', '', '', ''), singleLesson));
     }
     return returnedVideos;
   }
@@ -179,7 +182,7 @@ class LocalDataSourceImpl extends LocalDataSource {
       if (value.id == courseId) {
         desiredKey = key;
         var lessonBox = await Hive.openBox<Lesson>('lesson');
-        lessonBox.delete(courseId);
+        lessonBox.delete('$courseId-$lessonId');
       }
     });
     videosBox.delete(desiredKey);

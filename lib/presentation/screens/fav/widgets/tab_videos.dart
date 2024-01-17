@@ -2,6 +2,7 @@ import 'package:education/domain/models/returned_video.dart';
 import 'package:education/presentation/screens/fav/controller/video_controller.dart';
 import 'package:education/presentation/screens/fav/widgets/videos_list.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 
 import '../../../resources/strings_manager.dart';
@@ -16,6 +17,7 @@ class TabVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GetX<VideoController>(
+        init: Get.find<VideoController>(),
         builder: (VideoController controller) {
           List<ReturnedVideo> returnedVideos = controller.courses;
           if (controller.status.isLoading) {

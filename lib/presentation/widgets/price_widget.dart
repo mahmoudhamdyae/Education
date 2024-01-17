@@ -21,7 +21,7 @@ final String month;
             color: ColorManager.secondary
           ),
         ),
-        const SizedBox(height: 8.0,),
+        const SizedBox(height: 4.0,),
         Text(
           month,
           style: getLargeStyle(),

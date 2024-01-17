@@ -7,7 +7,7 @@ import '../../../../domain/repository/repository.dart';
 
 class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
-  final Rx<Lesson> selectedLesson = Lesson(0, '', '', '', '').obs;
+  final Rx<Lesson> selectedLesson = Lesson(0, '', '', '', '', -1).obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;

@@ -134,7 +134,7 @@ class AppStrings {
   static const String favCourses = 'الكورسات';
   static const String favVideos = 'الفيديوهات';
   static const String saves = 'المحفوظات';
-  static const String emptyFav = 'لا يوجد محفوظات';
+  static const String emptyFav = 'لا يوجد كورسات محفوظة';
   static const String emptyVideos = 'لا يوجد فيديوهات محفوظة';
   static const String monthly = 'شهريا';
   static const String termly = 'ترم كامل';

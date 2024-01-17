@@ -16,7 +16,7 @@ class VideosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemCount: courses.length,
@@ -67,7 +67,9 @@ class VideosList extends StatelessWidget {
             ),
           ),
         );
-      },
+      }, separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(height: 16.0,);
+    },
     );
   }
 }
