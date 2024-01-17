@@ -138,6 +138,11 @@ class AppStrings {
   static const String emptyVideos = 'لا يوجد فيديوهات محفوظة';
   static const String monthly = 'شهريا';
   static const String termly = 'ترم كامل';
+  // Onboarding
+  static const String onboarding1 = 'تعلم من أى مكان';
+  static const String onboarding2 = 'وفر وقتك';
+  static const String onboarding3 = 'احصل على الشهادات';
+  static const String onboardingStart = 'ابدأ';
   // Me Screen
   static const String editProfile = 'تعديل البروفايل';
   static const String baqat = 'باقات الاشتراك';

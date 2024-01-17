@@ -10,7 +10,7 @@ class ImageAssets {
   static const String printedNotes = "$imagePath/books.png";
   static const String courses = "$imagePath/courses.png";
   static const String recordedCourses = "$imagePath/recorded_courses.png";
-  static const String empty = "$imagePath/empty.svg";
+  static const String empty = "$imagePath/empty.png";
   static const String error = "$imagePath/error.svg";
   static const String serverDown = "$imagePath/server_down.svg";
   static const String user = "$imagePath/user.svg";
@@ -41,6 +41,11 @@ class ImageAssets {
   static const String whoAreWe = "$imagePath/who_are_we.svg";
   static const String delAccount = "$imagePath/del_account.svg";
   static const String signOut = "$imagePath/sign_out.svg";
+  static const String onboarding1 = "$imagePath/onboarding1.png";
+  static const String onboarding2 = "$imagePath/onboarding2.png";
+  static const String onboarding3 = "$imagePath/onboarding2.png";
+  static const String login = "$imagePath/login.png";
+  static const String register = "$imagePath/register.png";
 }
 
 class JsonAssets {

@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<HomeController>().getRecordedCourses();
     return ListView(
       children: [
         HomeAppBar(),

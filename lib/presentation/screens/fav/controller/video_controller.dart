@@ -55,7 +55,6 @@ class VideoController extends GetxController {
     try {
       _repository.removeVideo(course.id, lesson.id).then((value) {
         _status.value = RxStatus.success();
-        // courses.remove(ReturnedVideo(course, lesson));
         _getVideos();
         debugPrint('--------- remove courses ${course.id} ${course.name}');
         debugPrint('--------- remove lessons ${lesson.id} ${lesson.title}');

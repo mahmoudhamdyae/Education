@@ -1,7 +1,6 @@
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../resources/assets_manager.dart';
 
@@ -16,7 +15,7 @@ class EmptyScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
+          Image.asset(
             ImageAssets.empty,
             height: AppSize.s190,
           ),
