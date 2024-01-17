@@ -19,14 +19,7 @@ class TabCourseLessons extends StatelessWidget {
     return Expanded(
       child: Stack(
         children: [
-          // GetX<LessonController>(
-          //   init: Get.find<LessonController>(),
-          //   builder: (LessonController controller) {
-          //     return
-                LessonsWidget(wehdat: Get.find<LessonController>().wehdat, isInLessonScreen: false,),
-          //     ;
-          //   },
-          // ),
+          LessonsWidget(wehdat: Get.find<LessonController>().wehdat, isInLessonScreen: false,),
           isUserLoggedIn ? Container():  Container(
             color: const Color(0x00000000),
             height: 80.0,

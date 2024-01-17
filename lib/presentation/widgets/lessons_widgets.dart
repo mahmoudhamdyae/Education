@@ -143,11 +143,11 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                           ),
                           const SizedBox(width: 8.0,),
                           Text(
-                            widget.wehdat[0].lessons[index].title,
+                            wehda.lessons[lessonIndex].title,
                             style: getSmallStyle(),
                           ),
                           Expanded(child: Container()),
-                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: widget.wehdat[0].lessons[index],),
+                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[index],),
                         ],
                       ),
                     ),
