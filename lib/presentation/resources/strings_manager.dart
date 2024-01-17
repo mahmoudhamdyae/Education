@@ -5,11 +5,11 @@ class AppStrings {
   // Authentication
   static const phoneHint = "رقم الهاتف";
   static const usernameHint = "اسم الطالب";
-  static const passwordHint = "كلمة السر";
+  static const passwordHint = "كلمة المرور";
   static const passwordConfirmHint = "تأكيد كلمة السر";
   static const login = "تسجيل الدخول";
-  static const registerText1 = "لم تقم بالتسجيل؟ ";
-  static const registerText2 = "سجل الان";
+  static const registerText1 = "ليس لديك حساب؟ ";
+  static const registerText2 = "إنشاء حساب";
   static const String userNameInvalid = "اسم المستخدم لا يمكن أن يكون فارغا";
   static const String mobileNumberInvalid = "رقم الهاتف غير صالح";
   static const passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";

@@ -1,10 +1,10 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/login/controller/login_controller.dart';
 import 'package:education/presentation/screens/auth/register/widgets/register_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/strings_manager.dart';
@@ -48,11 +48,17 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (LoginController controller) {
           return ListView(
             children: [
-              // Lottie Image
-              SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Lottie.asset(JsonAssets.login)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+                  child: Text(
+                    AppStrings.login,
+                    style: getLargeStyle(),
+                  ),
+                ),
+              ),
+              Image.asset(
+                ImageAssets.login
               ),
               const SizedBox(height: AppSize.s40),
               Form(
@@ -72,11 +78,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           return AppStrings.mobileNumberInvalid;
                         },
-                        decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.phone),
+                        decoration: getTextFieldDecoration(
+                            hint: AppStrings.phoneHint,
+                            onPressed: () { },
+                            prefixIcon: Icons.phone
+                        )/*const InputDecoration(
+                            prefixIcon: Icon(Icons.phone, color: Color(0xff545454),),
                             hintText: AppStrings.phoneHint,
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(width: 1))),
+                                borderSide: BorderSide(width: 1)))*/,
                       ),
                       const SizedBox(
                         height: AppSize.s28,
@@ -92,19 +102,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                         obscureText: controller.obscureText.value,
-                        decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon: IconButton(
-                              icon: Icon(controller.obscureText.value
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                controller.toggleSecurePassword();
-                              },
-                            ),
-                            hintText: AppStrings.passwordHint,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(width: 1))),
+                        decoration: getTextFieldDecoration(
+                            hint: AppStrings.passwordHint,
+                            onPressed: () {
+                              controller.toggleSecurePassword();
+                            },
+                            prefixIcon: Icons.lock,
+                            suffixIcon: controller.obscureText.value
+                                ? Icons.visibility
+                                : Icons.visibility_off
+                        ),
                       ),
                       const SizedBox(
                         height: AppSize.s28,
@@ -114,33 +121,64 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         height: AppSize.s40,
                         child: FilledButton(
+                          style: getFilledButtonStyle(),
                           onPressed: () async {
                             await logIn();
                           },
-                          child: const Text(
+                          child: Text(
                             AppStrings.login,
+                            style: getSmallStyle(
+                              color: ColorManager.white
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: AppSize.s8,
+                        height: AppSize.s28,
                       ),
                       // Navigate to Register Screen
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
                             onPressed: () => Get.to(const RegisterScreen()),
-                            child: const Row(
+                            child: Row(
                               children: [
-                                Text(AppStrings.registerText1,
-                                    style: TextStyle(color: ColorManager.black)),
-                                Text(AppStrings.registerText2,
-                                    style: TextStyle(color: ColorManager.blue)),
+                                Text(
+                                    AppStrings.registerText1,
+                                    style: getLargeStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: ColorManager.black,
+                                    )
+                                ),
+                                Text(
+                                    AppStrings.registerText2,
+                                    style: getLargeStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: ColorManager.secondary,
+                                    )
+                                ),
                               ],
                             ),
                           )
                         ],
+                      ),
+                      // Login Button
+                      SizedBox(
+                        width: double.infinity,
+                        height: AppSize.s40,
+                        child: ElevatedButton(
+                          style: getOutlinedButtonStyle(),
+                          onPressed: () async {
+                            await logIn();
+                          },
+                          child: Text(
+                            AppStrings.loginAsAGuestButton,
+                            style: getSmallStyle(
+                              color: ColorManager.primary
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

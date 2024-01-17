@@ -104,15 +104,7 @@ class CourseScreen extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                          width: 1.0,
-                          color: ColorManager.primary,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
+                    style: getOutlinedButtonStyle(),
                     onPressed: () {
                       Get.to(() => const LessonScreen(), arguments: { 'course': subject });
                       },
@@ -131,14 +123,7 @@ class CourseScreen extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                              )
-                          )
-                      ),
+                      style: getFilledButtonStyle(),
                       onPressed: () {
                       },
                       child: Text(

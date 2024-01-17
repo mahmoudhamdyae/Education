@@ -13,14 +13,7 @@ class BuyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-              const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              )
-          ),
-          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-        ),
+        style: getFilledButtonStyle(),
         onPressed: () {
         },
         child: Text(
