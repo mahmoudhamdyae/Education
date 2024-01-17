@@ -78,7 +78,7 @@ class _LessonScreenState extends State<LessonScreen> {
                       bottom: 16.0,
                     ),
                     child: Text(
-                      'احمد السعدني',
+                      (Get.arguments['course'] as Course).teacher,
                       style: getSmallStyle(
                         color: const Color(0xff808080),
                       ),

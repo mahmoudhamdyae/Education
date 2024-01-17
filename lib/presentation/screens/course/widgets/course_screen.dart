@@ -6,7 +6,6 @@ import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
-import 'package:education/presentation/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,11 +53,6 @@ class CourseScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       PriceWidget(price: subject.month, month: AppStrings.monthly,),
-                      // const Padding(
-                      //   padding: EdgeInsets.symmetric(vertical: 16.0),
-                      //   child: VerticalDivider(width: 1, color: ColorManager.lightGrey,),
-                      // ),
-                      // const VerticalDivider(width: 1, color: ColorManager.black,),
                       PriceWidget(price: subject.term, month: AppStrings.termly,),
                     ],
                   ),
@@ -96,7 +90,7 @@ class CourseScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        'أحمد السعدنى',
+                        subject.teacher,
                         style: getSmallStyle(),
                       ),
                     ),

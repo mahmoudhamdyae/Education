@@ -88,7 +88,7 @@ class Suggestions extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'أحمد السعدنى',
+                                        subjects[index].teacher,
                                         style: getSmallStyle(
                                           color: const Color(0xff808080),
                                         ),
