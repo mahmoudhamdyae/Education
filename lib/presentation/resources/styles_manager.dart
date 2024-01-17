@@ -53,16 +53,21 @@ ButtonStyle getOutlinedButtonStyle() {
 
 InputDecoration getTextFieldDecoration({
   required String hint,
-  required IconData prefixIcon,
+  required IconData? prefixIcon,
   IconData? suffixIcon,
   required Function onPressed
 }) {
   return InputDecoration(
-      prefixIcon: Icon(prefixIcon, color: const Color(0xff545454),),
+    prefixIconConstraints: BoxConstraints(
+      maxWidth: prefixIcon == null ? 16.0 : 32.0,
+      minWidth: prefixIcon == null ? 16.0 : 32.0,
+    ),
+      prefixIcon: Icon(prefixIcon, color: const Color(0xff545454), size: 17,),
       suffixIcon: IconButton(
         icon: Icon(
           suffixIcon,
           color: const Color(0xff545454),
+          size: 17,
         ),
         onPressed: () {
           onPressed();
@@ -72,6 +77,7 @@ InputDecoration getTextFieldDecoration({
       border: const OutlineInputBorder(
         borderSide: BorderSide(width: 1, color: ColorManager.lightGrey),
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      )
+      ),
+    contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
   );
 }

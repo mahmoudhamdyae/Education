@@ -4,7 +4,7 @@ class AppStrings {
 
   // Authentication
   static const phoneHint = "رقم الهاتف";
-  static const usernameHint = "اسم الطالب";
+  static const usernameHint = "الاسم";
   static const passwordHint = "كلمة المرور";
   static const passwordConfirmHint = "تأكيد كلمة المرور";
   static const login = "تسجيل الدخول";

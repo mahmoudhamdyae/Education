@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../resources/assets_manager.dart';
+import '../../../../resources/font_manager.dart';
 import '../../../../resources/strings_manager.dart';
 import '../../../../resources/values_manager.dart';
 import '../../../../widgets/dialogs/error_dialog.dart';
@@ -78,10 +79,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           return AppStrings.mobileNumberInvalid;
                         },
+
+                        style: getLargeStyle(
+                          fontSize: FontSize.s14,
+                          color: ColorManager.grey,
+                        ),
                         decoration: getTextFieldDecoration(
                             hint: AppStrings.phoneHint,
                             onPressed: () { },
-                            prefixIcon: Icons.phone
+                            prefixIcon: Icons.phone_android,
                         ),
                       ),
                       const SizedBox(
@@ -98,12 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                         obscureText: controller.obscureText.value,
+                        style: getLargeStyle(
+                          fontSize: FontSize.s14,
+                          color: ColorManager.grey,
+                        ),
                         decoration: getTextFieldDecoration(
                             hint: AppStrings.passwordHint,
                             onPressed: () {
                               controller.toggleSecurePassword();
                             },
-                            prefixIcon: Icons.lock,
+                            prefixIcon: Icons.lock_outline,
                             suffixIcon: controller.obscureText.value
                                 ? Icons.visibility
                                 : Icons.visibility_off

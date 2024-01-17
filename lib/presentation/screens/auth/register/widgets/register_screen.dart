@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/screens/auth/register/controller/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,7 +64,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                   children: [
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+                        padding: const EdgeInsets.only(bottom: 16.0),
                         child: Text(
                           AppStrings.registerText2,
                           style: getLargeStyle(),
@@ -85,10 +86,15 @@ class _RegisterViewState extends State<RegisterScreen> {
                         }
                         return null;
                       },
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       decoration: getTextFieldDecoration(
                           hint: AppStrings.usernameHint,
-                          prefixIcon: Icons.person,
-                          onPressed: () {},
+                          prefixIcon: null,
+                          onPressed: () { },
+                          suffixIcon: Icons.person_outline_outlined,
                       ),
                     ),
                     const SizedBox(
@@ -105,10 +111,15 @@ class _RegisterViewState extends State<RegisterScreen> {
                         }
                         return AppStrings.mobileNumberInvalid;
                       },
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       decoration: getTextFieldDecoration(
                         hint: AppStrings.phoneHint,
-                        prefixIcon: Icons.phone,
+                        prefixIcon: null,
                         onPressed: () {},
+                        suffixIcon: Icons.phone_android,
                       ),
                     ),
                     const SizedBox(
@@ -118,12 +129,17 @@ class _RegisterViewState extends State<RegisterScreen> {
                     DropdownButtonFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.only(right: 8.0, left: 8.0),
                       ),
                       isExpanded: true,
                       value: controller.marahel.first,
                       onChanged: (newValue) {
                         controller.chooseMarhala(newValue!);
                       },
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       items: controller.marahel.map((marhala) {
                         return DropdownMenuItem(
                           value: marhala,
@@ -138,9 +154,13 @@ class _RegisterViewState extends State<RegisterScreen> {
                     DropdownButtonFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.only(right: 8.0, left: 8.0),
                       ),
                       isExpanded: true,
-                      hint: Text(controller.selectedSaff.value),
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       value: controller.sfoof.first,
                       onChanged: (
                           controller.selectedSaff.value == AppStrings.qodoratMarhala ||
@@ -170,12 +190,16 @@ class _RegisterViewState extends State<RegisterScreen> {
                         return null;
                       },
                       obscureText: controller.obscureText.value,
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       decoration: getTextFieldDecoration(
                           hint: AppStrings.passwordHint,
                           onPressed: () {
                             controller.toggleSecurePassword();
                           },
-                          prefixIcon: Icons.lock,
+                          prefixIcon: null,
                           suffixIcon: controller.obscureText.value
                               ? Icons.visibility
                               : Icons.visibility_off
@@ -195,12 +219,16 @@ class _RegisterViewState extends State<RegisterScreen> {
                         return null;
                       },
                       obscureText: controller.obscureText.value,
+                      style: getLargeStyle(
+                        fontSize: FontSize.s14,
+                        color: ColorManager.grey,
+                      ),
                       decoration: getTextFieldDecoration(
                           hint: AppStrings.passwordConfirmHint,
                           onPressed: () {
                             controller.toggleSecurePassword();
                           },
-                          prefixIcon: Icons.lock,
+                          prefixIcon: null,
                           suffixIcon: controller.obscureText.value
                               ? Icons.visibility
                               : Icons.visibility_off
