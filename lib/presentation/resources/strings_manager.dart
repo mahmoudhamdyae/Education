@@ -136,6 +136,8 @@ class AppStrings {
   static const String saves = 'المحفوظات';
   static const String emptyFav = 'لا يوجد محفوظات';
   static const String emptyVideos = 'لا يوجد فيديوهات محفوظة';
+  static const String monthly = 'شهريا';
+  static const String termly = 'ترم كامل';
   // Me Screen
   static const String editProfile = 'تعديل البروفايل';
   static const String baqat = 'باقات الاشتراك';

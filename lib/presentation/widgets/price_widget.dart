@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/resources/font_manager.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../resources/styles_manager.dart';
@@ -6,16 +7,26 @@ import '../resources/styles_manager.dart';
 class PriceWidget extends StatelessWidget {
 
   final int price;
-  const PriceWidget({super.key, required this.price});
+final String month;
+  const PriceWidget({super.key, required this.price, required this.month});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '$price د.ك',
-      style: getLargeStyle(
-        fontWeight: FontWeight.w600,
-        color: ColorManager.secondary
-      ),
+    return Column(
+      children: [
+        Text(
+          '$price د.ك',
+          style: getLargeStyle(
+            fontSize: FontSize.s20,
+            color: ColorManager.secondary
+          ),
+        ),
+        const SizedBox(height: 8.0,),
+        Text(
+          month,
+          style: getLargeStyle(),
+        )
+      ],
     );
   }
 }

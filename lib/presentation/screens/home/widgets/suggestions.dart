@@ -1,6 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/widgets/buy_button.dart';
 import 'package:education/presentation/widgets/buy_widget.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:education/presentation/widgets/rate_widget.dart';
@@ -79,28 +78,24 @@ class Suggestions extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    subjects[index].name,
-                                    style: getLargeStyle(
-                                        fontWeight: FontWeight.w400
-                                    ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        subjects[index].name,
+                                        style: getLargeStyle(
+                                            fontWeight: FontWeight.w400
+                                        ),
+                                      ),
+                                      Text(
+                                        'أحمد السعدنى',
+                                        style: getSmallStyle(
+                                          color: const Color(0xff808080),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  PriceWidget(price: subjects[index].term),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 200,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'أحمد السعدنى',
-                                    style: getSmallStyle(
-                                      color: const Color(0xff808080),
-                                    ),
-                                  ),
-                                  RateWidget(rate: subjects[index].rate),
+                                  PriceWidget(price: subjects[index].month, month: AppStrings.monthly,),
                                 ],
                               ),
                             ),

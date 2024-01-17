@@ -37,27 +37,43 @@ class CourseScreen extends StatelessWidget {
                       subject.name,
                       style: getLargeStyle(),
                     ),
-                    PriceWidget(price: subject.term),
+                    // 5 وحدات - 32 درس
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        '5 وحدات - 32 درس',
+                        style: getSmallStyle(),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              // 5 وحدات - 32 درس
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '5 وحدات - 32 درس',
-                      style: getSmallStyle(),
-                    ),
-                    RateWidget(rate: subject.rate.toString()),
-                  ],
-                ),
+              Stack(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      PriceWidget(price: subject.month, month: AppStrings.monthly,),
+                      // const Padding(
+                      //   padding: EdgeInsets.symmetric(vertical: 16.0),
+                      //   child: VerticalDivider(width: 1, color: ColorManager.lightGrey,),
+                      // ),
+                      // const VerticalDivider(width: 1, color: ColorManager.black,),
+                      PriceWidget(price: subject.term, month: AppStrings.termly,),
+                    ],
+                  ),
+                  const Positioned(
+                      right: 0,
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: VerticalDivider(width: 1, color: ColorManager.lightGrey,)
+                  )
+                ],
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                child: Divider(height: 1,),
+                child: Divider(height: 1, color: Color(0xffF2F2F2),),
               ),
               // المدرس
               Padding(

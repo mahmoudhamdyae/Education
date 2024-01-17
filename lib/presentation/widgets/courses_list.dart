@@ -6,6 +6,7 @@ import '../../domain/models/courses/course.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
+import '../resources/strings_manager.dart';
 import '../resources/styles_manager.dart';
 import 'bookmark_course.dart';
 import 'buy_widget.dart';
@@ -62,7 +63,7 @@ class CoursesList extends StatelessWidget {
                           children: [
                             RateWidget(rate: courses[index].rate),
                             const SizedBox(width: 12.0,),
-                            PriceWidget(price: courses[index].term),
+                            PriceWidget(price: courses[index].term, month: AppStrings.monthly,),
                           ],
                         )
                       ],

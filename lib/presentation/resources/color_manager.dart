@@ -8,6 +8,7 @@ class ColorManager {
   static const Color black = Color(0xff000000);
   static const Color blue = Color(0xff0000ff);
   static const Color grey = Color(0xff808080);
+  static const Color lightGrey = Color(0xffF2F2F2);
   static const Color fabBackground = Color(0xff2b92da);
   static const Color error = Color(0xffff0000);
 }
