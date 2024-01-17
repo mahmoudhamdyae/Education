@@ -15,7 +15,7 @@ import 'course_tabs.dart';
 
 class LessonScreen extends StatefulWidget {
 
-  const LessonScreen({super.key});
+   const LessonScreen({super.key});
 
   @visibleForTesting
   String extractVideoId(String url) {
@@ -56,7 +56,7 @@ class _LessonScreenState extends State<LessonScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 200,
-                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.videoLink.value)),
+                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.selectedLesson.value.link)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

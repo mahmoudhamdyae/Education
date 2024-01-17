@@ -7,7 +7,7 @@ import '../../../../domain/repository/repository.dart';
 
 class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
-  final RxString videoLink = ''.obs;
+  final Rx<Lesson> selectedLesson = Lesson(0, '', '', '', '').obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -29,7 +29,7 @@ class LessonController extends GetxController {
       await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
-        if (tutorials.isNotEmpty) videoLink.value = wehdat[0].lessons[0].link;
+        if (tutorials.isNotEmpty) selectedLesson.value = wehdat[0].lessons[0];
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

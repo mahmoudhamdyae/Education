@@ -1,5 +1,6 @@
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/repository/repository.dart';
+import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
@@ -86,27 +87,30 @@ class _LessonsWidgetState extends State<LessonsWidget> {
             itemBuilder: (context, lessonIndex) {
               return InkWell(
                   onTap: () {
-                    if (isUserLoggedIn) {
-                      if (widget.isInLessonScreen) {
-                        Navigator.of(context).pop();
-                      }
-                      Get.to(const LessonScreen());
-                    } else {
-                      if (index == 0 && lessonIndex == 0) {
-                        if (widget.isInLessonScreen) {
-                          Navigator.of(context).pop();
-                        }
-                        Get.to(const LessonScreen());
-                      } else {
-                        showRequireAuthDialog(context);
-                      }
-                    }
+                    // if (isUserLoggedIn) {
+                    //   if (widget.isInLessonScreen) {
+                    //     Navigator.of(context).pop();
+                    //   }
+                    //   Get.to(const LessonScreen());
+                    // } else {
+                    //   if (index == 0 && lessonIndex == 0) {
+                    //     if (widget.isInLessonScreen) {
+                    //       Navigator.of(context).pop();
+                    //     }
+                    //     Get.to(const LessonScreen());
+                    //   } else {
+                    //     showRequireAuthDialog(context);
+                    //   }
+                    // }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
                     child: InkWell(
                       onTap: () {
-                        Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
+                        Course course = Get.arguments['course'];
+                        Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
+                        Get.back();
+                        Get.to(const LessonScreen(), arguments: { 'course': course });
                       },
                       child: Row(
                         children: [
