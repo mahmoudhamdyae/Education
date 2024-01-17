@@ -2,8 +2,10 @@ import 'package:education/presentation/screens/auth/register/controller/register
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../resources/assets_manager.dart';
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
+import '../../../../resources/styles_manager.dart';
 import '../../../../resources/values_manager.dart';
 import '../../../../widgets/dialogs/error_dialog.dart';
 import '../../../../widgets/dialogs/loading_dialog.dart';
@@ -19,7 +21,6 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterViewState extends State<RegisterScreen> {
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   signUp() async {
     var formData = formState.currentState;
@@ -51,15 +52,7 @@ class _RegisterViewState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: ColorManager.white,
-      appBar: AppBar(
-        elevation: AppSize.s0,
-        backgroundColor: ColorManager.white,
-        iconTheme: const IconThemeData(color: ColorManager.primary),
-      ),
       body: Container(
         padding: const EdgeInsets.all(AppPadding.p20),
         child: GetX<RegisterController>(
@@ -68,6 +61,19 @@ class _RegisterViewState extends State<RegisterScreen> {
                 key: formState,
                 child: ListView(
                   children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+                        child: Text(
+                          AppStrings.registerText2,
+                          style: getLargeStyle(),
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                        ImageAssets.register
+                    ),
+                    const SizedBox(height: 16.0,),
                     // User Name Edit Text
                     TextFormField(
                       controller: controller.userName,
@@ -79,11 +85,11 @@ class _RegisterViewState extends State<RegisterScreen> {
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.person),
-                          hintText: AppStrings.usernameHint,
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1))),
+                      decoration: getTextFieldDecoration(
+                          hint: AppStrings.usernameHint,
+                          prefixIcon: Icons.person,
+                          onPressed: () {},
+                      ),
                     ),
                     const SizedBox(
                       height: AppSize.s28,
@@ -99,11 +105,11 @@ class _RegisterViewState extends State<RegisterScreen> {
                         }
                         return AppStrings.mobileNumberInvalid;
                       },
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.phone),
-                          hintText: AppStrings.phoneHint,
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1))),
+                      decoration: getTextFieldDecoration(
+                        hint: AppStrings.phoneHint,
+                        prefixIcon: Icons.phone,
+                        onPressed: () {},
+                      ),
                     ),
                     const SizedBox(
                       height: AppSize.s28,
@@ -164,19 +170,16 @@ class _RegisterViewState extends State<RegisterScreen> {
                         return null;
                       },
                       obscureText: controller.obscureText.value,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(controller.obscureText.value
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              controller.toggleSecurePassword();
-                            },
-                          ),
-                          hintText: AppStrings.passwordHint,
-                          border: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1))),
+                      decoration: getTextFieldDecoration(
+                          hint: AppStrings.passwordHint,
+                          onPressed: () {
+                            controller.toggleSecurePassword();
+                          },
+                          prefixIcon: Icons.lock,
+                          suffixIcon: controller.obscureText.value
+                              ? Icons.visibility
+                              : Icons.visibility_off
+                      ),
                     ),
                     const SizedBox(
                       height: AppSize.s28,
@@ -192,19 +195,16 @@ class _RegisterViewState extends State<RegisterScreen> {
                         return null;
                       },
                       obscureText: controller.obscureText.value,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(controller.obscureText.value
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              controller.toggleSecurePassword();
-                            },
-                          ),
-                          hintText: AppStrings.passwordConfirmHint,
-                          border: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1))),
+                      decoration: getTextFieldDecoration(
+                          hint: AppStrings.passwordConfirmHint,
+                          onPressed: () {
+                            controller.toggleSecurePassword();
+                          },
+                          prefixIcon: Icons.lock,
+                          suffixIcon: controller.obscureText.value
+                              ? Icons.visibility
+                              : Icons.visibility_off
+                      ),
                     ),
                     const SizedBox(
                       height: AppSize.s18,
@@ -214,33 +214,63 @@ class _RegisterViewState extends State<RegisterScreen> {
                       width: double.infinity,
                       height: AppSize.s40,
                       child: FilledButton(
+                        style: getFilledButtonStyle(),
                         onPressed: () async {
                           await signUp();
                         },
                         child: const Text(
-                          AppStrings.register,
+                          AppStrings.registerTextButton,
                         ),
                       ),
                     ),
                     const SizedBox(
-                      height: AppSize.s18,
+                      height: AppSize.s8,
                     ),
-                    // Navigate To Login Screen
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Row(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(AppStrings.alreadyHaveAccount1,
-                              style: TextStyle(color: ColorManager.black)),
-                          Text(AppStrings.alreadyHaveAccount2,
-                              style: TextStyle(color: ColorManager.blue)),
+                          Text(
+                              AppStrings.alreadyHaveAccount1,
+                              style: getLargeStyle(
+                                fontWeight: FontWeight.w400,
+                              )
+                          ),
+                          Text(
+                              AppStrings.alreadyHaveAccount2,
+                              style: getLargeStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorManager.secondary,
+                                  decoration: TextDecoration.underline
+                              )
+                          ),
                         ],
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: AppSize.s8,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: getOutlinedButtonStyle(),
+                        onPressed: () {
+                          Get.to(const MainScreen());
+                        },
+                        child: Text(
+                          AppStrings.loginAsAGuestButton,
+                          style: getSmallStyle(
+                              color: ColorManager.primary
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                ));
+                )
+            );
           },
         ),
       ),

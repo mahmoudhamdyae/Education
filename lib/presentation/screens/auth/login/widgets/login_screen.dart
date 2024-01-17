@@ -82,11 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hint: AppStrings.phoneHint,
                             onPressed: () { },
                             prefixIcon: Icons.phone
-                        )/*const InputDecoration(
-                            prefixIcon: Icon(Icons.phone, color: Color(0xff545454),),
-                            hintText: AppStrings.phoneHint,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(width: 1)))*/,
+                        ),
                       ),
                       const SizedBox(
                         height: AppSize.s28,
@@ -134,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: AppSize.s28,
+                        height: AppSize.s16,
                       ),
                       // Navigate to Register Screen
                       Row(
@@ -156,6 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: getLargeStyle(
                                         fontWeight: FontWeight.w400,
                                         color: ColorManager.secondary,
+                                        decoration: TextDecoration.underline
                                     )
                                 ),
                               ],
@@ -163,14 +160,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         ],
                       ),
-                      // Login Button
+                      // Login as a guest Button
                       SizedBox(
                         width: double.infinity,
-                        height: AppSize.s40,
                         child: ElevatedButton(
                           style: getOutlinedButtonStyle(),
-                          onPressed: () async {
-                            await logIn();
+                          onPressed: () {
+                            Get.to(const MainScreen());
                           },
                           child: Text(
                             AppStrings.loginAsAGuestButton,

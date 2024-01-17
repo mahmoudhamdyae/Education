@@ -14,8 +14,8 @@ TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color, Tex
 }
 
 TextStyle getLargeStyle(
-    {double fontSize = FontSize.s16, FontWeight fontWeight = FontWeightManager.bold, Color color = ColorManager.black}) {
-  return _getTextStyle(fontSize, fontWeight, color, TextDecoration.none);
+    {double fontSize = FontSize.s16, FontWeight fontWeight = FontWeightManager.bold, Color color = ColorManager.black, TextDecoration decoration = TextDecoration.none}) {
+  return _getTextStyle(fontSize, fontWeight, color, decoration);
 }
 
 TextStyle getSmallStyle(
