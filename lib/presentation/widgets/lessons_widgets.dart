@@ -23,22 +23,7 @@ class LessonsWidget extends StatefulWidget {
 
 class _LessonsWidgetState extends State<LessonsWidget> {
   int expanded = -1;
-  late final bool isUserLoggedIn;
-  final Repository _appPreferences = Get.find<Repository>();
-
-  @override
-  void initState() {
-    super.initState();
-    _setUserLoggedIn();
-  }
-
-  Future<void> _setUserLoggedIn() async {
-    if (_appPreferences.isUserLoggedIn()) {
-      isUserLoggedIn = true;
-    } else {
-      isUserLoggedIn = false;
-    }
-  }
+  final bool isUserLoggedIn = Get.find<Repository>().isUserLoggedIn();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +106,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
                     child: InkWell(
                       onTap: () {
-                        // Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
+                        Get.off(const LessonScreen(), arguments: { 'course': (Get.arguments['course'] as Course) });
                       },
                       child: Row(
                         children: [
@@ -133,7 +118,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
                               child: Text(
-                                index < 9 ? '0${index + 1}' : '${index + 1}',
+                                lessonIndex < 9 ? '0${lessonIndex + 1}' : '${lessonIndex + 1}',
                                 style: getLargeStyle(
                                   fontWeight: FontWeight.w400,
                                   color: ColorManager.secondary,
@@ -147,7 +132,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                             style: getSmallStyle(),
                           ),
                           Expanded(child: Container()),
-                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[index],),
+                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[lessonIndex],),
                         ],
                       ),
                     ),

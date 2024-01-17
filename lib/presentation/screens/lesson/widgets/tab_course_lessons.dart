@@ -2,12 +2,8 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/widgets/lessons_widgets.dart';
-import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../domain/models/courses/course.dart';
-import '../../../resources/styles_manager.dart';
 
 class TabCourseLessons extends StatelessWidget {
 
@@ -19,7 +15,7 @@ class TabCourseLessons extends StatelessWidget {
     return Expanded(
       child: Stack(
         children: [
-          LessonsWidget(wehdat: Get.find<LessonController>().wehdat, isInLessonScreen: false,),
+          LessonsWidget(wehdat: Get.find<LessonController>().wehdat, isInLessonScreen: true,),
           isUserLoggedIn ? Container():  Container(
             color: const Color(0x00000000),
             height: 80.0,
