@@ -169,7 +169,7 @@ class LocalDataSourceImpl extends LocalDataSource {
     List<Lesson> lessons =  lessonBox.values.toList();
     for (var singleLesson in lessons) {
       Course? course = courses.firstWhereOrNull((element) => element.id == singleLesson.tutorialId);
-      returnedVideos.add(ReturnedVideo(course ?? Course(-1, '', 0, 0, '', '', '', ''), singleLesson));
+      if (course != null) returnedVideos.add(ReturnedVideo(course, singleLesson));
     }
     return returnedVideos;
   }
@@ -178,15 +178,15 @@ class LocalDataSourceImpl extends LocalDataSource {
   Future<void> removeVideo(int courseId, int lessonId) async {
     var videosBox = await Hive.openBox<Course>('videos');
     final Map<dynamic, Course> courseMap = videosBox.toMap();
-    dynamic desiredKey;
+    // dynamic desiredKey;
     courseMap.forEach((key, value) async {
       if (value.id == courseId) {
-        desiredKey = key;
+        // desiredKey = key;
         var lessonBox = await Hive.openBox<Lesson>('lesson');
         lessonBox.delete('$courseId-$lessonId');
       }
     });
-    videosBox.delete(desiredKey);
+    // videosBox.delete(desiredKey);
   }
   
   void _delSaved() async {
