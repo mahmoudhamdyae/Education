@@ -1,4 +1,5 @@
 import 'package:education/domain/models/returned_video.dart';
+import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class VideosList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
           onTap: () {
+            Get.find<LessonController>().selectedLesson.value = courses[index].lesson;
             Get.to(() => const LessonScreen(), arguments: { 'course': courses[index].course });
           },
           child: Container(
