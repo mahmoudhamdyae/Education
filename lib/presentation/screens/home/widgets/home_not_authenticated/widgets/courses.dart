@@ -1,14 +1,15 @@
-import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/screens/home/widgets/suggestion_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/models/courses/course.dart';
-import '../../../resources/strings_manager.dart';
+import '../../../../../../domain/models/courses/course.dart';
+import '../../../../../resources/strings_manager.dart';
+import '../../../../../resources/styles_manager.dart';
+import '../../suggestion_item.dart';
 
-class Suggestions extends StatelessWidget {
+class Courses extends StatelessWidget {
 
   final List<Course> subjects;
-  const Suggestions({super.key, required this.subjects});
+  const Courses({super.key, required this.subjects});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Suggestions extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                AppStrings.suggestions,
+                AppStrings.homeCourses,
                 style: getLargeStyle(),
               ),
               Expanded(child: Container()),

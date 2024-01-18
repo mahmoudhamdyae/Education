@@ -14,7 +14,9 @@ class SaffItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.find<HomeNotAuthenticatedController>().saff.value = saff;
+        HomeNotAuthenticatedController controller = Get.find<HomeNotAuthenticatedController>();
+        controller.saff.value = saff;
+        controller.getRecordedCourses();
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
