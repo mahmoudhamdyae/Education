@@ -3,6 +3,7 @@ import 'package:education/presentation/screens/auth/login/widgets/login_screen.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
 
 showRequireAuthDialog(BuildContext context) {
@@ -18,15 +19,22 @@ showRequireAuthDialog(BuildContext context) {
           title: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(AppStrings.pleaseLogIn),
+              Text(
+                AppStrings.pleaseLogIn,
+                style: getLargeStyle(),
+              ),
               const SizedBox(height: AppSize.s16,),
               Row(
                 children: [
-                  TextButton(
+                  OutlinedButton(
+                    style: getOutlinedButtonStyle(),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Text(AppStrings.cancel)
+                      child: Text(
+                        AppStrings.cancel,
+                        style: getSmallStyle(),
+                      )
                   ),
                   TextButton(
                       onPressed: () {

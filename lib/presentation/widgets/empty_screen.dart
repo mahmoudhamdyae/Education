@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/font_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -22,10 +23,7 @@ class EmptyScreen extends StatelessWidget {
           const SizedBox(height: AppSize.s40,),
           Text(
             emptyString,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: FontSize.s16,
-            ),
+            style: getLargeStyle(),
           ),
         ],
       ),

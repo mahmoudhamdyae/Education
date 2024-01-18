@@ -123,6 +123,7 @@ class AppStrings {
   static const String baqat2 = 'احجز ثلاث مواد معا';
   static const String show = 'عرض';
   static const String homeSubjects = 'المواد';
+  static const String homeSfoof = 'الصفوف الدراسية';
   static const String suggestions = 'اقتراحات';
   static const String seeAll = 'مشاهدة الكل';
   static const String buy = 'شراء';

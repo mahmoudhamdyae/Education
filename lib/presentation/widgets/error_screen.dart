@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
+import '../resources/styles_manager.dart';
 import '../resources/values_manager.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -24,10 +25,8 @@ class ErrorScreen extends StatelessWidget {
             const SizedBox(height: AppSize.s40,),
             Text(
               error.replaceFirst('Exception: ', ''),
-              style: const TextStyle(
+              style: getLargeStyle(
                 color: ColorManager.error,
-                  fontWeight: FontWeight.w500,
-                  fontSize: FontSize.s16,
               ),
             ),
           ],

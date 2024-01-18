@@ -1,14 +1,13 @@
-import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/screens/home/widgets/subject_item.dart';
-import 'package:flutter/material.dart';
+import 'package:education/presentation/screens/home/widgets/home_not_authenticated/widgets/saff_item.dart';
+import 'package:flutter/cupertino.dart';
 
-import '../../../../domain/models/courses/course.dart';
+import '../../../../../resources/strings_manager.dart';
+import '../../../../../resources/styles_manager.dart';
 
-class Subjects extends StatelessWidget {
+class Sfoof extends StatelessWidget {
 
-  final List<Course> subjects;
-  const Subjects({super.key, required this.subjects});
+  final List<String> sfoof;
+  const Sfoof({super.key, required this.sfoof});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class Subjects extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
-            AppStrings.homeSubjects,
+            AppStrings.homeSfoof,
             style: getLargeStyle(),
           ),
         ),
@@ -28,9 +27,9 @@ class Subjects extends StatelessWidget {
             height: 40,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: subjects.length,
+              itemCount: sfoof.length,
               itemBuilder: (BuildContext context, int index) {
-                return SubjectItem(course: subjects[index],);
+                return SaffItem(saff: sfoof[index],);
               },
             ),
           ),

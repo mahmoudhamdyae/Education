@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,18 @@ class RequireLogInView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(AppStrings.requireLogIn),
+        Text(
+          AppStrings.requireLogIn,
+          style: getLargeStyle(),
+        ),
         const SizedBox(height: AppSize.s8,),
         OutlinedButton(
+          style: getOutlinedButtonStyle(),
             onPressed: () => Get.to(() => const LoginScreen()),
-            child: const Text(AppStrings.requireLogInButton)
+            child: Text(
+              AppStrings.requireLogInButton,
+              style: getSmallStyle(),
+            )
         )
       ],
     );
