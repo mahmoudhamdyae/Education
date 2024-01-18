@@ -31,7 +31,7 @@ class HomeScreenCourses extends StatelessWidget {
           return Column(
             children: [
               Subjects(subjects: classModel.courses,),
-              Suggestions(subjects: classModel.courses,),
+              // Suggestions(subjects: classModel.courses,),
             ],
           );
         }
