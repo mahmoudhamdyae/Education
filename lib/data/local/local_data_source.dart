@@ -53,6 +53,7 @@ class LocalDataSourceImpl extends LocalDataSource {
     setPhoneNumber('');
     setGrade('');
     setUserName('');
+    _delSaved();
   }
 
   @override
@@ -186,5 +187,14 @@ class LocalDataSourceImpl extends LocalDataSource {
       }
     });
     videosBox.delete(desiredKey);
+  }
+  
+  void _delSaved() async {
+    var favBox = await Hive.openBox<Course>('course');
+    var videosBox = await Hive.openBox<Course>('videos');
+    var lessonBox = await Hive.openBox<Course>('lesson');
+    favBox.deleteFromDisk();
+    videosBox.deleteFromDisk();
+    lessonBox.deleteFromDisk();
   }
 }
