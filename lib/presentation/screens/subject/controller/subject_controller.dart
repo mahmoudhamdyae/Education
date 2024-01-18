@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../../domain/repository/repository.dart';
 
-class SubjectController extends GetxController {
+class SubjectController2 extends GetxController {
 
   final RxList<Wehda> wehdat = RxList.empty();
 
@@ -13,7 +13,7 @@ class SubjectController extends GetxController {
 
   final Repository _repository;
 
-  SubjectController(this._repository);
+  SubjectController2(this._repository);
 
   @override
   void onInit() {

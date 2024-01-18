@@ -19,6 +19,7 @@ class LessonScreen extends StatefulWidget {
 
   @visibleForTesting
   String extractVideoId(String url) {
+    debugPrint('-------------------------- ${Get.find<LessonController>().selectedLesson.value.link}');
     RegExp regExp = RegExp(r'/(\d+)\??');
     Match? match = regExp.firstMatch(url);
 
@@ -56,7 +57,10 @@ class _LessonScreenState extends State<LessonScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 200,
-                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.selectedLesson.value.link)),
+                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(
+                        controller.selectedLesson.value.link == '' ?
+                        controller.wehdat[0].lessons[0].link : controller.selectedLesson.value.link)
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

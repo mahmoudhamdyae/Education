@@ -28,14 +28,14 @@ TextStyle getRegularStyle(
   return _getTextStyle(fontSize, FontWeightManager.regular, color, TextDecoration.none);
 }
 
-ButtonStyle getFilledButtonStyle() {
+ButtonStyle getFilledButtonStyle({Color color = ColorManager.primary}) {
   return ButtonStyle(
     shape: MaterialStateProperty.all(
         const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         )
     ),
-    backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+    backgroundColor: MaterialStateProperty.all(color),
   );
 }
 

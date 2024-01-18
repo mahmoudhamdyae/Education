@@ -2,6 +2,8 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../resources/styles_manager.dart';
+
 showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTap) {
   final List<String> sfoof = _getSfoof(marhala);
   return showDialog(
@@ -16,7 +18,10 @@ showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTa
           title: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(marhala),
+              Text(
+                marhala,
+                style: getLargeStyle(),
+              ),
               const SizedBox(
                 height: AppSize.s16,
               ),
@@ -30,7 +35,10 @@ showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTa
                           onTap(sfoof[index]);
                         },
                         child: ListTile(
-                          title: Text(sfoof[index]),
+                          title: Text(
+                            sfoof[index],
+                            style: getSmallStyle(),
+                          ),
                         ),
                       )
                   ),

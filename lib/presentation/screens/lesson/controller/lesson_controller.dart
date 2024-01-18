@@ -29,7 +29,7 @@ class LessonController extends GetxController {
       await _repository.getTutorials((Get.arguments['course'] as Course).id).then((tutorials) {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
-        if (tutorials.isNotEmpty) selectedLesson.value = wehdat[0].lessons[0];
+        // if (tutorials.isNotEmpty) selectedLesson.value = wehdat[0].lessons[0];
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

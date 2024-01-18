@@ -1,9 +1,9 @@
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:education/presentation/widgets/dialogs/choose_saff_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
   return showDialog(
@@ -18,7 +18,10 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
           title: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(AppStrings.pleaseChooseMarhala),
+              Text(
+                AppStrings.pleaseChooseMarhala,
+                style: getLargeStyle(),
+              ),
               const SizedBox(
                 height: AppSize.s16,
               ),
@@ -30,8 +33,11 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                   showChooseSaffDialog(context, AppStrings.primaryMarhala, (saff) =>
                       onTap(AppStrings.primaryMarhala, saff));
                 },
-                  child: const ListTile(
-                      title: Text(AppStrings.primaryMarhala)
+                  child: ListTile(
+                      title: Text(
+                        AppStrings.primaryMarhala,
+                        style: getSmallStyle(),
+                      )
                   )
               ),
               // المرحلة المتوسطة
@@ -42,8 +48,11 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                     showChooseSaffDialog(context, AppStrings.mediumMarhala, (saff) =>
                         onTap(AppStrings.mediumMarhala, saff));
                   },
-                  child: const ListTile(
-                      title: Text(AppStrings.mediumMarhala)
+                  child: ListTile(
+                      title: Text(
+                        AppStrings.mediumMarhala,
+                        style: getSmallStyle(),
+                      )
                   )
               ),
               // المرحلة الثانوية
@@ -54,8 +63,11 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                     showChooseSaffDialog(context, AppStrings.secondaryMarhala, (saff) =>
                         onTap(AppStrings.secondaryMarhala, saff));
                   },
-                  child: const ListTile(
-                      title: Text(AppStrings.secondaryMarhala)
+                  child: ListTile(
+                      title: Text(
+                        AppStrings.secondaryMarhala,
+                        style: getSmallStyle(),
+                      )
                   )
               ),
               // القدرات
@@ -65,8 +77,10 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                     Get.back();
                     onTap(AppStrings.qodoratMarhala, '');
                   },
-                  child: const ListTile(
-                      title: Text(AppStrings.qodoratMarhala)
+                  child: ListTile(
+                      title: Text(
+                        AppStrings.qodoratMarhala,
+                        style: getSmallStyle(),)
                   )
               ),
             ],

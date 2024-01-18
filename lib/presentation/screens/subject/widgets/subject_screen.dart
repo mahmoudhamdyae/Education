@@ -3,12 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../domain/models/courses/course.dart';
 import '../../../resources/color_manager.dart';
-import '../../../resources/strings_manager.dart';
-import '../../../widgets/empty_screen.dart';
-import '../../../widgets/error_screen.dart';
-import '../../../widgets/lessons_widgets.dart';
-import '../../../widgets/loading_screen.dart';
-import '../controller/subject_controller.dart';
 
 class SubjectScreen extends StatefulWidget {
   const SubjectScreen({super.key});

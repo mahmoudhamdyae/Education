@@ -46,6 +46,9 @@ class ImageAssets {
   static const String onboarding3 = "$imagePath/onboarding2.png";
   static const String login = "$imagePath/login.png";
   static const String register = "$imagePath/register.png";
+  static const String baqaSilver = "$imagePath/baqaSilver.png";
+  static const String baqaGolden = "$imagePath/baqa_golden.png";
+  static const String baqaDiamond = "$imagePath/baqa_diamond.png";
 }
 
 class JsonAssets {

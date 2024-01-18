@@ -109,6 +109,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                       onTap: () {
                         Course course = Get.arguments['course'];
                         Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
+                        debugPrint('-------------------------- ${wehda.lessons[lessonIndex].link}');
                         Get.back();
                         Get.to(const LessonScreen(), arguments: { 'course': course });
                       },
@@ -136,7 +137,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                             style: getSmallStyle(),
                           ),
                           Expanded(child: Container()),
-                          SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[lessonIndex],),
+                          // SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[lessonIndex],),
                         ],
                       ),
                     ),

@@ -26,6 +26,7 @@ class SuggestionItem extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(16.0)),
               border: Border.all(

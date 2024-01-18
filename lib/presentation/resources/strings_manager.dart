@@ -141,6 +141,10 @@ class AppStrings {
   static const String emptyVideos = 'لا يوجد فيديوهات محفوظة';
   static const String monthly = 'شهريا';
   static const String termly = 'ترم كامل';
+  static const String silverBaqa = 'الباقة الفضية';
+  static const String goldenBaqa = 'الباقة الذهبية';
+  static const String diamondBaqa = 'الباقة الماسية';
+  static const String buyBaqa = 'شراء الباقة';
   // Onboarding
   static const String onboarding1 = 'تعلم من أى مكان';
   static const String onboarding2 = 'وفر وقتك';
