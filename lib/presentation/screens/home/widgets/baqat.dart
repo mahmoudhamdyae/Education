@@ -26,8 +26,12 @@ class Baqat extends StatelessWidget {
                 left: 0,
                 child: Transform.rotate(
                   angle: 26.56,
-                  child: Image.asset(
-                    ImageAssets.baqatLeft,
+                  child: SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset(
+                      ImageAssets.baqatLeft,
+                    ),
                   ),
                 ),
               ),
@@ -46,8 +50,12 @@ class Baqat extends StatelessWidget {
                 right: 0,
                 child: Transform.rotate(
                   angle: -18.71,
-                  child: Image.asset(
-                    ImageAssets.baqat2,
+                  child: SizedBox(
+                    height: 105,
+                    width: 105,
+                    child: Image.asset(
+                      ImageAssets.baqat2,
+                    ),
                   ),
                 ),
               ),
@@ -56,8 +64,12 @@ class Baqat extends StatelessWidget {
                 right: 15,
                 child: Transform.rotate(
                   angle: -22.35,
-                  child: Image.asset(
-                    ImageAssets.baqatRight,
+                  child: SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset(
+                      ImageAssets.baqatRight,
+                    ),
                   ),
                 ),
               ),
@@ -65,8 +77,12 @@ class Baqat extends StatelessWidget {
                 bottom: 0,
                 top: 0,
                 right: 10,
-                child: Image.asset(
-                    ImageAssets.baqatRightDown,
+                child: SizedBox(
+                  height: 15,
+                  width: 15,
+                  child: Image.asset(
+                      ImageAssets.baqatRightDown,
+                  ),
                 ),
               ),
               Padding(
