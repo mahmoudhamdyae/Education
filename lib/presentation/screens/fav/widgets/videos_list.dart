@@ -24,8 +24,9 @@ class VideosList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
           onTap: () {
-            Get.find<LessonController>().selectedLesson.value = courses[index].lesson;
-            Get.to(() => const LessonScreen(), arguments: { 'course': courses[index].course });
+            // tod change this
+            // Get.find<LessonController>().selectedLesson.value = courses[index].lesson;
+            // Get.to(() => const LessonScreen(), arguments: { 'course': courses[index].course });
           },
           child: Container(
             decoration: BoxDecoration(
