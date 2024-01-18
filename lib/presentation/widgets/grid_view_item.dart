@@ -19,7 +19,7 @@ class GridViewItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppSize.s16),
       child: Stack(
         children: [
-          const WaveBackground(baseColor: ColorManager.primaryBlue, waveColor: ColorManager.lightPrimary),
+          const WaveBackground(baseColor: ColorManager.secondary, waveColor: ColorManager.secondary),
           Positioned(
             right: 0,
             left: 0,
@@ -40,12 +40,16 @@ class GridViewItem extends StatelessWidget {
               }
               },
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(_item.icon, scale: AppSize.s8,),
-                const SizedBox(height: AppSize.s16,),
+                Image.asset(
+                  _item.icon,
+                  height: 120,
+                  fit: BoxFit.fill,
+                ),
+                // const SizedBox(height: AppSize.s16,),
                 Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     _item.name,
                     textAlign: TextAlign.center,

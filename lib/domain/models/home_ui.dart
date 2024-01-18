@@ -23,27 +23,27 @@ class HomeUI {
     return [
       HomeUI(
         AppStrings.recordedCourses,
-        ImageAssets.recordedCourses, (String marhala, String saff) =>
+        ImageAssets.home1, (String marhala, String saff) =>
           Get.to(() => const RecordedCoursesScreen(), arguments: { 'saff': saff }),
       ),
       HomeUI(
         AppStrings.printedNotes,
-        ImageAssets.printedNotes, (String marhala, String saff) =>
+        ImageAssets.home2, (String marhala, String saff) =>
           Get.to(PrintedNotesScreen(saff: saff))
       ),
       HomeUI(
         AppStrings.courses,
-        ImageAssets.courses, (String marhala, String saff) =>
+        ImageAssets.home3, (String marhala, String saff) =>
           Get.to(const CoursesScreen())
       ),
       HomeUI(
         AppStrings.onlineCourses,
-        ImageAssets.onlineCourses, (String marhala, String saff) =>
+        ImageAssets.home4, (String marhala, String saff) =>
           Get.to(const OnlineCoursesScreen())
       ),
       HomeUI(
         AppStrings.teacher,
-        ImageAssets.teacher, (String marhala, String saff) async {
+        ImageAssets.home5, (String marhala, String saff) async {
         final Repository appPreferences = Get.find<Repository>();
         if (appPreferences.isUserLoggedIn()) {
           Get.to(const TeacherScreen());
@@ -54,7 +54,7 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        ImageAssets.exam, (String marhala, String saff) =>
+        ImageAssets.home6, (String marhala, String saff) =>
           Get.to(ExamsAndBanksScreen(saff: saff))
       ),
     ];
