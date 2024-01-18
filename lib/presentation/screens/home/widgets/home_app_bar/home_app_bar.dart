@@ -2,6 +2,7 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/account_column.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/userImage.dart';
+import 'package:education/presentation/screens/notifications/widgets/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,7 +50,7 @@ class HomeAppBar extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                // Search
+                Get.to(() => NotificationsScreen());
               },
               icon: const Icon(
                 Icons.notifications,

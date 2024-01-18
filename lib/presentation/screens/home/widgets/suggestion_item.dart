@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,7 @@ class SuggestionItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(16.0)),
               border: Border.all(
-                color: const Color(0xffF2F2F2),
+                color: ColorManager.lightGrey,
                 width: 1,
               ),
             ),

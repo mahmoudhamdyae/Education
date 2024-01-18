@@ -1,7 +1,7 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
-import 'package:education/presentation/screens/notifications/notifications_screen.dart';
+import 'package:education/presentation/screens/notifications/widgets/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class AppBarActions extends StatelessWidget {
               color: ColorManager.white,
             ),
             onPressed: () {
-              Get.to(const NotificationsScreen());
+              Get.to(NotificationsScreen());
             }),
         // Log out Button
         IconButton(
