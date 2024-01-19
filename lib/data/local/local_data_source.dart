@@ -44,8 +44,7 @@ class LocalDataSourceImpl extends LocalDataSource {
     if (isFirstTime) {
       await _box.put(keyIsFirstTime, false);
     }
-    // return isFirstTime;
-    return true;
+    return isFirstTime;
   }
 
   @override
