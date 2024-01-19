@@ -20,10 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0)
-      ..addListener(() {
-        setState(() {});
-      });
+    pageController = PageController(initialPage: 0);
     super.initState();
   }
 

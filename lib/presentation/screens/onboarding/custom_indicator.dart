@@ -13,10 +13,8 @@ class CustomIndicator extends StatelessWidget {
       activeIndex: dotIndex ?? 0,
       count: 3,
       effect:  const SlideEffect(
-          spacing:  8.0,
           dotWidth:  10.0,
           dotHeight:  10.0,
-          paintStyle:  PaintingStyle.fill,
           dotColor:  Color(0x1af39c12),
           activeDotColor: ColorManager.primary
       ),
