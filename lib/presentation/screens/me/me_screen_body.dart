@@ -4,7 +4,7 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
-import 'package:education/presentation/screens/home/widgets/home_app_bar/userImage.dart';
+import 'package:education/presentation/screens/home/widgets/home_app_bar/user_image.dart';
 import 'package:education/presentation/screens/me/me_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

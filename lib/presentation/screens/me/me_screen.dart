@@ -1,4 +1,3 @@
-import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/me/me_screen_body.dart';
 import 'package:education/presentation/widgets/require_log_in_view.dart';

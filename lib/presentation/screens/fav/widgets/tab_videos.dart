@@ -3,7 +3,6 @@ import 'package:education/presentation/screens/fav/controller/video_controller.d
 import 'package:education/presentation/screens/fav/widgets/videos_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 
 import '../../../resources/strings_manager.dart';
 import '../../../widgets/empty_screen.dart';

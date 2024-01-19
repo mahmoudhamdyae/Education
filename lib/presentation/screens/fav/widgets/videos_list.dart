@@ -1,14 +1,11 @@
 import 'package:education/domain/models/returned_video.dart';
-import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/widgets/save_video_button.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/styles_manager.dart';
-import '../../lesson/widgets/lesson_screen.dart';
 
 class VideosList extends StatelessWidget {
 

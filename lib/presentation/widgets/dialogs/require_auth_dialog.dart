@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,12 @@ showRequireAuthDialog(BuildContext context) {
                         Get.back();
                         Get.to(() => const LoginScreen());
                       },
-                      child: const Text(AppStrings.continueButton)
+                      child: Text(
+                        AppStrings.continueButton,
+                        style: getSmallStyle(
+                          color: ColorManager.secondary
+                        ),
+                      )
                   ),
                 ],
               )
