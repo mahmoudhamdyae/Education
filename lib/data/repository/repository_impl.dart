@@ -18,6 +18,11 @@ class RepositoryImpl extends Repository {
   // Local Data Source
 
   @override
+  Future<bool> isFirstTime() {
+    return _localDataSource.isFirstTime();
+  }
+
+  @override
   bool isUserLoggedIn() {
     return _localDataSource.isUserLoggedIn();
   }

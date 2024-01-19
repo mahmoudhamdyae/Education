@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:education/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../main_screen.dart';
+import '../onboarding/onboarding_screen.dart';
 import '../start/start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,13 +26,17 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() async {
-    if (appPreferences.isUserLoggedIn()) {
-      // Navigate to main screen
-      Get.offAll(const MainScreen());
-    } else {
-      // Navigate to login screen
-      Get.offAll(const StartScreen());
-    }
+    appPreferences.isFirstTime().then((isFirstTime) {
+      if (isFirstTime) {
+        Get.offAll(() => const OnboardingScreen());
+      } else if (appPreferences.isUserLoggedIn()) {
+        // Navigate to main screen
+        Get.offAll(const MainScreen());
+      } else {
+        // Navigate to login screen
+        Get.offAll(const StartScreen());
+      }
+    });
   }
 
   @override
@@ -43,10 +47,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: ColorManager.primary,
-      body:
-      Center(child: Image(image: AssetImage(ImageAssets.splashLogo), width: 200,)),
+    return Scaffold(
+      backgroundColor: ColorManager.white,
+      body: Container()
     );
   }
 

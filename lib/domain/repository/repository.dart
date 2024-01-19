@@ -8,6 +8,7 @@ import '../models/returned_video.dart';
 abstract class Repository {
 
   // Local Data Source
+  Future<bool> isFirstTime();
   bool isUserLoggedIn();
   String getUserName();
   String getGrade();

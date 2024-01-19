@@ -2,7 +2,6 @@ const String imagePath = "assets/images";
 const String jsonPath = "assets/json";
 
 class ImageAssets {
-  static const String splashLogo = "$imagePath/splash_logo.png";
   static const String start = "$imagePath/start.webp";
   static const String empty = "$imagePath/empty.png";
   static const String error = "$imagePath/error.svg";
@@ -31,7 +30,7 @@ class ImageAssets {
   static const String signOut = "$imagePath/sign_out.svg";
   static const String onboarding1 = "$imagePath/onboarding1.png";
   static const String onboarding2 = "$imagePath/onboarding2.png";
-  static const String onboarding3 = "$imagePath/onboarding2.png";
+  static const String onboarding3 = "$imagePath/onboarding3.png";
   static const String login = "$imagePath/login.png";
   static const String register = "$imagePath/register.png";
   static const String baqaSilver = "$imagePath/baqaSilver.png";

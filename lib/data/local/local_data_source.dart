@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 import '../../domain/models/courses/course.dart';
 
 abstract class LocalDataSource {
+  Future<bool> isFirstTime();
   Future<void> setUserLoggedIn();
   bool isUserLoggedIn();
   Future<void> signOut();
@@ -25,6 +26,7 @@ abstract class LocalDataSource {
   Future<void> removeVideo(int courseId, int lessonId);
 }
 
+const String keyIsFirstTime = "KEY_IS_FIRST_TIME";
 const String keyIsUserLoggedIn = "KEY_IS_USER_LOGGED_IN";
 const String keyUserId = "KEY_USER_ID";
 const String keyUserName = "KEY_USER_NAME";
@@ -35,6 +37,16 @@ class LocalDataSourceImpl extends LocalDataSource {
 
   final Box _box;
   LocalDataSourceImpl(this._box);
+
+  @override
+  Future<bool> isFirstTime() async {
+    bool isFirstTime = await _box.get(keyIsFirstTime, defaultValue: true);
+    if (isFirstTime) {
+      await _box.put(keyIsFirstTime, false);
+    }
+    // return isFirstTime;
+    return true;
+  }
 
   @override
   Future<void> setUserLoggedIn() async {

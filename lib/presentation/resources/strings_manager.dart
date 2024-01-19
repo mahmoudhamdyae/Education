@@ -150,6 +150,8 @@ class AppStrings {
   static const String onboarding2 = 'وفر وقتك';
   static const String onboarding3 = 'احصل على الشهادات';
   static const String onboardingStart = 'ابدأ';
+  static const String onboardingNext = 'التالى';
+  static const String onboardingSkip = 'تخطى';
   // Me Screen
   static const String editProfile = 'تعديل البروفايل';
   static const String baqat = 'باقات الاشتراك';
