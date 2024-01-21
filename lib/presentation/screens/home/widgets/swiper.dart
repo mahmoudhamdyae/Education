@@ -58,7 +58,7 @@ class SwiperWidget extends StatelessWidget {
                   ],
                 ),
                 Image.asset(
-                  sliders[index].image ?? '',
+                  sliders[index].image,
                   width: 150,
                 ),
               ],
