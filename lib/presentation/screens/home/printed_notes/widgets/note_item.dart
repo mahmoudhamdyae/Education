@@ -1,3 +1,4 @@
+import 'package:education/presentation/screens/home/printed_notes/widgets/cart_button.dart';
 import 'package:education/presentation/screens/home/printed_notes/widgets/download_note_button.dart';
 import 'package:flutter/material.dart';
 
@@ -37,10 +38,11 @@ class NoteItem extends StatelessWidget {
             Text(
               note.name,
               style: getLargeStyle(
-                  fontWeight: FontWeight.w400
+                  fontWeight: FontWeight.w500
               ),
             ),
             DownloadNoteButton(pdf: note.pdf,),
+            const CartButton(),
           ],
         ),
       ),
