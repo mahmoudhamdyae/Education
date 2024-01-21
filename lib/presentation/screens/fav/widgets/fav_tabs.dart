@@ -2,10 +2,6 @@ import 'package:education/presentation/screens/fav/widgets/tab_courses.dart';
 import 'package:education/presentation/screens/fav/widgets/tab_videos.dart';
 import 'package:flutter/material.dart';
 
-import '../../../resources/color_manager.dart';
-import '../../../resources/strings_manager.dart';
-import '../../../resources/styles_manager.dart';
-
 class FavTabs extends StatefulWidget {
   const FavTabs({super.key});
 
