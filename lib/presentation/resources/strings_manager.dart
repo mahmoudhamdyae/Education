@@ -161,4 +161,6 @@ class AppStrings {
   static const String whoAreWe = 'من نحن';
   static const String delAccount = 'حذف الحساب';
   static const String signOut = 'تسجيل الخروج';
+  // Notes
+  static const String downloadNote = 'تجربة مجانية';
 }

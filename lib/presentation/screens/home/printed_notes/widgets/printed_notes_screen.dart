@@ -1,4 +1,5 @@
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
+import 'package:education/presentation/screens/home/printed_notes/widgets/notes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,15 +16,6 @@ class PrintedNotesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint('passed saff: ${Get.arguments['saff']}');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.printedNotes),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back, color: ColorManager.white,),
-        ),
-      ),
       body: GetX<PrintedNotesController>(
         init: Get.find<PrintedNotesController>(),
         builder: (PrintedNotesController controller) {
@@ -35,7 +27,7 @@ class PrintedNotesScreen extends StatelessWidget {
             return const EmptyScreen(emptyString: AppStrings.noCourses);
           } else {
             final notes = controller.notes;
-            return Container();
+            return NotesScreen(notes: notes, title: Get.arguments['saff'],);
           }
         },
       ),

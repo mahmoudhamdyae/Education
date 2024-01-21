@@ -135,8 +135,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       notes.add(note);
     }
 
-    debugPrint('Get Printed Notes Response: ${notes.length}');
-
     return notes;
   }
 }

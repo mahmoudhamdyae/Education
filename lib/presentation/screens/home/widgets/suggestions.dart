@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/home/widgets/suggestion_item.dart';
+import 'package:education/presentation/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,32 +17,7 @@ class Suggestions extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: ColorManager.black,
-                  ),
-                )
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 64.0),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: getLargeStyle(),
-                ),
-              ),
-            ),
-          ],
-        ),
+        TopBar(title: title,),
         GridView.count(
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),

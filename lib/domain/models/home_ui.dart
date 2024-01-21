@@ -29,7 +29,7 @@ class HomeUI {
       HomeUI(
         AppStrings.printedNotes,
         ImageAssets.home2, (String marhala, String saff) =>
-          Get.to(PrintedNotesScreen(), arguments: { 'saff': saff })
+          Get.to(const PrintedNotesScreen(), arguments: { 'saff': saff })
       ),
       HomeUI(
         AppStrings.courses,

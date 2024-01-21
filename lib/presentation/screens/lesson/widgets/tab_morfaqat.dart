@@ -2,12 +2,10 @@ import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_media_downloader/flutter_media_downloader.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
-import '../../../../core/constants.dart';
-import '../../../resources/color_manager.dart';
+import '../../../../core/download_note.dart';
+
 
 class TabMorfaqat extends StatefulWidget {
 
@@ -19,42 +17,6 @@ class TabMorfaqat extends StatefulWidget {
 }
 
 class _TabMorfaqatState extends State<TabMorfaqat> {
-
-  final _flutterMediaDownloaderPlugin = MediaDownload();
-
-  void _downloadNote(String link) async {
-    String url = '${Constants.baseUrl}filedownload/$link';
-    debugPrint('url: $url');
-    Get.showSnackbar(
-      const GetSnackBar(
-        title: null,
-        message: AppStrings.noteDownloading,
-        icon: Icon(Icons.download, color: ColorManager.white,),
-        duration: Duration(seconds: 3),
-      ),
-    );
-    _flutterMediaDownloaderPlugin.downloadMedia(context, url).catchError((error) {
-      if (Get.isSnackbarOpen) Get.back();
-      Get.showSnackbar(
-        const GetSnackBar(
-          title: null,
-          message: AppStrings.noteDownloadError,
-          icon: Icon(Icons.error, color: ColorManager.white,),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    }).then((value) {
-      if (Get.isSnackbarOpen) Get.back();
-      Get.showSnackbar(
-        const GetSnackBar(
-          title: null,
-          message: AppStrings.noteDownloaded,
-          icon: Icon(Icons.download_done, color: ColorManager.white,),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +47,7 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
                 ),
                 IconButton(
                   onPressed: () {
-                    _downloadNote(widget.link);
+                    downloadNote(context, widget.link);
                   },
                   icon: SvgPicture.asset(ImageAssets.download),
                 )

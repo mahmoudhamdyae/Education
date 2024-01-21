@@ -7,6 +7,7 @@ class ImageAssets {
   static const String error = "$imagePath/error.svg";
   static const String user = "$imagePath/user.svg";
   static const String course = "$imagePath/course.png";
+  static const String books = "$imagePath/note.png";
   static const String bookmark = "$imagePath/bookmark.svg";
   static const String bookmarkSelected = "$imagePath/bookmark_selected.svg";
   static const String bookmarkVideo = "$imagePath/bookmark_video.svg";
