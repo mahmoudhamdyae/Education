@@ -3,7 +3,6 @@ import 'package:education/presentation/screens/home/printed_notes/widgets/notes_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
 import '../../../../widgets/empty_screen.dart';
 import '../../../../widgets/error_screen.dart';
