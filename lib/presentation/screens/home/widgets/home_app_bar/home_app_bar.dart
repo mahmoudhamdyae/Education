@@ -39,6 +39,27 @@ class HomeAppBar extends StatelessWidget {
           const SizedBox(width: 8,),
           InkWell(onTap: _login, child: AccountColumn()),
           Expanded(child: Container()),
+          // Cart Button
+          Container(
+            height: 32,
+            width: 32,
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                border: Border.all(color: ColorManager.secondary)
+            ),
+            child: IconButton(
+              onPressed: () {
+                Get.to(() => NotificationsScreen());
+              },
+              icon: const Icon(
+                Icons.shopping_cart,
+                size: 15,
+                color: ColorManager.secondary,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8.0,),
           // Notifications Button
           Container(
             height: 32,
