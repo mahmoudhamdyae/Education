@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../../domain/models/notes/note.dart';
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/color_manager.dart';
+import '../../../../resources/font_manager.dart';
 import '../../../../resources/styles_manager.dart';
 
 class NoteItem extends StatelessWidget {
@@ -35,10 +36,25 @@ class NoteItem extends StatelessWidget {
               height: 100,
               width: 225,
             ),
-            Text(
-              note.name,
-              style: getLargeStyle(
-                  fontWeight: FontWeight.w500
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    note.name,
+                    style: getLargeStyle(
+                        fontWeight: FontWeight.w400
+                    ),
+                  ),
+                  Text(
+                    '${note.bookPrice} د.ك',
+                    style: getLargeStyle(
+                        fontSize: FontSize.s20,
+                        color: ColorManager.secondary
+                    ),
+                  )
+                ],
               ),
             ),
             DownloadNoteButton(pdf: note.pdf,),

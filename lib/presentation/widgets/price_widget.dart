@@ -7,7 +7,7 @@ import '../resources/styles_manager.dart';
 class PriceWidget extends StatelessWidget {
 
   final int price;
-final String month;
+  final String month;
   const PriceWidget({super.key, required this.price, required this.month});
 
   @override

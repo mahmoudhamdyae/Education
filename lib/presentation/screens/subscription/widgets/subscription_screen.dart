@@ -1,9 +1,7 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
-import 'package:education/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
-import 'package:education/presentation/screens/subscription/widgets/subscription_screen_body.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:education/presentation/widgets/error_screen.dart';
 import 'package:education/presentation/widgets/loading_screen.dart';
