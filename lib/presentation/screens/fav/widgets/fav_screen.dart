@@ -1,6 +1,6 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/screens/fav/widgets/fav_tabs.dart';
+import 'package:education/presentation/screens/fav/widgets/tab_courses.dart';
 import 'package:flutter/material.dart';
 
 class FavScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class FavScreen extends StatelessWidget {
               style: getLargeStyle(),
             ),
           ),
-          const Expanded(child: FavTabs()),
+          const Expanded(child: TabCourses()),
         ],
       ),
     );
