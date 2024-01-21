@@ -1,5 +1,6 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
+import 'package:education/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/account_column.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/user_image.dart';
 import 'package:education/presentation/screens/notifications/widgets/notifications_screen.dart';
@@ -50,7 +51,7 @@ class HomeAppBar extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Get.to(() => NotificationsScreen());
+                Get.to(() => const CartScreen());
               },
               icon: const Icon(
                 Icons.shopping_cart,
