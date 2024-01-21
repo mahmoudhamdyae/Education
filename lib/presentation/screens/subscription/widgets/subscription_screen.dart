@@ -22,7 +22,7 @@ class SubscriptionScreen extends StatelessWidget {
     Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 40.0, bottom: 8.0),
+          padding: const EdgeInsets.only(top: 50.0, bottom: 8.0),
           child: Text(
             AppStrings.favCourses,
             style: getLargeStyle(),
