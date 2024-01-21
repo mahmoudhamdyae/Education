@@ -165,4 +165,5 @@ class AppStrings {
   static const String downloadNote = 'تجربة مجانية';
   static const String addToCart = 'إضافة إلى السلة';
   static const String removeFromCart = 'الكتاب موجود فى السلة';
+  static const String cart = 'عربة التسوق';
 }
