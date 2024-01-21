@@ -48,6 +48,7 @@ class AppStrings {
   static const loginButton = "تسجيل دخول";
   static const loginAsAGuestButton = "الدخول كزائر";
   // Logout
+  static const String logoutDialogTitle = "تسجيل الخروج";
   static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
   static const String logoutOk = "تسجيل الخروج";
   static const String cancel = "الغاء";

@@ -3,19 +3,14 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
-import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/user_image.dart';
 import 'package:education/presentation/screens/me/me_item.dart';
+import 'package:education/presentation/screens/me/sign_out_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MeScreenBody extends StatelessWidget {
   const MeScreenBody({super.key});
-
-  _signOut() {
-    Get.find<AuthController>().signOut()
-        .then((value) => Get.offAll(() => const LoginScreen()));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +80,7 @@ class MeScreenBody extends StatelessWidget {
         MeItem(
             icon: ImageAssets.signOut,
             title: AppStrings.signOut,
-            action: _signOut
+            action: () => showSignOutDialog(context)
         )
       ],
     );
