@@ -166,4 +166,5 @@ class AppStrings {
   static const String addToCart = 'إضافة إلى السلة';
   static const String removeFromCart = 'إزالة من السلة';
   static const String cart = 'عربة التسوق';
+  static const String noCart = 'لا يوجد مشتريات حاليا';
 }
