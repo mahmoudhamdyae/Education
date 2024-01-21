@@ -93,6 +93,7 @@ class AppStrings {
   static const String notesLabel = "مذكرات";
   static const String baqaPrice = "سعر الباقة";
   static const String noCourses = "لا يوجد كورسات مسجلة حاليا فى هذه المرحلة";
+  static const String noNotes = "لا يوجد مذكرات متاحة حاليا لهذا الصف";
   static const String emptyTutorials = 'لا يوجد وحدات';
   static const String noteDownloaded = 'تم تحميل المذكرة';
   static const String noteDownloading = 'جارى التحميل';

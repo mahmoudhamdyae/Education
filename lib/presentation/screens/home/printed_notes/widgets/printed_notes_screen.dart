@@ -24,7 +24,7 @@ class PrintedNotesScreen extends StatelessWidget {
           } else if (controller.status.isError) {
             return ErrorScreen(error: controller.status.errorMessage ?? '');
           } else if (controller.notes.isEmpty){
-            return const EmptyScreen(emptyString: AppStrings.noCourses);
+            return const EmptyScreen(emptyString: AppStrings.noNotes);
           } else {
             final notes = controller.notes;
             return NotesScreen(notes: notes, title: Get.arguments['saff'],);
