@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:education/core/converters.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
+import 'package:education/domain/models/notes/note.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,6 +20,7 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
+  Future<List<Note>> getNotes(String marhala);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -67,30 +70,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     final response = await _dio.get(url);
 
     List<Course> courses = [];
-    String s = '';
-    switch(marhala) {
-      case AppStrings.saff6:
-        s = 'coursesix';
-        break;
-      case AppStrings.saff7:
-        s = 'courseseven';
-        break;
-      case AppStrings.saff8:
-        s = 'courseeight';
-        break;
-      case AppStrings.saff9:
-        s = 'coursenine';
-        break;
-      case AppStrings.saff10:
-        s = 'courseten';
-        break;
-      case AppStrings.saff11:
-        s = 'courseeleven';
-        break;
-      case AppStrings.saff12:
-        s = 'coursetwelve';
-        break;
-    }
+    String s = convertSaff(marhala, 'course');
     for (var singleCourse in response.data[s]) {
       Course course = Course.fromJson(singleCourse);
       debugPrint('Get Recorded Courses Response: $marhala');
@@ -139,5 +119,24 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     if (!await _networkInfo.isConnected) {
       throw Exception(AppStrings.noInternetError);
     }
+  }
+
+  @override
+  Future<List<Note>> getNotes(String marhala) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}books";
+    final response = await _dio.get(url);
+
+    List<Note> notes = [];
+    String s = convertSaff(marhala, 'book');
+    for (var singleNote in response.data[s]) {
+      Note note = Note.fromJson(singleNote);
+      notes.add(note);
+    }
+
+    debugPrint('Get Printed Notes Response: ${notes.length}');
+
+    return notes;
   }
 }

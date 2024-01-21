@@ -1,6 +1,7 @@
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
+import 'package:education/domain/models/notes/note.dart';
 import 'package:education/domain/repository/repository.dart';
 
 import '../../domain/models/courses/class_model.dart';
@@ -92,7 +93,7 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<void> signOut() async {
-    return _localDataSource.signOut();
+    return await _localDataSource.signOut();
   }
 
   // Remote Data Source
@@ -115,5 +116,10 @@ class RepositoryImpl extends Repository {
   @override
   Future<String> askQuestion(String question) {
     return _remoteDataSource.askQuestion(question);
+  }
+
+  @override
+  Future<List<Note>> getNotes(String marhala) async {
+    return await _remoteDataSource.getNotes(marhala);
   }
 }

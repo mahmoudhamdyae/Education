@@ -18,7 +18,7 @@ class RecordedCoursesScreen extends StatelessWidget {
     return Scaffold(
       body: GetX<RecordedCoursesController>(
         init: Get.find<RecordedCoursesController>(),
-        builder: (controller) {
+        builder: (RecordedCoursesController controller) {
           if (controller.status.isLoading) {
             return const LoadingScreen();
           } else if (controller.status.isError) {

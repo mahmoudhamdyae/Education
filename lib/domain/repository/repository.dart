@@ -3,6 +3,7 @@ import 'package:education/domain/models/lesson/wehda.dart';
 
 import '../models/courses/class_model.dart';
 import '../models/lesson/lesson.dart';
+import '../models/notes/note.dart';
 import '../models/returned_video.dart';
 
 abstract class Repository {
@@ -30,4 +31,5 @@ abstract class Repository {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
+  Future<List<Note>> getNotes(String marhala);
 }
