@@ -7,11 +7,19 @@ class SliderModel {
 
   SliderModel(this.name, this.image);
 
-  static List<SliderModel> getData() {
+  static List<SliderModel> getBaqat() {
     return [
       SliderModel(AppStrings.silverBaqa, ImageAssets.baqaSilver),
       SliderModel(AppStrings.goldenBaqa, ImageAssets.baqaGolden),
       SliderModel(AppStrings.diamondBaqa, ImageAssets.baqaDiamond),
+    ];
+  }
+
+  static List<SliderModel> getTeachers() {
+    return [
+      SliderModel('أ/ إسلام ناصف', ImageAssets.teacher2),
+      SliderModel('أ/ إسلام ناصف', ImageAssets.teacher2),
+      SliderModel('أ/ إسلام ناصف', ImageAssets.teacher2),
     ];
   }
 }

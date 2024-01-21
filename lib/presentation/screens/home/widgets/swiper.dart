@@ -10,7 +10,8 @@ import '../../../resources/color_manager.dart';
 class SwiperWidget extends StatelessWidget {
 
   final List<SliderModel> sliders;
-  const SwiperWidget({super.key, required this.sliders});
+  final bool isTeacher;
+  const SwiperWidget({super.key, required this.sliders, required this.isTeacher});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +28,20 @@ class SwiperWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       sliders[index].name,
                       style: getLargeStyle(),
                     ),
-                    FilledButton(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6.0),
+                      child: Text(
+                        isTeacher ? 'مدرس أول': 'تشمل حميع مذكرات الصف',
+                        style: getSmallStyle(),
+                      ),
+                    ),
+                    isTeacher ? Container() : FilledButton(
                       style: getFilledButtonStyle(
                         color: ColorManager.secondary
                       ),
@@ -50,7 +58,8 @@ class SwiperWidget extends StatelessWidget {
                   ],
                 ),
                 Image.asset(
-                    sliders[index].image ?? ''
+                  sliders[index].image ?? '',
+                  width: 150,
                 ),
               ],
             ),
@@ -68,7 +77,7 @@ class SwiperWidget extends StatelessWidget {
                 child: Container(
                   color: ColorManager.white,
                   child: Center(
-                    child: AnimatedSmoothIndicator(
+                    child: isTeacher ? Container() : AnimatedSmoothIndicator(
                       activeIndex: config.activeIndex,
                       count: sliders.length,
                       effect:  const SlideEffect(

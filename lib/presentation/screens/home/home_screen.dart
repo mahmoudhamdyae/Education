@@ -1,5 +1,6 @@
 import 'package:education/domain/models/slider.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +21,26 @@ class HomeScreen extends StatelessWidget {
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
           children: [
-            SwiperWidget(sliders: SliderModel.getData()),
             CustomGridView(HomeUI.getItems(context)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                AppStrings.baqat3,
+                style: getLargeStyle(),
+              ),
+            ),
+            SwiperWidget(sliders: SliderModel.getBaqat(), isTeacher: false,),
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 16.0),
+              child: Text(
+                AppStrings.teachers,
+                style: getLargeStyle(),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: SwiperWidget(sliders: SliderModel.getTeachers(), isTeacher: true,),
+            ),
           ],
         )
     );

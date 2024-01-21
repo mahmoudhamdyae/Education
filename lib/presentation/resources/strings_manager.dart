@@ -72,7 +72,7 @@ class AppStrings {
   static const String printedNotes = "مذكرات مطبوعة";
   static const String courses = "كورسات حضورى";
   static const String onlineCourses = "كورسات أونلاين";
-  static const String teacher = "مدرس خصوصى";
+  static const String teacher = "معلمك الخاص";
   static const String examsAndBanks = "اختبارات و بنوك";
 
   // Choose Marhala Dialog
@@ -155,6 +155,8 @@ class AppStrings {
   // Me Screen
   static const String editProfile = 'تعديل البروفايل';
   static const String baqat = 'باقات الاشتراك';
+  static const String baqat3 = 'الباقات';
+  static const String teachers = 'المدرسين';
   static const String helpCenter = 'مركز المساعدات';
   static const String whoAreWe = 'من نحن';
   static const String delAccount = 'حذف الحساب';
