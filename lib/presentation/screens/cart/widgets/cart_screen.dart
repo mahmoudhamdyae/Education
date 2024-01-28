@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/cart/widgets/cart_item.dart';
@@ -39,6 +40,59 @@ class CartScreen extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                 children: [
                   Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 64.0, vertical: 8.0),
+                    child: Column(
+                      children: [
+                        // الإجمالى
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppStrings.sum,
+                              style: getLargeStyle(),
+                            ),
+                            Text(
+                              '${controller.sum} د.ك',
+                              style: getSmallStyle(),
+                            ),
+                          ],
+                        ),
+                        // الخصم
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppStrings.discount,
+                              style: getLargeStyle(),
+                            ),
+                            Text(
+                              '- ${controller.discount} د.ك',
+                              style: getSmallStyle(),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8.0,),
+                        const Divider(height: 1, color: ColorManager.primaryTransparent,),
+                        const SizedBox(height: 8.0,),
+                        // المحموع الكلى
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppStrings.total,
+                              style: getLargeStyle(),
+                            ),
+                            Text(
+                              '${controller.sum - controller.discount.value} د.ك',
+                              style: getSmallStyle(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  // اتمام عملية الشراء
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FilledButton(
                       style: getFilledButtonStyle(),
@@ -64,7 +118,7 @@ class CartScreen extends StatelessWidget {
                       ),
 
                       itemBuilder: (BuildContext context, int index) {
-                        return CartItem(note: notes[index]);
+                        return CartItem(note: notes[index], index: index);
                       },
                     ),
                 ],

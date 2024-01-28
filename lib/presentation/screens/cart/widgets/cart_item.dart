@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,8 @@ import '../../../resources/styles_manager.dart';
 class CartItem extends StatelessWidget {
 
   final Note note;
-  const CartItem({super.key, required this.note});
+  final int index;
+  const CartItem({super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class CartItem extends StatelessWidget {
               children: [
                 Expanded(child: Container()),
                 Text(
-                  'الكمية',
+                  AppStrings.quantity,
                   style: getLargeStyle(),
                 ),
                 Expanded(child: Container()),
@@ -114,11 +116,11 @@ class CartItem extends StatelessWidget {
                             InkWell(
                                 onTap: () {
                                   debugPrint('Minus Clicked');
-                                  controller.decrementCount();
+                                  controller.decrementCount(index);
                                 }, child: Text(
                               '-',
                               style: TextStyle(
-                                color: controller.count.value != 1 ? ColorManager.black : ColorManager.grey,
+                                color: controller.count[index] != 1 ? ColorManager.black : ColorManager.grey,
                                 fontSize: 32,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -131,7 +133,7 @@ class CartItem extends StatelessWidget {
                                 top: 6,
                               ),
                               child: Text(
-                                controller.count.value.toString(),
+                                controller.count[index].toString(),
                                 style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w400,
@@ -143,7 +145,7 @@ class CartItem extends StatelessWidget {
                             InkWell(
                                 onTap: () {
                                   debugPrint('Plus Clicked');
-                                  controller.incrementCount();
+                                  controller.incrementCount(index);
                                 }, child: const Text(
                               '+',
                               style: TextStyle(

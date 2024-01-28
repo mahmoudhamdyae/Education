@@ -175,4 +175,5 @@ class AppStrings {
   static const String sum = 'الإجمالى';
   static const String discount = 'الخصم';
   static const String total = 'المجموع الكلى';
+  static const String quantity = 'الكمية';
 }

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
-  final RxInt count = 1.obs;
+  final RxList<int> count = RxList.empty();
   final RxInt sum = 0.obs;
   final RxInt totalSum = 0.obs;
   final RxInt discount = 0.obs;
@@ -40,6 +40,10 @@ class PrintedNotesController extends GetxController {
       _repository.getAllNotes().then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.value = remoteNotes;
+        remoteNotes.forEach((element) {
+          sum.value += element.bookPrice;
+          count.add(1);
+        });
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -74,13 +78,13 @@ class PrintedNotesController extends GetxController {
     return _repository.isNoteInCart(noteId);
   }
 
-  void incrementCount() {
-    count.value++;
+  void incrementCount(int index) {
+    count[index]++;
   }
 
-  void decrementCount() {
-    if (count.value != 1) {
-      count.value--;
+  void decrementCount(int index) {
+    if (count[index] != 1) {
+      count[index]--;
     }
   }
 }
