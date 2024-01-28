@@ -1,8 +1,7 @@
 import 'package:education/domain/models/courses/course.dart';
-import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
-import 'package:education/presentation/widgets/save_video_button.dart';
+import 'package:education/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +9,6 @@ import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
 import '../resources/styles_manager.dart';
 import '../resources/values_manager.dart';
-import 'dialogs/require_auth_dialog.dart';
 
 class LessonsWidget extends StatefulWidget {
   final List<Wehda> wehdat;
@@ -24,7 +22,6 @@ class LessonsWidget extends StatefulWidget {
 
 class _LessonsWidgetState extends State<LessonsWidget> {
   int expanded = -1;
-  final bool isUserLoggedIn = Get.find<Repository>().isUserLoggedIn();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +60,14 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                 ),
                 child: Row(
                   children: [
-                    Text(
-                      wehda.title,
-                      style: const TextStyle(
-                          color: ColorManager.black
+                    Expanded(
+                      child: Text(
+                        wehda.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            color: ColorManager.black,
+                        ),
                       ),
                     ),
                     const SizedBox(width: AppSize.s4,),
@@ -107,11 +108,15 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
                     child: InkWell(
                       onTap: () {
-                        Course course = Get.arguments['course'];
-                        Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
-                        debugPrint('-------------------------- ${wehda.lessons[lessonIndex].link}');
-                        Get.back();
-                        Get.to(const LessonScreen(), arguments: { 'course': course });
+                        if (wehda.lessons[lessonIndex].type == 'free') {
+                          Course course = Get.arguments['course'];
+                          Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
+                          debugPrint('-------------------------- ${wehda.lessons[lessonIndex].link}');
+                          Get.back();
+                          Get.to(const LessonScreen(), arguments: { 'course': course });
+                        } else {
+                          showRequireAuthDialog(context);
+                        }
                       },
                       child: Row(
                         children: [
@@ -134,9 +139,15 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                           const SizedBox(width: 8.0,),
                           Text(
                             wehda.lessons[lessonIndex].title,
-                            style: getSmallStyle(),
+                            style: getSmallStyle(
+                              color: wehda.lessons[lessonIndex].type == 'free' ? ColorManager.black : ColorManager.grey
+                            ),
                           ),
                           Expanded(child: Container()),
+                          Icon(
+                            wehda.lessons[lessonIndex].type == 'free' ? Icons.remove_red_eye : Icons.lock,
+                            color: wehda.lessons[lessonIndex].type == 'free' ? ColorManager.black : ColorManager.grey,
+                          ),
                           // SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[lessonIndex],),
                         ],
                       ),

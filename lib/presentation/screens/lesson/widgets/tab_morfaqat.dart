@@ -47,7 +47,7 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
                 ),
                 IconButton(
                   onPressed: () {
-                    downloadNote(context, widget.link);
+                    downloadNote(context, widget.link, false);
                   },
                   icon: SvgPicture.asset(ImageAssets.download),
                 )

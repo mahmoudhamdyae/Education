@@ -8,8 +8,12 @@ import 'constants.dart';
 
 final _flutterMediaDownloaderPlugin = MediaDownload();
 
-void downloadNote(BuildContext context, String link) async {
-  String url = '${Constants.baseUrl}filedownload/$link';
+void downloadNote(BuildContext context, String link, bool isNote) async {
+  String url = '${Constants.baseUrl}filedownload/';
+  if (isNote) {
+    url += 'books/';
+  }
+  url += link;
   debugPrint('url: $url');
   Get.showSnackbar(
     const GetSnackBar(

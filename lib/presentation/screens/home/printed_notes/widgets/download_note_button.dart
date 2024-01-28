@@ -17,7 +17,7 @@ class DownloadNoteButton extends StatelessWidget {
       child: FilledButton(
         style: getFilledButtonStyle(),
           onPressed: () {
-            downloadNote(context, pdf);
+            downloadNote(context, pdf, true);
           },
           child: Row(
             children: [
