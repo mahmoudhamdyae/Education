@@ -97,7 +97,7 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<List<Note>> getAllNotes() {
-    return _remoteDataSource.getAllNotes();
+    return _remoteDataSource.getAllNotes(_localDataSource.getAllNotesCart());
   }
 
   @override

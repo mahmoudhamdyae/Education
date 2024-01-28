@@ -21,7 +21,7 @@ abstract class RemoteDataSource {
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
-  Future<List<Note>> getAllNotes();
+  Future<List<Note>> getAllNotes(List<String> notesId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -131,7 +131,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     List<Note> notes = [];
     String s = convertSaff(marhala, 'book');
-    debugPrint('============ --- $s');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
       notes.add(note);
@@ -141,7 +140,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<List<Note>> getAllNotes() async {
+  Future<List<Note>> getAllNotes(List<String> notesId) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}books";
@@ -149,41 +148,39 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     List<Note> notes = [];
     String s = convertSaff(AppStrings.saff6, 'book');
-    debugPrint('============ --- $s');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff7, 'book');
-    debugPrint('============ --- $s');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff8, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff9, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff10, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff11, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
     s = convertSaff(AppStrings.saff12, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
-      notes.add(note);
+      if (notesId.contains(note.id.toString())) notes.add(note);
     }
 
     return notes;
