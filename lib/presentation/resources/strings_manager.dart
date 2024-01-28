@@ -169,4 +169,7 @@ class AppStrings {
   static const String removeFromCart = 'إزالة من السلة';
   static const String cart = 'عربة التسوق';
   static const String noCart = 'لا يوجد مشتريات حاليا';
+  // Cart
+  static const String finishOrder = 'اتمام عملية الشراء';
+  static const String cartNotes = 'المذكرات';
 }
