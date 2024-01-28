@@ -113,10 +113,8 @@ class CartItem extends StatelessWidget {
                             // - Button
                             InkWell(
                                 onTap: () {
-                                  if (controller.count.value != 1) {
-                                    debugPrint('Minus Clicked');
-                                    controller.decrementCount();
-                                  }
+                                  debugPrint('Minus Clicked');
+                                  controller.decrementCount();
                                 }, child: Text(
                               '-',
                               style: TextStyle(

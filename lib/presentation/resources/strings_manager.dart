@@ -172,4 +172,7 @@ class AppStrings {
   // Cart
   static const String finishOrder = 'اتمام عملية الشراء';
   static const String cartNotes = 'المذكرات';
+  static const String sum = 'الإجمالى';
+  static const String discount = 'الخصم';
+  static const String total = 'المجموع الكلى';
 }

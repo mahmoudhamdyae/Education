@@ -6,6 +6,9 @@ class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
   final RxInt count = 1.obs;
+  final RxInt sum = 0.obs;
+  final RxInt totalSum = 0.obs;
+  final RxInt discount = 0.obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -76,6 +79,8 @@ class PrintedNotesController extends GetxController {
   }
 
   void decrementCount() {
-    count.value--;
+    if (count.value != 1) {
+      count.value--;
+    }
   }
 }
