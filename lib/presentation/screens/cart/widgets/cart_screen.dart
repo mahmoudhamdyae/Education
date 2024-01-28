@@ -1,5 +1,5 @@
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/screens/home/printed_notes/widgets/note_item.dart';
+import 'package:education/presentation/screens/cart/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,24 +33,21 @@ class CartScreen extends StatelessWidget {
               } else if (controller.notes.isEmpty){
                 return const EmptyScreen(emptyString: AppStrings.noCart);
               }
-              return
-
-
-
-                GridView.count(
+              return ListView.builder(
+                itemCount: notes.length,
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8.0,
                     vertical: 8.0,
                   ),
-                  crossAxisCount: (MediaQuery.of(context).size.width ~/ 160).toInt(),
-                  childAspectRatio: (1/1.6),
-                  children: List.generate(notes.length, (index) {
-                    return NoteItem(note: notes[index]);
-                  }),
+
+                  itemBuilder: (BuildContext context, int index) {
+                    return CartItem(note: notes[index]);
+                  },
                 );
-            },)
+            },
+          )
         ],
       ),
     );

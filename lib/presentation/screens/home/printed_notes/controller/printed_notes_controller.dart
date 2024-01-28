@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
+  final RxInt count = 1.obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -67,5 +68,13 @@ class PrintedNotesController extends GetxController {
 
   bool isNoteInCart(String noteId) {
     return _repository.isNoteInCart(noteId);
+  }
+
+  void incrementCount() {
+    count.value++;
+  }
+
+  void decrementCount() {
+    count.value--;
   }
 }
