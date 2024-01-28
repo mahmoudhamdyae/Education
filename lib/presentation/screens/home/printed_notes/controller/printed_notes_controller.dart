@@ -10,19 +10,30 @@ class PrintedNotesController extends GetxController {
   RxStatus get status => _status.value;
 
   final Repository _repository;
+  late final String saff;
 
-  PrintedNotesController(this._repository);
-
-  @override
-  void onInit() {
-    super.onInit();
-    _getNotes();
+  PrintedNotesController(this._repository) {
+    Map<String, dynamic>? argument = Get.arguments;
+    saff = argument?['saff'] ?? _repository.getGrade();
   }
 
-  _getNotes() async {
+  getNotes() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.getNotes(Get.arguments['saff']).then((remoteNotes) {
+      _repository.getNotes(saff).then((remoteNotes) {
+        _status.value = RxStatus.success();
+        notes.value = remoteNotes;
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+      notes.value = [];
+    }
+  }
+
+  getAllNotes() async {
+    _status.value = RxStatus.loading();
+    try {
+      _repository.getAllNotes().then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.value = remoteNotes;
       });
@@ -33,7 +44,6 @@ class PrintedNotesController extends GetxController {
   }
 
   addNoteToCart(String noteId) {
-    // _status.value = RxStatus.loading();
     try {
       _repository.addNoteToCart(noteId).then((remoteNotes) {
         _status.value = RxStatus.success();
@@ -45,7 +55,6 @@ class PrintedNotesController extends GetxController {
   }
 
   removeNoteFromCart(String noteId) {
-    // _status.value = RxStatus.loading();
     try {
       _repository.removeNoteFromCart(noteId).then((remoteNotes) {
         _status.value = RxStatus.success();

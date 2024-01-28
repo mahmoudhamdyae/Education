@@ -27,6 +27,7 @@ abstract class Repository {
   List<String> getAllNotesCart();
   bool isNoteInCart(String noteId);
   Future<void> removeAllNotesFromCart();
+  Future<List<Note>> getAllNotes();
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

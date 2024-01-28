@@ -96,6 +96,11 @@ class RepositoryImpl extends Repository {
   }
 
   @override
+  Future<List<Note>> getAllNotes() {
+    return _remoteDataSource.getAllNotes();
+  }
+
+  @override
   Future<void> removeNoteFromCart(String noteId) {
     return _localDataSource.removeNoteFromCart(noteId);
   }
