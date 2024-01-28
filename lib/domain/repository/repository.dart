@@ -21,6 +21,13 @@ abstract class Repository {
   Future<List<ReturnedVideo>> getVideos();
   Future<void> removeVideo(int courseId, int lessonId);
 
+  // Notes Cart
+  Future<void> addNoteToCart(String noteId);
+  Future<void> removeNoteFromCart(String noteId);
+  List<String> getAllNotesCart();
+  bool isNoteInCart(String noteId);
+  Future<void> removeAllNotesFromCart();
+
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);
   Future<void> logIn(String phone, String password);

@@ -50,6 +50,7 @@ dependencies:
   hive_flutter: ^1.1.0
   hive_generator: ^2.0.1
   collection: ^1.18.0
+  shared_preferences: ^2.0.20
 
 dev_dependencies:
   flutter_test:

@@ -58,7 +58,7 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             DownloadNoteButton(pdf: note.pdf,),
-            const CartButton(),
+            CartButton(noteId: note.id.toString(),),
           ],
         ),
       ),

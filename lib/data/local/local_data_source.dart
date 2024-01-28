@@ -2,6 +2,7 @@ import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/domain/models/returned_video.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/models/courses/course.dart';
 
@@ -24,6 +25,12 @@ abstract class LocalDataSource {
   Future<void> saveVideo(Course course, Lesson lesson);
   Future<List<ReturnedVideo>> getVideos();
   Future<void> removeVideo(int courseId, int lessonId);
+
+  Future<void> addNoteToCart(String noteId);
+  Future<void> removeNoteFromCart(String noteId);
+  List<String> getAllNotesCart();
+  bool isNoteInCart(String noteId);
+  Future<void> removeAllNotesFromCart();
 }
 
 const String keyIsFirstTime = "KEY_IS_FIRST_TIME";
@@ -36,7 +43,8 @@ const String keyPhoneNumber = "KEY_PHONE_NUMBER";
 class LocalDataSourceImpl extends LocalDataSource {
 
   final Box _box;
-  LocalDataSourceImpl(this._box);
+  final SharedPreferences _sharedPreferences;
+  LocalDataSourceImpl(this._box, this._sharedPreferences);
 
   @override
   Future<bool> isFirstTime() async {
@@ -207,5 +215,36 @@ class LocalDataSourceImpl extends LocalDataSource {
     favBox.deleteFromDisk();
     videosBox.deleteFromDisk();
     lessonBox.deleteFromDisk();
+  }
+
+  @override
+  Future<void> addNoteToCart(String noteId) async {
+    List<String> notes = getAllNotesCart();
+    notes.add(noteId);
+    await _sharedPreferences.setStringList('notes_cart', notes);
+  }
+
+  @override
+  List<String> getAllNotesCart() {
+    List<String> notes = _sharedPreferences.getStringList('notes_cart') ?? [];
+    return notes;
+  }
+
+  @override
+  bool isNoteInCart(String noteId) {
+    List<String> notes = getAllNotesCart();
+    return notes.contains(noteId);
+  }
+
+  @override
+  Future<void> removeNoteFromCart(String noteId) async {
+    List<String> notes = getAllNotesCart();
+    notes.remove(noteId);
+    await _sharedPreferences.setStringList('notes_cart', notes);
+  }
+
+  @override
+  Future<void> removeAllNotesFromCart() async {
+    await _sharedPreferences.setStringList('notes_cart', []);
   }
 }

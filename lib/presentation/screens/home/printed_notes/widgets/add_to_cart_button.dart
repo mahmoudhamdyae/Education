@@ -1,20 +1,21 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../domain/models/cart/cart.dart';
+import '../controller/printed_notes_controller.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({super.key});
+
+  final String noteId;
+  const AddToCartButton({super.key, required this.noteId});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: getOutlinedButtonStyle(),
         onPressed: () {
-          Get.find<CartController>().addToCart(Cart());
+          Get.find<PrintedNotesController>().addNoteToCart(noteId);
         },
         child: Text(
           AppStrings.addToCart,

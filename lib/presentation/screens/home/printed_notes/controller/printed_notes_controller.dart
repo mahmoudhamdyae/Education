@@ -31,4 +31,32 @@ class PrintedNotesController extends GetxController {
       notes.value = [];
     }
   }
+
+  addNoteToCart(String noteId) {
+    // _status.value = RxStatus.loading();
+    try {
+      _repository.addNoteToCart(noteId).then((remoteNotes) {
+        _status.value = RxStatus.success();
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+      notes.value = [];
+    }
+  }
+
+  removeNoteFromCart(String noteId) {
+    // _status.value = RxStatus.loading();
+    try {
+      _repository.removeNoteFromCart(noteId).then((remoteNotes) {
+        _status.value = RxStatus.success();
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+      notes.value = [];
+    }
+  }
+
+  bool isNoteInCart(String noteId) {
+    return _repository.isNoteInCart(noteId);
+  }
 }

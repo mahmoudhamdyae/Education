@@ -73,6 +73,33 @@ class RepositoryImpl extends Repository {
     return _localDataSource.removeVideo(courseId, lessonId);
   }
 
+  // Notes Cart
+
+  @override
+  Future<void> addNoteToCart(String noteId) {
+    return _localDataSource.addNoteToCart(noteId);
+  }
+
+  @override
+  List<String> getAllNotesCart() {
+    return _localDataSource.getAllNotesCart();
+  }
+
+  @override
+  bool isNoteInCart(String noteId) {
+    return _localDataSource.isNoteInCart(noteId);
+  }
+
+  @override
+  Future<void> removeAllNotesFromCart() {
+    return _localDataSource.removeAllNotesFromCart();
+  }
+
+  @override
+  Future<void> removeNoteFromCart(String noteId) {
+    return _localDataSource.removeNoteFromCart(noteId);
+  }
+
   // Account Service
 
   @override

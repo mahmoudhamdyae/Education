@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/network_info.dart';
 import '../presentation/screens/auth/auth_controller.dart';
@@ -43,8 +44,12 @@ class GetXDi implements Bindings {
       return box;
     }, permanent: true);
 
+    await Get.putAsync<SharedPreferences>(() async {
+      return await SharedPreferences.getInstance();
+    });
+
     // Data Sources and Repository
-    Get.lazyPut<LocalDataSource>(() => LocalDataSourceImpl(Get.find<Box>()), fenix: true);
+    Get.lazyPut<LocalDataSource>(() => LocalDataSourceImpl(Get.find<Box>(), Get.find<SharedPreferences>()), fenix: true);
     Get.lazyPut<RemoteDataSource>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), Get.find<Dio>()), fenix: true);
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>(), Get.find<LocalDataSource>()), fenix: true);
 
