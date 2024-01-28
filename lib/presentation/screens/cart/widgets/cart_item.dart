@@ -68,7 +68,7 @@ class CartItem extends StatelessWidget {
                     // Delete Button
                     IconButton(
                       onPressed: () =>
-                          Get.find<PrintedNotesController>().removeNoteFromCart(note.id.toString()),
+                          Get.find<PrintedNotesController>().removeNoteFromCart(note),
                       icon: const Icon(
                         Icons.delete,
                         color: ColorManager.error,

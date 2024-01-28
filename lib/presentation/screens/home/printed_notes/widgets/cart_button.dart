@@ -3,12 +3,13 @@ import 'package:education/presentation/screens/home/printed_notes/widgets/remove
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../../domain/models/notes/note.dart';
 import '../controller/printed_notes_controller.dart';
 
 class CartButton extends StatelessWidget {
 
-  final String noteId;
-  const CartButton({super.key, required this.noteId});
+  final Note note;
+  const CartButton({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class CartButton extends StatelessWidget {
         //   builder: (PrintedNotesController controller) {
         //     bool inCart = Get.find<PrintedNotesController>().isNoteInCart(noteId);
         //     return
-        Get.find<PrintedNotesController>().isNoteInCart(noteId) ? RemoveFromCartButton(noteId: noteId,)
+        Get.find<PrintedNotesController>().isNoteInCart(note.id.toString()) ? RemoveFromCartButton(note: note,)
                 :
-            AddToCartButton(noteId: noteId,)
+            AddToCartButton(noteId: note.id.toString(),)
     // ;
     //         },
         // )

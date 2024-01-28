@@ -55,10 +55,11 @@ class PrintedNotesController extends GetxController {
     }
   }
 
-  removeNoteFromCart(String noteId) {
+  removeNoteFromCart(Note note) {
     try {
-      _repository.removeNoteFromCart(noteId).then((remoteNotes) {
+      _repository.removeNoteFromCart(note.id.toString()).then((remoteNotes) {
         _status.value = RxStatus.success();
+        notes.remove(note);
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
