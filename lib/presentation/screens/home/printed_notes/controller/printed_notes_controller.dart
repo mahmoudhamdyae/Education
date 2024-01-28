@@ -1,5 +1,6 @@
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class PrintedNotesController extends GetxController {
@@ -9,6 +10,23 @@ class PrintedNotesController extends GetxController {
   final RxInt sum = 0.obs;
   final RxInt totalSum = 0.obs;
   final RxInt discount = 0.obs;
+
+  final TextEditingController userName = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController address = TextEditingController();
+  final RxList<String> areas = [
+    'المحافظة...',
+    'حوالى',
+    'مبارك الكبير',
+    'الفروانية',
+    'الأحمدى',
+    'الجهراء',
+    'العاصمة',
+    'أم الهيمان',
+    'الوفرة',
+    'صباح الاحمد',
+  ].obs;
+  RxString selectedArea = 'المحافظة...'.obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -86,5 +104,25 @@ class PrintedNotesController extends GetxController {
     if (count[index] != 1) {
       count[index]--;
     }
+  }
+
+  order() async {
+    _status.value = RxStatus.loading();
+    try {
+      // _repository.order(
+      //   userName.text,
+      //   phone.text,
+      //   selectedArea,
+      //   address.text,
+      // ).then((value) {
+      //   _status.value = RxStatus.success();
+      // });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+    }
+  }
+
+  void chooseArea(String newArea) {
+    selectedArea.value = newArea;
   }
 }

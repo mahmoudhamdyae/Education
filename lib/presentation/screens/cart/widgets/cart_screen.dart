@@ -2,10 +2,12 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/cart/widgets/cart_item.dart';
+import 'package:education/presentation/screens/cart/widgets/finish_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/notes/note.dart';
+import '../../../resources/values_manager.dart';
 import '../../../widgets/empty_screen.dart';
 import '../../../widgets/error_screen.dart';
 import '../../../widgets/loading_screen.dart';
@@ -97,6 +99,21 @@ class CartScreen extends StatelessWidget {
                     child: FilledButton(
                       style: getFilledButtonStyle(),
                       onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: ColorManager.white,
+                            // shape: RoundedRectangleBorder(
+                            //   borderRadius: BorderRadius.all(Radius.circular(AppSize.s20)),
+                            // ),
+                            title: Text(
+                              AppStrings.orderDetails,
+                              style: getLargeStyle(),
+                            ),
+                            content: const FinishOrderScreen(),
+                          );
+                        });
                       },
                       child: const Text(AppStrings.finishOrder),
                     ),

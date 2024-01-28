@@ -176,4 +176,14 @@ class AppStrings {
   static const String discount = 'الخصم';
   static const String total = 'المجموع الكلى';
   static const String quantity = 'الكمية';
+  // Finish Order
+  static const String orderDetails = 'تفاصيل الارسال';
+  static const String studentName = 'اسم الطالب';
+  static const String studentPhone = 'الهاتف';
+  static const String studentArea = 'المحافظة';
+  static const String studentAddress = 'العنوان';
+  static const String confirmOrder = 'تأكيد عملية الشراء';
+  static const String areaInvalid = 'يجب اختيار محافظة';
+  static const String addressInvalid = "العنوان غير صالح";
+  static const addressHint = "العنوان";
 }
