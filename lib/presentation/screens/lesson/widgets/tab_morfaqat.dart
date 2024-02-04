@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/assets_manager.dart';
+import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
               ),
               IconButton(
                   onPressed: () {
+                    // Get.to(() => const PrintedNotesScreen(), arguments: { 'saff': AppStrings.saff6 });
                   },
                 icon: SvgPicture.asset(ImageAssets.download),
               )
@@ -43,13 +45,18 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
               children: [
                 Text(
                   AppStrings.pdf,
-                  style: getSmallStyle(),
+                  style: getSmallStyle(
+                    color: widget.link == '' ? ColorManager.grey : ColorManager.black,
+                  ),
                 ),
                 IconButton(
                   onPressed: () {
                     downloadNote(context, widget.link, false);
                   },
-                  icon: SvgPicture.asset(ImageAssets.download),
+                  icon: SvgPicture.asset(
+                    ImageAssets.download,
+                    color: widget.link == '' ? ColorManager.grey : ColorManager.black,
+                  ),
                 )
               ]
           )

@@ -91,11 +91,6 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> removeAllNotesFromCart() {
-    return _localDataSource.removeAllNotesFromCart();
-  }
-
-  @override
   Future<List<Note>> getAllNotes() {
     return _remoteDataSource.getAllNotes(_localDataSource.getAllNotesCart());
   }
@@ -156,7 +151,9 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> order(String userName, String phone, String city, String address) {
-    return _remoteDataSource.order(userName, phone, city, address, _localDataSource.getUserId());
+  Future<void> order(String userName, String phone, String city, String address) async {
+    _remoteDataSource.order(userName, phone, city, address, _localDataSource.getUserId()).then((value) {
+      _localDataSource.removeAllNotesFromCart();
+    });
   }
 }

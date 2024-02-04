@@ -26,7 +26,6 @@ abstract class Repository {
   Future<void> removeNoteFromCart(String noteId);
   List<String> getAllNotesCart();
   bool isNoteInCart(String noteId);
-  Future<void> removeAllNotesFromCart();
   Future<List<Note>> getAllNotes();
 
   // Account Service

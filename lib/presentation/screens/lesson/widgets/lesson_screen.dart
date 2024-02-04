@@ -54,7 +54,7 @@ class _LessonScreenState extends State<LessonScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Vimeo Video
-                  SizedBox(
+                  controller.selectedLesson.value.link == '' ? const SizedBox(height: 60.0,) : SizedBox(
                     width: double.infinity,
                     height: 200,
                     child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(
@@ -101,7 +101,7 @@ class _LessonScreenState extends State<LessonScreen> {
                 onPressed: () => Get.back(),
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: ColorManager.white,
+                color: ColorManager.grey,
               ),
             ),
           )
