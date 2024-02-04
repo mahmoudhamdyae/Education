@@ -109,7 +109,7 @@ class PrintedNotesController extends GetxController {
   order() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.order(
+      await _repository.order(
         userName.text,
         phone.text,
         selectedArea.value,

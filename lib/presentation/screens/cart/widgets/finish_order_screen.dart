@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../resources/color_manager.dart';
+import '../../../resources/constants_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/styles_manager.dart';
@@ -35,11 +36,20 @@ class _FinishOrderScreenState extends State<FinishOrderScreen> {
 
       showLoading(context);
       await controller.order().then((value) {
+        showLoading(context);
         if (controller.status.isError) {
           Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
         } else {
           Get.offAll(() => const MainScreen());
+          Get.showSnackbar(
+            const GetSnackBar(
+              title: null,
+              message: AppStrings.successDialogTitle,
+              icon: Icon(Icons.download_done, color: ColorManager.white,),
+              duration: Duration(seconds: AppConstants.snackBarTime),
+            ),
+          );
         }
       });
     }
