@@ -19,7 +19,7 @@ class SliderModel {
 
   static List<SliderModel> getTeachers(List<Teacher> teachers) {
     List<SliderModel> sliders = [];
-    teachers.forEach((element) {
+    for (var element in teachers) {
       sliders.add(
           SliderModel(
               element.name ?? '',
@@ -27,7 +27,7 @@ class SliderModel {
               ImageAssets.teacher2
           )
       );
-    });
+    }
     return sliders;
   }
 }
