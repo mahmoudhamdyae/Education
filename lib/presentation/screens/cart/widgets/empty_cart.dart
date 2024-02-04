@@ -2,12 +2,12 @@ import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../resources/assets_manager.dart';
+import '../../../resources/assets_manager.dart';
 
-class EmptyScreen extends StatelessWidget {
+class EmptyCart extends StatelessWidget {
 
   final String emptyString;
-  const EmptyScreen({super.key, required this.emptyString});
+  const EmptyCart({super.key, required this.emptyString});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class EmptyScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            ImageAssets.empty,
+            ImageAssets.emptyCart,
             height: AppSize.s190,
           ),
           const SizedBox(height: AppSize.s40,),

@@ -44,6 +44,7 @@ class ImageAssets {
   static const String home5 = "$imagePath/home5.jpg";
   static const String home6 = "$imagePath/home6.jpg";
   static const String teacher2 = "$imagePath/teacher2.png";
+  static const String emptyCart = "$imagePath/empty_cart.png";
 }
 
 class JsonAssets {

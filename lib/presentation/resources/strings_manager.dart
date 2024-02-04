@@ -1,99 +1,99 @@
 class AppStrings {
-  static const noRouteFound = "noRouteFound";
-  static const appName = "Smart Student";
+  static const noRouteFound = 'noRouteFound';
+  static const appName = 'Smart Student';
 
   // Authentication
-  static const phoneHint = "رقم الهاتف";
-  static const usernameHint = "الاسم";
-  static const passwordHint = "كلمة المرور";
-  static const passwordConfirmHint = "تأكيد كلمة المرور";
-  static const login = "تسجيل الدخول";
-  static const registerText1 = "ليس لديك حساب؟ ";
-  static const registerText2 = "إنشاء حساب";
-  static const registerTextButton = "إنشاء الحساب";
-  static const String userNameInvalid = "اسم المستخدم لا يمكن أن يكون فارغا";
-  static const String mobileNumberInvalid = "رقم الهاتف غير صالح";
-  static const passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
-  static const String passwordConfirmInvalid = "كلمة المرور غير متطابقة";
-  static const String alreadyHaveAccount1 = "لديك حساب بالفعل؟ ";
-  static const String alreadyHaveAccount2 = "تسجيل الدخول";
-  static const register = "التسجيل";
-  static const requireLogIn = "قم بتسجيل الدخول أولا";
-  static const requireLogInButton = "تسجيل دخول أو إنشاء حساب";
-  static const marhalaHint = "المرحلة";
-  static const primaryMarhala = "المرحلة الابتدائية";
-  static const mediumMarhala = "المرحلة المتوسطة";
-  static const secondaryMarhala = "المرحلة الثانوية";
-  static const qodoratMarhala = "القدرات";
-  static const toeflMarhala = "TOEFL";
-  static const ieltsMarhala = "IELTS";
-  static const saff1 = "الصف الأول";
-  static const saff2 = "الصف الثانى";
-  static const saff3 = "الصف الثالث";
-  static const saff4 = "الصف الرابع";
-  static const saff5 = "الصف الخامس";
-  static const saff6 = "الصف السادس";
-  static const saff7 = "الصف السابع";
-  static const saff8 = "الصف الثامن";
-  static const saff9 = "الصف التاسع";
-  static const saff10 = "الصف العاشر";
-  static const saff11 = "الصف الحادى عشر";
-  static const saff12 = "الصف الثانى عشر";
-  static const saff = "الصف";
-  static const marhalaInvalid = "يجب اختيار مرحلة";
-  static const saffInvalid = "يجب اختيار صف";
-  static const previouslyUser = "هذا الرقم مسجل مسبقا";
-  static const wrongPhoneOrPassword = "رقم الهاتف أو كلمة المرور خاطئة";
-  static const registerButton = "إنشاء حساب جديد";
-  static const loginButton = "تسجيل دخول";
-  static const loginAsAGuestButton = "الدخول كزائر";
+  static const phoneHint = 'رقم الهاتف';
+  static const usernameHint = 'الاسم';
+  static const passwordHint = 'كلمة المرور';
+  static const passwordConfirmHint = 'تأكيد كلمة المرور';
+  static const login = 'تسجيل الدخول';
+  static const registerText1 = 'ليس لديك حساب؟ ';
+  static const registerText2 = 'إنشاء حساب';
+  static const registerTextButton = 'إنشاء الحساب';
+  static const String userNameInvalid = 'اسم المستخدم لا يمكن أن يكون فارغا';
+  static const String mobileNumberInvalid = 'رقم الهاتف غير صالح';
+  static const passwordInvalid = 'كلمة المرور لا يمكن أن تكون فارغة';
+  static const String passwordConfirmInvalid = 'كلمة المرور غير متطابقة';
+  static const String alreadyHaveAccount1 = 'لديك حساب بالفعل؟ ';
+  static const String alreadyHaveAccount2 = 'تسجيل الدخول';
+  static const register = 'التسجيل';
+  static const requireLogIn = 'قم بتسجيل الدخول أولا';
+  static const requireLogInButton = 'تسجيل دخول أو إنشاء حساب';
+  static const marhalaHint = 'المرحلة';
+  static const primaryMarhala = 'المرحلة الابتدائية';
+  static const mediumMarhala = 'المرحلة المتوسطة';
+  static const secondaryMarhala = 'المرحلة الثانوية';
+  static const qodoratMarhala = 'القدرات';
+  static const toeflMarhala = 'TOEFL';
+  static const ieltsMarhala = 'IELTS';
+  static const saff1 = 'الصف الأول';
+  static const saff2 = 'الصف الثانى';
+  static const saff3 = 'الصف الثالث';
+  static const saff4 = 'الصف الرابع';
+  static const saff5 = 'الصف الخامس';
+  static const saff6 = 'الصف السادس';
+  static const saff7 = 'الصف السابع';
+  static const saff8 = 'الصف الثامن';
+  static const saff9 = 'الصف التاسع';
+  static const saff10 = 'الصف العاشر';
+  static const saff11 = 'الصف الحادى عشر';
+  static const saff12 = 'الصف الثانى عشر';
+  static const saff = 'الصف';
+  static const marhalaInvalid = 'يجب اختيار مرحلة';
+  static const saffInvalid = 'يجب اختيار صف';
+  static const previouslyUser = 'هذا الرقم مسجل مسبقا';
+  static const wrongPhoneOrPassword = 'رقم الهاتف أو كلمة المرور خاطئة';
+  static const registerButton = 'إنشاء حساب جديد';
+  static const loginButton = 'تسجيل دخول';
+  static const loginAsAGuestButton = 'الدخول كزائر';
   // Logout
-  static const String logoutDialogTitle = "تسجيل الخروج";
-  static const String logoutDialogText = "هل أنت متأكد من تسجيل الخروج؟";
-  static const String logoutOk = "تسجيل الخروج";
-  static const String cancel = "الغاء";
+  static const String logoutDialogTitle = 'تسجيل الخروج';
+  static const String logoutDialogText = 'هل أنت متأكد من تسجيل الخروج؟';
+  static const String logoutOk = 'تسجيل الخروج';
+  static const String cancel = 'الغاء';
 
   // Dialogs
-  static const loading = "جاري التحميل...";
-  static const retryAgain = "حاول مرة أخرى";
-  static const errorDialogTitle = "خطأ!";
-  static const serverDown = "لا يمكن الاتصال بالسيرفر!";
-  static const successDialogTitle = "عملية ناجحة";
-  static const successDialogAction = "حسنا";
+  static const loading = 'جاري التحميل...';
+  static const retryAgain = 'حاول مرة أخرى';
+  static const errorDialogTitle = 'خطأ!';
+  static const serverDown = 'لا يمكن الاتصال بالسيرفر!';
+  static const successDialogTitle = 'عملية ناجحة';
+  static const successDialogAction = 'حسنا';
 
   // Bottom Bar
-  static const bottomBarHome = "الرئيسية";
-  static const bottomBarSubscription = "الاشتراكات";
-  static const notifications = "الاشعارات";
-  static const bottomBarCart = "سلة المشتريات";
-  static const bottomBarMe = "الملف الشخصى";
+  static const bottomBarHome = 'الرئيسية';
+  static const bottomBarSubscription = 'الاشتراكات';
+  static const notifications = 'الاشعارات';
+  static const bottomBarCart = 'سلة المشتريات';
+  static const bottomBarMe = 'الملف الشخصى';
 
   // Main Screen
-  static const String recordedCourses = "كورسات مسجلة";
-  static const String printedNotes = "مذكرات مطبوعة";
-  static const String courses = "كورسات حضورى";
-  static const String onlineCourses = "كورسات أونلاين";
-  static const String teacher = "معلمك الخاص";
-  static const String examsAndBanks = "اختبارات و بنوك";
+  static const String recordedCourses = 'كورسات مسجلة';
+  static const String printedNotes = 'مذكرات مطبوعة';
+  static const String courses = 'كورسات حضورى';
+  static const String onlineCourses = 'كورسات أونلاين';
+  static const String teacher = 'معلمك الخاص';
+  static const String examsAndBanks = 'اختبارات و بنوك';
 
   // Choose Marhala Dialog
-  static const String pleaseChooseMarhala = "برجاء اختيار المرحلة";
+  static const String pleaseChooseMarhala = 'برجاء اختيار المرحلة';
   // Require Auth Dialog
-  static const String pleaseLogIn = "لاتمام عملية الشراء برجاء تسجيل الدخول";
-  static const String continueButton = "تسجيل دخول";
+  static const String pleaseLogIn = 'لاتمام عملية الشراء برجاء تسجيل الدخول';
+  static const String continueButton = 'تسجيل دخول';
 
   // Recorded Courses
-  static const String recordedCoursesTitleBar = "مواد";
-  static const String monthlySubscription = "اشتراك شهرى";
-  static const String termSubscription = "اشتراك ترم";
-  static const String dinar = "د.ك";
-  static const String subjectsAndNotes = "شروحات + مذكرات";
-  static const String subjects = "باقة شروحات ترم كامل";
-  static const String subjectsLabel = "مواد شرح";
-  static const String notesLabel = "مذكرات";
-  static const String baqaPrice = "سعر الباقة";
-  static const String noCourses = "لا يوجد كورسات مسجلة حاليا فى هذه المرحلة";
-  static const String noNotes = "لا يوجد مذكرات متاحة حاليا لهذا الصف";
+  static const String recordedCoursesTitleBar = 'مواد';
+  static const String monthlySubscription = 'اشتراك شهرى';
+  static const String termSubscription = 'اشتراك ترم';
+  static const String dinar = 'د.ك';
+  static const String subjectsAndNotes = 'شروحات + مذكرات';
+  static const String subjects = 'باقة شروحات ترم كامل';
+  static const String subjectsLabel = 'مواد شرح';
+  static const String notesLabel = 'مذكرات';
+  static const String baqaPrice = 'سعر الباقة';
+  static const String noCourses = 'لا يوجد كورسات مسجلة حاليا فى هذه المرحلة';
+  static const String noNotes = 'لا يوجد مذكرات متاحة حاليا لهذا الصف';
   static const String emptyTutorials = 'لا يوجد وحدات';
   static const String noteDownloaded = 'تم تحميل المذكرة';
   static const String noteDownloading = 'جارى التحميل';
@@ -114,8 +114,8 @@ class AppStrings {
   static const String tabTests = 'اختبار';
 
   // Error Handler
-  static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
-  static const String serverError = "لا يمكن الاتصال بالسيرفر";
+  static const String noInternetError = 'يُرجى التحقق من اتصالك بالإنترنت';
+  static const String serverError = 'لا يمكن الاتصال بالسيرفر';
 
   // Home Screen
   static const String welcome = 'مرحبا بك';
@@ -176,6 +176,10 @@ class AppStrings {
   static const String discount = 'الخصم';
   static const String total = 'المجموع الكلى';
   static const String quantity = 'الكمية';
+  // Delete Cart Dialog
+  static const String deleteCartDialogTitle = 'حذف';
+  static const String deleteCartDialogText = 'هل أنت متأكد من حذف هذا العنصر؟';
+  static const String deleteCartOk = 'حذف';
   // Finish Order
   static const String orderDetails = 'تفاصيل الارسال';
   static const String studentName = 'اسم الطالب';
@@ -184,6 +188,6 @@ class AppStrings {
   static const String studentAddress = 'العنوان';
   static const String confirmOrder = 'تأكيد عملية الشراء';
   static const String areaInvalid = 'يجب اختيار محافظة';
-  static const String addressInvalid = "العنوان غير صالح";
-  static const addressHint = "العنوان";
+  static const String addressInvalid = 'العنوان غير صالح';
+  static const addressHint = 'العنوان';
 }

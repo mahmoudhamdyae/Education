@@ -109,14 +109,14 @@ class PrintedNotesController extends GetxController {
   order() async {
     _status.value = RxStatus.loading();
     try {
-      // _repository.order(
-      //   userName.text,
-      //   phone.text,
-      //   selectedArea,
-      //   address.text,
-      // ).then((value) {
-      //   _status.value = RxStatus.success();
-      // });
+      _repository.order(
+        userName.text,
+        phone.text,
+        selectedArea.value,
+        address.text,
+      ).then((value) {
+        _status.value = RxStatus.success();
+      });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
     }

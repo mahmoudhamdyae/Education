@@ -154,4 +154,9 @@ class RepositoryImpl extends Repository {
   Future<List<Note>> getNotes(String marhala) async {
     return await _remoteDataSource.getNotes(marhala);
   }
+
+  @override
+  Future<void> order(String userName, String phone, String city, String address) {
+    return _remoteDataSource.order(userName, phone, city, address, _localDataSource.getUserId());
+  }
 }

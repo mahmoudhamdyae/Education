@@ -2,13 +2,12 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/cart/widgets/cart_item.dart';
+import 'package:education/presentation/screens/cart/widgets/empty_cart.dart';
 import 'package:education/presentation/screens/cart/widgets/finish_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/notes/note.dart';
-import '../../../resources/values_manager.dart';
-import '../../../widgets/empty_screen.dart';
 import '../../../widgets/error_screen.dart';
 import '../../../widgets/loading_screen.dart';
 import '../../../widgets/top_bar.dart';
@@ -35,7 +34,7 @@ class CartScreen extends StatelessWidget {
               } else if (controller.status.isError) {
                 return ErrorScreen(error: controller.status.errorMessage ?? '');
               } else if (controller.notes.isEmpty){
-                return const EmptyScreen(emptyString: AppStrings.noCart);
+                return const EmptyCart(emptyString: AppStrings.noCart);
               }
               return ListView(
                 shrinkWrap: true,

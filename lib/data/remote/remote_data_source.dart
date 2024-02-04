@@ -22,6 +22,7 @@ abstract class RemoteDataSource {
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
   Future<List<Note>> getAllNotes(List<String> notesId);
+  Future<void> order(String userName, String phone, String city, String address, int userId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -184,5 +185,13 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     }
 
     return notes;
+  }
+
+  @override
+  Future<void> order(String userName, String phone, String city, String address, int userId) async {
+    await _checkNetwork();
+
+    // String url = "${Constants.baseUrl}";
+    // await _dio.post(url);
   }
 }
