@@ -37,7 +37,7 @@ class SwiperWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6.0),
                       child: Text(
-                        isTeacher ? 'مدرس أول': 'تشمل حميع مذكرات الصف',
+                        sliders[index].description,
                         style: getSmallStyle(),
                       ),
                     ),

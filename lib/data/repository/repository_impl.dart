@@ -2,6 +2,7 @@ import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
+import 'package:education/domain/models/teacher.dart';
 import 'package:education/domain/repository/repository.dart';
 
 import '../../domain/models/courses/class_model.dart';
@@ -155,5 +156,10 @@ class RepositoryImpl extends Repository {
     _remoteDataSource.order(userName, phone, city, address, _localDataSource.getUserId()).then((value) {
       _localDataSource.removeAllNotesFromCart();
     });
+  }
+
+  @override
+  Future<List<Teacher>> getTeachers() {
+    return _remoteDataSource.getTeachers();
   }
 }

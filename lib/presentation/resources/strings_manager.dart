@@ -75,6 +75,7 @@ class AppStrings {
   static const String onlineCourses = 'كورسات أونلاين';
   static const String teacher = 'معلمك الخاص';
   static const String examsAndBanks = 'اختبارات و بنوك';
+  static const String baqatDesc = 'تشمل حميع مذكرات الصف';
 
   // Choose Marhala Dialog
   static const String pleaseChooseMarhala = 'برجاء اختيار المرحلة';

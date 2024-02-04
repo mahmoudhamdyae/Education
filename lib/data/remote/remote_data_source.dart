@@ -10,6 +10,7 @@ import '../../core/constants.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
+import '../../domain/models/teacher.dart';
 import '../network_info.dart';
 
 abstract class RemoteDataSource {
@@ -23,6 +24,7 @@ abstract class RemoteDataSource {
   Future<List<Note>> getNotes(String marhala);
   Future<List<Note>> getAllNotes(List<String> notesId);
   Future<void> order(String userName, String phone, String city, String address, int userId);
+  Future<List<Teacher>> getTeachers();
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -193,5 +195,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     // String url = "${Constants.baseUrl}";
     // await _dio.post(url);
+  }
+
+  @override
+  Future<List<Teacher>> getTeachers() async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}teacher/index";
+    var response = await _dio.get(url);
+    List<Teacher> teachers = TeacherResponse.fromJson(response.data).teacher ?? [];
+    return teachers;
   }
 }

@@ -1,9 +1,11 @@
 import 'package:education/domain/models/slider.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
+import 'package:education/presentation/screens/home/controller/home_controller.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/home_app_bar.dart';
 import 'package:education/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../domain/models/home_ui.dart';
 import '../../widgets/custom_grid_view.dart';
@@ -15,9 +17,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const Text(AppStrings.appName,),
-        // ),
         body: ListView(
           children: [
             HomeAppBar(),
@@ -43,7 +42,14 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32.0),
-                  child: SwiperWidget(sliders: SliderModel.getTeachers(), isTeacher: true,),
+                  child: GetX<HomeController>(
+                    init: Get.find<HomeController>(),
+                      builder: (HomeController controller) {
+                      return SwiperWidget(
+                        sliders: SliderModel.getTeachers(controller.teachers),
+                        isTeacher: true,
+                      );},
+                  ),
                 ),
               ],
             ),
