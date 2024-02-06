@@ -133,6 +133,13 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala) async {
+    if (
+      marhala == AppStrings.saff1 ||
+      marhala == AppStrings.saff2 ||
+      marhala == AppStrings.saff3
+    ) {
+      return const Pair([], []);
+    }
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}books";
