@@ -15,52 +15,47 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // Get.to(() => CourseScreen(subject: course,));
-      },
-      child: Container(
-        margin: const EdgeInsets.all(8.0),
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-          border: Border.all(
-            color: ColorManager.lightGrey,
-            width: 1,
+    return Container(
+      margin: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+        border: Border.all(
+          color: ColorManager.lightGrey,
+          width: 1,
+        ),
+      ),
+      child: Column(
+        children: [
+          Image.asset(
+            ImageAssets.books,
+            height: 100,
+            width: 225,
           ),
-        ),
-        child: Column(
-          children: [
-            Image.asset(
-              ImageAssets.books,
-              height: 100,
-              width: 225,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    note.name,
-                    style: getLargeStyle(
-                        fontWeight: FontWeight.w400
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  note.name,
+                  style: getLargeStyle(
+                      fontWeight: FontWeight.w400
                   ),
-                  Text(
-                    '${note.bookPrice} د.ك',
-                    style: getLargeStyle(
-                        fontSize: FontSize.s20,
-                        color: ColorManager.secondary
-                    ),
-                  )
-                ],
-              ),
+                ),
+                Text(
+                  '${note.bookPrice} د.ك',
+                  style: getLargeStyle(
+                      fontSize: FontSize.s20,
+                      color: ColorManager.secondary
+                  ),
+                )
+              ],
             ),
-            DownloadNoteButton(pdf: note.pdf,),
-            CartButton(note: note,),
-          ],
-        ),
+          ),
+          DownloadNoteButton(pdf: note.pdf,),
+          CartButtonNote(note: note,),
+        ],
       ),
     );
   }

@@ -136,6 +136,7 @@ class AppStrings {
   static const String watchFirstLesson = 'شاهد الدرس الأول';
   static const String buyCourse = 'شراء الكورس';
   static const String notes = 'المذكرات';
+  static const String packages = 'الباقات';
   static const String pdf = 'ملف PDF';
   static const String favCourses = 'الكورسات';
   static const String favVideos = 'الفيديوهات';

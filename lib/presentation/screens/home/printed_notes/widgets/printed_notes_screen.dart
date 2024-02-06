@@ -33,7 +33,8 @@ class PrintedNotesScreen extends StatelessWidget {
                 return const EmptyScreen(emptyString: AppStrings.noNotes);
               } else {
                 final notes = controller.notes;
-                return NotesScreen(notes: notes,);
+                final packages = controller.packages;
+                return NotesScreen(notes: notes, packages: packages,);
               }
             },
           ),

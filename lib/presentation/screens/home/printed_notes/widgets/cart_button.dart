@@ -4,29 +4,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../../domain/models/notes/note.dart';
+import '../../../../../domain/models/package.dart';
 import '../controller/printed_notes_controller.dart';
 
-class CartButton extends StatelessWidget {
+class CartButtonNote extends StatelessWidget {
 
   final Note note;
-  const CartButton({super.key, required this.note});
+  const CartButtonNote({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
         child:
-        // GetX<PrintedNotesController>(
-        //   init: Get.find<PrintedNotesController>(),
-        //   builder: (PrintedNotesController controller) {
-        //     bool inCart = Get.find<PrintedNotesController>().isNoteInCart(noteId);
-        //     return
-        Get.find<PrintedNotesController>().isNoteInCart(note.id.toString()) ? RemoveFromCartButton(note: note,)
-                :
-            AddToCartButton(noteId: note.id.toString(),)
-    // ;
-    //         },
-        // )
+        Get.find<PrintedNotesController>().isNoteInCart(note.id.toString()) ? RemoveNoteFromCartButton(note: note,)
+            :
+        AddToCartButton(noteId: note.id.toString(),)
+    );
+  }
+}
+
+class CartButtonPackage extends StatelessWidget {
+
+  final Package package;
+  const CartButtonPackage({super.key, required this.package});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: double.infinity,
+        child:
+        Get.find<PrintedNotesController>().isNoteInCart(package.id.toString()) ? RemovePackageFromCartButton(package: package,)
+            :
+        AddToCartButton(noteId: package.id.toString(),)
     );
   }
 }

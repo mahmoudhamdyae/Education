@@ -192,4 +192,18 @@ class PrintedNotesController extends GetxController {
     City city = cities.firstWhere((element) => element.name == newArea);
     selectedCityId.value = city.id ?? -1;
   }
+
+  String getNotesString(Package package) {
+    String returnedNotes = '';
+    int count = 0;
+    for (Book element in package.book ?? []) {
+      if (count == ((package.book?.length ?? 0) - 1)) {
+        returnedNotes += '${element.name}';
+      } else {
+        returnedNotes += '${element.name} - ';
+      }
+      count++;
+    }
+    return returnedNotes;
+  }
 }
