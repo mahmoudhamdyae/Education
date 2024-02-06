@@ -26,16 +26,6 @@ class PackageItem extends StatelessWidget {
           width: 1,
         ),
       ),
-      /*
-      *
-       Text(
-                        '${package.price} د.ك',
-                        style: getLargeStyle(
-                            fontSize: FontSize.s20,
-                            color: ColorManager.secondary
-                        ),
-                      ),
-      * */
       child: Column(
         children: [
           Stack(
