@@ -4,11 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../../domain/models/city.dart';
+import '../../../../../domain/models/package.dart';
 
 class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
+  final RxList<Package> packages = RxList.empty();
   final RxList<int> count = RxList.empty();
+  final RxList<int> countPackages = RxList.empty();
   final RxInt sum = 0.obs;
   final RxInt totalSum = 0.obs;
   final RxInt discount = 0.obs;
@@ -55,29 +58,38 @@ class PrintedNotesController extends GetxController {
     try {
       _repository.getNotes(saff).then((remoteNotes) {
         _status.value = RxStatus.success();
-        notes.value = remoteNotes;
+        notes.value = remoteNotes.key;
+        packages.value = remoteNotes.value;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
       notes.value = [];
+      packages.value = [];
     }
   }
 
   getAllNotes() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.getAllNotes().then((remoteNotes) {
+      _repository.getAllNotes().then((remoteNotesAndPackages) {
         _status.value = RxStatus.success();
-        notes.value = remoteNotes;
-        for (var element in remoteNotes) {
+        notes.value = remoteNotesAndPackages.key;
+        packages.value = remoteNotesAndPackages.value;
+        for (var element in remoteNotesAndPackages.key) {
           sum.value += element.bookPrice;
           totalSum.value += element.bookPrice;
           count.add(1);
+        }
+        for (var element in remoteNotesAndPackages.value) {
+          sum.value += int.parse(element.price ?? '0');
+          totalSum.value += int.parse(element.price ?? '0');
+          countPackages.add(1);
         }
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
       notes.value = [];
+      packages.value = [];
     }
   }
 
@@ -89,6 +101,7 @@ class PrintedNotesController extends GetxController {
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
       notes.value = [];
+      packages.value = [];
     }
   }
 
@@ -101,6 +114,18 @@ class PrintedNotesController extends GetxController {
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
       notes.value = [];
+    }
+  }
+
+  removePackageFromCart(Package package) {
+    try {
+      _repository.removeNoteFromCart(package.id.toString()).then((remotePackage) {
+        _status.value = RxStatus.success();
+        packages.remove(package);
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+      packages.value = [];
     }
   }
 
@@ -126,6 +151,22 @@ class PrintedNotesController extends GetxController {
     }
   }
 
+  void incrementCountPackage(int index) {
+    countPackages[index]++;
+    totalSum.value += int.parse(packages[index].price ?? '0');
+    sum.value += int.parse(packages[index].price ?? '0');
+    discount.value += 0;
+  }
+
+  void decrementCountPackage(int index) {
+    if (countPackages[index] != 1) {
+      countPackages[index]--;
+      totalSum.value -= int.parse(packages[index].price ?? '0');
+      sum.value -= int.parse(packages[index].price ?? '0');
+      discount.value -= int.parse(packages[index].price ?? '0');
+    }
+  }
+
   Future<void> order() async {
     _status.value = RxStatus.loading();
     try {
@@ -136,6 +177,8 @@ class PrintedNotesController extends GetxController {
         address.text,
         notes,
         count,
+        packages,
+        countPackages,
       ).then((value) {
         _status.value = RxStatus.success();
       });

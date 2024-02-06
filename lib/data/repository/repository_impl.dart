@@ -5,9 +5,11 @@ import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/domain/models/teacher.dart';
 import 'package:education/domain/repository/repository.dart';
+import 'package:pair/pair.dart';
 
 import '../../domain/models/courses/class_model.dart';
 import '../../domain/models/lesson/lesson.dart';
+import '../../domain/models/package.dart';
 import '../../domain/models/returned_video.dart';
 import '../local/local_data_source.dart';
 
@@ -93,7 +95,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<Note>> getAllNotes() {
+  Future<Pair<List<Note>, List<Package>>> getAllNotes() {
     return _remoteDataSource.getAllNotes(_localDataSource.getAllNotesCart());
   }
 
@@ -148,13 +150,13 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<Note>> getNotes(String marhala) async {
+  Future<Pair<List<Note>, List<Package>>> getNotes(String marhala) async {
     return await _remoteDataSource.getNotes(marhala);
   }
 
   @override
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count) async {
-    _remoteDataSource.order(userName, phone, cityId, address, notes, count).then((value) {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage) async {
+    _remoteDataSource.order(userName, phone, cityId, address, notes, count, packages, countPackage).then((value) {
       _localDataSource.removeAllNotesFromCart();
     });
   }

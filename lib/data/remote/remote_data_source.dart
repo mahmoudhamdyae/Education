@@ -8,11 +8,13 @@ import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pair/pair.dart';
 
 import '../../core/constants.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
+import '../../domain/models/package.dart';
 import '../../domain/models/teacher.dart';
 import '../network_info.dart';
 
@@ -24,9 +26,9 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
-  Future<List<Note>> getNotes(String marhala);
-  Future<List<Note>> getAllNotes(List<String> notesId);
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count);
+  Future<Pair<List<Note>, List<Package>>> getNotes(String marhala);
+  Future<Pair<List<Note>, List<Package>>> getAllNotes(List<String> notesId);
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
 }
@@ -130,7 +132,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<List<Note>> getNotes(String marhala) async {
+  Future<Pair<List<Note>, List<Package>>> getNotes(String marhala) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}books";
@@ -143,18 +145,35 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       notes.add(note);
     }
 
-    return notes;
+    List<Package> packages = [];
+    s = convertSaff(marhala, 'package');
+    for (var singleNote in response.data[s]) {
+      Package package = Package.fromJson(singleNote);
+      packages.add(package);
+    }
+
+    return Pair(notes, packages);
   }
 
   @override
-  Future<List<Note>> getAllNotes(List<String> notesId) async {
+  Future<Pair<List<Note>, List<Package>>> getAllNotes(List<String> notesId) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}books";
     final response = await _dio.get(url);
 
     List<Note> notes = [];
-    String s = convertSaff(AppStrings.saff6, 'book');
+    String s = convertSaff(AppStrings.saff4, 'book');
+    for (var singleNote in response.data[s]) {
+      Note note = Note.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) notes.add(note);
+    }
+    s = convertSaff(AppStrings.saff5, 'book');
+    for (var singleNote in response.data[s]) {
+      Note note = Note.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) notes.add(note);
+    }
+    s = convertSaff(AppStrings.saff6, 'book');
     for (var singleNote in response.data[s]) {
       Note note = Note.fromJson(singleNote);
       if (notesId.contains(note.id.toString())) notes.add(note);
@@ -190,11 +209,58 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       if (notesId.contains(note.id.toString())) notes.add(note);
     }
 
-    return notes;
+    List<Package> packages = [];
+    s = convertSaff(AppStrings.saff4, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff5, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff6, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff7, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff8, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff9, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff10, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff11, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+    s = convertSaff(AppStrings.saff12, 'package');
+    for (var singleNote in response.data[s]) {
+      Package note = Package.fromJson(singleNote);
+      if (notesId.contains(note.id.toString())) packages.add(note);
+    }
+
+    return Pair(notes, packages);
   }
 
   @override
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count) async {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}make/order/from/app";
@@ -207,6 +273,16 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         'package_id': null,
         'quantity': count[count1],
         'price': element.bookPrice,
+      });
+      count1++;
+    }
+    count1 = 0;
+    for (var element in packages) {
+      items.add({
+        'book_id': null,
+        'package_id': element.id,
+        'quantity': countPackage[count1],
+        'price': element.price,
       });
       count1++;
     }
