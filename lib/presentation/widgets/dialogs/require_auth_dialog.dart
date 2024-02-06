@@ -1,6 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +11,6 @@ showRequireAuthDialog(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          // The shape of the dialog
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(AppSize.s20)),
           ),
@@ -40,7 +38,8 @@ showRequireAuthDialog(BuildContext context) {
                   TextButton(
                       onPressed: () {
                         Get.back();
-                        Get.to(() => const LoginScreen());
+                        // todo: Buy Course
+                        // Get.to(() => const LoginScreen());
                       },
                       child: Text(
                         AppStrings.continueButton,

@@ -80,8 +80,8 @@ class AppStrings {
   // Choose Marhala Dialog
   static const String pleaseChooseMarhala = 'برجاء اختيار المرحلة';
   // Require Auth Dialog
-  static const String pleaseLogIn = 'لاتمام عملية الشراء برجاء تسجيل الدخول';
-  static const String continueButton = 'تسجيل دخول';
+  static const String pleaseLogIn = 'لاتمام العملية برجاء شراء الكورس';
+  static const String continueButton = 'شراء';
 
   // Recorded Courses
   static const String recordedCoursesTitleBar = 'مواد';
