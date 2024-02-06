@@ -49,7 +49,7 @@ class NotesScreen extends StatelessWidget {
             vertical: 8.0,
           ),
           children: List.generate(packages.length, (index) {
-            return PackageItem(package: packages[index]);
+            return PackageItem(package: packages[index], index: index,);
           }),
         ),
       ],
@@ -82,7 +82,7 @@ class NotesScreen extends StatelessWidget {
           crossAxisCount: (MediaQuery.of(context).size.width ~/ 160).toInt(),
           childAspectRatio: (1/1.6),
           children: List.generate(notes.length, (index) {
-            return NoteItem(note: notes[index]);
+            return NoteItem(note: notes[index], index: index);
           }),
         ),
       ],

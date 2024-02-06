@@ -106,11 +106,12 @@ class PrintedNotesController extends GetxController {
     }
   }
 
-  removeNoteFromCart(Note note) {
+  removeNoteFromCart(Note note, int index) {
     try {
       _repository.removeNoteFromCart(note.id.toString()).then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.remove(note);
+        count.removeAt(index);
         sum.value -= note.bookPrice;
         totalSum.value = sum.value - discount.value;
         discount.value -= 0;
@@ -121,12 +122,13 @@ class PrintedNotesController extends GetxController {
     }
   }
 
-  removePackageFromCart(Package package, bool remove) {
+  removePackageFromCart(Package package, bool remove, int index) {
     try {
       _repository.removeNoteFromCart(package.id.toString()).then((remotePackage) {
         _status.value = RxStatus.success();
         if (remove) {
           packages.remove(package);
+          countPackages.removeAt(index);
           sum.value -= int.parse(package.price ?? '0') * 2;
           discount.value -= int.parse(package.price ?? '0');
           totalSum.value = sum.value - discount.value;

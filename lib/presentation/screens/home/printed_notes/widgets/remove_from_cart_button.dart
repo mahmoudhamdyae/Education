@@ -11,14 +11,15 @@ import '../controller/printed_notes_controller.dart';
 class RemoveNoteFromCartButton extends StatelessWidget {
 
   final Note note;
-  const RemoveNoteFromCartButton({super.key, required this.note});
+  final int index;
+  const RemoveNoteFromCartButton({super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: getOutlinedButtonStyle(),
         onPressed: () {
-          Get.find<PrintedNotesController>().removeNoteFromCart(note);
+          Get.find<PrintedNotesController>().removeNoteFromCart(note, index);
         },
         child: Text(
           AppStrings.removeFromCart,
@@ -34,14 +35,15 @@ class RemoveNoteFromCartButton extends StatelessWidget {
 class RemovePackageFromCartButton extends StatelessWidget {
 
   final Package package;
-  const RemovePackageFromCartButton({super.key, required this.package});
+  final int index;
+  const RemovePackageFromCartButton({super.key, required this.package, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: getOutlinedButtonStyle(),
       onPressed: () {
-        Get.find<PrintedNotesController>().removePackageFromCart(package, false);
+        Get.find<PrintedNotesController>().removePackageFromCart(package, false, index);
       },
       child: Text(
         AppStrings.removeFromCart,

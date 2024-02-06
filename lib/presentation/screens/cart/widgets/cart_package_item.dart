@@ -66,7 +66,7 @@ class CartPackageItem extends StatelessWidget {
                 children: [
                   // Delete Button
                   IconButton(
-                    onPressed: () => showDeleteCartPackageItemDialog(context, package),
+                    onPressed: () => showDeleteCartPackageItemDialog(context, package, index),
                     icon: const Icon(
                       Icons.delete,
                       color: ColorManager.error,

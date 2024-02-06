@@ -10,14 +10,15 @@ import '../controller/printed_notes_controller.dart';
 class CartButtonNote extends StatelessWidget {
 
   final Note note;
-  const CartButtonNote({super.key, required this.note});
+  final int index;
+  const CartButtonNote({super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
         child:
-        Get.find<PrintedNotesController>().isNoteInCart(note.id.toString()) ? RemoveNoteFromCartButton(note: note,)
+        Get.find<PrintedNotesController>().isNoteInCart(note.id.toString()) ? RemoveNoteFromCartButton(note: note, index: index)
             :
         AddToCartButton(noteId: note.id.toString(),)
     );
@@ -27,14 +28,15 @@ class CartButtonNote extends StatelessWidget {
 class CartButtonPackage extends StatelessWidget {
 
   final Package package;
-  const CartButtonPackage({super.key, required this.package});
+  final int index;
+  const CartButtonPackage({super.key, required this.package, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
         child:
-        Get.find<PrintedNotesController>().isNoteInCart(package.id.toString()) ? RemovePackageFromCartButton(package: package,)
+        Get.find<PrintedNotesController>().isNoteInCart(package.id.toString()) ? RemovePackageFromCartButton(package: package, index: index,)
             :
         AddToCartButton(noteId: package.id.toString(),)
     );

@@ -11,7 +11,8 @@ import '../../../../resources/styles_manager.dart';
 class NoteItem extends StatelessWidget {
 
   final Note note;
-  const NoteItem({super.key, required this.note});
+  final int index;
+  const NoteItem({super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class NoteItem extends StatelessWidget {
             ),
           ),
           DownloadNoteButton(pdf: note.pdf,),
-          CartButtonNote(note: note,),
+          CartButtonNote(note: note, index: index),
         ],
       ),
     );

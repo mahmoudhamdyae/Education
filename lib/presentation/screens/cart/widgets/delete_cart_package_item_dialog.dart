@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../home/printed_notes/controller/printed_notes_controller.dart';
 
-showDeleteCartPackageItemDialog(BuildContext context, Package package) {
+showDeleteCartPackageItemDialog(BuildContext context, Package package, int index) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -30,7 +30,7 @@ showDeleteCartPackageItemDialog(BuildContext context, Package package) {
           ),
           FilledButton(
             style: getFilledButtonStyle(),
-            onPressed: () => _deleteNote(package),
+            onPressed: () => _deleteNote(package, index),
             child: Text(
               AppStrings.deleteCartOk,
               style: getSmallStyle(
@@ -44,7 +44,7 @@ showDeleteCartPackageItemDialog(BuildContext context, Package package) {
   );
 }
 
-_deleteNote(Package package) {
-  Get.find<PrintedNotesController>().removePackageFromCart(package, true);
+_deleteNote(Package package, int index) {
+  Get.find<PrintedNotesController>().removePackageFromCart(package, true, index);
   Get.back();
 }

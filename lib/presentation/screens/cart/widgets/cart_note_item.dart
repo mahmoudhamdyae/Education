@@ -66,7 +66,7 @@ class CartNoteItem extends StatelessWidget {
                 children: [
                   // Delete Button
                   IconButton(
-                    onPressed: () => showDeleteCartNoteItemDialog(context, note),
+                    onPressed: () => showDeleteCartNoteItemDialog(context, note, index),
                     icon: const Icon(
                       Icons.delete,
                       color: ColorManager.error,

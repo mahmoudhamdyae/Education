@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import '../../../../../domain/models/package.dart';
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/color_manager.dart';
-import '../../../../resources/font_manager.dart';
 import '../../../../resources/styles_manager.dart';
 
 class PackageItem extends StatelessWidget {
 
   final Package package;
-  const PackageItem({super.key, required this.package});
+  final int index;
+  const PackageItem({super.key, required this.package, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class PackageItem extends StatelessWidget {
               ),
             ],
           ),
-          CartButtonPackage(package: package,),
+          CartButtonPackage(package: package, index: index,),
         ],
       ),
     );
