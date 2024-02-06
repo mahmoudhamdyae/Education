@@ -3,6 +3,7 @@ import 'package:education/domain/models/city.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
+import 'package:education/domain/models/subscription_response.dart';
 import 'package:education/domain/models/teacher.dart';
 import 'package:education/domain/repository/repository.dart';
 import 'package:pair/pair.dart';
@@ -140,11 +141,6 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<Course>> getSubscriptions() async {
-    return _remoteDataSource.getSubscriptions();
-  }
-
-  @override
   Future<String> askQuestion(String question) {
     return _remoteDataSource.askQuestion(question);
   }
@@ -169,5 +165,10 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<City>> getCities() {
     return _remoteDataSource.getCities();
+  }
+
+  @override
+  Future<List<UserCourses>> getSubscriptions() {
+    return _remoteDataSource.getSubscriptions(_localDataSource.getUserId());
   }
 }

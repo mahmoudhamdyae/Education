@@ -1,5 +1,6 @@
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
+import 'package:education/domain/models/subscription_response.dart';
 import 'package:pair/pair.dart';
 
 import '../models/city.dart';
@@ -40,10 +41,10 @@ abstract class Repository {
   // Remote Data Source
   Future<ClassModel> getRecordedCourses(String marhala);
   Future<List<Wehda>> getTutorials(int courseId);
-  Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala);
   Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
+  Future<List<UserCourses>> getSubscriptions();
 }

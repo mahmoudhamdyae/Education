@@ -1,11 +1,11 @@
+import 'package:education/domain/models/subscription_response.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/courses/course.dart';
 import '../../../../domain/repository/repository.dart';
 
 class SubscriptionController extends GetxController {
 
-  final RxList<Course> courses = RxList.empty();
+  final RxList<UserCourses> courses = RxList.empty();
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;

@@ -15,6 +15,7 @@ import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
 import '../../domain/models/package.dart';
+import '../../domain/models/subscription_response.dart';
 import '../../domain/models/teacher.dart';
 import '../network_info.dart';
 
@@ -24,13 +25,13 @@ abstract class RemoteDataSource {
 
   Future<ClassModel> getRecordedCourses(String marhala);
   Future<List<Wehda>> getTutorials(int courseId);
-  Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala);
   Future<Pair<List<Note>, List<Package>>> getAllNotes(List<String> notesId);
   Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
+  Future<List<UserCourses>> getSubscriptions(int userId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -110,12 +111,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     }
 
     return wehdat;
-  }
-
-  @override
-  Future<List<Course>> getSubscriptions() async {
-    await _checkNetwork();
-    return Future(() => []);
   }
 
   @override
@@ -323,5 +318,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     var response = await _dio.get(url);
     List<City> cities = CityResponse.fromJson(response.data).cities ?? [];
     return cities;
+  }
+
+  @override
+  Future<List<UserCourses>> getSubscriptions(int userId) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}auth/subscription/$userId";
+    var response = await _dio.get(url);
+    List<UserCourses> userCourses = SubscriptionResponse.fromJson(response.data).courses ?? [];
+    return userCourses;
   }
 }

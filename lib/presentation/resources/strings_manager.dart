@@ -193,4 +193,6 @@ class AppStrings {
   static const String areaInvalid = 'يجب اختيار محافظة';
   static const String addressInvalid = 'العنوان غير صالح';
   static const addressHint = 'العنوان';
+  // Subscription
+  static const expireDate = 'تاريخ انتهاء الاشتراك';
 }

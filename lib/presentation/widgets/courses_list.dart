@@ -1,10 +1,8 @@
 import 'package:education/presentation/screens/course/widgets/course_screen.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:education/presentation/widgets/rate_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../domain/models/courses/course.dart';
 import '../resources/assets_manager.dart';

@@ -2,13 +2,13 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
+import 'package:education/presentation/screens/subscription/widgets/subscription_courses_list.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:education/presentation/widgets/error_screen.dart';
 import 'package:education/presentation/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets/courses_list.dart';
 import '../../../widgets/require_log_in_view.dart';
 
 class SubscriptionScreen extends StatelessWidget {
@@ -40,7 +40,7 @@ class SubscriptionScreen extends StatelessWidget {
                 final courses = controller.courses;
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                  child: CoursesList(courses: courses),
+                  child: SubscriptionCoursesList(courses: courses),
                 );
               }
             },
