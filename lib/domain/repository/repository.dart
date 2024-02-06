@@ -41,7 +41,7 @@ abstract class Repository {
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes);
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
 }

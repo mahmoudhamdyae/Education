@@ -71,6 +71,7 @@ class PrintedNotesController extends GetxController {
         notes.value = remoteNotes;
         for (var element in remoteNotes) {
           sum.value += element.bookPrice;
+          totalSum.value += element.bookPrice;
           count.add(1);
         }
       });
@@ -109,15 +110,23 @@ class PrintedNotesController extends GetxController {
 
   void incrementCount(int index) {
     count[index]++;
+    notes[index].quantity++;
+    totalSum.value += notes[index].bookPrice;
+    sum.value += notes[index].bookPrice;
+    discount.value += 0;
   }
 
   void decrementCount(int index) {
     if (count[index] != 1) {
       count[index]--;
+      notes[index].quantity--;
+      totalSum.value -= notes[index].bookPrice;
+      sum.value -= notes[index].bookPrice;
+      discount.value -= 0;
     }
   }
 
-  order() async {
+  Future<void> order() async {
     _status.value = RxStatus.loading();
     try {
       await _repository.order(
@@ -126,6 +135,7 @@ class PrintedNotesController extends GetxController {
         selectedCityId.value,
         address.text,
         notes,
+        count,
       ).then((value) {
         _status.value = RxStatus.success();
       });

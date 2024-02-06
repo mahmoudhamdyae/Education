@@ -153,8 +153,8 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes) async {
-    _remoteDataSource.order(userName, phone, cityId, address, notes).then((value) {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count) async {
+    _remoteDataSource.order(userName, phone, cityId, address, notes, count).then((value) {
       _localDataSource.removeAllNotesFromCart();
     });
   }

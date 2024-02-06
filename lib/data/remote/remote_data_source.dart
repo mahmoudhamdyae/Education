@@ -26,7 +26,7 @@ abstract class RemoteDataSource {
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
   Future<List<Note>> getAllNotes(List<String> notesId);
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes);
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
 }
@@ -194,18 +194,21 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes) async {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count) async {
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}order";
+    String url = "${Constants.baseUrl}make/order/from/app";
 
     var items = [];
+    int count1 = 0;
     for (var element in notes) {
       items.add({
         'book_id': element.id,
-        'quantity': element.quantity,
+        'package_id': null,
+        'quantity': count[count1],
         'price': element.bookPrice,
       });
+      count1++;
     }
 
     var body =  {

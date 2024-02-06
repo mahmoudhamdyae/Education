@@ -36,6 +36,7 @@ class CartScreen extends StatelessWidget {
               } else if (controller.notes.isEmpty){
                 return const EmptyCart(emptyString: AppStrings.noCart);
               }
+              print('==================== REBUILDING');
               return ListView(
                 shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
@@ -84,7 +85,7 @@ class CartScreen extends StatelessWidget {
                               style: getLargeStyle(),
                             ),
                             Text(
-                              '${controller.sum - controller.discount.value} د.ك',
+                              '${controller.totalSum} د.ك',
                               style: getSmallStyle(),
                             ),
                           ],
