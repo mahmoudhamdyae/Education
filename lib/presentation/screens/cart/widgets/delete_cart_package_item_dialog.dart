@@ -45,6 +45,6 @@ showDeleteCartPackageItemDialog(BuildContext context, Package package) {
 }
 
 _deleteNote(Package package) {
-  Get.find<PrintedNotesController>().removePackageFromCart(package);
+  Get.find<PrintedNotesController>().removePackageFromCart(package, true);
   Get.back();
 }

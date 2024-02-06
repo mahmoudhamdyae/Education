@@ -65,12 +65,23 @@ class PackageItem extends StatelessWidget {
               Positioned(
                 left: 8.0,
                 top: 24.0,
-                child: Text(
-                  '${package.price} د.ك',
-                  style: getLargeStyle(
-                      fontSize: FontSize.s20,
-                      color: ColorManager.secondary
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      '${package.price} د.ك',
+                      style: getLargeStyle(
+                          color: ColorManager.secondary
+                      ),
+                    ),
+                    const SizedBox(width: 8.0,),
+                    Text(
+                      '${int.parse(package.price ?? '0') * 2} د.ك',
+                      style: getLargeStyle(
+                          color: ColorManager.grey,
+                          decoration: TextDecoration.lineThrough
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

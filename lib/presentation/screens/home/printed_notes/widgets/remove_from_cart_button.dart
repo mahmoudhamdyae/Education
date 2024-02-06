@@ -41,7 +41,7 @@ class RemovePackageFromCartButton extends StatelessWidget {
     return OutlinedButton(
       style: getOutlinedButtonStyle(),
       onPressed: () {
-        Get.find<PrintedNotesController>().removePackageFromCart(package);
+        Get.find<PrintedNotesController>().removePackageFromCart(package, false);
       },
       child: Text(
         AppStrings.removeFromCart,
