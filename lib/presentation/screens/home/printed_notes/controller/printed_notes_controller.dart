@@ -77,12 +77,13 @@ class PrintedNotesController extends GetxController {
         packages.value = remoteNotesAndPackages.value;
         for (var element in remoteNotesAndPackages.key) {
           sum.value += element.bookPrice;
-          totalSum.value += element.bookPrice;
+          totalSum.value = sum.value - discount.value;
           count.add(1);
         }
         for (var element in remoteNotesAndPackages.value) {
-          sum.value += int.parse(element.price ?? '0');
-          totalSum.value += int.parse(element.price ?? '0');
+          sum.value += int.parse(element.price ?? '0') * 2;
+          discount.value += int.parse(element.price ?? '0');
+          totalSum.value = sum.value - discount.value;
           countPackages.add(1);
         }
       });
@@ -135,8 +136,8 @@ class PrintedNotesController extends GetxController {
   void incrementCount(int index) {
     count[index]++;
     notes[index].quantity++;
-    totalSum.value += notes[index].bookPrice;
     sum.value += notes[index].bookPrice;
+    totalSum.value = sum.value - discount.value;
     discount.value += 0;
   }
 
@@ -144,25 +145,25 @@ class PrintedNotesController extends GetxController {
     if (count[index] != 1) {
       count[index]--;
       notes[index].quantity--;
-      totalSum.value -= notes[index].bookPrice;
       sum.value -= notes[index].bookPrice;
+      totalSum.value = sum.value - discount.value;
       discount.value -= 0;
     }
   }
 
   void incrementCountPackage(int index) {
     countPackages[index]++;
-    totalSum.value += int.parse(packages[index].price ?? '0');
-    sum.value += int.parse(packages[index].price ?? '0');
-    discount.value += 0;
+    sum.value += int.parse(packages[index].price ?? '0') * 2;
+    discount.value += int.parse(packages[index].price ?? '0');
+    totalSum.value = sum.value - discount.value;
   }
 
   void decrementCountPackage(int index) {
     if (countPackages[index] != 1) {
       countPackages[index]--;
-      totalSum.value -= int.parse(packages[index].price ?? '0');
-      sum.value -= int.parse(packages[index].price ?? '0');
+      sum.value -= int.parse(packages[index].price ?? '0') * 2;
       discount.value -= int.parse(packages[index].price ?? '0');
+      totalSum.value = sum.value - discount.value;
     }
   }
 

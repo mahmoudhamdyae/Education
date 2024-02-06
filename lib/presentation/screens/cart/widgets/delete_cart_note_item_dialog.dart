@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../home/printed_notes/controller/printed_notes_controller.dart';
 
-showDeleteCartItemDialog(BuildContext context, Note note) {
+showDeleteCartNoteItemDialog(BuildContext context, Note note) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {

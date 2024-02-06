@@ -8,13 +8,13 @@ import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/styles_manager.dart';
-import 'delete_cart_item_dialog.dart';
+import 'delete_cart_note_item_dialog.dart';
 
-class CartItem extends StatelessWidget {
+class CartNoteItem extends StatelessWidget {
 
   final Note note;
   final int index;
-  const CartItem({super.key, required this.note, required this.index});
+  const CartNoteItem({super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class CartItem extends StatelessWidget {
                 children: [
                   // Delete Button
                   IconButton(
-                    onPressed: () => showDeleteCartItemDialog(context, note),
+                    onPressed: () => showDeleteCartNoteItemDialog(context, note),
                     icon: const Icon(
                       Icons.delete,
                       color: ColorManager.error,
