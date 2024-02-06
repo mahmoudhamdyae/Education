@@ -1,6 +1,7 @@
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 
+import '../models/city.dart';
 import '../models/courses/class_model.dart';
 import '../models/lesson/lesson.dart';
 import '../models/notes/note.dart';
@@ -40,6 +41,7 @@ abstract class Repository {
   Future<List<Course>> getSubscriptions();
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
-  Future<void> order(String userName, String phone, String city, String address);
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes);
   Future<List<Teacher>> getTeachers();
+  Future<List<City>> getCities();
 }

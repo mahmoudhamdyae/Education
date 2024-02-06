@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:education/core/converters.dart';
+import 'package:education/domain/models/city.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
@@ -23,8 +26,9 @@ abstract class RemoteDataSource {
   Future<String> askQuestion(String question);
   Future<List<Note>> getNotes(String marhala);
   Future<List<Note>> getAllNotes(List<String> notesId);
-  Future<void> order(String userName, String phone, String city, String address, int userId);
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes);
   Future<List<Teacher>> getTeachers();
+  Future<List<City>> getCities();
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -190,11 +194,29 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> order(String userName, String phone, String city, String address, int userId) async {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes) async {
     await _checkNetwork();
 
-    // String url = "${Constants.baseUrl}";
-    // await _dio.post(url);
+    String url = "${Constants.baseUrl}order";
+
+    var items = [];
+    for (var element in notes) {
+      items.add({
+        'book_id': element.id,
+        'quantity': element.quantity,
+        'price': element.bookPrice,
+      });
+    }
+
+    var body =  {
+      'buyer': userName,
+      'phone': phone,
+      'address': address,
+      'city_id': cityId,
+      'items': items,
+    };
+
+    await _dio.post(url, data: jsonEncode(body));
   }
 
   @override
@@ -205,5 +227,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     var response = await _dio.get(url);
     List<Teacher> teachers = TeacherResponse.fromJson(response.data).teacher ?? [];
     return teachers;
+  }
+
+  @override
+  Future<List<City>> getCities() async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}cities/for/order";
+    var response = await _dio.get(url);
+    List<City> cities = CityResponse.fromJson(response.data).cities ?? [];
+    return cities;
   }
 }

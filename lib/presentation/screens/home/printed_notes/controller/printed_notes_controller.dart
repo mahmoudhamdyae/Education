@@ -3,6 +3,8 @@ import 'package:education/domain/repository/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../../domain/models/city.dart';
+
 class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
@@ -16,17 +18,10 @@ class PrintedNotesController extends GetxController {
   final TextEditingController address = TextEditingController();
   final RxList<String> areas = [
     'المحافظة...',
-    'حوالى',
-    'مبارك الكبير',
-    'الفروانية',
-    'الأحمدى',
-    'الجهراء',
-    'العاصمة',
-    'أم الهيمان',
-    'الوفرة',
-    'صباح الاحمد',
   ].obs;
   RxString selectedArea = 'المحافظة...'.obs;
+  RxList<City> cities = RxList.empty();
+  final RxInt selectedCityId = (-1).obs;
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
   RxStatus get status => _status.value;
@@ -37,6 +32,22 @@ class PrintedNotesController extends GetxController {
   PrintedNotesController(this._repository) {
     Map<String, dynamic>? argument = Get.arguments;
     saff = argument?['saff'] ?? _repository.getGrade();
+  }
+
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    _getCities();
+  }
+
+  void _getCities() {
+    _repository.getCities().then((remoteCities) {
+      cities.value = remoteCities;
+      for (var element in remoteCities) {
+        areas.add(element.name ?? '');
+      }
+    });
   }
 
   getNotes() async {
@@ -58,10 +69,10 @@ class PrintedNotesController extends GetxController {
       _repository.getAllNotes().then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.value = remoteNotes;
-        remoteNotes.forEach((element) {
+        for (var element in remoteNotes) {
           sum.value += element.bookPrice;
           count.add(1);
-        });
+        }
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -112,8 +123,9 @@ class PrintedNotesController extends GetxController {
       await _repository.order(
         userName.text,
         phone.text,
-        selectedArea.value,
+        selectedCityId.value,
         address.text,
+        notes,
       ).then((value) {
         _status.value = RxStatus.success();
       });
@@ -124,5 +136,7 @@ class PrintedNotesController extends GetxController {
 
   void chooseArea(String newArea) {
     selectedArea.value = newArea;
+    City city = cities.firstWhere((element) => element.name == newArea);
+    selectedCityId.value = city.id ?? -1;
   }
 }

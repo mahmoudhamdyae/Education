@@ -1,4 +1,5 @@
 import 'package:education/data/remote/remote_data_source.dart';
+import 'package:education/domain/models/city.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
@@ -152,8 +153,8 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> order(String userName, String phone, String city, String address) async {
-    _remoteDataSource.order(userName, phone, city, address, _localDataSource.getUserId()).then((value) {
+  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes) async {
+    _remoteDataSource.order(userName, phone, cityId, address, notes).then((value) {
       _localDataSource.removeAllNotesFromCart();
     });
   }
@@ -161,5 +162,10 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<Teacher>> getTeachers() {
     return _remoteDataSource.getTeachers();
+  }
+
+  @override
+  Future<List<City>> getCities() {
+    return _remoteDataSource.getCities();
   }
 }
