@@ -74,8 +74,8 @@ flutter_native_splash:
   image: assets/images/splash_logo.png
   android: true
   ios: true
-  ios_content_mode: center
-  android_gravity: center
+  ios_content_mode: scaleAspectFit
+  android_gravity: fill
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
