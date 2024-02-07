@@ -72,7 +72,7 @@ class HomeAppBar extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Get.to(() => NotificationsScreen());
+                // Get.to(() => NotificationsScreen());
               },
               icon: const Icon(
                 Icons.notifications,

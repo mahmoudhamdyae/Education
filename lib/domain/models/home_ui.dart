@@ -33,29 +33,32 @@ class HomeUI {
       ),
       HomeUI(
         AppStrings.courses,
-        ImageAssets.home3, (String marhala, String saff) =>
-          Get.to(const CoursesScreen())
+        ImageAssets.home3, (String marhala, String saff) {
+          // Get.to(const CoursesScreen());
+        }
       ),
       HomeUI(
         AppStrings.onlineCourses,
-        ImageAssets.home4, (String marhala, String saff) =>
-          Get.to(const OnlineCoursesScreen())
+        ImageAssets.home4, (String marhala, String saff) {
+          // Get.to(const OnlineCoursesScreen());
+        }
       ),
       HomeUI(
         AppStrings.teacher,
         ImageAssets.home5, (String marhala, String saff) async {
-        final Repository appPreferences = Get.find<Repository>();
-        if (appPreferences.isUserLoggedIn()) {
-          Get.to(const TeacherScreen());
-        } else {
-          if (context.mounted) showRequireAuthDialog(context);
-        }
+        // final Repository appPreferences = Get.find<Repository>();
+        // if (appPreferences.isUserLoggedIn()) {
+        //   Get.to(const TeacherScreen());
+        // } else {
+        //   if (context.mounted) showRequireAuthDialog(context);
+        // }
       }
       ),
       HomeUI(
         AppStrings.examsAndBanks,
-        ImageAssets.home6, (String marhala, String saff) =>
-          Get.to(ExamsAndBanksScreen(saff: saff))
+        ImageAssets.home6, (String marhala, String saff) {
+          // Get.to(ExamsAndBanksScreen(saff: saff));
+        }
       ),
     ];
   }
