@@ -35,9 +35,14 @@ class HomeScreen extends StatelessWidget {
                 SwiperWidget(sliders: SliderModel.getBaqat(), isTeacher: false,),
                 Padding(
                   padding: const EdgeInsets.only(right: 16.0, top: 16.0),
-                  child: Text(
-                    AppStrings.teachers,
-                    style: getLargeStyle(),
+                  child: GetX<HomeController>(
+                    init: Get.find<HomeController>(),
+                    builder: (HomeController controller) {
+                      return Text(
+                        controller.teachers.isEmpty ? '' : AppStrings.teachers,
+                        style: getLargeStyle(),
+                      );
+                    },
                   ),
                 ),
                 Padding(

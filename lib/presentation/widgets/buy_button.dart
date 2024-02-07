@@ -1,3 +1,5 @@
+import 'package:education/core/constants.dart';
+import 'package:education/core/launch_site.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,7 @@ class BuyButton extends StatelessWidget {
     return FilledButton(
         style: getFilledButtonStyle(),
         onPressed: () {
+          launchSite(Constants.siteUrl);
         },
         child: Text(
           AppStrings.buy,

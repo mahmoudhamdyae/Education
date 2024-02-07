@@ -3,6 +3,8 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants.dart';
+import '../../../core/launch_site.dart';
 import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
 
@@ -38,8 +40,7 @@ showRequireAuthDialog(BuildContext context) {
                   TextButton(
                       onPressed: () {
                         Get.back();
-                        // todo: Buy Course
-                        // Get.to(() => const LoginScreen());
+                        launchSite(Constants.siteUrl);
                       },
                       child: Text(
                         AppStrings.continueButton,

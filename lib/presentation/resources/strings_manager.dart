@@ -133,7 +133,7 @@ class AppStrings {
   static const String buy = 'شراء';
   static const String buyed = 'تم الشراء';
   static const String courseTeacher = 'المدرس';
-  static const String watchFirstLesson = 'شاهد الدرس الأول';
+  static const String watchFirstLesson = 'شاهد الدروس';
   static const String buyCourse = 'شراء الكورس';
   static const String notes = 'المذكرات';
   static const String packages = 'الباقات';

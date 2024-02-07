@@ -9,6 +9,9 @@ import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants.dart';
+import '../../../../core/launch_site.dart';
+
 class CourseScreen extends StatelessWidget {
 
   final Course subject;
@@ -125,6 +128,7 @@ class CourseScreen extends StatelessWidget {
                   child: ElevatedButton(
                       style: getFilledButtonStyle(),
                       onPressed: () {
+                        launchSite(Constants.siteUrl);
                       },
                       child: Text(
                         AppStrings.buyCourse,

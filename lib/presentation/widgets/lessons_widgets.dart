@@ -86,73 +86,59 @@ class _LessonsWidgetState extends State<LessonsWidget> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: wehda.lessons.length,
             itemBuilder: (context, lessonIndex) {
-              return InkWell(
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
+                child: InkWell(
                   onTap: () {
-                    // if (isUserLoggedIn) {
-                    //   if (widget.isInLessonScreen) {
-                    //     Navigator.of(context).pop();
-                    //   }
-                    //   Get.to(const LessonScreen());
-                    // } else {
-                    //   if (index == 0 && lessonIndex == 0) {
-                    //     if (widget.isInLessonScreen) {
-                    //       Navigator.of(context).pop();
-                    //     }
-                    //     Get.to(const LessonScreen());
-                    //   } else {
-                    //     showRequireAuthDialog(context);
-                    //   }
-                    // }
+                    if (wehda.lessons[lessonIndex].type == 'free' || Get.find<LessonController>().isSubscribed()) {
+                      Course course = Get.arguments['course'];
+                      Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
+                      Get.back();
+                      Get.to(const LessonScreen(), arguments: { 'course': course });
+                    } else {
+                      showRequireAuthDialog(context);
+                    }
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                    child: InkWell(
-                      onTap: () {
-                        if (wehda.lessons[lessonIndex].type == 'free') {
-                          Course course = Get.arguments['course'];
-                          Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
-                          debugPrint('-------------------------- ${wehda.lessons[lessonIndex].link}');
-                          Get.back();
-                          Get.to(const LessonScreen(), arguments: { 'course': course });
-                        } else {
-                          showRequireAuthDialog(context);
-                        }
-                      },
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: ColorManager.secondary, width: 1)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                lessonIndex < 9 ? '0${lessonIndex + 1}' : '${lessonIndex + 1}',
-                                style: getLargeStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: ColorManager.secondary,
-                                ),
-                              ),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: ColorManager.secondary, width: 1)
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Text(
+                            lessonIndex < 9 ? '0${lessonIndex + 1}' : '${lessonIndex + 1}',
+                            style: getLargeStyle(
+                              fontWeight: FontWeight.w400,
+                              color: ColorManager.secondary,
                             ),
                           ),
-                          const SizedBox(width: 8.0,),
-                          Text(
-                            wehda.lessons[lessonIndex].title,
-                            style: getSmallStyle(
-                              color: wehda.lessons[lessonIndex].type == 'free' ? ColorManager.black : ColorManager.grey
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Icon(
-                            wehda.lessons[lessonIndex].type == 'free' ? Icons.remove_red_eye : Icons.lock,
-                            color: wehda.lessons[lessonIndex].type == 'free' ? ColorManager.black : ColorManager.grey,
-                          ),
-                          // SaveVideoButton(course: (Get.arguments['course'] as Course), lesson: wehda.lessons[lessonIndex],),
-                        ],
+                        ),
                       ),
-                    ),
-                  )
+                      const SizedBox(width: 8.0,),
+                      Text(
+                        wehda.lessons[lessonIndex].title,
+                        style: getSmallStyle(
+                          color: wehda.lessons[lessonIndex].type == 'free' ||
+                              Get.find<LessonController>().isSubscribed()
+                              ? ColorManager.black
+                              : ColorManager.grey
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      Icon(
+                        wehda.lessons[lessonIndex].type == 'free' ||
+                            Get.find<LessonController>().isSubscribed()
+                        ? Icons.remove_red_eye : Icons.lock,
+                        color: wehda.lessons[lessonIndex].type == 'free' ||
+                            Get.find<LessonController>().isSubscribed()
+                        ? ColorManager.black : ColorManager.grey,
+                      ),
+                    ],
+                  ),
+                ),
               );
             }
         ) : Container()

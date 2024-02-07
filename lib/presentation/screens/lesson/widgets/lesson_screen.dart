@@ -19,7 +19,6 @@ class LessonScreen extends StatefulWidget {
 
   @visibleForTesting
   String extractVideoId(String url) {
-    debugPrint('-------------------------- ${Get.find<LessonController>().selectedLesson.value.link}');
     RegExp regExp = RegExp(r'/(\d+)\??');
     Match? match = regExp.firstMatch(url);
 
@@ -69,9 +68,18 @@ class _LessonScreenState extends State<LessonScreen> {
                       left: 16.0,
                       bottom: 0.0,
                     ),
-                    child: Text(
-                      (Get.arguments['course'] as Course).name,
-                      style: getLargeStyle(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          (Get.arguments['course'] as Course).name,
+                          style: getLargeStyle(),
+                        ),
+                        Text(
+                          controller.selectedLesson.value.title,
+                          style: getLargeStyle(),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
