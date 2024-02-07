@@ -52,10 +52,15 @@ class PackageItem extends StatelessWidget {
                           color: ColorManager.grey,
                         ),
                       ),
-                      Text(
-                        Get.find<PrintedNotesController>().getNotesString(package),
-                        style: getSmallStyle(
-                          color: ColorManager.grey,
+                      SizedBox(
+                        width: 150,
+                        child: Text(
+                          Get.find<PrintedNotesController>().getNotesString(package),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          style: getSmallStyle(
+                            color: ColorManager.grey,
+                          ),
                         ),
                       ),
                     ],
