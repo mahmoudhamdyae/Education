@@ -2,7 +2,6 @@ const String imagePath = "assets/images";
 const String jsonPath = "assets/json";
 
 class ImageAssets {
-  static const String start = "$imagePath/start.webp";
   static const String empty = "$imagePath/empty.png";
   static const String error = "$imagePath/error.svg";
   static const String user = "$imagePath/user.svg";

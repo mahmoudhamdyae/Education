@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:education/domain/repository/repository.dart';
+import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../resources/color_manager.dart';
 import '../main_screen.dart';
 import '../onboarding/onboarding_screen.dart';
-import '../start/start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAll(const MainScreen());
       } else {
         // Navigate to login screen
-        Get.offAll(const StartScreen());
+        Get.offAll(const LoginScreen());
       }
     });
   }
