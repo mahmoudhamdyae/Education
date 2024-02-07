@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../resources/styles_manager.dart';
 
-showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTap) {
+showChooseSaffDialog(
+    BuildContext context, String marhala, Function(String) onTap) {
   final List<String> sfoof = _getSfoof(marhala);
   return showDialog(
       context: context,
@@ -25,30 +26,33 @@ showChooseSaffDialog(BuildContext context, String marhala, Function(String) onTa
               const SizedBox(
                 height: AppSize.s16,
               ),
-              Flexible(
-                child: ListView(
+              SizedBox(
+                height: 300,
+                width: 250,
+                child: ListView.builder(
                   shrinkWrap: true,
-                  children: List.generate(sfoof.length, (index) =>
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          onTap(sfoof[index]);
-                        },
-                        child: ListTile(
-                          title: Text(
-                            sfoof[index],
-                            style: getSmallStyle(),
-                          ),
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: sfoof.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        onTap(sfoof[index]);
+                      },
+                      child: ListTile(
+                        title: Text(
+                          sfoof[index],
+                          style: getSmallStyle(),
                         ),
-                      )
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
           ),
         );
-      }
-  );
+      });
 }
 
 List<String> _getSfoof(String marhala) {
