@@ -31,32 +31,29 @@ class GridViewItem extends StatelessWidget {
             _item.action('', '');
           }
         },
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(AppSize.s16),
-                    topRight: Radius.circular(AppSize.s16),
-                ),
-                child: Image.asset(
-                  _item.icon,
-                  height: 120,
-                  fit: BoxFit.fill,
-                ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(AppSize.s16),
+                  topRight: Radius.circular(AppSize.s16),
               ),
-              // const SizedBox(height: AppSize.s16,),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  _item.name,
-                  textAlign: TextAlign.center,
-                  style: getLargeStyle(color: ColorManager.white),
-                ),
+              child: Image.asset(
+                _item.icon,
+                height: 120,
+                fit: BoxFit.fill,
               ),
-            ],
-          ),
+            ),
+            // const SizedBox(height: AppSize.s16,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                _item.name,
+                textAlign: TextAlign.center,
+                style: getLargeStyle(color: ColorManager.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
