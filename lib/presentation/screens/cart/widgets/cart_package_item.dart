@@ -36,9 +36,9 @@ class CartPackageItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Image.asset(
-                  ImageAssets.books,
+                  ImageAssets.baqaSilver,
                   height: 100,
-                  width: 100,
+                  width: 80,
                 ),
               ),
               Column(
@@ -63,6 +63,7 @@ class CartPackageItem extends StatelessWidget {
               ),
               Expanded(child: Container()),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   // Delete Button
                   IconButton(
