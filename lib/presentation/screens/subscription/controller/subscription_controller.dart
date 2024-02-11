@@ -32,4 +32,13 @@ class SubscriptionController extends GetxController {
       courses.value = [];
     }
   }
+
+  bool isSubscribed(int courseId) {
+    for (var element in courses) {
+      if (element.id == courseId) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

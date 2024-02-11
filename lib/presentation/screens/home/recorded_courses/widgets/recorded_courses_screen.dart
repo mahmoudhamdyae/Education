@@ -1,5 +1,5 @@
 import 'package:education/presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
-import 'package:education/presentation/screens/home/widgets/suggestions.dart';
+import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_list.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,7 @@ class RecordedCoursesScreen extends StatelessWidget {
             return const EmptyScreen(emptyString: AppStrings.noCourses);
           } else {
             final classModel = controller.classModel.value;
-            return Suggestions(
+            return RecordedCoursesList(
               subjects: classModel.courses,
               title: Get.arguments['saff'] == '' ? AppStrings.recordedCourses : '${AppStrings.recordedCoursesTitleBar} ${Get.arguments['saff']}',
             );
