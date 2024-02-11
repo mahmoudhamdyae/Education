@@ -9,6 +9,8 @@ import 'package:education/presentation/screens/me/sign_out_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/dialogs/soon_dialog.dart';
+
 class MeScreenBody extends StatelessWidget {
   const MeScreenBody({super.key});
 
@@ -53,29 +55,29 @@ class MeScreenBody extends StatelessWidget {
           child: Divider(color: Color(0xffE4E4E4),),
         ),
         MeItem(
-            icon: ImageAssets.editProfile,
-            title: AppStrings.editProfile,
-            action: () {}
+          icon: ImageAssets.editProfile,
+          title: AppStrings.editProfile,
+          action: () => showSoonDialog(context),
         ),
         MeItem(
-            icon: ImageAssets.baqat,
-            title: AppStrings.baqat,
-            action: () {}
+          icon: ImageAssets.baqat,
+          title: AppStrings.baqat,
+          action: () => showSoonDialog(context),
         ),
         MeItem(
-            icon: ImageAssets.helpCenter,
-            title: AppStrings.helpCenter,
-            action: () {}
+          icon: ImageAssets.helpCenter,
+          title: AppStrings.helpCenter,
+          action: () => showSoonDialog(context),
         ),
         MeItem(
-            icon: ImageAssets.whoAreWe,
-            title: AppStrings.whoAreWe,
-            action: () {}
+          icon: ImageAssets.whoAreWe,
+          title: AppStrings.whoAreWe,
+          action: () => showSoonDialog(context),
         ),
         MeItem(
-            icon: ImageAssets.delAccount,
-            title: AppStrings.delAccount,
-            action: () {}
+          icon: ImageAssets.delAccount,
+          title: AppStrings.delAccount,
+          action: () => showSoonDialog(context),
         ),
         MeItem(
             icon: ImageAssets.signOut,

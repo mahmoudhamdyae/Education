@@ -5,6 +5,7 @@ import 'package:education/presentation/screens/home/online_courses/online_course
 import 'package:education/presentation/screens/home/printed_notes/widgets/printed_notes_screen.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen.dart';
 import 'package:education/presentation/screens/home/teacher/teacher_screen.dart';
+import 'package:education/presentation/widgets/dialogs/soon_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,30 +35,31 @@ class HomeUI {
       HomeUI(
         AppStrings.courses,
         ImageAssets.home3, (String marhala, String saff) {
-          Get.to(const CoursesScreen());
+          showSoonDialog(context);
         }
       ),
       HomeUI(
         AppStrings.onlineCourses,
         ImageAssets.home4, (String marhala, String saff) {
-          Get.to(const OnlineCoursesScreen());
+        showSoonDialog(context);
         }
       ),
       HomeUI(
         AppStrings.teacher,
         ImageAssets.home5, (String marhala, String saff) async {
-        final Repository appPreferences = Get.find<Repository>();
-        if (appPreferences.isUserLoggedIn()) {
-          Get.to(const TeacherScreen());
-        } else {
-          if (context.mounted) showRequireAuthDialog(context);
-        }
+        showSoonDialog(context);
+        // final Repository appPreferences = Get.find<Repository>();
+        // if (appPreferences.isUserLoggedIn()) {
+        //   Get.to(const TeacherScreen());
+        // } else {
+        //   if (context.mounted) showRequireAuthDialog(context);
+        // }
       }
       ),
       HomeUI(
         AppStrings.examsAndBanks,
         ImageAssets.home6, (String marhala, String saff) {
-          Get.to(ExamsAndBanksScreen(saff: saff));
+        showSoonDialog(context);
         }
       ),
     ];

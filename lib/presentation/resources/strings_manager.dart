@@ -60,6 +60,8 @@ class AppStrings {
   static const serverDown = 'لا يمكن الاتصال بالسيرفر!';
   static const successDialogTitle = 'عملية ناجحة';
   static const successDialogAction = 'حسنا';
+  static const soonDialogTitle = 'هذه الخدمة ستتوفر قريبا';
+  static const soonDialogAction = 'حسنا';
 
   // Bottom Bar
   static const bottomBarHome = 'الرئيسية';
