@@ -1,3 +1,4 @@
+import 'package:education/core/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pod_player/pod_player.dart';
 
@@ -14,8 +15,20 @@ class _PlayVideoFromVimeoState extends State<PlayVideoFromVimeo> {
 
   @override
   void initState() {
+    String videoId = widget.vimeoVideoUrl;
+    String token = Constants.vimeoToken;
+    final Map<String, String> headers = <String, String>{
+      // 'content-type': 'application/json;charset=utf-8',
+      // 'charset': 'utf-8',
+      // "authorization" : "bearer $token"
+    };
+    headers['Authorization'] = 'Bearer $token';
+
     controller = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.vimeo(widget.vimeoVideoUrl,),
+      playVideoFrom: PlayVideoFrom.vimeoPrivateVideos(
+          videoId,
+          httpHeaders: headers
+      ),
       podPlayerConfig: const PodPlayerConfig(
           autoPlay: true,
           isLooping: false,

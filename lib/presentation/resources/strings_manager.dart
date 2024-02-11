@@ -136,6 +136,7 @@ class AppStrings {
   static const String watchFirstLesson = 'شاهد الدروس';
   static const String buyCourse = 'شراء الكورس';
   static const String notes = 'المذكرات';
+  static const String notesTab = 'مذكرات الدرس';
   static const String packages = 'الباقات';
   static const String pdf = 'ملف PDF';
   static const String favCourses = 'الكورسات';
@@ -166,7 +167,7 @@ class AppStrings {
   static const String delAccount = 'حذف الحساب';
   static const String signOut = 'تسجيل الخروج';
   // Notes
-  static const String downloadNote = 'تجربة مجانية';
+  static const String downloadNote = 'عينة المذكرة';
   static const String addToCart = 'إضافة إلى السلة';
   static const String removeFromCart = 'إزالة من السلة';
   static const String cart = 'عربة التسوق';

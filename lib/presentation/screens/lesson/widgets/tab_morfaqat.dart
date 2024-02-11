@@ -23,44 +23,25 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                AppStrings.notes,
-                style: getSmallStyle(),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppStrings.notesTab,
+              style: getSmallStyle(
+                color: widget.link == '' ? ColorManager.grey : ColorManager.black,
               ),
-              IconButton(
-                  onPressed: () {
-                    // Get.to(() => const PrintedNotesScreen(), arguments: { 'saff': AppStrings.saff6 });
-                  },
-                icon: SvgPicture.asset(ImageAssets.download),
-              )
-            ]
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppStrings.pdf,
-                  style: getSmallStyle(
-                    color: widget.link == '' ? ColorManager.grey : ColorManager.black,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    downloadNote(context, widget.link, false);
-                  },
-                  icon: SvgPicture.asset(
-                    ImageAssets.download,
-                    color: widget.link == '' ? ColorManager.grey : ColorManager.black,
-                  ),
-                )
-              ]
-          )
-        ],
+            ),
+            IconButton(
+              onPressed: () {
+                downloadNote(context, widget.link, false);
+              },
+              icon: SvgPicture.asset(
+                ImageAssets.download,
+                color: widget.link == '' ? ColorManager.grey : ColorManager.black,
+              ),
+            )
+          ]
       ),
     );
   }
