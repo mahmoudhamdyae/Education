@@ -3,6 +3,7 @@ import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/login/controller/login_controller.dart';
 import 'package:education/presentation/screens/auth/register/widgets/register_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
+import 'package:education/presentation/widgets/coding_site_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -186,6 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 8.0,),
+                      const CodingSiteWidget(),
                     ],
                   ),
                 ),

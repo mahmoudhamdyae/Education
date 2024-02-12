@@ -1,6 +1,7 @@
 class AppStrings {
   static const noRouteFound = 'noRouteFound';
   static const appName = 'Smart Student';
+  static const madeBy = 'made by ♥ coding-site.com';
 
   // Authentication
   static const phoneHint = 'رقم الهاتف';

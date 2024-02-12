@@ -8,6 +8,7 @@ import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
 import '../../../../resources/styles_manager.dart';
 import '../../../../resources/values_manager.dart';
+import '../../../../widgets/coding_site_widget.dart';
 import '../../../../widgets/dialogs/error_dialog.dart';
 import '../../../../widgets/dialogs/loading_dialog.dart';
 import '../../../main_screen.dart';
@@ -296,6 +297,8 @@ class _RegisterViewState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 8.0,),
+                    const CodingSiteWidget(),
                   ],
                 )
             );
