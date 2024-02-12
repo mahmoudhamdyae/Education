@@ -1,4 +1,5 @@
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:education/presentation/widgets/dialogs/require_auth_dialog.dart';
@@ -128,13 +129,23 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      Icon(
-                        wehda.lessons[lessonIndex].type == 'free' ||
-                            Get.find<LessonController>().isSubscribed()
-                        ? Icons.remove_red_eye : Icons.lock,
-                        color: wehda.lessons[lessonIndex].type == 'free' ||
-                            Get.find<LessonController>().isSubscribed()
-                        ? ColorManager.black : ColorManager.grey,
+                      wehda.lessons[lessonIndex].type == 'free' ?
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          color: ColorManager.secondary,
+                        ),
+                        child: Text(
+                          AppStrings.free,
+                          style: getSmallStyle(
+                            color: ColorManager.white,
+                          ),
+                        ),
+                      ) :
+                      Get.find<LessonController>().isSubscribed() ? Container() : const Icon(
+                        Icons.lock,
+                        color: ColorManager.grey,
                       ),
                     ],
                   ),

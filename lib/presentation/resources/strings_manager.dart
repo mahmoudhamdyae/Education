@@ -102,6 +102,7 @@ class AppStrings {
   static const String noteDownloading = 'جارى التحميل';
   static const String noteDownloadError = 'حدث خطأ';
   static const String freeTry = 'تجربة مجانية';
+  static const String free = 'مجانا';
 
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';
