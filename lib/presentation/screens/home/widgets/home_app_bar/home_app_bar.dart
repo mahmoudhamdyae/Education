@@ -1,10 +1,8 @@
-import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
-import 'package:education/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/account_column.dart';
 import 'package:education/presentation/screens/home/widgets/home_app_bar/user_image.dart';
-import 'package:education/presentation/screens/notifications/widgets/notifications_screen.dart';
 import 'package:education/presentation/widgets/cart_app_bar_button.dart';
+import 'package:education/presentation/widgets/notifications_app_bar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,27 +41,9 @@ class HomeAppBar extends StatelessWidget {
           Expanded(child: Container()),
           // Cart Button
           const CartAppBarButton(),
-          const SizedBox(width: 8.0,),
+          const SizedBox(width: 16.0,),
           // Notifications Button
-          Container(
-            height: 32,
-            width: 32,
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                border: Border.all(color: ColorManager.secondary)
-            ),
-            child: IconButton(
-              onPressed: () {
-                Get.to(() => NotificationsScreen());
-              },
-              icon: const Icon(
-                Icons.notifications,
-                size: 15,
-                color: ColorManager.secondary,
-              ),
-            ),
-          ),
+          const NotificationsAppBarButton(),
         ],
       ),
     );

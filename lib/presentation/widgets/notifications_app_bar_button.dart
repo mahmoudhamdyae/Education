@@ -1,36 +1,29 @@
-import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../resources/color_manager.dart';
-import '../screens/cart/widgets/cart_screen.dart';
+import '../screens/home/printed_notes/controller/printed_notes_controller.dart';
+import '../screens/notifications/widgets/notifications_screen.dart';
 
-import 'package:badges/badges.dart' as badges;
-
-class CartAppBarButton extends StatelessWidget {
-  const CartAppBarButton({super.key});
+class NotificationsAppBarButton extends StatelessWidget {
+  const NotificationsAppBarButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return badges.Badge(
       onTap: () {
-        Get.find<PrintedNotesController>().getAllNotes();
-        Get.to(() => const CartScreen());
-        },
+        Get.to(() => NotificationsScreen());
+      },
       badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.primary),
       position: badges.BadgePosition.bottomEnd(bottom: 12, end: 20),
       badgeContent: Padding(
         padding: const EdgeInsets.only(top: 1.0),
-        child: GetX<PrintedNotesController>(
-          init: Get.find<PrintedNotesController>(),
-          builder: (PrintedNotesController controller) {
-            return Text(
-              controller.cartNumber.toString(),
-              style: const TextStyle(
-                color: ColorManager.white,
-              ),
-            );
-          },
+        child: Text(
+          '0',
+          style: const TextStyle(
+            color: ColorManager.white,
+          ),
         ),
       ),
       child: Container(
@@ -43,11 +36,10 @@ class CartAppBarButton extends StatelessWidget {
         ),
         child: IconButton(
           onPressed: () {
-            Get.find<PrintedNotesController>().getAllNotes();
-            Get.to(() => const CartScreen());
-            },
+            Get.to(() => NotificationsScreen());
+          },
           icon: const Icon(
-            Icons.shopping_cart,
+            Icons.notifications,
             size: 15,
             color: ColorManager.secondary,
           ),
