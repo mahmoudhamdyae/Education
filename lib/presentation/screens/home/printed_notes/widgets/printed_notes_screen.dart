@@ -1,5 +1,6 @@
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
 import 'package:education/presentation/screens/home/printed_notes/widgets/notes_screen.dart';
+import 'package:education/presentation/widgets/cart_app_bar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,16 @@ class PrintedNotesScreen extends StatelessWidget {
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         children: [
-          TopBar(title: Get.arguments['saff'],),
+          Stack(
+            children: [
+              TopBar(title: Get.arguments['saff'],),
+              const Positioned(
+                  left: 16.0,
+                  top: 12.0,
+                  child: CartAppBarButton()
+              ),
+            ],
+          ),
           GetX<PrintedNotesController>(
             init: Get.find<PrintedNotesController>(),
             builder: (PrintedNotesController controller) {

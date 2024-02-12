@@ -30,9 +30,13 @@ abstract class Repository {
   // Notes Cart
   Future<void> addNoteToCart(String noteId);
   Future<void> removeNoteFromCart(String noteId);
-  List<String> getAllNotesCart();
   bool isNoteInCart(String noteId);
-  Future<Pair<List<Note>, List<Package>>> getAllNotes();
+  Future<Pair<List<Note>, List<Package>>> getAllCart();
+
+  // Packages Cart
+  Future<void> addPackageToCart(String packageId);
+  Future<void> removePackageFromCart(String packageId);
+  bool isPackageInCart(String packageId);
 
   // Account Service
   Future<void> register(String userName, String phone, String password, String grade, String group);

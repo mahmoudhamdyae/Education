@@ -36,9 +36,9 @@ class CartButtonPackage extends StatelessWidget {
     return SizedBox(
         width: double.infinity,
         child:
-        Get.find<PrintedNotesController>().isNoteInCart(package.id.toString()) ? RemovePackageFromCartButton(package: package, index: index,)
+        Get.find<PrintedNotesController>().isPackageInCart(package.id.toString()) ? RemovePackageFromCartButton(package: package, index: index,)
             :
-        AddToCartButton(noteId: package.id.toString(),)
+        AddPackageToCartButton(packageId: package.id.toString(),)
     );
   }
 }

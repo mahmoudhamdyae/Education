@@ -28,7 +28,7 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<String> askQuestion(String question);
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala);
-  Future<Pair<List<Note>, List<Package>>> getAllNotes(List<String> notesId);
+  Future<Pair<List<Note>, List<Package>>> getAllCart(List<String> notesId, List<String> packagesId);
   Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
@@ -161,7 +161,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<Pair<List<Note>, List<Package>>> getAllNotes(List<String> notesId) async {
+  Future<Pair<List<Note>, List<Package>>> getAllCart(List<String> notesId, List<String> packagesId) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}books";
@@ -217,48 +217,48 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     List<Package> packages = [];
     s = convertSaff(AppStrings.saff4, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff5, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff6, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff7, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff8, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff9, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff10, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff11, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
     s = convertSaff(AppStrings.saff12, 'package');
     for (var singleNote in response.data[s]) {
-      Package note = Package.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) packages.add(note);
+      Package package = Package.fromJson(singleNote);
+      if (packagesId.contains(package.id.toString())) packages.add(package);
     }
 
     return Pair(notes, packages);

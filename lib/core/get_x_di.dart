@@ -63,7 +63,7 @@ class GetXDi implements Bindings {
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<FavController>(() => FavController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<VideoController>(() => VideoController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut<PrintedNotesController>(() => PrintedNotesController(Get.find<Repository>()), fenix: true);
+    Get.put<PrintedNotesController>(PrintedNotesController(Get.find<Repository>()), permanent: true);
     Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>()), fenix: true);
   }
 }

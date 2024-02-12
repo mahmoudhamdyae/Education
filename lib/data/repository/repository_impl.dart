@@ -87,23 +87,35 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  List<String> getAllNotesCart() {
-    return _localDataSource.getAllNotesCart();
-  }
-
-  @override
   bool isNoteInCart(String noteId) {
     return _localDataSource.isNoteInCart(noteId);
   }
 
   @override
-  Future<Pair<List<Note>, List<Package>>> getAllNotes() {
-    return _remoteDataSource.getAllNotes(_localDataSource.getAllNotesCart());
+  Future<void> removeNoteFromCart(String noteId) {
+    return _localDataSource.removeNoteFromCart(noteId);
   }
 
   @override
-  Future<void> removeNoteFromCart(String noteId) {
-    return _localDataSource.removeNoteFromCart(noteId);
+  Future<Pair<List<Note>, List<Package>>> getAllCart() {
+    return _remoteDataSource.getAllCart(_localDataSource.getAllNotesCart(), _localDataSource.getAllPackagesCart());
+  }
+
+  // Packages Cart
+
+  @override
+  Future<void> addPackageToCart(String packageId) {
+    return _localDataSource.addPackageToCart(packageId);
+  }
+
+  @override
+  Future<void> removePackageFromCart(String packageId) {
+    return _localDataSource.removePackageFromCart(packageId);
+  }
+
+  @override
+  bool isPackageInCart(String packageId) {
+    return _localDataSource.isPackageInCart(packageId);
   }
 
   // Account Service
@@ -154,7 +166,7 @@ class RepositoryImpl extends Repository {
   @override
   Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage) async {
     _remoteDataSource.order(userName, phone, cityId, address, notes, count, packages, countPackage).then((value) {
-      _localDataSource.removeAllNotesFromCart();
+      _localDataSource.removeAllFromCart();
     });
   }
 

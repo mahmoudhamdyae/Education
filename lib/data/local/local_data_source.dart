@@ -30,7 +30,13 @@ abstract class LocalDataSource {
   Future<void> removeNoteFromCart(String noteId);
   List<String> getAllNotesCart();
   bool isNoteInCart(String noteId);
-  Future<void> removeAllNotesFromCart();
+
+  Future<void> addPackageToCart(String packageId);
+  Future<void> removePackageFromCart(String packageId);
+  List<String> getAllPackagesCart();
+  bool isPackageInCart(String packageId);
+
+  Future<void> removeAllFromCart();
 }
 
 const String keyIsFirstTime = "KEY_IS_FIRST_TIME";
@@ -39,6 +45,8 @@ const String keyUserId = "KEY_USER_ID";
 const String keyUserName = "KEY_USER_NAME";
 const String keyGrade = "KEY_GRADE";
 const String keyPhoneNumber = "KEY_PHONE_NUMBER";
+const String keyNotesCart = "KEY_NOTES_CART";
+const String keyPackagesCart = "KEY_PACKAGES_CART";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
@@ -197,15 +205,12 @@ class LocalDataSourceImpl extends LocalDataSource {
   Future<void> removeVideo(int courseId, int lessonId) async {
     var videosBox = await Hive.openBox<Course>('videos');
     final Map<dynamic, Course> courseMap = videosBox.toMap();
-    // dynamic desiredKey;
     courseMap.forEach((key, value) async {
       if (value.id == courseId) {
-        // desiredKey = key;
         var lessonBox = await Hive.openBox<Lesson>('lesson');
         lessonBox.delete('$courseId-$lessonId');
       }
     });
-    // videosBox.delete(desiredKey);
   }
   
   void _delSaved() async {
@@ -219,14 +224,16 @@ class LocalDataSourceImpl extends LocalDataSource {
 
   @override
   Future<void> addNoteToCart(String noteId) async {
+    print('----------- ADDED $noteId');
     List<String> notes = getAllNotesCart();
     notes.add(noteId);
-    await _sharedPreferences.setStringList('notes_cart', notes);
+    await _sharedPreferences.setStringList(keyNotesCart, notes);
   }
 
   @override
   List<String> getAllNotesCart() {
-    List<String> notes = _sharedPreferences.getStringList('notes_cart') ?? [];
+    List<String> notes = _sharedPreferences.getStringList(keyNotesCart) ?? [];
+    print('----------- GET ALL ${notes.length}');
     return notes;
   }
 
@@ -238,13 +245,44 @@ class LocalDataSourceImpl extends LocalDataSource {
 
   @override
   Future<void> removeNoteFromCart(String noteId) async {
+    print('----------- REMOVED $noteId');
     List<String> notes = getAllNotesCart();
     notes.remove(noteId);
-    await _sharedPreferences.setStringList('notes_cart', notes);
+    await _sharedPreferences.setStringList(keyNotesCart, notes);
   }
 
   @override
-  Future<void> removeAllNotesFromCart() async {
-    await _sharedPreferences.setStringList('notes_cart', []);
+  Future<void> addPackageToCart(String packageId) async {
+    print('----------- ADDED P $packageId');
+    List<String> packages = getAllPackagesCart();
+    packages.add(packageId);
+    await _sharedPreferences.setStringList(keyPackagesCart, packages);
+  }
+
+  @override
+  Future<void> removePackageFromCart(String packageId) async {
+    print('----------- REMOVED P $packageId');
+    List<String> packages = getAllPackagesCart();
+    packages.remove(packageId);
+    await _sharedPreferences.setStringList(keyPackagesCart, packages);
+  }
+
+  @override
+  List<String> getAllPackagesCart() {
+    List<String> packages = _sharedPreferences.getStringList(keyPackagesCart) ?? [];
+    print('----------- GET ALL P ${packages.length}');
+    return packages;
+  }
+
+  @override
+  bool isPackageInCart(String packageId) {
+    List<String> packages = getAllPackagesCart();
+    return packages.contains(packageId);
+  }
+
+  @override
+  Future<void> removeAllFromCart() async {
+    await _sharedPreferences.setStringList(keyNotesCart, []);
+    await _sharedPreferences.setStringList(keyPackagesCart, []);
   }
 }

@@ -53,6 +53,7 @@ dependencies:
   shared_preferences: ^2.0.20
   pair: ^0.1.2
   url_launcher: ^6.2.4
+  badges: ^3.1.2
 
 dev_dependencies:
   flutter_test:

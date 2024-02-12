@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
                 return const LoadingScreen();
               } else if (controller.status.isError) {
                 return ErrorScreen(error: controller.status.errorMessage ?? '');
-              } else if (controller.notes.isEmpty){
+              } else if (controller.notes.isEmpty && controller.packages.isEmpty){
                 return const EmptyCart(emptyString: AppStrings.noCart);
               }
               return ListView(

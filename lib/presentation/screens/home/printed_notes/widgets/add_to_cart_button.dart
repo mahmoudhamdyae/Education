@@ -24,3 +24,23 @@ class AddToCartButton extends StatelessWidget {
     );
   }
 }
+
+class AddPackageToCartButton extends StatelessWidget {
+
+  final String packageId;
+  const AddPackageToCartButton({super.key, required this.packageId});
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+        style: getOutlinedButtonStyle(),
+        onPressed: () {
+          Get.find<PrintedNotesController>().addPackageToCart(packageId);
+        },
+        child: Text(
+          AppStrings.addToCart,
+          style: getSmallStyle(),
+        )
+    );
+  }
+}

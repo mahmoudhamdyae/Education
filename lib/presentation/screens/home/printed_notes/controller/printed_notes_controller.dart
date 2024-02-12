@@ -15,6 +15,7 @@ class PrintedNotesController extends GetxController {
   final RxInt sum = 0.obs;
   final RxInt totalSum = 0.obs;
   final RxInt discount = 0.obs;
+  final RxInt cartNumber = 0.obs;
 
   final TextEditingController userName = TextEditingController();
   final TextEditingController phone = TextEditingController();
@@ -30,18 +31,15 @@ class PrintedNotesController extends GetxController {
   RxStatus get status => _status.value;
 
   final Repository _repository;
-  late final String saff;
 
-  PrintedNotesController(this._repository) {
-    Map<String, dynamic>? argument = Get.arguments;
-    saff = argument?['saff'] ?? _repository.getGrade();
-  }
+  PrintedNotesController(this._repository);
 
 
   @override
   Future<void> onInit() async {
     super.onInit();
     _getCities();
+    getAllNotes();
   }
 
   void _getCities() {
@@ -56,7 +54,7 @@ class PrintedNotesController extends GetxController {
   getNotes() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.getNotes(saff).then((remoteNotes) {
+      _repository.getNotes(Get.arguments['saff']).then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.value = remoteNotes.key;
         packages.value = remoteNotes.value;
@@ -71,10 +69,17 @@ class PrintedNotesController extends GetxController {
   getAllNotes() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.getAllNotes().then((remoteNotesAndPackages) {
+      totalSum.value = 0;
+      sum.value = 0;
+      discount.value = 0;
+      count.value = [];
+      _repository.getAllCart().then((remoteNotesAndPackages) {
         _status.value = RxStatus.success();
         notes.value = remoteNotesAndPackages.key;
         packages.value = remoteNotesAndPackages.value;
+        cartNumber.value = 0;
+        cartNumber.value += notes.length;
+        cartNumber.value += packages.length;
         for (var element in remoteNotesAndPackages.key) {
           sum.value += element.bookPrice;
           totalSum.value = sum.value - discount.value;
@@ -98,6 +103,20 @@ class PrintedNotesController extends GetxController {
     try {
       _repository.addNoteToCart(noteId).then((remoteNotes) {
         _status.value = RxStatus.success();
+        cartNumber.value++;
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+      notes.value = [];
+      packages.value = [];
+    }
+  }
+
+  addPackageToCart(String packageId) {
+    try {
+      _repository.addPackageToCart(packageId).then((remoteNotes) {
+        _status.value = RxStatus.success();
+        cartNumber.value++;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -115,6 +134,7 @@ class PrintedNotesController extends GetxController {
         sum.value -= note.bookPrice;
         totalSum.value = sum.value - discount.value;
         discount.value -= 0;
+        cartNumber.value--;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -124,7 +144,7 @@ class PrintedNotesController extends GetxController {
 
   removePackageFromCart(Package package, bool remove, int index) {
     try {
-      _repository.removeNoteFromCart(package.id.toString()).then((remotePackage) {
+      _repository.removePackageFromCart(package.id.toString()).then((remotePackage) {
         _status.value = RxStatus.success();
         if (remove) {
           packages.remove(package);
@@ -132,6 +152,7 @@ class PrintedNotesController extends GetxController {
           sum.value -= int.parse(package.price ?? '0') * 2;
           discount.value -= int.parse(package.price ?? '0');
           totalSum.value = sum.value - discount.value;
+          cartNumber.value--;
         }
       });
     } on Exception catch (e) {
@@ -142,6 +163,10 @@ class PrintedNotesController extends GetxController {
 
   bool isNoteInCart(String noteId) {
     return _repository.isNoteInCart(noteId);
+  }
+
+  bool isPackageInCart(String packageId) {
+    return _repository.isPackageInCart(packageId);
   }
 
   void incrementCount(int index) {
