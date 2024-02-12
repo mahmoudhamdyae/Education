@@ -51,10 +51,11 @@ class PrintedNotesController extends GetxController {
     });
   }
 
-  getNotes() async {
+  getNotes(String saff) async {
+    print('---------------------------- $saff');
     _status.value = RxStatus.loading();
     try {
-      _repository.getNotes(Get.arguments['saff'] ?? _repository.getGrade()).then((remoteNotes) {
+      _repository.getNotes(saff).then((remoteNotes) {
         _status.value = RxStatus.success();
         notes.value = remoteNotes.key;
         packages.value = remoteNotes.value;

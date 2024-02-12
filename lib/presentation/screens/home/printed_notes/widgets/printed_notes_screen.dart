@@ -16,7 +16,7 @@ class PrintedNotesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint('passed saff: ${Get.arguments['saff']}');
-    Get.find<PrintedNotesController>().getNotes();
+    Get.find<PrintedNotesController>().getNotes(Get.arguments['saff']);
     return Scaffold(
       body: ListView(
         shrinkWrap: true,
