@@ -42,18 +42,24 @@ class CartPackageItem extends StatelessWidget {
                 ),
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      package.name ?? '',
-                      style: getLargeStyle(
-                          fontWeight: FontWeight.w400
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 90,
+                      child: Text(
+                        package.name ?? '',
+                        style: getLargeStyle(
+                            fontWeight: FontWeight.w400
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       package.class1 ?? '',
                       style: getSmallStyle(),
