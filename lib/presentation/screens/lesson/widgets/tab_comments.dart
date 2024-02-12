@@ -8,6 +8,7 @@ import '../../../resources/constants_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/styles_manager.dart';
+import '../../subscription/controller/subscription_controller.dart';
 
 class TabComments extends StatelessWidget {
 
@@ -22,9 +23,7 @@ class TabComments extends StatelessWidget {
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         children: [
-          // todo uncomment this
-          // Get.find<SubscriptionController>().isSubscribed(courseId)
-      true
+          Get.find<SubscriptionController>().isSubscribed(courseId)
               ?
           ListView(
             shrinkWrap: true,
