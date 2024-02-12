@@ -30,13 +30,13 @@ class CartScreen extends StatelessWidget {
           GetX<PrintedNotesController>(
             init: Get.find<PrintedNotesController>(),
             builder: (PrintedNotesController controller) {
-              List<Note> notes = controller.notes;
-              List<Package> packages = controller.packages;
+              List<Note> notes = controller.cartNotes;
+              List<Package> packages = controller.cartPackages;
               if (controller.status.isLoading) {
                 return const LoadingScreen();
               } else if (controller.status.isError) {
                 return ErrorScreen(error: controller.status.errorMessage ?? '');
-              } else if (controller.notes.isEmpty && controller.packages.isEmpty){
+              } else if (controller.cartNotes.isEmpty && controller.cartPackages.isEmpty){
                 return const EmptyCart(emptyString: AppStrings.noCart);
               }
               return ListView(
@@ -120,8 +120,8 @@ class CartScreen extends StatelessWidget {
                       child: const Text(AppStrings.finishOrder),
                     ),
                   ),
-                  controller.packages.isEmpty ? Container() : _buildPackagesList(packages),
-                  controller.notes.isEmpty ? Container() : _buildNotesList(notes),
+                  controller.cartPackages.isEmpty ? Container() : _buildPackagesList(packages),
+                  controller.cartNotes.isEmpty ? Container() : _buildNotesList(notes),
                 ],
               );
             },

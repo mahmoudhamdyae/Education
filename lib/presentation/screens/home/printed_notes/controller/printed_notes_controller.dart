@@ -9,7 +9,9 @@ import '../../../../../domain/models/package.dart';
 class PrintedNotesController extends GetxController {
 
   final RxList<Note> notes = RxList.empty();
+  final RxList<Note> cartNotes = RxList.empty();
   final RxList<Package> packages = RxList.empty();
+  final RxList<Package> cartPackages = RxList.empty();
   final RxList<int> count = RxList.empty();
   final RxList<int> countPackages = RxList.empty();
   final RxInt sum = 0.obs;
@@ -76,11 +78,11 @@ class PrintedNotesController extends GetxController {
       count.value = [];
       _repository.getAllCart().then((remoteNotesAndPackages) {
         _status.value = RxStatus.success();
-        notes.value = remoteNotesAndPackages.key;
-        packages.value = remoteNotesAndPackages.value;
+        cartNotes.value = remoteNotesAndPackages.key;
+        cartPackages.value = remoteNotesAndPackages.value;
         cartNumber.value = 0;
-        cartNumber.value += notes.length;
-        cartNumber.value += packages.length;
+        cartNumber.value += cartNotes.length;
+        cartNumber.value += cartPackages.length;
         for (var element in remoteNotesAndPackages.key) {
           sum.value += element.bookPrice;
           totalSum.value = sum.value - discount.value;
@@ -108,7 +110,7 @@ class PrintedNotesController extends GetxController {
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
-      notes.value = [];
+      cartNotes.value = [];
       packages.value = [];
     }
   }
@@ -121,8 +123,8 @@ class PrintedNotesController extends GetxController {
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
-      notes.value = [];
-      packages.value = [];
+      cartNotes.value = [];
+      cartPackages.value = [];
     }
   }
 
@@ -130,7 +132,7 @@ class PrintedNotesController extends GetxController {
     try {
       _repository.removeNoteFromCart(note.id.toString()).then((remoteNotes) {
         _status.value = RxStatus.success();
-        notes.remove(note);
+        cartNotes.remove(note);
         count.removeAt(index);
         sum.value -= note.bookPrice;
         totalSum.value = sum.value - discount.value;
@@ -139,7 +141,7 @@ class PrintedNotesController extends GetxController {
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
-      notes.value = [];
+      cartNotes.value = [];
     }
   }
 
@@ -148,7 +150,7 @@ class PrintedNotesController extends GetxController {
       _repository.removePackageFromCart(package.id.toString()).then((remotePackage) {
         _status.value = RxStatus.success();
         if (remove) {
-          packages.remove(package);
+          cartPackages.remove(package);
           countPackages.removeAt(index);
           sum.value -= int.parse(package.price ?? '0') * 2;
           discount.value -= int.parse(package.price ?? '0');
@@ -158,7 +160,7 @@ class PrintedNotesController extends GetxController {
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
-      packages.value = [];
+      cartPackages.value = [];
     }
   }
 
@@ -172,8 +174,8 @@ class PrintedNotesController extends GetxController {
 
   void incrementCount(int index) {
     count[index]++;
-    notes[index].quantity++;
-    sum.value += notes[index].bookPrice;
+    cartNotes[index].quantity++;
+    sum.value += cartNotes[index].bookPrice;
     totalSum.value = sum.value - discount.value;
     discount.value += 0;
   }
@@ -181,8 +183,8 @@ class PrintedNotesController extends GetxController {
   void decrementCount(int index) {
     if (count[index] != 1) {
       count[index]--;
-      notes[index].quantity--;
-      sum.value -= notes[index].bookPrice;
+      cartNotes[index].quantity--;
+      sum.value -= cartNotes[index].bookPrice;
       totalSum.value = sum.value - discount.value;
       discount.value -= 0;
     }
@@ -190,16 +192,16 @@ class PrintedNotesController extends GetxController {
 
   void incrementCountPackage(int index) {
     countPackages[index]++;
-    sum.value += int.parse(packages[index].price ?? '0') * 2;
-    discount.value += int.parse(packages[index].price ?? '0');
+    sum.value += int.parse(cartPackages[index].price ?? '0') * 2;
+    discount.value += int.parse(cartPackages[index].price ?? '0');
     totalSum.value = sum.value - discount.value;
   }
 
   void decrementCountPackage(int index) {
     if (countPackages[index] != 1) {
       countPackages[index]--;
-      sum.value -= int.parse(packages[index].price ?? '0') * 2;
-      discount.value -= int.parse(packages[index].price ?? '0');
+      sum.value -= int.parse(cartPackages[index].price ?? '0') * 2;
+      discount.value -= int.parse(cartPackages[index].price ?? '0');
       totalSum.value = sum.value - discount.value;
     }
   }
