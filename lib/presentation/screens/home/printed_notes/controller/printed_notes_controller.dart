@@ -214,12 +214,15 @@ class PrintedNotesController extends GetxController {
         phone.text,
         selectedCityId.value,
         address.text,
-        notes,
+        cartNotes,
         count,
-        packages,
+        cartPackages,
         countPackages,
       ).then((value) {
         _status.value = RxStatus.success();
+        cartNotes.value = [];
+        cartPackages.value = [];
+        cartNumber.value = 0;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
