@@ -42,13 +42,14 @@ class CartNoteItem extends StatelessWidget {
                 ),
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
                       note.name,
                       style: getLargeStyle(
-                          fontWeight: FontWeight.w400
+                          fontWeight: FontWeight.w400,
                       ),
                     ),
                   ),
