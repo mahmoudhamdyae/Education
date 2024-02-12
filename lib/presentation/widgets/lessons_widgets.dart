@@ -119,13 +119,18 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                         ),
                       ),
                       const SizedBox(width: 8.0,),
-                      Text(
-                        wehda.lessons[lessonIndex].title,
-                        style: getSmallStyle(
-                          color: wehda.lessons[lessonIndex].type == 'free' ||
-                              Get.find<LessonController>().isSubscribed()
-                              ? ColorManager.black
-                              : ColorManager.grey
+                      SizedBox(
+                        width: 200,
+                        child: Text(
+                          wehda.lessons[lessonIndex].title,
+                          style: getSmallStyle(
+                            color: wehda.lessons[lessonIndex].type == 'free' ||
+                                Get.find<LessonController>().isSubscribed()
+                                ? ColorManager.black
+                                : ColorManager.grey
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       Expanded(child: Container()),
