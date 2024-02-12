@@ -46,7 +46,7 @@ class RecordedCoursesItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 100.0,
+              right: 125.0,
               top: 16.0,
               child: Column(
                   children: [

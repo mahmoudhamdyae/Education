@@ -30,6 +30,7 @@ class CoursesList extends StatelessWidget {
           child: Stack(
             children: [
               Container(
+                padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color(0xffF2F2F2),
@@ -37,38 +38,35 @@ class CoursesList extends StatelessWidget {
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        ImageAssets.course,
-                        height: 88,
-                        width: 86,
-                        fit: BoxFit.fitHeight,
-                      ),
-                      const SizedBox(width: 2.0,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            courses[index].name,
-                            style: getLargeStyle(
-                                fontSize: FontSize.s14,
-                                color: ColorManager.secondary
-                            ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      ImageAssets.course,
+                      height: 88,
+                      width: 86,
+                      fit: BoxFit.fitHeight,
+                    ),
+                    const SizedBox(width: 14.0,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          courses[index].name,
+                          style: getLargeStyle(
+                              fontSize: FontSize.s14,
+                              color: ColorManager.secondary
                           ),
-                          Text(
-                            courses[index].teacher,
-                            style: getSmallStyle(fontSize: 13),
-                          ),
-                          const SizedBox(height: 16.0,),
-                          RateWidget(rate: courses[index].rate),
-                        ],
-                      ),
-                      Expanded(child: Container()),
-                    ],
-                  ),
+                        ),
+                        Text(
+                          courses[index].teacher,
+                          style: getSmallStyle(fontSize: 13),
+                        ),
+                        const SizedBox(height: 16.0,),
+                        RateWidget(rate: courses[index].rate),
+                      ],
+                    ),
+                    Expanded(child: Container()),
+                  ],
                 ),
               ),
               Positioned(
