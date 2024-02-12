@@ -1,3 +1,4 @@
+import 'package:education/presentation/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/launch_site.dart';
@@ -15,7 +16,10 @@ class CodingSiteWidget extends StatelessWidget {
       },
       child: Text(
         AppStrings.madeBy,
-        style: getSmallStyle(),
+        style: getLargeStyle(
+          fontSize: FontSize.s18,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }
