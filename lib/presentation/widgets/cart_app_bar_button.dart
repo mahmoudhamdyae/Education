@@ -14,8 +14,9 @@ class CartAppBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return badges.Badge(
       onTap: () {
-        Get.to(const CartScreen());
-      },
+        Get.find<PrintedNotesController>().getAllNotes();
+        Get.to(() => const CartScreen());
+        },
       badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.primary),
       position: badges.BadgePosition.bottomEnd(bottom: 12, end: 20),
       badgeContent: Padding(
@@ -42,8 +43,9 @@ class CartAppBarButton extends StatelessWidget {
         ),
         child: IconButton(
           onPressed: () {
+            Get.find<PrintedNotesController>().getAllNotes();
             Get.to(() => const CartScreen());
-          },
+            },
           icon: const Icon(
             Icons.shopping_cart,
             size: 15,

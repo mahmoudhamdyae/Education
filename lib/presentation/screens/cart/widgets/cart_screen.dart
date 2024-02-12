@@ -20,7 +20,6 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PrintedNotesController>().getAllNotes();
     return Scaffold(
       body: ListView(
         shrinkWrap: true,
