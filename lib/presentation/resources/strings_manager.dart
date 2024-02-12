@@ -98,11 +98,13 @@ class AppStrings {
   static const String noCourses = 'لا يوجد كورسات مسجلة حاليا فى هذه المرحلة';
   static const String noNotes = 'لا يوجد مذكرات متاحة حاليا لهذا الصف';
   static const String emptyTutorials = 'لا يوجد وحدات';
+  static const String commentAdded = 'تم إضافة التعليق';
   static const String noteDownloaded = 'تم تحميل المذكرة';
   static const String noteDownloading = 'جارى التحميل';
   static const String noteDownloadError = 'حدث خطأ';
   static const String freeTry = 'تجربة مجانية';
   static const String free = 'مجانا';
+  static const String noComments = 'لم يتم إضافة اى تعليقات أو روابط على هذا الدرس';
 
   // Subscriptions Screen
   static const String emptySubscriptions = 'لا يوجد اشتراكات';
@@ -116,7 +118,9 @@ class AppStrings {
   static const String askQuestionSuccess = 'تم الإرسال بنجاح';
   static const String tabLessons = 'الدروس';
   static const String tabAttachments = 'المرفقات';
-  static const String tabTests = 'اختبار';
+  static const String tabComments = 'تعليقات الدرس';
+  static const String addComment = 'إضافة تعليق';
+  static const String yourComment = 'تعليقك';
 
   // Error Handler
   static const String noInternetError = 'يُرجى التحقق من اتصالك بالإنترنت';

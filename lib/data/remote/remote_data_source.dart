@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:pair/pair.dart';
 
 import '../../core/constants.dart';
+import '../../domain/models/comment.dart';
 import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
@@ -32,6 +33,8 @@ abstract class RemoteDataSource {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions(int userId);
+  Future<void> addComment(String comment, int userId);
+  Future<List<Comment>> getComments(int lessonId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -328,5 +331,19 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     var response = await _dio.get(url);
     List<UserCourses> userCourses = SubscriptionResponse.fromJson(response.data).courses ?? [];
     return userCourses;
+  }
+
+  @override
+  Future<void> addComment(String comment, int userId) async {
+    // TODO: implement getComments
+  }
+
+  @override
+  Future<List<Comment>> getComments(int lessonId) async {
+    // TODO: implement getComments
+    return [
+      Comment(comment: 'First Comment'),
+      Comment(comment: 'Second Comment'),
+    ];
   }
 }

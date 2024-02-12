@@ -3,13 +3,14 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_course_lessons.dart';
 import 'package:education/presentation/screens/lesson/widgets/tab_morfaqat.dart';
-import 'package:education/presentation/screens/lesson/widgets/tab_tests.dart';
+import 'package:education/presentation/screens/lesson/widgets/tab_comments.dart';
 import 'package:flutter/material.dart';
 
 class CourseTabs extends StatefulWidget {
 
   final String link;
-  const CourseTabs({super.key, required this.link});
+  final int courseId;
+  const CourseTabs({super.key, required this.link, required this.courseId});
 
   @override
   State<CourseTabs> createState() => _CourseTabsState();
@@ -28,6 +29,7 @@ class _CourseTabsState extends State<CourseTabs> {
           child: Row(
             children: [
               Expanded(
+                  flex: 2,
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -44,6 +46,7 @@ class _CourseTabsState extends State<CourseTabs> {
                   )
               ),
               Expanded(
+                  flex: 2,
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -59,6 +62,7 @@ class _CourseTabsState extends State<CourseTabs> {
                   )
               ),
               Expanded(
+                flex: 3,
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -68,7 +72,7 @@ class _CourseTabsState extends State<CourseTabs> {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 40.0),
                       child: Text(
-                        AppStrings.tabTests,
+                        AppStrings.tabComments,
                         style: getLargeStyle(),
                       ),
                     ),
@@ -86,6 +90,7 @@ class _CourseTabsState extends State<CourseTabs> {
             Row(
               children: [
                 Expanded(
+                  flex: 2,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: selectedTab == 0 ? const Divider(
@@ -95,6 +100,7 @@ class _CourseTabsState extends State<CourseTabs> {
                     ),
                 ),
                 Expanded(
+                  flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: selectedTab == 1 ? const Divider(
@@ -104,6 +110,7 @@ class _CourseTabsState extends State<CourseTabs> {
                   ),
                 ),
                 Expanded(
+                  flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: selectedTab == 2 ? const Divider(
@@ -119,7 +126,7 @@ class _CourseTabsState extends State<CourseTabs> {
         // const SizedBox(height: 16,),
         selectedTab == 0 ? TabCourseLessons() : selectedTab == 1 ?
         TabMorfaqat(link: widget.link,):
-        const TabTests(),
+        TabComments(courseId: widget.courseId,),
       ],
     );
   }

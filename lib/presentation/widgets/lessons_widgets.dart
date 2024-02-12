@@ -93,7 +93,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                   onTap: () {
                     if (wehda.lessons[lessonIndex].type == 'free' || Get.find<LessonController>().isSubscribed()) {
                       Course course = Get.arguments['course'];
-                      Get.find<LessonController>().selectedLesson.value = wehda.lessons[lessonIndex];
+                      Get.find<LessonController>().selectedLesson = wehda.lessons[lessonIndex].obs;
                       Get.back();
                       Get.to(const LessonScreen(), arguments: { 'course': course });
                     } else {

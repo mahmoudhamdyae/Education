@@ -1,3 +1,4 @@
+import 'package:education/domain/models/comment.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/subscription_response.dart';
@@ -47,4 +48,6 @@ abstract class Repository {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions();
+  Future<void> addComment(String comment);
+  Future<List<Comment>> getComments(int lessonId);
 }

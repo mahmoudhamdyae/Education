@@ -1,5 +1,6 @@
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/domain/models/city.dart';
+import 'package:education/domain/models/comment.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
@@ -170,5 +171,15 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<UserCourses>> getSubscriptions() {
     return _remoteDataSource.getSubscriptions(_localDataSource.getUserId());
+  }
+
+  @override
+  Future<void> addComment(String comment) async {
+    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId());
+  }
+
+  @override
+  Future<List<Comment>> getComments(int lessonId) async {
+    return await _remoteDataSource.getComments(lessonId);
   }
 }

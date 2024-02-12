@@ -15,7 +15,6 @@ class LoginController extends GetxController {
 
   LoginController(this._repository);
 
-
   @override
   void onClose() {
     super.onClose();
