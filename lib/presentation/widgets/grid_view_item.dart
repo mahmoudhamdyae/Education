@@ -22,7 +22,6 @@ class GridViewItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (_item.name == AppStrings.recordedCourses ||
-              // _item.name == AppStrings.examsAndBanks ||
               _item.name == AppStrings.printedNotes) {
             showChooseMarhalaDialog(context, (marhala, saff) {
               _item.action(marhala, saff);
