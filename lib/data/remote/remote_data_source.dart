@@ -7,12 +7,10 @@ import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:pair/pair.dart';
 
 import '../../core/constants.dart';
 import '../../domain/models/comment.dart';
-import '../../domain/models/courses/baqa.dart';
 import '../../domain/models/courses/class_model.dart';
 
 import '../../domain/models/package.dart';
@@ -90,16 +88,12 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     String s = convertSaff(marhala, 'course');
     for (var singleCourse in response.data[s]) {
       Course course = Course.fromJson(singleCourse);
-      debugPrint('Get Recorded Courses Response: $marhala');
       courses.add(course);
     }
 
     return ClassModel(
         courses,
-        [
-          Baqa(8, 7, 60),
-          Baqa(7, 0, 38),
-        ]
+        []
     );
   }
 
