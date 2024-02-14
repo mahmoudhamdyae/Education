@@ -15,7 +15,7 @@ abstract class LocalDataSource {
   int getUserId();
   Future<void> setUserName(String name);
   String getUserName();
-  Future<void> setGrade(String? grade);
+  Future<void> setGrade(String grade);
   String getGrade();
   Future<void> setPhoneNumber(String number);
   String getPhoneNumber();
@@ -104,8 +104,8 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  Future<void> setGrade(String? grade) async {
-    return await _box.put(keyGrade, grade ?? '');
+  Future<void> setGrade(String grade) async {
+    return await _box.put(keyGrade, grade);
   }
 
   @override
