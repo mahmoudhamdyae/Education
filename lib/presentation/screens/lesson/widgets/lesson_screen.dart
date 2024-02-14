@@ -75,9 +75,15 @@ class _LessonScreenState extends State<LessonScreen> {
                           (Get.arguments['course'] as Course).name,
                           style: getLargeStyle(),
                         ),
-                        Text(
-                          controller.selectedLesson.value.title,
-                          style: getLargeStyle(),
+                        SizedBox(
+                          width: 225,
+                          child: Text(
+                            controller.selectedLesson.value.title,
+                            style: getLargeStyle(),
+                            textAlign: TextAlign.end,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
