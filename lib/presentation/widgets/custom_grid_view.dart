@@ -15,7 +15,7 @@ class CustomGridView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12, vertical: AppPadding.p28),
-      crossAxisCount:(MediaQuery.of(context).size.width ~/ 160).toInt(),
+      crossAxisCount:2,//(MediaQuery.of(context).size.width ~/ 160).toInt(),
       crossAxisSpacing: 15,
       mainAxisSpacing: 30,
       children: List.generate(_items.length, (index) {
