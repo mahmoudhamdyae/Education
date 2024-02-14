@@ -4,6 +4,7 @@ class AppStrings {
   static const madeBy = 'made by ♥ coding-site.com';
 
   // Authentication
+  static const notStudent = "هذا الحساب غير مصرح له الدخول من هذا التطبيق";
   static const phoneHint = 'رقم الهاتف';
   static const usernameHint = 'الاسم';
   static const passwordHint = 'كلمة المرور';

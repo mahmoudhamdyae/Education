@@ -73,6 +73,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     if (data["access_token"] == null) {
       throw Exception(AppStrings.wrongPhoneOrPassword);
     }
+    if (data["user"]["user_type"] != 'user') {
+      throw Exception(AppStrings.notStudent);
+    }
     return data;
   }
 
