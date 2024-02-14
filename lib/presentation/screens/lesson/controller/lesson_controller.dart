@@ -74,7 +74,6 @@ class LessonController extends GetxController {
       _repository.getComments(selectedLesson.value.id).then((remoteComments) {
         _getCommentsStatus.value = RxStatus.success();
         comments.value = remoteComments;
-        print('-------------------------------contr ${comments.length}');
       });
     } on Exception catch (e) {
       _getCommentsStatus.value = RxStatus.error(e.toString());
