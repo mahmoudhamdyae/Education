@@ -71,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         _buildTopBar(),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
                 flex: 2,
