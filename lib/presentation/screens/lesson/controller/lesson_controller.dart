@@ -60,6 +60,7 @@ class LessonController extends GetxController {
       await _repository.getTutorials(courseId).then((tutorials) {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
+        _selectedLesson.value =tutorials[0].lessons[0];
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
