@@ -7,6 +7,7 @@ import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:pair/pair.dart';
 
 import '../../core/constants.dart';
@@ -21,6 +22,8 @@ import '../network_info.dart';
 abstract class RemoteDataSource {
   Future register(String userName, String phone, String password, String grade, String group);
   Future<dynamic> logIn(String phone, String password);
+  Future<String> getFcmToken();
+  void sendTokenAndUserId(int userId);
 
   Future<ClassModel> getRecordedCourses(String marhala);
   Future<List<Wehda>> getTutorials(int courseId);
@@ -75,6 +78,22 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       throw Exception(AppStrings.notStudent);
     }
     return data;
+  }
+
+  @override
+  Future<String> getFcmToken() async {
+    String? token;
+    await FirebaseMessaging.instance.deleteToken().then((value) async => token = await FirebaseMessaging.instance.getToken());
+    return token ?? '';
+  }
+
+  @override
+  void sendTokenAndUserId(int userId) async {
+    getFcmToken().then((token) async {
+      await _checkNetwork();
+      String url = "${Constants.baseUrl}mandub/fcm-token?user_id=$userId&token=$token";
+      await _dio.patch(url);
+    });
   }
 
   @override

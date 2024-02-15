@@ -128,16 +128,20 @@ class RepositoryImpl extends Repository {
       _localDataSource.setGrade(data['user']['group']);
       _localDataSource.setPhoneNumber(data['user']['phone']);
       _localDataSource.setUserLoggedIn();
+      _remoteDataSource.sendTokenAndUserId(_localDataSource.getUserId());
     });
   }
 
   @override
   Future<void> register(String userName, String phone, String password, String grade, String group) {
-    return _remoteDataSource.register(userName, phone, password, grade, group);
+    return _remoteDataSource.register(userName, phone, password, grade, group).then((value) {
+      _remoteDataSource.sendTokenAndUserId(_localDataSource.getUserId());
+    });
   }
 
   @override
   Future<void> signOut() async {
+    _remoteDataSource.getFcmToken();
     return await _localDataSource.signOut();
   }
 
