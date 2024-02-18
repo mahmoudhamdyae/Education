@@ -1,4 +1,3 @@
-import 'package:education/domain/models/comment.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/subscription_response.dart';
@@ -6,10 +5,8 @@ import 'package:pair/pair.dart';
 
 import '../models/city.dart';
 import '../models/courses/class_model.dart';
-import '../models/lesson/lesson.dart';
 import '../models/notes/note.dart';
 import '../models/package.dart';
-import '../models/returned_video.dart';
 import '../models/teacher.dart';
 
 abstract class Repository {
@@ -23,9 +20,6 @@ abstract class Repository {
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
-  Future<void> saveVideo(Course course, Lesson lesson);
-  Future<List<ReturnedVideo>> getVideos();
-  Future<void> removeVideo(int courseId, int lessonId);
 
   // Notes Cart
   Future<void> addNoteToCart(String noteId);
@@ -52,6 +46,5 @@ abstract class Repository {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions();
-  Future<void> addComment(String comment);
-  Future<List<Comment>> getComments(int lessonId);
+  Future<void> addComment(String comment, int videoId);
 }

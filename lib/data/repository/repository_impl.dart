@@ -1,6 +1,5 @@
 import 'package:education/data/remote/remote_data_source.dart';
 import 'package:education/domain/models/city.dart';
-import 'package:education/domain/models/comment.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
@@ -10,9 +9,7 @@ import 'package:education/domain/repository/repository.dart';
 import 'package:pair/pair.dart';
 
 import '../../domain/models/courses/class_model.dart';
-import '../../domain/models/lesson/lesson.dart';
 import '../../domain/models/package.dart';
-import '../../domain/models/returned_video.dart';
 import '../local/local_data_source.dart';
 
 class RepositoryImpl extends Repository {
@@ -62,21 +59,6 @@ class RepositoryImpl extends Repository {
   @override
   Future<void> removeFav(int courseId) {
     return _localDataSource.removeFav(courseId);
-  }
-
-  @override
-  Future<void> saveVideo(Course course, Lesson lesson) {
-    return _localDataSource.saveVideo(course, lesson);
-  }
-
-  @override
-  Future<List<ReturnedVideo>> getVideos() {
-    return _localDataSource.getVideos();
-  }
-
-  @override
-  Future<void> removeVideo(int courseId, int lessonId) {
-    return _localDataSource.removeVideo(courseId, lessonId);
   }
 
   // Notes Cart
@@ -190,12 +172,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> addComment(String comment) async {
-    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId());
-  }
-
-  @override
-  Future<List<Comment>> getComments(int lessonId) async {
-    return await _remoteDataSource.getComments(lessonId);
+  Future<void> addComment(String comment, int videoId) async {
+    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), videoId);
   }
 }

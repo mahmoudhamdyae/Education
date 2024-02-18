@@ -1,20 +1,9 @@
-import 'package:hive/hive.dart';
-
-part 'lesson.g.dart';
-
-@HiveType(typeId: 1)
-class Lesson extends HiveObject {
-  @HiveField(20)
+class Lesson {
   int id;
-  @HiveField(21)
   String title;
-  @HiveField(22)
   String link;
-  @HiveField(23)
   String pdf;
-  @HiveField(24)
   String type;
-  @HiveField(25)
   int tutorialId;
 
   Lesson(this.id, this.title, this.link, this.pdf, this.type, this.tutorialId);

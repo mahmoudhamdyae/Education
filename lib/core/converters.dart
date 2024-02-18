@@ -24,3 +24,28 @@ String convertSaff(String saff, String data) {
       return '';
   }
 }
+
+String convertSaffToNum(String saff) {
+  switch(saff) {
+    case AppStrings.saff4:
+      return '4';
+    case AppStrings.saff5:
+      return '5';
+    case AppStrings.saff6:
+      return '6';
+    case AppStrings.saff7:
+      return '7';
+    case AppStrings.saff8:
+      return '8';
+    case AppStrings.saff9:
+      return '9';
+    case AppStrings.saff10:
+      return '10';
+    case AppStrings.saff11:
+      return '11';
+    case AppStrings.saff12:
+      return '12';
+    default:
+      return '';
+  }
+}

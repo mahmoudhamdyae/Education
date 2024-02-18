@@ -11,7 +11,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:pair/pair.dart';
 
 import '../../core/constants.dart';
-import '../../domain/models/comment.dart';
 import '../../domain/models/courses/class_model.dart';
 
 import '../../domain/models/package.dart';
@@ -34,8 +33,7 @@ abstract class RemoteDataSource {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions(int userId);
-  Future<void> addComment(String comment, int userId);
-  Future<List<Comment>> getComments(int lessonId);
+  Future<void> addComment(String comment, int userId, int videoId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -100,12 +98,12 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<ClassModel> getRecordedCourses(String marhala) async {
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}courses";
+    String s = convertSaffToNum(marhala);
+    String url = "${Constants.baseUrl}courses/$s";
     final response = await _dio.get(url);
 
     List<Course> courses = [];
-    String s = convertSaff(marhala, 'course');
-    for (var singleCourse in response.data[s]) {
+    for (var singleCourse in response.data['classroom']) {
       Course course = Course.fromJson(singleCourse);
       courses.add(course);
     }
@@ -350,16 +348,17 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> addComment(String comment, int userId) async {
-    // TODO: implement getComments
-  }
+  Future<void> addComment(String comment, int userId, int videoId) async {
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}video/addComment";
 
-  @override
-  Future<List<Comment>> getComments(int lessonId) async {
-    // TODO: implement getComments
-    return [
-      Comment(comment: 'First Comment'),
-      Comment(comment: 'Second Comment'),
-    ];
+    await _dio.post(
+      url,
+      data: jsonEncode({
+        'video_id': videoId,
+        'user_id': userId,
+        'comment': comment,
+      }),
+    );
   }
 }

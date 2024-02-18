@@ -8,7 +8,6 @@ import '../../../resources/constants_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/styles_manager.dart';
-import '../../subscription/controller/subscription_controller.dart';
 
 class TabComments extends StatelessWidget {
 
@@ -23,7 +22,9 @@ class TabComments extends StatelessWidget {
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         children: [
-          Get.find<SubscriptionController>().isSubscribed(courseId)
+          // todo
+          // Get.find<SubscriptionController>().isSubscribed(courseId)
+          true
               ?
           ListView(
             shrinkWrap: true,
@@ -49,7 +50,9 @@ class TabComments extends StatelessWidget {
                 width: double.infinity,
                 child: FilledButton(
                   style: getFilledButtonStyle(),
-                  onPressed: () => Get.find<LessonController>().addComment().then((value) {
+                  onPressed: /*Get.find<LessonController>().commentEditText.text == '' ? null :*/ () {
+                    LessonController controller = Get.find<LessonController>();
+                    controller.addComment().then((value) {
                     Get.showSnackbar(
                       const GetSnackBar(
                         title: null,
@@ -57,7 +60,7 @@ class TabComments extends StatelessWidget {
                         duration: Duration(seconds: AppConstants.snackBarTime),
                       ),
                     );
-                  }),
+                  });},
                   child: Text(
                     AppStrings.addComment,
                     style: getSmallStyle(

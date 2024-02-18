@@ -1,6 +1,5 @@
 import 'package:education/core/get_x_di.dart';
 import 'package:education/domain/models/courses/course.dart';
-import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/resources/theme_manager.dart';
 import 'package:education/presentation/screens/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,9 +14,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive
-    ..registerAdapter(CourseAdapter())
-    ..registerAdapter(LessonAdapter());
+  Hive.registerAdapter(CourseAdapter());
   await GetXDi().dependencies();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

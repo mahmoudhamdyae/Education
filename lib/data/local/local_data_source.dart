@@ -1,6 +1,3 @@
-import 'package:education/domain/models/lesson/lesson.dart';
-import 'package:education/domain/models/returned_video.dart';
-import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,9 +19,6 @@ abstract class LocalDataSource {
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
-  Future<void> saveVideo(Course course, Lesson lesson);
-  Future<List<ReturnedVideo>> getVideos();
-  Future<void> removeVideo(int courseId, int lessonId);
 
   Future<void> addNoteToCart(String noteId);
   Future<void> removeNoteFromCart(String noteId);
@@ -159,58 +153,6 @@ class LocalDataSourceImpl extends LocalDataSource {
       }
     });
     favBox.delete(desiredKey);
-  }
-
-  @override
-  Future<void> saveVideo(Course course, Lesson lesson) async {
-    var videosBox = await Hive.openBox<Course>('videos');
-
-    final Map<dynamic, Course> courseMap = videosBox.toMap();
-    dynamic desiredKey;
-    courseMap.forEach((key, value){
-      if (value.id == course.id) {
-        desiredKey = key;
-      }
-    });
-    if (desiredKey == null) {
-      // Add
-      await videosBox.add(course);
-      _saveLesson(course.id, lesson);
-    } else {
-      // Update
-    }
-  }
-
-  Future<void> _saveLesson(int courseId, Lesson lesson) async {
-    var lessonBox = await Hive.openBox<Lesson>('lesson');
-    lessonBox.put('$courseId-${lesson.id}', lesson);
-  }
-
-  @override
-  Future<List<ReturnedVideo>> getVideos() async {
-    List<ReturnedVideo> returnedVideos = [];
-
-    var videosBox = await Hive.openBox<Course>('videos');
-    List<Course> courses =  videosBox.values.toList();
-    var lessonBox = await Hive.openBox<Lesson>('lesson');
-    List<Lesson> lessons =  lessonBox.values.toList();
-    for (var singleLesson in lessons) {
-      Course? course = courses.firstWhereOrNull((element) => element.id == singleLesson.tutorialId);
-      if (course != null) returnedVideos.add(ReturnedVideo(course, singleLesson));
-    }
-    return returnedVideos;
-  }
-
-  @override
-  Future<void> removeVideo(int courseId, int lessonId) async {
-    var videosBox = await Hive.openBox<Course>('videos');
-    final Map<dynamic, Course> courseMap = videosBox.toMap();
-    courseMap.forEach((key, value) async {
-      if (value.id == courseId) {
-        var lessonBox = await Hive.openBox<Lesson>('lesson');
-        lessonBox.delete('$courseId-$lessonId');
-      }
-    });
   }
   
   void _delSaved() async {
