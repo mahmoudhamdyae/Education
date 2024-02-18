@@ -4,19 +4,18 @@ import 'package:education/presentation/screens/subscription/controller/subscript
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/comment.dart';
 import '../../../../domain/models/courses/course.dart';
 import '../../../../domain/models/lesson/wehda.dart';
 import '../../../../domain/repository/repository.dart';
 
 class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
-  final RxList<Comment> comments = RxList.empty();
+  final RxList<Comments> comments = RxList.empty();
   late final int courseId;
   late bool _isSubscribed = false;
   final TextEditingController commentEditText = TextEditingController();
 
-  final Rx<Lesson> _selectedLesson = Lesson(0, '', '', '', '', -1).obs;
+  final Rx<Lesson> _selectedLesson = Lesson().obs;
   set selectedLesson(Rx<Lesson> value) {
     _selectedLesson.value = value.value;
   }
@@ -58,26 +57,7 @@ class LessonController extends GetxController {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
         _selectedLesson.value =tutorials[0].lessons[0];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        comments.value = [];
+        comments.value = _selectedLesson.value.comments ?? [];
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -88,9 +68,13 @@ class LessonController extends GetxController {
   Future<void> addComment() async {
     try {
       _addCommentStatus.value = RxStatus.loading();
-      await _repository.addComment(commentEditText.text, _selectedLesson.value.id).then((value) {
+      await _repository.addComment(commentEditText.text, _selectedLesson.value.id ?? -1).then((value) {
         _addCommentStatus.value = RxStatus.success();
-        comments.add(Comment(comment: commentEditText.text));
+        comments.add(Comments(
+          comment: commentEditText.text,
+          videoId: _selectedLesson.value.id,
+          user: User(name: _repository.getUserName()),
+        ));
         commentEditText.text = '';
       });
     } on Exception catch (e) {

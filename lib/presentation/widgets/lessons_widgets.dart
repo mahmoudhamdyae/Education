@@ -122,7 +122,7 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                       SizedBox(
                         width: 200,
                         child: Text(
-                          wehda.lessons[lessonIndex].title,
+                          wehda.lessons[lessonIndex].name ?? '',
                           style: getSmallStyle(
                             color: wehda.lessons[lessonIndex].type == 'free' ||
                                 Get.find<LessonController>().isSubscribed()

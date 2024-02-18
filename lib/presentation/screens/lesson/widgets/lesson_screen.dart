@@ -58,7 +58,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     height: 200,
                     child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(
                         controller.selectedLesson.value.link == '' ?
-                        controller.wehdat[0].lessons[0].link : controller.selectedLesson.value.link)
+                        controller.wehdat[0].lessons[0].link ?? '' : controller.selectedLesson.value.link ?? '')
                     ),
                   ),
                   Padding(
@@ -78,7 +78,7 @@ class _LessonScreenState extends State<LessonScreen> {
                         SizedBox(
                           width: 225,
                           child: Text(
-                            controller.selectedLesson.value.title,
+                            controller.selectedLesson.value.name ?? '',
                             style: getLargeStyle(),
                             textAlign: TextAlign.end,
                             maxLines: 2,
@@ -103,7 +103,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                   ),
                   Expanded(
-                    child: CourseTabs(link: controller.wehdat[0].lessons[0].pdf, courseId: (Get.arguments['course'] as Course).id),
+                    child: CourseTabs(link: controller.wehdat[0].lessons[0].pdf ?? '', courseId: (Get.arguments['course'] as Course).id),
                   ),
                 ],
               );
