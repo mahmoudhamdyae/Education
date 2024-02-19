@@ -176,105 +176,27 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Pair<List<Note>, List<Package>>> getAllCart(List<String> notesId, List<String> packagesId) async {
+    if (notesId.isEmpty && packagesId.isEmpty) return const Pair([], []);
+
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}books";
-    final response = await _dio.get(url);
+    String url = "${Constants.baseUrl}getBooksAndPackage";
+    var body =  {
+      'book_ids': notesId,
+      'package_ids': packagesId,
+    };
+    final response = await _dio.get(url, data: jsonEncode(body));
 
     List<Note> notes = [];
-    String s = convertSaff(AppStrings.saff4, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff5, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff6, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff7, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff8, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff9, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff10, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff11, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-    s = convertSaff(AppStrings.saff12, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      if (notesId.contains(note.id.toString())) notes.add(note);
-    }
-
     List<Package> packages = [];
-    s = convertSaff(AppStrings.saff4, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
+    for (var singleBook in response.data['books']) {
+      Note note = Note.fromJson(singleBook);
+      notes.add(note);
     }
-    s = convertSaff(AppStrings.saff5, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
+    for (var singlePackage in response.data['packages']) {
+      Package package = Package.fromJson(singlePackage);
+      packages.add(package);
     }
-    s = convertSaff(AppStrings.saff6, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff7, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff8, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff9, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff10, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff11, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-    s = convertSaff(AppStrings.saff12, 'package');
-    for (var singleNote in response.data[s]) {
-      Package package = Package.fromJson(singleNote);
-      if (packagesId.contains(package.id.toString())) packages.add(package);
-    }
-
     return Pair(notes, packages);
   }
 
