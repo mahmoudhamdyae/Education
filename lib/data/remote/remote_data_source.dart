@@ -98,8 +98,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<ClassModel> getRecordedCourses(String marhala) async {
     await _checkNetwork();
 
-    String s = convertSaffToNum(marhala);
-    String url = "${Constants.baseUrl}courses/$s";
+    String saff = convertSaffToNum(marhala);
+    String url = "${Constants.baseUrl}courses/$saff";
     final response = await _dio.get(url);
 
     List<Course> courses = [];
@@ -153,22 +153,22 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       return const Pair([], []);
     }
     await _checkNetwork();
+    String saff = convertSaffToNum(marhala);
 
-    String url = "${Constants.baseUrl}books";
+    String url = "${Constants.baseUrl}books/$saff";
     final response = await _dio.get(url);
 
     List<Note> notes = [];
-    String s = convertSaff(marhala, 'book');
-    for (var singleNote in response.data[s]) {
-      Note note = Note.fromJson(singleNote);
-      notes.add(note);
-    }
-
     List<Package> packages = [];
-    s = convertSaff(marhala, 'package');
-    for (var singleNote in response.data[s]) {
+    for (var singleNote in response.data['package']) {
       Package package = Package.fromJson(singleNote);
       packages.add(package);
+    }
+
+    for (var singlePackage in packages) {
+      singlePackage.book?.forEach((singleBook) {
+        notes.add(singleBook);
+      });
     }
 
     return Pair(notes, packages);

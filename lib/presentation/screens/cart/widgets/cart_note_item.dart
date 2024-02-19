@@ -47,7 +47,7 @@ class CartNoteItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      note.name,
+                      note.name ?? '',
                       style: getLargeStyle(
                           fontWeight: FontWeight.w400,
                       ),
@@ -56,7 +56,7 @@ class CartNoteItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      note.classroom,
+                      note.classroom ?? '',
                       style: getSmallStyle(),
                     ),
                   ),

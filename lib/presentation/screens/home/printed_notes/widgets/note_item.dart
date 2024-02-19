@@ -39,7 +39,7 @@ class NoteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  note.name,
+                  note.name ?? '',
                   style: getLargeStyle(
                       fontWeight: FontWeight.w400
                   ),
@@ -54,7 +54,7 @@ class NoteItem extends StatelessWidget {
               ],
             ),
           ),
-          DownloadNoteButton(pdf: note.pdf,),
+          DownloadNoteButton(pdf: note.pdf ?? '',),
           CartButtonNote(note: note, index: index),
         ],
       ),

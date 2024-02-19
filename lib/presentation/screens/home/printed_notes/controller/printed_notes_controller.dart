@@ -84,7 +84,7 @@ class PrintedNotesController extends GetxController {
         cartNumber.value += cartNotes.length;
         cartNumber.value += cartPackages.length;
         for (var element in remoteNotesAndPackages.key) {
-          sum.value += element.bookPrice;
+          sum.value += element.bookPrice ?? 0;
           totalSum.value = sum.value - discount.value;
           count.add(1);
         }
@@ -134,7 +134,7 @@ class PrintedNotesController extends GetxController {
         _status.value = RxStatus.success();
         cartNotes.remove(note);
         count.removeAt(index);
-        sum.value -= note.bookPrice;
+        sum.value -= note.bookPrice ?? 0;
         totalSum.value = sum.value - discount.value;
         discount.value -= 0;
         cartNumber.value--;
@@ -174,8 +174,8 @@ class PrintedNotesController extends GetxController {
 
   void incrementCount(int index) {
     count[index]++;
-    cartNotes[index].quantity++;
-    sum.value += cartNotes[index].bookPrice;
+    cartNotes[index].quantity = (cartNotes[index].quantity ?? 0) + 1;
+    sum.value += cartNotes[index].bookPrice ?? 0;
     totalSum.value = sum.value - discount.value;
     discount.value += 0;
   }
@@ -183,8 +183,8 @@ class PrintedNotesController extends GetxController {
   void decrementCount(int index) {
     if (count[index] != 1) {
       count[index]--;
-      cartNotes[index].quantity--;
-      sum.value -= cartNotes[index].bookPrice;
+      cartNotes[index].quantity = (cartNotes[index].quantity ?? 0) - 1;
+      sum.value -= cartNotes[index].bookPrice ?? 0;
       totalSum.value = sum.value - discount.value;
       discount.value -= 0;
     }
@@ -238,7 +238,7 @@ class PrintedNotesController extends GetxController {
   String getNotesString(Package package) {
     String returnedNotes = '';
     int count = 0;
-    for (Book element in package.book ?? []) {
+    for (Note element in package.book ?? []) {
       if (count == ((package.book?.length ?? 0) - 1)) {
         returnedNotes += '${element.name}';
       } else {
