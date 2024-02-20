@@ -1,6 +1,7 @@
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/widgets/dialogs/choose_marhala_dialog.dart';
+import 'package:education/presentation/widgets/dialogs/choose_term_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/home_ui.dart';
@@ -22,12 +23,19 @@ class GridViewItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (_item.name == AppStrings.recordedCourses ||
-              _item.name == AppStrings.printedNotes) {
+              _item.name == AppStrings.printedNotes
+          ) {
             showChooseMarhalaDialog(context, (marhala, saff) {
-              _item.action(marhala, saff);
+              _item.action(marhala, saff, '');
+            });
+          } else if (_item.name == AppStrings.examsAndBanks) {
+            showChooseMarhalaDialog(context, (marhala, saff) {
+              showChooseTermDialog(context, saff, (String term) {
+                _item.action(marhala, saff, term);
+              });
             });
           } else {
-            _item.action('', '');
+            _item.action('', '', '');
           }
         },
         child: Column(

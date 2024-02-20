@@ -80,6 +80,8 @@ class AppStrings {
   static const String teacher = 'معلمك الخاص';
   static const String examsAndBanks = 'اختبارات و بنوك';
   static const String baqatDesc = 'تشمل حميع مذكرات الصف';
+  static const String termOne = 'ترم أول';
+  static const String termTwo = 'ترم ثانى';
 
   // Choose Marhala Dialog
   static const String pleaseChooseMarhala = 'برجاء اختيار المرحلة';
@@ -98,6 +100,7 @@ class AppStrings {
   static const String notesLabel = 'مذكرات';
   static const String baqaPrice = 'سعر الباقة';
   static const String noCourses = 'لا يوجد كورسات مسجلة حاليا فى هذه المرحلة';
+  static const String noExamCourses = 'لا يوجد كورسات حاليا فى هذه المرحلة بها امتحانات و بنوك';
   static const String noNotes = 'لا يوجد مذكرات متاحة حاليا لهذا الصف';
   static const String emptyTutorials = 'لا يوجد وحدات';
   static const String commentAdded = 'تم إضافة التعليق';

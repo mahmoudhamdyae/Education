@@ -176,4 +176,9 @@ class RepositoryImpl extends Repository {
   Future<void> addComment(String comment, Lesson video, int teacherId) async {
     return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), video, teacherId, _localDataSource.getUserName());
   }
+
+  @override
+  Future<List<Course>> getExamCourses(String marhala, int term) async {
+    return await _remoteDataSource.getExamCourses(marhala, term);
+  }
 }

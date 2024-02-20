@@ -1,0 +1,37 @@
+import 'package:education/domain/repository/repository.dart';
+import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:get/get.dart';
+
+import '../../../../../domain/models/courses/course.dart';
+
+class ExamsController extends GetxController {
+
+  final RxList<Course> courses = RxList.empty();
+
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
+
+  final Repository _repository;
+  ExamsController(this._repository);
+
+  @override
+  void onInit() {
+    super.onInit();
+    _getExamsCourses();
+  }
+
+  void _getExamsCourses() {
+    _status.value = RxStatus.loading();
+    Map<String, dynamic> args = Get.arguments;
+    String saff = args['saff'];
+    String term = args['term'];
+    try {
+      _repository.getExamCourses(saff, term == AppStrings.termOne ? 1 : 2).then((remoteCourses) {
+        _status.value = RxStatus.success();
+        courses.value = remoteCourses;
+      });
+    } on Exception catch (e) {
+      _status.value = RxStatus.error(e.toString());
+    }
+  }
+}

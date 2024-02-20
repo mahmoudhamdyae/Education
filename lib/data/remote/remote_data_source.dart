@@ -35,6 +35,7 @@ abstract class RemoteDataSource {
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions(int userId);
   Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName);
+  Future<List<Course>> getExamCourses(String marhala, int term);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -306,5 +307,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         'from': 'NA',
       }),
     );
+  }
+
+  @override
+  Future<List<Course>> getExamCourses(String marhala, int term) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}";
+    var response = await _dio.get(url);
+    List<UserCourses> userCourses = SubscriptionResponse.fromJson(response.data).courses ?? [];
+    return [];
   }
 }
