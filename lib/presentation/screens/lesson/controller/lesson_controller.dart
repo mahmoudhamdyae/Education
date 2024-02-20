@@ -12,6 +12,7 @@ class LessonController extends GetxController {
   final RxList<Wehda> wehdat = RxList.empty();
   final RxList<Comments> comments = RxList.empty();
   late final int courseId;
+  late final int teacherId;
   late bool _isSubscribed = false;
   final TextEditingController commentEditText = TextEditingController();
 
@@ -36,6 +37,7 @@ class LessonController extends GetxController {
   void onInit() {
     super.onInit();
     courseId = (Get.arguments['course'] as Course).id;
+    teacherId = (Get.arguments['course'] as Course).teacherId;
     _getTutorials();
   }
 
@@ -68,7 +70,7 @@ class LessonController extends GetxController {
   Future<void> addComment() async {
     try {
       _addCommentStatus.value = RxStatus.loading();
-      await _repository.addComment(commentEditText.text, _selectedLesson.value.id ?? -1).then((value) {
+      await _repository.addComment(commentEditText.text, _selectedLesson.value, teacherId).then((value) {
         _addCommentStatus.value = RxStatus.success();
         comments.add(Comments(
           comment: commentEditText.text,

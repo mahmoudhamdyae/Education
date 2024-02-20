@@ -9,6 +9,7 @@ import 'package:education/domain/repository/repository.dart';
 import 'package:pair/pair.dart';
 
 import '../../domain/models/courses/class_model.dart';
+import '../../domain/models/lesson/lesson.dart';
 import '../../domain/models/package.dart';
 import '../local/local_data_source.dart';
 
@@ -172,7 +173,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<void> addComment(String comment, int videoId) async {
-    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), videoId);
+  Future<void> addComment(String comment, Lesson video, int teacherId) async {
+    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), video, teacherId, _localDataSource.getUserName());
   }
 }

@@ -20,8 +20,10 @@ class Course extends HiveObject {
   String rate;
   @HiveField(7)
   String teacher;
+  @HiveField(7)
+  int teacherId;
 
-  Course(this.id, this.name, this.month, this.term, this.marhala, this.type, this.rate, this.teacher);
+  Course(this.id, this.name, this.month, this.term, this.marhala, this.type, this.rate, this.teacher, this.teacherId);
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
@@ -33,6 +35,7 @@ class Course extends HiveObject {
       json['type'] as String? ?? '',
       '4.3',
       json['techer']['name'] as String? ?? '',
+      json['techer']['id'] as int? ?? -1,
     );
   }
 }

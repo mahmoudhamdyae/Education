@@ -13,6 +13,7 @@ import 'package:pair/pair.dart';
 import '../../core/constants.dart';
 import '../../domain/models/courses/class_model.dart';
 
+import '../../domain/models/lesson/lesson.dart';
 import '../../domain/models/package.dart';
 import '../../domain/models/subscription_response.dart';
 import '../../domain/models/teacher.dart';
@@ -33,7 +34,7 @@ abstract class RemoteDataSource {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions(int userId);
-  Future<void> addComment(String comment, int userId, int videoId);
+  Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -270,16 +271,39 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> addComment(String comment, int userId, int videoId) async {
+  Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}video/addComment";
 
     await _dio.post(
       url,
       data: jsonEncode({
-        'video_id': videoId,
+        'video_id': video.id,
         'user_id': userId,
         'comment': comment,
+      }),
+    );
+
+    _sendNotification(
+        teacherId,
+        'قام $userName بإضافة تعليق على درس ${video.name}',
+        'قام $userName بإضافة تعليق على درس ${video.name}',
+        'comment'
+    );
+  }
+
+  _sendNotification(int teacherId, String title, String body, String route) async {
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}teacher/notification";
+
+    await _dio.post(
+      url,
+      data: jsonEncode({
+        'techer_id': teacherId,
+        'title': title,
+        'body': body,
+        'route': route,
+        'from': 'NA',
       }),
     );
   }

@@ -5,6 +5,7 @@ import 'package:pair/pair.dart';
 
 import '../models/city.dart';
 import '../models/courses/class_model.dart';
+import '../models/lesson/lesson.dart';
 import '../models/notes/note.dart';
 import '../models/package.dart';
 import '../models/teacher.dart';
@@ -46,5 +47,5 @@ abstract class Repository {
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions();
-  Future<void> addComment(String comment, int videoId);
+  Future<void> addComment(String comment, Lesson video, int teacherId);
 }
