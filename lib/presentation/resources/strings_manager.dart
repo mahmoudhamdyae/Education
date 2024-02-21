@@ -64,6 +64,11 @@ class AppStrings {
   static const successDialogAction = 'حسنا';
   static const soonDialogTitle = 'هذه الخدمة ستتوفر قريبا';
   static const soonDialogAction = 'حسنا';
+  // Update Dialog
+  static const updateDialogTitle = 'تحديث جديد متاح';
+  static const updateDialogMessage = 'يتوفر إصدار أحدث من التطبيق، يرجى تحديثه الآن.';
+  static const updateDialogButtonLabel = 'تحديث الآن';
+  static const updateDialogButtonLabelCancel = 'لاحقًا';
 
   // Bottom Bar
   static const bottomBarHome = 'الرئيسية';

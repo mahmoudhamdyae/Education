@@ -6,6 +6,7 @@ import 'package:education/presentation/screens/subscription/widgets/subscription
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
 import 'home/home_screen.dart';
@@ -18,6 +19,16 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    try {
+      versionCheck(context);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
   int _selectedIndex = 0;

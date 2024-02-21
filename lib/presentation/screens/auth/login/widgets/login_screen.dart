@@ -8,6 +8,7 @@ import 'package:education/presentation/widgets/coding_site_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/check_version.dart';
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/font_manager.dart';
 import '../../../../resources/strings_manager.dart';
@@ -25,6 +26,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    try {
+      versionCheck(context);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   logIn() async {
     var formData = formState.currentState;

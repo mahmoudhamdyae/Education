@@ -1,14 +1,13 @@
 import 'package:education/core/utils/insets.dart';
-import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_item.dart';
-import 'package:education/presentation/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/models/courses/course.dart';
+import 'exam_course_item.dart';
 
-class RecordedCoursesList extends StatelessWidget {
+class ExamsCourseList extends StatelessWidget {
 
   final List<Course> subjects;
-  const RecordedCoursesList({super.key, required this.subjects});
+  const ExamsCourseList({super.key, required this.subjects});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +16,13 @@ class RecordedCoursesList extends StatelessWidget {
 
   ListView _buildCoursesList() {
     return ListView.builder(
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        itemCount: subjects.length,
-        itemBuilder: (BuildContext context, int index) {
-          return RecordedCoursesItem(course: subjects[index],);
-        },
-      );
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      itemCount: subjects.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ExamCourseItem(course: subjects[index],);
+      },
+    );
   }
 
   Widget _buildCoursesGrid(BuildContext context) {
@@ -35,7 +34,7 @@ class RecordedCoursesList extends StatelessWidget {
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
       children: List.generate(subjects.length, (index) {
-        return RecordedCoursesItem(course: subjects[index],);
+        return ExamCourseItem(course: subjects[index],);
       }),
     );
   }

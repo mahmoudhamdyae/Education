@@ -311,11 +311,25 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<List<Course>> getExamCourses(String marhala, int term) async {
+    if (
+    marhala == AppStrings.saff1 ||
+        marhala == AppStrings.saff2 ||
+        marhala == AppStrings.saff3 ||
+        marhala == AppStrings.saff4 ||
+        marhala == AppStrings.saff5
+    ) {
+      return [];
+    }
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}";
+    String saff = convertSaffToNum(marhala);
+    String url = "${Constants.baseUrl}examClass/$saff/$term";
     var response = await _dio.get(url);
-    List<UserCourses> userCourses = SubscriptionResponse.fromJson(response.data).courses ?? [];
-    return [];
+    List<Course> courses = [];
+    for (var singleCourse in response.data['classroom']) {
+      Course course = Course.fromJson(singleCourse);
+      courses.add(course);
+    }
+    return courses;
   }
 }
