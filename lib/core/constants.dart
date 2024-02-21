@@ -1,10 +1,10 @@
 class Constants {
-  // static const String baseUrl = 'https://smartstudent.live/api/';
+  static const String baseUrl = 'https://smartstudent.live/api/';
   // static const String baseUrl = 'http://192.168.1.111/api/';
-  static const String baseUrl = 'https://ffeb-105-38-30-42.ngrok-free.app/api/';
+  // static const String baseUrl = 'https://ffeb-105-38-30-42.ngrok-free.app/api/';
 
-  // static const String siteUrl = 'https://smartstudent.live/';
-  static const String siteUrl = 'https://ffeb-105-38-30-42.ngrok-free.app/';
+  static const String siteUrl = 'https://smartstudent.live/';
+  // static const String siteUrl = 'https://ffeb-105-38-30-42.ngrok-free.app/';
 
 
 
