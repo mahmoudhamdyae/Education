@@ -9,6 +9,7 @@ import 'package:education/domain/repository/repository.dart';
 import 'package:pair/pair.dart';
 
 import '../../domain/models/courses/class_model.dart';
+import '../../domain/models/exam.dart';
 import '../../domain/models/lesson/lesson.dart';
 import '../../domain/models/package.dart';
 import '../local/local_data_source.dart';
@@ -180,5 +181,10 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<Course>> getExamCourses(String marhala, int term) async {
     return await _remoteDataSource.getExamCourses(marhala, term);
+  }
+
+  @override
+  Future<Exam> getExamsAndCourses(int courseId, int term) async {
+    return await _remoteDataSource.getExamsAndCourses(courseId, term);
   }
 }

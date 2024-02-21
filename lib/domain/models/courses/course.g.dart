@@ -32,7 +32,7 @@ class CourseAdapter extends TypeAdapter<Course> {
   @override
   void write(BinaryWriter writer, Course obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)

@@ -1,4 +1,4 @@
-import 'package:education/presentation/screens/home/exams/widgets/exams_screen.dart';
+import 'package:education/presentation/screens/home/exams/screens/exams_courses_screen.dart';
 import 'package:education/presentation/screens/home/printed_notes/widgets/printed_notes_screen.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_screen.dart';
 import 'package:education/presentation/widgets/dialogs/soon_dialog.dart';
@@ -48,7 +48,7 @@ class HomeUI {
       HomeUI(
         AppStrings.examsAndBanks,
         ImageAssets.home6, (String marhala, String saff, String term) =>
-          Get.to(() => const ExamsScreen(), arguments: { 'saff': saff, 'term': term })
+          Get.to(() => const ExamsCoursesScreen(), arguments: { 'saff': saff, 'term': term })
       ),
     ];
   }

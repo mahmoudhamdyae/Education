@@ -20,7 +20,7 @@ class Course extends HiveObject {
   String rate;
   @HiveField(7)
   String teacher;
-  @HiveField(7)
+  @HiveField(8)
   int teacherId;
 
   Course(this.id, this.name, this.month, this.term, this.marhala, this.type, this.rate, this.teacher, this.teacherId);

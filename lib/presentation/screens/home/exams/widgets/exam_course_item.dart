@@ -1,4 +1,5 @@
 import 'package:education/presentation/resources/color_manager.dart';
+import 'package:education/presentation/screens/home/exams/screens/exams_and_banks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +7,7 @@ import '../../../../../domain/models/courses/course.dart';
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/styles_manager.dart';
 import '../../../../widgets/bookmark_course.dart';
-import '../../../course/widgets/course_screen.dart';
+import '../controller/exams_controller.dart';
 
 class ExamCourseItem extends StatelessWidget {
 
@@ -17,7 +18,8 @@ class ExamCourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => CourseScreen(subject: course,));
+        Get.find<ExamsController>().getExamsAndCourses(course.id);
+        Get.to(() => ExamsAndBanksScreen(course: course,));
       },
       child: Container(
         height: 75,

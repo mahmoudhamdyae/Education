@@ -110,6 +110,7 @@ class AppStrings {
   static const String emptyTutorials = 'لا يوجد وحدات';
   static const String commentAdded = 'تم إضافة التعليق';
   static const String noteDownloaded = 'تم تحميل المذكرة';
+  static const String examDownloaded = 'تم التحميل';
   static const String noteDownloading = 'جارى التحميل';
   static const String noteDownloadError = 'حدث خطأ';
   static const String freeTry = 'تجربة مجانية';
@@ -214,4 +215,15 @@ class AppStrings {
   static const addressHint = 'العنوان';
   // Subscription
   static const expireDate = 'تاريخ انتهاء الاشتراك';
+
+  // Exams And Banks
+  static const exams = 'الاختبارات';
+  static const banks = 'بنوك';
+  static const unsolvedTest = 'اختبارات غير محلولة';
+  static const shortOne = 'قصير أول';
+  static const shortTwo = 'قصير ثان';
+  static const finalReview = 'مراجعة نهائية';
+  static const unsolvedBank = 'بنك غير محلول';
+  static const solvedBank = 'بنك محلول';
+  static const bookTest = 'حل أسئلة الكتاب';
 }

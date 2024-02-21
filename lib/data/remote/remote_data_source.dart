@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:education/core/converters.dart';
 import 'package:education/domain/models/city.dart';
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/domain/models/exam.dart';
 import 'package:education/domain/models/lesson/wehda.dart';
 import 'package:education/domain/models/notes/note.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
@@ -36,6 +37,7 @@ abstract class RemoteDataSource {
   Future<List<UserCourses>> getSubscriptions(int userId);
   Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName);
   Future<List<Course>> getExamCourses(String marhala, int term);
+  Future<Exam> getExamsAndCourses(int courseId, int term);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -331,5 +333,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       courses.add(course);
     }
     return courses;
+  }
+
+  @override
+  Future<Exam> getExamsAndCourses(int courseId, int term) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}exam/class/course/term/$courseId/$term";
+    var response = await _dio.get(url);
+    Exam exam = Exam.fromJson(response.data);
+    return exam;
   }
 }

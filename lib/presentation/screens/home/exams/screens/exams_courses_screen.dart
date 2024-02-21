@@ -7,10 +7,10 @@ import '../../../../widgets/error_screen.dart';
 import '../../../../widgets/loading_screen.dart';
 import '../../../../widgets/top_bar.dart';
 import '../controller/exams_controller.dart';
-import 'exams_course_list.dart';
+import '../widgets/exams_course_list.dart';
 
-class ExamsScreen extends StatelessWidget {
-  const ExamsScreen({super.key});
+class ExamsCoursesScreen extends StatelessWidget {
+  const ExamsCoursesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ExamsScreen extends StatelessWidget {
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         children: [
-          TopBar(title: Get.arguments['saff'] == '' ? AppStrings.examsAndBanks : '${AppStrings.recordedCoursesTitleBar} ${Get.arguments['saff']}',),
+          const TopBar(title:AppStrings.examsAndBanks),
           GetX<ExamsController>(
             init: Get.find<ExamsController>(),
             builder: (ExamsController controller) {
