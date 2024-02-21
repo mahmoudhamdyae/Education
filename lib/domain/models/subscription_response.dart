@@ -103,76 +103,21 @@ class UserCourses {
 class Techer {
   int? id;
   String? name;
-  String? phone;
-  dynamic email;
-  String? gender;
-  dynamic grade;
-  dynamic group;
-  dynamic studentSubscrip;
-  dynamic renew;
-  String? userType;
-  dynamic emailVerifiedAt;
-  int? teacherRatioCourse;
-  String? userPassword;
-  String? createdAt;
-  String? updatedAt;
-  String? teacherDescription;
+  String? image;
 
-  Techer(
-      {this.id,
-        this.name,
-        this.phone,
-        this.email,
-        this.gender,
-        this.grade,
-        this.group,
-        this.studentSubscrip,
-        this.renew,
-        this.userType,
-        this.emailVerifiedAt,
-        this.teacherRatioCourse,
-        this.userPassword,
-        this.createdAt,
-        this.updatedAt,
-        this.teacherDescription});
+  Techer({this.id, this.name, this.image});
 
   Techer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    phone = json['phone'];
-    email = json['email'];
-    gender = json['gender'];
-    grade = json['grade'];
-    group = json['group'];
-    studentSubscrip = json['student_subscrip'];
-    renew = json['renew'];
-    userType = json['user_type'];
-    emailVerifiedAt = json['email_verified_at'];
-    teacherRatioCourse = json['Teacher_ratio_course'];
-    userPassword = json['user_password'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    teacherDescription = json['teacher_description'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['phone'] = phone;
-    data['email'] = email;
-    data['gender'] = gender;
-    data['grade'] = grade;
-    data['group'] = group;
-    data['student_subscrip'] = studentSubscrip;
-    data['renew'] = renew;
-    data['user_type'] = userType;
-    data['email_verified_at'] = emailVerifiedAt;
-    data['Teacher_ratio_course'] = teacherRatioCourse;
-    data['user_password'] = userPassword;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['teacher_description'] = teacherDescription;
+    data['image'] = image;
     return data;
   }
 }

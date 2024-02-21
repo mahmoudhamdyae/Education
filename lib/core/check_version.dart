@@ -9,28 +9,22 @@ import 'constants.dart';
 import 'launch_site.dart';
 
 versionCheck(context) async {
-  debugPrint('--------------------- remote');
   // Get Current installed version of app
   final PackageInfo info = await PackageInfo.fromPlatform();
-  var s = info.version.trim();
-  debugPrint('--------------------- remote $s');
   double currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
-  debugPrint('--------------------- remote $currentVersion');
 
   // Get Latest version info from firebase config
   final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
   await remoteConfig.setConfigSettings(RemoteConfigSettings(
-    fetchTimeout: const Duration(minutes: 1),
-    minimumFetchInterval: const Duration(hours: 1),
+    fetchTimeout: const Duration(),
+    minimumFetchInterval: const Duration(),
   ));
 
   try {
     // Using default duration to force fetching from remote server.
-    // await remoteConfig.fetch(expiration: const Duration(seconds: 0));
-    // await remoteConfig.activateFetched();
+    await remoteConfig.fetch();
     await remoteConfig.activate();
-    String forceUpdateCurrentVersion = '1.0.6';//remoteConfig.getString('force_update_current_version');
-    debugPrint('--------------------- remote2 $forceUpdateCurrentVersion');
+    String forceUpdateCurrentVersion = remoteConfig.getString('force_update_current_version');
     double newVersion = double.parse(forceUpdateCurrentVersion
         .trim()
         .replaceAll(".", ""));

@@ -156,6 +156,7 @@ class CourseScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
+                  ;;;;;;
                   '5 وحدات - 32 درس',
                   style: getSmallStyle(),
                 ),
@@ -197,8 +198,12 @@ class CourseScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
           child: Row(
             children: [
-              Image.asset(
+              subject.teacherImage == '' ? Image.asset(
                 ImageAssets.courseTeacher,
+                height: 40,
+                width: 40,
+              ) : Image.network(
+                '${Constants.siteUrl}${subject.teacherImage}',
                 height: 40,
                 width: 40,
               ),
