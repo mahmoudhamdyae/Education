@@ -199,16 +199,16 @@ class CourseScreen extends StatelessWidget {
             children: [
               subject.teacherImage == '' ? Image.asset(
                 ImageAssets.courseTeacher,
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
               ) : Image.network(
                 '${Constants.siteUrl}${subject.teacherImage}',
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
               ),
               // Teacher Name
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   subject.teacher,
                   style: getSmallStyle(),
