@@ -1,6 +1,8 @@
+import 'package:education/core/constants.dart';
 import 'package:education/domain/models/teacher.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
+import 'package:flutter/cupertino.dart';
 
 class SliderModel {
   String name;
@@ -24,7 +26,7 @@ class SliderModel {
           SliderModel(
               element.name ?? '',
               element.teacherDescription ?? '',
-              ImageAssets.teacher2
+              element.image == null ? '' : '${Constants.siteUrl}${element.image}'
           )
       );
     }

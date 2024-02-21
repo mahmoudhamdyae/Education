@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 
 class SwiperWidget extends StatelessWidget {
@@ -57,6 +58,18 @@ class SwiperWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+                isTeacher ? (sliders[index].image == '' ?
+                Image.asset(
+                  ImageAssets.teacher2,
+                  width: 150,
+                )
+                    :
+                Image.network(
+                    sliders[index].image,
+                    width: 150,
+                )
+                )
+                    : // Packages
                 Image.asset(
                   sliders[index].image,
                   width: 150,
