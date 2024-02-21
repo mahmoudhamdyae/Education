@@ -156,8 +156,7 @@ class CourseScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  ;;;;;;
-                  '5 وحدات - 32 درس',
+                  '${subject.tutorialCount} وحدات',
                   style: getSmallStyle(),
                 ),
               ),

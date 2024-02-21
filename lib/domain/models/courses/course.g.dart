@@ -27,6 +27,7 @@ class CourseAdapter extends TypeAdapter<Course> {
       fields[7] as String,
       fields[8] as int?,
       fields[9] as String?,
+      fields[10] as int?
     );
   }
 
@@ -53,7 +54,9 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..writeByte(8)
       ..write(obj.teacherId)
       ..writeByte(9)
-      ..write(obj.teacherImage);
+      ..write(obj.teacherImage)
+      ..writeByte(10)
+      ..write(obj.tutorialCount);
   }
 
   @override

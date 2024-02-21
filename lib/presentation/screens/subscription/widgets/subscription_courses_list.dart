@@ -65,6 +65,7 @@ class SubscriptionCoursesList extends StatelessWidget {
             userCourses.techer?.name ?? '',
             userCourses.techer?.id ?? -1,
             userCourses.techer?.image ?? '',
+            0
         );
         Get.to(() => const LessonScreen(), arguments: {'course': course});
       },
