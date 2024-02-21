@@ -25,7 +25,7 @@ class CourseAdapter extends TypeAdapter<Course> {
       fields[5] as String,
       fields[6] as String,
       fields[7] as String,
-      fields[8] as int,
+      fields[8] as int?,
     );
   }
 

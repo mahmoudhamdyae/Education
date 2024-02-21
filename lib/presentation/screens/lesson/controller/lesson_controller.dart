@@ -37,7 +37,7 @@ class LessonController extends GetxController {
   void onInit() {
     super.onInit();
     courseId = (Get.arguments['course'] as Course).id;
-    teacherId = (Get.arguments['course'] as Course).teacherId;
+    teacherId = (Get.arguments['course'] as Course).teacherId ?? -1;
     _getTutorials();
   }
 

@@ -21,7 +21,7 @@ class Course extends HiveObject {
   @HiveField(7)
   String teacher;
   @HiveField(8)
-  int teacherId;
+  int? teacherId;
 
   Course(this.id, this.name, this.month, this.term, this.marhala, this.type, this.rate, this.teacher, this.teacherId);
 
@@ -35,7 +35,7 @@ class Course extends HiveObject {
       json['type'] as String? ?? '',
       '4.3',
       json['techer']['name'] as String? ?? '',
-      json['techer']['id'] as int? ?? -1,
+      json['techer_id'] as int? ?? -1,
     );
   }
 }

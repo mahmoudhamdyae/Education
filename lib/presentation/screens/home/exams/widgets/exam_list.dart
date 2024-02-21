@@ -25,7 +25,7 @@ class ExamList extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           children: [
             const SizedBox(height: 4.0,),
-            SizedBox(
+            exam?.unsolvedTest == null && exam?.shortOne == null && exam?.shortTwo == null && exam?.finalReview == null ? Container() : SizedBox(
               width: double.infinity,
               child: Text(
                 AppStrings.exams,
@@ -36,7 +36,7 @@ class ExamList extends StatelessWidget {
             const SizedBox(height: 8.0,),
             isWide(context) ? _buildExamsGrid(context, exam) : _buildExamsList(exam),
             const SizedBox(height: 16.0,),
-            SizedBox(
+            bank?.solvedBank == null && bank?.unsolvedBank == null && bank?.bookTest == null ? Container() : SizedBox(
               width: double.infinity,
               child: Text(
                 AppStrings.banks,
@@ -57,10 +57,10 @@ class ExamList extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       children: [
-        ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
-        ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
-        ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
-        ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
+        exam?.unsolvedTest == null ? Container() : ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
+        exam?.shortOne == null ? Container() : ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
+        exam?.shortTwo == null ? Container() : ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
+        exam?.finalReview == null ? Container() : ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
       ],
     );
   }
@@ -74,10 +74,10 @@ class ExamList extends StatelessWidget {
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
       children: [
-        ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
-        ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
-        ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
-        ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
+        exam?.unsolvedTest == null ? Container() : ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
+        exam?.shortOne == null ? Container() : ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
+        exam?.shortTwo == null ? Container() : ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
+        exam?.finalReview == null ? Container() : ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
       ],
     );
   }
@@ -87,9 +87,9 @@ class ExamList extends StatelessWidget {
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             children: [
-              ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
-              ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
-              ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
+              bank?.unsolvedBank == null ? Container() : ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
+              bank?.solvedBank == null ? Container() : ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
+              bank?.bookTest == null ? Container() : ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
             ],
           );
   }
@@ -103,9 +103,9 @@ class ExamList extends StatelessWidget {
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
       children: [
-        ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
-        ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
-        ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
+        bank?.unsolvedBank == null ? Container() : ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
+        bank?.solvedBank == null ? Container() : ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
+        bank?.bookTest == null ? Container() : ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
       ],
     );
   }

@@ -218,7 +218,7 @@ class AppStrings {
 
   // Exams And Banks
   static const exams = 'الاختبارات';
-  static const banks = 'بنوك';
+  static const banks = 'البنوك';
   static const unsolvedTest = 'اختبارات غير محلولة';
   static const shortOne = 'قصير أول';
   static const shortTwo = 'قصير ثان';
