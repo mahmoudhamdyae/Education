@@ -5,6 +5,7 @@ import 'package:education/presentation/screens/auth/login/widgets/login_screen.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../resources/color_manager.dart';
+import '../auth/auth_controller.dart';
 import '../main_screen.dart';
 import '../onboarding/onboarding_screen.dart';
 
@@ -31,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAll(() => const OnboardingScreen());
       } else if (appPreferences.isUserLoggedIn()) {
         // Navigate to main screen
-        Get.offAll(const MainScreen());
+        AuthController controller = Get.find<AuthController>();
+        Get.offAll(() => MainScreen(selectedIndex: controller.isSubscribedAtOneSubjectAtLeast() ? 1 : 0,));
       } else {
         // Navigate to login screen
         Get.offAll(const LoginScreen());

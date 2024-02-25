@@ -22,4 +22,8 @@ class AuthController extends GetxController {
   String getPhoneNumber() {
     return _repository.getPhoneNumber();
   }
+
+  bool isSubscribedAtOneSubjectAtLeast() {
+    return _repository.isSubscribed();
+  }
 }

@@ -4,6 +4,7 @@ import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/auth/login/controller/login_controller.dart';
 import 'package:education/presentation/screens/auth/register/widgets/register_screen.dart';
 import 'package:education/presentation/screens/main_screen.dart';
+import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:education/presentation/widgets/coding_site_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,7 +49,10 @@ class _LoginScreenState extends State<LoginScreen> {
           Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
         } else {
-          Get.offAll(() => const MainScreen());
+          SubscriptionController controller = Get.find<SubscriptionController>();
+          controller.isSubscribedAtOneSubjectAtLeast().then((value) =>
+              Get.offAll(() => MainScreen(selectedIndex: value ? 1 : 0,))
+          );
         }
       });
     }
@@ -214,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: ElevatedButton(
                         style: getOutlinedButtonStyle(),
                         onPressed: () {
-                          Get.to(const MainScreen());
+                          Get.to(const MainScreen(selectedIndex: 0,));
                         },
                         child: Text(
                           AppStrings.loginAsAGuestButton,

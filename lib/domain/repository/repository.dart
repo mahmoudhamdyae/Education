@@ -22,6 +22,8 @@ abstract class Repository {
   Future<void> setFav(Course course);
   Future<List<Course>> getFav();
   Future<void> removeFav(int courseId);
+  bool isSubscribed();
+  void saveIsSubscribed(bool isSubscribed);
 
   // Notes Cart
   Future<void> addNoteToCart(String noteId);

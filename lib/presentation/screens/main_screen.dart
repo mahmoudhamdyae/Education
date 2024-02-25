@@ -12,7 +12,9 @@ import '../resources/constants_manager.dart';
 import 'home/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+
+  final int selectedIndex;
+  const MainScreen({super.key, required this.selectedIndex});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -20,18 +22,21 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
+  late PersistentTabController _controller;
+  late int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
+    _selectedIndex = widget.selectedIndex;
+    debugPrint('======================== selected $_selectedIndex');
+    _controller = PersistentTabController(initialIndex: _selectedIndex);
     try {
       versionCheck(context);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
-
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
-  int _selectedIndex = 0;
 
   List<Widget> _buildScreens() {
     return [

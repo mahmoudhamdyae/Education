@@ -13,6 +13,7 @@ import '../../../../widgets/coding_site_widget.dart';
 import '../../../../widgets/dialogs/error_dialog.dart';
 import '../../../../widgets/dialogs/loading_dialog.dart';
 import '../../../main_screen.dart';
+import '../../../subscription/controller/subscription_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -47,7 +48,10 @@ class _RegisterViewState extends State<RegisterScreen> {
           Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
         } else {
-          Get.offAll(() => const MainScreen());
+          SubscriptionController controller = Get.find<SubscriptionController>();
+          controller.isSubscribedAtOneSubjectAtLeast().then((value) =>
+              Get.offAll(() => MainScreen(selectedIndex: value ? 1 : 0,))
+          );
         }
       });
     }
@@ -324,7 +328,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                         child: ElevatedButton(
                           style: getOutlinedButtonStyle(),
                           onPressed: () {
-                            Get.to(const MainScreen());
+                            Get.to(const MainScreen(selectedIndex: 0,));
                           },
                           child: Text(
                             AppStrings.loginAsAGuestButton,

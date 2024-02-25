@@ -21,7 +21,8 @@ import '../../domain/models/teacher.dart';
 import '../network_info.dart';
 
 abstract class RemoteDataSource {
-  Future register(String userName, String phone, String password, String grade, String group);
+  Future register(String userName, String phone, String password, String grade,
+      String group);
   Future<dynamic> logIn(String phone, String password);
   Future<String> getFcmToken();
   void sendTokenAndUserId(int userId);
@@ -30,24 +31,34 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<String> askQuestion(String question);
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala);
-  Future<Pair<List<Note>, List<Package>>> getAllCart(List<String> notesId, List<String> packagesId);
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage);
+  Future<Pair<List<Note>, List<Package>>> getAllCart(
+      List<String> notesId, List<String> packagesId);
+  Future<void> order(
+      String userName,
+      String phone,
+      int cityId,
+      String address,
+      List<Note> notes,
+      List<int> count,
+      List<Package> packages,
+      List<int> countPackage);
   Future<List<Teacher>> getTeachers();
   Future<List<City>> getCities();
   Future<List<UserCourses>> getSubscriptions(int userId);
-  Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName);
+  Future<void> addComment(
+      String comment, int userId, Lesson video, int teacherId, String userName);
   Future<List<Course>> getExamCourses(String marhala, int term);
   Future<Exam> getExamsAndCourses(int courseId, int term);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
-
   final NetworkInfo _networkInfo;
   final Dio _dio;
   RemoteDataSourceImpl(this._networkInfo, this._dio);
 
   @override
-  Future register(String userName, String phone, String password, String grade, String group) async {
+  Future register(String userName, String phone, String password, String grade,
+      String group) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}auth/register";
     Response response = await _dio.post(url, data: {
@@ -66,7 +77,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<dynamic> logIn(String phone, String password) async {
     await _checkNetwork();
-    String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
+    String url =
+        "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await _dio.post(url, data: {
       'password': password,
       'phone': phone,
@@ -85,7 +97,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<String> getFcmToken() async {
     String? token;
-    await FirebaseMessaging.instance.deleteToken().then((value) async => token = await FirebaseMessaging.instance.getToken());
+    await FirebaseMessaging.instance.deleteToken().then(
+        (value) async => token = await FirebaseMessaging.instance.getToken());
     return token ?? '';
   }
 
@@ -93,7 +106,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   void sendTokenAndUserId(int userId) async {
     getFcmToken().then((token) async {
       await _checkNetwork();
-      String url = "${Constants.baseUrl}mandub/fcm-token?user_id=$userId&token=$token";
+      String url =
+          "${Constants.baseUrl}mandub/fcm-token?user_id=$userId&token=$token";
       await _dio.patch(url);
     });
   }
@@ -112,10 +126,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       courses.add(course);
     }
 
-    return ClassModel(
-        courses,
-        []
-    );
+    return ClassModel(courses, []);
   }
 
   @override
@@ -149,11 +160,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Pair<List<Note>, List<Package>>> getNotes(String marhala) async {
-    if (
-      marhala == AppStrings.saff1 ||
-      marhala == AppStrings.saff2 ||
-      marhala == AppStrings.saff3
-    ) {
+    if (marhala == AppStrings.saff1 ||
+        marhala == AppStrings.saff2 ||
+        marhala == AppStrings.saff3) {
       return const Pair([], []);
     }
     await _checkNetwork();
@@ -179,13 +188,14 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<Pair<List<Note>, List<Package>>> getAllCart(List<String> notesId, List<String> packagesId) async {
+  Future<Pair<List<Note>, List<Package>>> getAllCart(
+      List<String> notesId, List<String> packagesId) async {
     if (notesId.isEmpty && packagesId.isEmpty) return const Pair([], []);
 
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}getBooksAndPackage";
-    var body =  {
+    var body = {
       'book_ids': notesId,
       'package_ids': packagesId,
     };
@@ -205,7 +215,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> order(String userName, String phone, int cityId, String address, List<Note> notes, List<int> count, List<Package> packages, List<int> countPackage) async {
+  Future<void> order(
+      String userName,
+      String phone,
+      int cityId,
+      String address,
+      List<Note> notes,
+      List<int> count,
+      List<Package> packages,
+      List<int> countPackage) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}make/order/from/app";
@@ -232,7 +250,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       count1++;
     }
 
-    var body =  {
+    var body = {
       'buyer': userName,
       'phone': phone,
       'address': address,
@@ -249,7 +267,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     String url = "${Constants.baseUrl}teacher/index";
     var response = await _dio.get(url);
-    List<Teacher> teachers = TeacherResponse.fromJson(response.data).teacher ?? [];
+    List<Teacher> teachers =
+        TeacherResponse.fromJson(response.data).teacher ?? [];
     return teachers;
   }
 
@@ -269,12 +288,14 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     String url = "${Constants.baseUrl}auth/subscription/$userId";
     var response = await _dio.get(url);
-    List<UserCourses> userCourses = SubscriptionResponse.fromJson(response.data).courses ?? [];
+    List<UserCourses> userCourses =
+        SubscriptionResponse.fromJson(response.data).courses ?? [];
     return userCourses;
   }
 
   @override
-  Future<void> addComment(String comment, int userId, Lesson video, int teacherId, String userName) async {
+  Future<void> addComment(String comment, int userId, Lesson video,
+      int teacherId, String userName) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}video/addComment";
 
@@ -287,15 +308,16 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       }),
     );
 
-    _sendNotification(
-        teacherId,
-        'قام $userName بإضافة تعليق على درس ${video.name}',
-        'قام $userName بإضافة تعليق على درس ${video.name}',
-        'comment'
-    );
+    // _sendNotification(
+    //     teacherId,
+    //     'قام $userName بإضافة تعليق على درس ${video.name}',
+    //     'قام $userName بإضافة تعليق على درس ${video.name}',
+    //     'comment'
+    // );
   }
 
-  _sendNotification(int teacherId, String title, String body, String route) async {
+  _sendNotification(
+      int teacherId, String title, String body, String route) async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}teacher/notification";
 
@@ -313,13 +335,11 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<List<Course>> getExamCourses(String marhala, int term) async {
-    if (
-    marhala == AppStrings.saff1 ||
+    if (marhala == AppStrings.saff1 ||
         marhala == AppStrings.saff2 ||
         marhala == AppStrings.saff3 ||
         marhala == AppStrings.saff4 ||
-        marhala == AppStrings.saff5
-    ) {
+        marhala == AppStrings.saff5) {
       return [];
     }
     await _checkNetwork();

@@ -20,7 +20,7 @@ class SubscriptionController extends GetxController {
     _getSubscription();
   }
 
-  _getSubscription() async {
+  Future<void> _getSubscription() async {
     _status.value = RxStatus.loading();
     try {
       await _repository.getSubscriptions().then((remoteCourses) {
@@ -40,5 +40,11 @@ class SubscriptionController extends GetxController {
       }
     }
     return false;
+  }
+
+  Future<bool> isSubscribedAtOneSubjectAtLeast() async {
+    await _getSubscription();
+    _repository.saveIsSubscribed(courses.isNotEmpty);
+    return courses.isNotEmpty;
   }
 }

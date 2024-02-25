@@ -63,6 +63,16 @@ class RepositoryImpl extends Repository {
     return _localDataSource.removeFav(courseId);
   }
 
+  @override
+  bool isSubscribed() {
+    return _localDataSource.isSubscribed();
+  }
+
+  @override
+  void saveIsSubscribed(bool isSubscribed) {
+    _localDataSource.saveIsSubscribed(isSubscribed);
+  }
+
   // Notes Cart
 
   @override

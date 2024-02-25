@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../widgets/dialogs/soon_dialog.dart';
+import '../main_screen.dart';
 import 'me_item.dart';
 
 class MeScreen extends StatelessWidget {
@@ -25,7 +26,9 @@ class MeScreen extends StatelessWidget {
         MeItem(
           icon: ImageAssets.baqat,
           title: AppStrings.baqat,
-          action: () => showSoonDialog(context),
+          action: () {
+            Get.offAll(() => const MainScreen(selectedIndex: 1,));
+          },
         ),
         MeItem(
           icon: ImageAssets.helpCenter,

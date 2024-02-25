@@ -31,6 +31,9 @@ abstract class LocalDataSource {
   bool isPackageInCart(String packageId);
 
   Future<void> removeAllFromCart();
+
+  bool isSubscribed();
+  void saveIsSubscribed(bool isSubscribed);
 }
 
 const String keyIsFirstTime = "KEY_IS_FIRST_TIME";
@@ -41,6 +44,7 @@ const String keyGrade = "KEY_GRADE";
 const String keyPhoneNumber = "KEY_PHONE_NUMBER";
 const String keyNotesCart = "KEY_NOTES_CART";
 const String keyPackagesCart = "KEY_PACKAGES_CART";
+const String keyIsSubscribed = "KEY_IS_SUBSCRIBED";
 
 class LocalDataSourceImpl extends LocalDataSource {
 
@@ -226,5 +230,15 @@ class LocalDataSourceImpl extends LocalDataSource {
   Future<void> removeAllFromCart() async {
     await _sharedPreferences.setStringList(keyNotesCart, []);
     await _sharedPreferences.setStringList(keyPackagesCart, []);
+  }
+
+  @override
+  void saveIsSubscribed(bool isSubscribed) {
+    _sharedPreferences.setBool(keyIsSubscribed, isSubscribed);
+  }
+
+  @override
+  bool isSubscribed() {
+    return _sharedPreferences.getBool(keyIsSubscribed) ?? false;
   }
 }
