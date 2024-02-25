@@ -2,6 +2,7 @@ import 'package:education/core/utils/insets.dart';
 import 'package:education/presentation/resources/font_manager.dart';
 import 'package:education/presentation/screens/auth/register/controller/register_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../resources/assets_manager.dart';
@@ -26,10 +27,11 @@ class _RegisterViewState extends State<RegisterScreen> {
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-  signUp() async {
+  _signUp() async {
     var formData = formState.currentState;
     if (formData!.validate()) {
       formData.save();
+      TextInput.finishAutofillContext();
       final RegisterController controller = Get.find<RegisterController>();
 
       if (controller.selectedMarhala.value == AppStrings.marhalaHint) {
@@ -144,6 +146,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                       ),
                       // Phone Number Edit Text
                       TextFormField(
+                        autofillHints: const [AutofillHints.email],
                         controller: controller.phone,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.phone,
@@ -223,6 +226,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                       ),
                       // Password Edit Text
                       TextFormField(
+                        autofillHints: const [AutofillHints.password],
                         controller: controller.password,
                         textInputAction: TextInputAction.next,
                         validator: (val) {
@@ -286,7 +290,7 @@ class _RegisterViewState extends State<RegisterScreen> {
                         child: FilledButton(
                           style: getFilledButtonStyle(),
                           onPressed: () async {
-                            await signUp();
+                            await _signUp();
                           },
                           child: const Text(
                             AppStrings.registerTextButton,

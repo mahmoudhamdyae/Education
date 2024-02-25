@@ -7,6 +7,7 @@ import 'package:education/presentation/screens/main_screen.dart';
 import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:education/presentation/widgets/coding_site_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/check_version.dart';
@@ -38,10 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  logIn() async {
+  _logIn() async {
     var formData = formState.currentState;
     if (formData!.validate()) {
       formData.save();
+      TextInput.finishAutofillContext();
       showLoading(context);
       final LoginController controller = Get.find<LoginController>();
       controller.login().then((value) {
@@ -108,129 +110,134 @@ class _LoginScreenState extends State<LoginScreen> {
               key: formState,
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.p20),
-                child: Column(
-                  children: [
-                    // Phone Number Edit Text
-                    TextFormField(
-                      controller: controller.phone,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.phone,
-                      validator: (val) {
-                        if (val.toString().isNotEmpty) {
-                          return null;
-                        }
-                        return AppStrings.mobileNumberInvalid;
-                      },
+                child: AutofillGroup(
+                  child: Column(
+                    children: [
+                      // Phone Number Edit Text
+                      TextFormField(
+                        autofillHints: const [AutofillHints.email],
+                        controller: controller.phone,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.phone,
+                        validator: (val) {
+                          if (val.toString().isNotEmpty) {
+                            return null;
+                          }
+                          return AppStrings.mobileNumberInvalid;
+                        },
 
-                      style: getLargeStyle(
-                        fontSize: FontSize.s14,
-                        color: ColorManager.grey,
+                        style: getLargeStyle(
+                          fontSize: FontSize.s14,
+                          color: ColorManager.grey,
+                        ),
+                        decoration: getTextFieldDecoration(
+                            hint: AppStrings.phoneHint,
+                            onPressed: () { },
+                            prefixIcon: Icons.phone_android,
+                        ),
                       ),
-                      decoration: getTextFieldDecoration(
-                          hint: AppStrings.phoneHint,
-                          onPressed: () { },
-                          prefixIcon: Icons.phone_android,
+                      const SizedBox(
+                        height: AppSize.s28,
                       ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s28,
-                    ),
-                    // Password Edit Text
-                    TextFormField(
-                      controller: controller.password,
-                      textInputAction: TextInputAction.done,
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return AppStrings.passwordInvalid;
-                        }
-                        return null;
-                      },
-                      obscureText: controller.obscureText.value,
-                      style: getLargeStyle(
-                        fontSize: FontSize.s14,
-                        color: ColorManager.grey,
+                      // Password Edit Text
+                      TextFormField(
+                        autofillHints: const [AutofillHints.password],
+                        onEditingComplete: () => TextInput.finishAutofillContext(),
+                        controller: controller.password,
+                        textInputAction: TextInputAction.done,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return AppStrings.passwordInvalid;
+                          }
+                          return null;
+                        },
+                        obscureText: controller.obscureText.value,
+                        style: getLargeStyle(
+                          fontSize: FontSize.s14,
+                          color: ColorManager.grey,
+                        ),
+                        decoration: getTextFieldDecoration(
+                            hint: AppStrings.passwordHint,
+                            onPressed: () {
+                              controller.toggleSecurePassword();
+                            },
+                            prefixIcon: Icons.lock_outline,
+                            suffixIcon: controller.obscureText.value
+                                ? Icons.visibility
+                                : Icons.visibility_off
+                        ),
                       ),
-                      decoration: getTextFieldDecoration(
-                          hint: AppStrings.passwordHint,
-                          onPressed: () {
-                            controller.toggleSecurePassword();
+                      const SizedBox(
+                        height: AppSize.s28,
+                      ),
+                      // Login Button
+                      SizedBox(
+                        width: double.infinity,
+                        height: AppSize.s40,
+                        child: FilledButton(
+                          style: getFilledButtonStyle(),
+                          onPressed: () async {
+                            await _logIn();
                           },
-                          prefixIcon: Icons.lock_outline,
-                          suffixIcon: controller.obscureText.value
-                              ? Icons.visibility
-                              : Icons.visibility_off
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s28,
-                    ),
-                    // Login Button
-                    SizedBox(
-                      width: double.infinity,
-                      height: AppSize.s40,
-                      child: FilledButton(
-                        style: getFilledButtonStyle(),
-                        onPressed: () async {
-                          await logIn();
-                        },
-                        child: Text(
-                          AppStrings.login,
-                          style: getSmallStyle(
-                            color: ColorManager.white
+                          child: Text(
+                            AppStrings.login,
+                            style: getSmallStyle(
+                              color: ColorManager.white
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s16,
-                    ),
-                    // Navigate to Register Screen
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () => Get.to(const RegisterScreen()),
-                          child: Row(
-                            children: [
-                              Text(
-                                  AppStrings.registerText1,
-                                  style: getLargeStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorManager.black,
-                                  )
-                              ),
-                              Text(
-                                  AppStrings.registerText2,
-                                  style: getLargeStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorManager.secondary,
-                                      decoration: TextDecoration.underline
-                                  )
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    // Login as a guest Button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: getOutlinedButtonStyle(),
-                        onPressed: () {
-                          Get.to(const MainScreen(selectedIndex: 0,));
-                        },
-                        child: Text(
-                          AppStrings.loginAsAGuestButton,
-                          style: getSmallStyle(
-                            color: ColorManager.primary
+                      const SizedBox(
+                        height: AppSize.s16,
+                      ),
+                      // Navigate to Register Screen
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () => Get.to(const RegisterScreen()),
+                            child: Row(
+                              children: [
+                                Text(
+                                    AppStrings.registerText1,
+                                    style: getLargeStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: ColorManager.black,
+                                    )
+                                ),
+                                Text(
+                                    AppStrings.registerText2,
+                                    style: getLargeStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: ColorManager.secondary,
+                                        decoration: TextDecoration.underline
+                                    )
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      // Login as a guest Button
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: getOutlinedButtonStyle(),
+                          onPressed: () {
+                            Get.to(const MainScreen(selectedIndex: 0,));
+                          },
+                          child: Text(
+                            AppStrings.loginAsAGuestButton,
+                            style: getSmallStyle(
+                              color: ColorManager.primary
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8.0,),
-                    const CodingSiteWidget(),
-                  ],
+                      const SizedBox(height: 8.0,),
+                      const CodingSiteWidget(),
+                    ],
+                  ),
                 ),
               ),
             );
