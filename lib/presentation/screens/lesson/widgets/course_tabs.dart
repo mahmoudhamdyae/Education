@@ -125,7 +125,6 @@ class _CourseTabsState extends State<CourseTabs> {
             ),
           ],
         ),
-        // const SizedBox(height: 16,),
         selectedTab == 0 ? TabCourseLessons() : selectedTab == 1 ?
         TabMorfaqat(link: widget.link,):
         TabComments(courseId: widget.courseId,),
