@@ -227,7 +227,6 @@ class _RegisterViewState extends State<RegisterScreen> {
                       // Password Edit Text
                       TextFormField(
                         autofillHints: const [AutofillHints.password],
-                        onEditingComplete: () => TextInput.finishAutofillContext(),
                         controller: controller.password,
                         textInputAction: TextInputAction.next,
                         validator: (val) {

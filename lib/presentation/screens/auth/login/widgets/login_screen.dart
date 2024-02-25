@@ -142,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Password Edit Text
                       TextFormField(
                         autofillHints: const [AutofillHints.password],
-                        onEditingComplete: () => TextInput.finishAutofillContext(),
                         controller: controller.password,
                         textInputAction: TextInputAction.done,
                         validator: (val) {
