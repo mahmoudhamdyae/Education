@@ -1,7 +1,7 @@
 class AppStrings {
   static const noRouteFound = 'noRouteFound';
   static const appName = 'Smart Student';
-  static const madeBy = 'made by ♥ coding-site.com';
+  static const madeBy = 'made by \u00a9 coding-site.com';
 
   // Authentication
   static const notStudent = "هذا الحساب غير مصرح له الدخول من هذا التطبيق";
@@ -15,6 +15,8 @@ class AppStrings {
   static const registerTextButton = 'إنشاء الحساب';
   static const String userNameInvalid = 'اسم المستخدم لا يمكن أن يكون فارغا';
   static const String mobileNumberInvalid = 'رقم الهاتف غير صالح';
+  static const String emailInvalid = 'الايميل لا يمكن أن يكون فارغا';
+  static const String emailHint = 'الايميل';
   static const passwordInvalid = 'كلمة المرور لا يمكن أن تكون فارغة';
   static const String passwordConfirmInvalid = 'كلمة المرور غير متطابقة';
   static const String alreadyHaveAccount1 = 'لديك حساب بالفعل؟ ';
@@ -226,4 +228,9 @@ class AppStrings {
   static const unsolvedBank = 'بنك غير محلول';
   static const solvedBank = 'بنك محلول';
   static const bookTest = 'حل أسئلة الكتاب';
+
+  // Update Profile Data
+  static const updatedSuccessfully = 'تم تعديل البيانات';
+  static const updateTopBar = 'تعديل البيانات الشخصية';
+  static const updateProfileButton = 'تعديل البيانات الشخصية';
 }
