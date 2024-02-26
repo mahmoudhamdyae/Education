@@ -58,7 +58,14 @@ class LessonController extends GetxController {
       await _repository.getTutorials(courseId).then((tutorials) {
         _status.value = RxStatus.success();
         wehdat.value = tutorials;
-        _selectedLesson.value =tutorials[0].lessons[0];
+        for (var singleTutorial in tutorials) {
+          for (var singleLesson in singleTutorial.lessons) {
+            if (singleLesson.type == 'free') {
+              _selectedLesson.value = singleLesson;
+              break;
+            }
+          }
+        }
         comments.value = _selectedLesson.value.comments ?? [];
       });
     } on Exception catch (e) {

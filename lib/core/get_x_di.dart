@@ -19,7 +19,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/network_info.dart';
 import '../presentation/screens/auth/auth_controller.dart';
 import '../presentation/screens/home/recorded_courses/controller/recorded_courses_controller.dart';
-import '../presentation/screens/home/subject/controller/subject_controller.dart';
 import '../presentation/screens/lesson/controller/lesson_controller.dart';
 import '../presentation/screens/subscription/controller/subscription_controller.dart';
 
@@ -59,7 +58,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<RegisterController>(() => RegisterController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<AuthController>(() => AuthController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<LessonController>(() => LessonController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut<SubjectController>(() => SubjectController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<RecordedCoursesController>(() => RecordedCoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<SubscriptionController>(() => SubscriptionController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<FavController>(() => FavController(Get.find<Repository>()), fenix: true);
