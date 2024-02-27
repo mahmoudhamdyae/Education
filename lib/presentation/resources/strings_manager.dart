@@ -228,6 +228,7 @@ class AppStrings {
   static const unsolvedBank = 'بنك غير محلول';
   static const solvedBank = 'بنك محلول';
   static const bookTest = 'حل أسئلة الكتاب';
+  static const download = 'تحميل';
 
   // Update Profile Data
   static const updatedSuccessfully = 'تم تعديل البيانات';
