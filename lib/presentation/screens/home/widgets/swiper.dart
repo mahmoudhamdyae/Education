@@ -1,3 +1,4 @@
+import 'package:education/core/launch_site.dart';
 import 'package:education/domain/models/slider.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../core/constants.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 
@@ -47,7 +49,7 @@ class SwiperWidget extends StatelessWidget {
                         color: ColorManager.secondary
                       ),
                       onPressed: () {
-                        //
+                        launchSite(Constants.siteUrl);
                       },
                       child: Text(
                         AppStrings.buyBaqa,

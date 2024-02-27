@@ -307,30 +307,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         'comment': comment,
       }),
     );
-
-    // _sendNotification(
-    //     teacherId,
-    //     'قام $userName بإضافة تعليق على درس ${video.name}',
-    //     'قام $userName بإضافة تعليق على درس ${video.name}',
-    //     'comment'
-    // );
-  }
-
-  _sendNotification(
-      int teacherId, String title, String body, String route) async {
-    await _checkNetwork();
-    String url = "${Constants.baseUrl}teacher/notification";
-
-    await _dio.post(
-      url,
-      data: jsonEncode({
-        'techer_id': teacherId,
-        'title': title,
-        'body': body,
-        'route': route,
-        'from': 'NA',
-      }),
-    );
   }
 
   @override
