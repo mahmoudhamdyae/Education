@@ -1,6 +1,7 @@
 import 'package:education/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../core/utils/insets.dart';
 import '../../domain/models/home_ui.dart';
 import 'grid_view_item.dart';
 
@@ -15,9 +16,10 @@ class CustomGridView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12, vertical: AppPadding.p28),
-      crossAxisCount:2,//(MediaQuery.of(context).size.width ~/ 160).toInt(),
+      crossAxisCount: isWide(context) ? 3 : 2,//(MediaQuery.of(context).size.width ~/ 160).toInt(),
       crossAxisSpacing: 15,
       mainAxisSpacing: 30,
+      childAspectRatio: 1.1,
       children: List.generate(_items.length, (index) {
         return GridViewItem(item: _items[index],);
       }),

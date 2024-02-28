@@ -18,8 +18,8 @@ class ExamList extends StatelessWidget {
     return GetX<ExamsController>(
       init: Get.find<ExamsController>(),
       builder: (ExamsController controller) {
-        Exams? exam = controller.exam.value.exams?.first;
-        Bank? bank = controller.exam.value.bank?.first;
+        Exams? exam = controller.exam.value.exams?.firstOrNull;
+        Bank? bank = controller.exam.value.bank?.firstOrNull;
         return ListView(
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
@@ -66,6 +66,25 @@ class ExamList extends StatelessWidget {
   }
 
   Widget _buildExamsGrid(BuildContext context, Exams? exam) {
+    List<String?> texts = [
+      exam?.unsolvedTest,
+      exam?.shortOne,
+      exam?.shortTwo,
+      exam?.finalReview,
+    ];
+    List<Widget> widgets = [
+      exam?.unsolvedTest == null ? Container() : ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
+      exam?.shortOne == null ? Container() : ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
+      exam?.shortTwo == null ? Container() : ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
+      exam?.finalReview == null ? Container() : ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
+    ];
+    List<Widget> appliedWidgets = [];
+    int index = 0;
+    for (var element in widgets) {
+      if (texts[index++] != null) {
+        appliedWidgets.add(element);
+      }
+    }
     return GridView.count(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -73,12 +92,9 @@ class ExamList extends StatelessWidget {
       childAspectRatio: 5.0,
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
-      children: [
-        exam?.unsolvedTest == null ? Container() : ExamItem(text: AppStrings.unsolvedTest, link: exam?.unsolvedTest ?? ''),
-        exam?.shortOne == null ? Container() : ExamItem(text: AppStrings.shortOne, link: exam?.shortOne ?? ''),
-        exam?.shortTwo == null ? Container() : ExamItem(text: AppStrings.shortTwo, link: exam?.shortTwo ?? ''),
-        exam?.finalReview == null ? Container() : ExamItem(text: AppStrings.finalReview, link: exam?.finalReview ?? ''),
-      ],
+      children: List.generate(appliedWidgets.length, (index) {
+        return appliedWidgets[index];
+      }),
     );
   }
 
@@ -95,6 +111,23 @@ class ExamList extends StatelessWidget {
   }
 
   Widget _buildBanksGrid(BuildContext context, Bank? bank) {
+    List<String?> texts = [
+      bank?.unsolvedBank,
+      bank?.solvedBank,
+      bank?.bookTest,
+    ];
+    List<Widget> widgets = [
+      bank?.unsolvedBank == null ? Container() : ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
+      bank?.solvedBank == null ? Container() : ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
+      bank?.bookTest == null ? Container() : ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
+    ];
+    List<Widget> appliedWidgets = [];
+    int index = 0;
+    for (var element in widgets) {
+      if (texts[index++] != null) {
+        appliedWidgets.add(element);
+      }
+    }
     return GridView.count(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -102,11 +135,9 @@ class ExamList extends StatelessWidget {
       childAspectRatio: 5.0,
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
-      children: [
-        bank?.unsolvedBank == null ? Container() : ExamItem(text: AppStrings.unsolvedBank, link: bank?.unsolvedBank ?? ''),
-        bank?.solvedBank == null ? Container() : ExamItem(text: AppStrings.solvedBank, link: bank?.solvedBank ?? ''),
-        bank?.bookTest == null ? Container() : ExamItem(text: AppStrings.bookTest, link: bank?.bookTest ?? ''),
-      ],
+      children: List.generate(appliedWidgets.length, (index) {
+        return appliedWidgets[index];
+      }),
     );
   }
 }

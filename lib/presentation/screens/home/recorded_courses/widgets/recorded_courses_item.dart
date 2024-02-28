@@ -102,7 +102,7 @@ class RecordedCoursesItem extends StatelessWidget {
                           )
                       ),
                       const SizedBox(width: 8.0,),
-                      BuyWidget(course: course, width: 80,),
+                      BuyWidget(course: course, width: 120,),
                     ],
                   ),
                 ),

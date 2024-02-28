@@ -1,6 +1,5 @@
 import 'package:education/core/utils/insets.dart';
 import 'package:education/presentation/screens/home/recorded_courses/widgets/recorded_courses_item.dart';
-import 'package:education/presentation/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/models/courses/course.dart';
@@ -30,7 +29,7 @@ class RecordedCoursesList extends StatelessWidget {
     return GridView.count(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
-      crossAxisCount: (MediaQuery.of(context).size.width ~/ 300).toInt(),
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 380).toInt(),
       childAspectRatio: 1.8,
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,

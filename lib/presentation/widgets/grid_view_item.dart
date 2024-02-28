@@ -47,18 +47,15 @@ class GridViewItem extends StatelessWidget {
               ),
               child: Image.asset(
                 _item.icon,
-                height: 120,
+                // height: 120,
                 fit: BoxFit.fill,
               ),
             ),
-            // const SizedBox(height: AppSize.s16,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                _item.name,
-                textAlign: TextAlign.center,
-                style: getLargeStyle(color: ColorManager.white),
-              ),
+            const SizedBox(height: AppSize.s8,),
+            Text(
+              _item.name,
+              textAlign: TextAlign.center,
+              style: getLargeStyle(color: ColorManager.white),
             ),
           ],
         ),

@@ -23,8 +23,8 @@ class HomeScreen extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           children: [
             HomeAppBar(),
-            isWide(context) ? _buildTwoColumn(context)
-                :
+            // isWide(context) ? _buildTwoColumn(context)
+            //     :
             _buildOneColumn(context),
           ],
         )

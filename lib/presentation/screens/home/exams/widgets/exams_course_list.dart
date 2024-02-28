@@ -29,8 +29,8 @@ class ExamsCourseList extends StatelessWidget {
     return GridView.count(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
-      crossAxisCount: (MediaQuery.of(context).size.width ~/ 300).toInt(),
-      childAspectRatio: 1.8,
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 350).toInt(),
+      childAspectRatio: 3.8,
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
       children: List.generate(subjects.length, (index) {

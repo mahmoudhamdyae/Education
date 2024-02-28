@@ -109,6 +109,7 @@ class AppStrings {
   static const String noCourses = 'لا يوجد كورسات مسجلة حاليا فى هذه المرحلة';
   static const String noExamCourses = 'لا يوجد كورسات حاليا فى هذه المرحلة بها امتحانات و بنوك';
   static const String noNotes = 'لا يوجد مذكرات متاحة حاليا لهذا الصف';
+  static const String noNotifications = 'لا يوجد إشعارات';
   static const String emptyTutorials = 'لا يوجد وحدات';
   static const String commentAdded = 'تم إضافة التعليق';
   static const String noteDownloaded = 'تم تحميل المذكرة';
