@@ -9,6 +9,7 @@ import 'package:education/presentation/screens/fav/controller/fav_controller.dar
 import 'package:education/presentation/screens/home/controller/home_controller.dart';
 import 'package:education/presentation/screens/home/exams/controller/exams_controller.dart';
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
+import 'package:education/presentation/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:education/presentation/screens/update_profile/controller/update_profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -54,6 +55,7 @@ class GetXDi implements Bindings {
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>(), Get.find<LocalDataSource>()), fenix: true);
 
     // Controllers
+    Get.lazyPut<OnboardingController>(() => OnboardingController(), fenix: true);
     Get.lazyPut<LoginController>(() => LoginController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<RegisterController>(() => RegisterController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<AuthController>(() => AuthController(Get.find<Repository>()), fenix: true);

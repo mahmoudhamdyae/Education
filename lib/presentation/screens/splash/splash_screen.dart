@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../resources/color_manager.dart';
 import '../auth/auth_controller.dart';
 import '../main_screen.dart';
-import '../onboarding/onboarding_screen.dart';
+import '../onboarding/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
