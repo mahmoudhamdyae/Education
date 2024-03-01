@@ -25,7 +25,8 @@ class LessonScreen extends StatefulWidget {
     if (match != null && match.groupCount >= 1) {
       return match.group(1)!;
     } else {
-      throw Exception('Video ID not found in URL');
+      // throw Exception('Video ID not found in URL');
+      return '';
     }
   }
 
@@ -53,12 +54,10 @@ class _LessonScreenState extends State<LessonScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Vimeo Video
-                  controller.selectedLesson.value.link == '' ? const SizedBox(height: 60.0,) : SizedBox(
+                  controller.selectedLesson.value.link == '' || controller.selectedLesson.value.link == null ? const SizedBox(height: 60.0,) : SizedBox(
                     width: double.infinity,
                     height: 200,
-                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(
-                        controller.selectedLesson.value.link == '' ?
-                        controller.wehdat[0].lessons[0].link ?? '' : controller.selectedLesson.value.link ?? '')
+                    child: PlayVideoFromVimeo(vimeoVideoUrl: widget.extractVideoId(controller.selectedLesson.value.link ?? '')
                     ),
                   ),
                   Padding(
@@ -103,7 +102,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                   ),
                   Expanded(
-                    child: CourseTabs(link: controller.wehdat[0].lessons[0].pdf ?? '', courseId: (Get.arguments['course'] as Course).id),
+                    child: CourseTabs(link: controller.selectedLesson.value.pdf ?? '', courseId: (Get.arguments['course'] as Course).id),
                   ),
                 ],
               );

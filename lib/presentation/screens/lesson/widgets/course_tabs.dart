@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class CourseTabs extends StatefulWidget {
 
-  final String link;
+  final String? link;
   final int courseId;
   const CourseTabs({super.key, required this.link, required this.courseId});
 

@@ -10,7 +10,7 @@ import '../../../../core/download_note.dart';
 
 class TabMorfaqat extends StatefulWidget {
 
-  final String link;
+  final String? link;
   const TabMorfaqat({super.key, required this.link});
 
   @override
@@ -29,16 +29,16 @@ class _TabMorfaqatState extends State<TabMorfaqat> {
             Text(
               AppStrings.notesTab,
               style: getSmallStyle(
-                color: widget.link == '' ? ColorManager.grey : ColorManager.black,
+                color: widget.link == '' || widget.link == null ? ColorManager.grey : ColorManager.black,
               ),
             ),
             IconButton(
               onPressed: () {
-                downloadNote(context, widget.link, false);
+                downloadNote(context, widget.link ?? '', false);
               },
               icon: SvgPicture.asset(
                 ImageAssets.download,
-                color: widget.link == '' ? ColorManager.grey : ColorManager.black,
+                color: widget.link == '' || widget.link == null ? ColorManager.grey : ColorManager.black,
               ),
             )
           ]
