@@ -106,16 +106,17 @@ class Bank {
   String? createdAt;
   String? updatedAt;
 
-  Bank(
-      {this.id,
-        this.teacherId,
-        this.courseId,
-        this.solvedBank,
-        this.unsolvedBank,
-        this.bookTest,
-        this.termType,
-        this.createdAt,
-        this.updatedAt});
+  Bank({
+    this.id,
+    this.teacherId,
+    this.courseId,
+    this.solvedBank,
+    this.unsolvedBank,
+    this.bookTest,
+    this.termType,
+    this.createdAt,
+    this.updatedAt
+  });
 
   Bank.fromJson(Map<String, dynamic> json) {
     id = json['id'];
