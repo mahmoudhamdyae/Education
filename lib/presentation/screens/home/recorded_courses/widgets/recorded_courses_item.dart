@@ -89,7 +89,7 @@ class RecordedCoursesItem extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       OutlinedButton(
                           style: getOutlinedButtonStyle(),
@@ -101,8 +101,8 @@ class RecordedCoursesItem extends StatelessWidget {
                             style: getSmallStyle(),
                           )
                       ),
-                      const SizedBox(width: 8.0,),
-                      BuyWidget(course: course, width: 120,),
+                      GetPlatform.isAndroid ? const SizedBox(width: 8.0,) : Container(),
+                      GetPlatform.isAndroid ? BuyWidget(course: course, width: 120,) : Container(),
                     ],
                   ),
                 ),
