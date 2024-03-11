@@ -2,7 +2,6 @@ import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/controller/lesson_controller.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
-import 'package:education/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +9,7 @@ import '../../domain/models/lesson/wehda.dart';
 import '../resources/color_manager.dart';
 import '../resources/styles_manager.dart';
 import '../resources/values_manager.dart';
+import 'dialogs/require_auth_dialog.dart';
 
 class LessonsWidget extends StatefulWidget {
   final List<Wehda> wehdat;
@@ -91,13 +91,13 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
                 child: InkWell(
                   onTap: () {
+                    Course course = Get.arguments['course'];
                     if (wehda.lessons[lessonIndex].type == 'free' || Get.find<LessonController>().isSubscribed()) {
-                      Course course = Get.arguments['course'];
                       Get.find<LessonController>().selectedLesson = wehda.lessons[lessonIndex].obs;
                       Get.back();
                       Get.to(const LessonScreen(), arguments: { 'course': course });
                     } else {
-                      showRequireAuthDialog(context);
+                      showRequireAuthDialog(context, course);
                     }
                   },
                   child: Row(

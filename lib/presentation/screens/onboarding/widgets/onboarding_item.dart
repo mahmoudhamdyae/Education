@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../resources/color_manager.dart';
 import '../controller/onboarding_controller.dart';
 import '../controller/onboarding_model.dart';
 

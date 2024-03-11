@@ -9,7 +9,7 @@ import '../presentation/resources/strings_manager.dart';
 
 Future<void> launchSite(String url) async {
   GetPlatform.isAndroid ? runOnAndroid(url) :
-  runOnIos();
+  runOnAndroid(url);
 }
 
 Future<void> runOnAndroid(String url) async  {

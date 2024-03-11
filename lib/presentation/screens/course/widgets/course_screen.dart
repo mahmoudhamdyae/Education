@@ -1,3 +1,4 @@
+import 'package:education/core/purchases.dart';
 import 'package:education/core/utils/insets.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/assets_manager.dart';
@@ -5,10 +6,13 @@ import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
+import 'package:education/presentation/screens/subscription/controller/subscription_controller.dart';
 import 'package:education/presentation/widgets/bookmark_course.dart';
+import 'package:education/presentation/widgets/buyed_button.dart';
 import 'package:education/presentation/widgets/price_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../../core/constants.dart';
 import '../../../../core/launch_site.dart';
@@ -69,20 +73,42 @@ class CourseScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // شراء الكورس
+                  // شراء الكورس monthly
+                  Get.find<SubscriptionController>().isSubscribed(subject.id) ?
+                  Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      child: BuyedButton(course: subject)
+                  )
+                      :
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    child: ElevatedButton(
+                    child:
+                    ElevatedButton(
                         style: getFilledButtonStyle(),
-                        onPressed: () {
-                          launchSite(Constants.siteUrl);
+                        onPressed: () async {
+                          purchase(context, subject, true);
                         },
                         child: Text(
-                          AppStrings.buyCourse,
-                          style: getSmallStyle(
-                            color: ColorManager.white,
-                          ),
+                            '${AppStrings.subscribeMonth} ${subject.month} ${AppStrings.dinar}',
+                          style: getSmallStyle(color: ColorManager.white,),
+                        )
+                    ),
+                  ),
+                  // شراء الكورس term
+                  Get.find<SubscriptionController>().isSubscribed(subject.id) ? Container() : Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 8.0),
+                    child:
+                    ElevatedButton(
+                        style: getFilledButtonStyle(),
+                        onPressed: () async {
+                          purchase(context, subject, false);
+                        },
+                        child: Text(
+                          '${AppStrings.subscribeTerm} ${subject.term} ${AppStrings.dinar}',
+                          style: getSmallStyle(color: ColorManager.white,),
                         )
                     ),
                   ),

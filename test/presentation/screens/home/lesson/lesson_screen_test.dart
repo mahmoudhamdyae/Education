@@ -1,4 +1,3 @@
-import 'package:education/domain/models/lesson/lesson.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 

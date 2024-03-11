@@ -1,4 +1,3 @@
-import 'package:education/core/utils/insets.dart';
 import 'package:education/domain/models/slider.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
@@ -7,6 +6,7 @@ import 'package:education/presentation/screens/home/widgets/home_app_bar/home_ap
 import 'package:education/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_utils/get_utils.dart';
 
 import '../../../domain/models/home_ui.dart';
 import '../../widgets/custom_grid_view.dart';
@@ -64,14 +64,17 @@ class HomeScreen extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       children: [
-        Padding(
+        GetPlatform.isAndroid ? Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
             AppStrings.baqat3,
             style: getLargeStyle(),
           ),
-        ),
-        SwiperWidget(sliders: SliderModel.getBaqat(), isTeacher: false,),
+        ) : Container(),
+        GetPlatform.isAndroid ?
+        SwiperWidget(sliders: SliderModel.getBaqat(), isTeacher: false,)
+        :
+        Container(),
         Padding(
           padding: const EdgeInsets.only(right: 16.0, top: 16.0),
           child: GetX<HomeController>(

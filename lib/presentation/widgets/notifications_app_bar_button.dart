@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../resources/color_manager.dart';
-import '../screens/home/printed_notes/controller/printed_notes_controller.dart';
 import '../screens/notifications/widgets/notifications_screen.dart';
 
 class NotificationsAppBarButton extends StatelessWidget {
@@ -17,11 +16,11 @@ class NotificationsAppBarButton extends StatelessWidget {
       },
       badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.primary),
       position: badges.BadgePosition.bottomEnd(bottom: 12, end: 20),
-      badgeContent: Padding(
-        padding: const EdgeInsets.only(top: 1.0),
+      badgeContent: const Padding(
+        padding: EdgeInsets.only(top: 1.0),
         child: Text(
           '0',
-          style: const TextStyle(
+          style: TextStyle(
             color: ColorManager.white,
           ),
         ),

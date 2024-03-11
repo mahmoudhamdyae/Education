@@ -103,13 +103,13 @@ class CoursesList extends StatelessWidget {
             ),
           ),
           Positioned(left: 0, child: BookmarkCourse(course: courses[index])),
-          Positioned(
-              bottom: 8,
-              left: 12,
-              child: BuyWidget(
-                course: courses[index],
-                width: 115,
-              )),
+          // Positioned(
+          //     bottom: 8,
+          //     left: 12,
+          //     child: BuyWidget(
+          //       course: courses[index],
+          //       width: 115,
+          //     )),
         ],
       ),
     );

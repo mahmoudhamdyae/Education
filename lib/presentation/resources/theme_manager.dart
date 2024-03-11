@@ -10,7 +10,6 @@ ThemeData getApplicationTheme() {
     // main colors
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.lightPrimary,
-    backgroundColor: ColorManager.white,
     // app bar theme
     appBarTheme: AppBarTheme(
         centerTitle: true,

@@ -5,8 +5,6 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/lesson/widgets/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
-import 'package:get/utils.dart';
 
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
@@ -107,13 +105,13 @@ class SubscriptionCoursesList extends StatelessWidget {
                   ),
                 ],
               ),
-              GetPlatform.isAndroid ? Expanded(child: Container()) : Container(),
-              GetPlatform.isAndroid ? Text(
+              Expanded(child: Container()),
+              Text(
                 '${AppStrings.expireDate}\n ${courses[index].expiryDate}',
                 style: getSmallStyle(
                   color: ColorManager.grey,
                 ),
-              ) : Container(),
+              ),
             ],
           ),
         ),

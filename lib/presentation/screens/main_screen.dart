@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _selectedIndex = widget.selectedIndex;
-    debugPrint('======================== selected $_selectedIndex');
+    debugPrint('Selected Tab Index $_selectedIndex');
     _controller = PersistentTabController(initialIndex: _selectedIndex);
     try {
       versionCheck(context);

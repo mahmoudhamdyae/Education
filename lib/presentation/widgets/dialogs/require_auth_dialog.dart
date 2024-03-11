@@ -1,3 +1,5 @@
+import 'package:education/core/purchases.dart';
+import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/color_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ import '../../../core/launch_site.dart';
 import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
 
-showRequireAuthDialog(BuildContext context) {
+showRequireAuthDialog(BuildContext context, Course course) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -21,7 +23,7 @@ showRequireAuthDialog(BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                AppStrings.pleaseLogIn,
+                AppStrings.pleaseSubscribe,
                 style: getLargeStyle(),
               ),
               const SizedBox(height: AppSize.s16,),
@@ -40,12 +42,25 @@ showRequireAuthDialog(BuildContext context) {
                   TextButton(
                       onPressed: () {
                         Get.back();
-                        launchSite(Constants.siteUrl);
+                        purchase(context, course, true);
                       },
                       child: Text(
-                        AppStrings.continueButton,
+                        AppStrings.subscribeMonth,
                         style: getSmallStyle(
                           color: ColorManager.secondary
+                        ),
+                      )
+                  ),
+                  const SizedBox(width: 4.0,),
+                  TextButton(
+                      onPressed: () {
+                        Get.back();
+                        purchase(context, course, false);
+                      },
+                      child: Text(
+                        AppStrings.subscribeTerm,
+                        style: getSmallStyle(
+                            color: ColorManager.secondary
                         ),
                       )
                   ),

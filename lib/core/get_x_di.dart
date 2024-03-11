@@ -10,7 +10,6 @@ import 'package:education/presentation/screens/home/controller/home_controller.d
 import 'package:education/presentation/screens/home/exams/controller/exams_controller.dart';
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
 import 'package:education/presentation/screens/onboarding/controller/onboarding_controller.dart';
-import 'package:education/presentation/screens/update_profile/controller/update_profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';

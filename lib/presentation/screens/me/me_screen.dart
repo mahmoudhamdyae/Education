@@ -9,7 +9,6 @@ import '../../resources/assets_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../widgets/dialogs/soon_dialog.dart';
 import '../main_screen.dart';
-import '../update_profile/widgets/update_profile_screen.dart';
 import 'me_item.dart';
 
 class MeScreen extends StatelessWidget {

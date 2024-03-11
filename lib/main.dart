@@ -7,9 +7,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:purchases_flutter/models/purchases_configuration.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'core/local_notification_service.dart';
 import 'firebase_options.dart';
+
+final _configuration = PurchasesConfiguration('appl_koNOphpUsRPZXqWCsbemfLTSqMI');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +23,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Purchases.configure(_configuration);
   await LocalNotificationService().init();
   requestPermissions();
   _listenForForegroundFCM();

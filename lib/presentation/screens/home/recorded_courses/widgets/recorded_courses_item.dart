@@ -24,7 +24,7 @@ class RecordedCoursesItem extends StatelessWidget {
         Get.to(() => CourseScreen(subject: course,));
       },
       child: Container(
-        height: 190,
+        height: 130,
         margin: const EdgeInsets.all(8.0),
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
@@ -82,31 +82,31 @@ class RecordedCoursesItem extends StatelessWidget {
                   ],
                 ),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              left: 0,
-              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      OutlinedButton(
-                          style: getOutlinedButtonStyle(),
-                          onPressed: () {
-                            Get.to(const LessonScreen(), arguments: { 'course': course });
-                          },
-                          child: Text(
-                            AppStrings.freeTry,
-                            style: getSmallStyle(),
-                          )
-                      ),
-                      GetPlatform.isAndroid ? const SizedBox(width: 8.0,) : Container(),
-                      GetPlatform.isAndroid ? BuyWidget(course: course, width: 120,) : Container(),
-                    ],
-                  ),
-                ),
-            )
+            // Positioned(
+            //   bottom: 0,
+            //   right: 0,
+            //   left: 0,
+            //   child: Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //         children: [
+            //           OutlinedButton(
+            //               style: getOutlinedButtonStyle(),
+            //               onPressed: () {
+            //                 Get.to(const LessonScreen(), arguments: { 'course': course });
+            //               },
+            //               child: Text(
+            //                 AppStrings.freeTry,
+            //                 style: getSmallStyle(),
+            //               )
+            //           ),
+            //           const SizedBox(width: 8.0,),
+            //           BuyWidget(course: course, width: 120,),
+            //         ],
+            //       ),
+            //     ),
+            // )
           ],
         ),
       ),

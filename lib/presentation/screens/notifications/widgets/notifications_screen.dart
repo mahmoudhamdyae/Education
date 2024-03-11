@@ -1,5 +1,4 @@
 import 'package:education/presentation/resources/styles_manager.dart';
-import 'package:education/presentation/screens/notifications/widgets/notification_item.dart';
 import 'package:education/presentation/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -4,7 +4,6 @@ import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
-import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/constants.dart';
@@ -45,7 +44,7 @@ class SwiperWidget extends StatelessWidget {
                         style: getSmallStyle(),
                       ),
                     ),
-                    GetPlatform.isAndroid ? isTeacher ? Container() : FilledButton(
+                    isTeacher ? Container() : FilledButton(
                       style: getFilledButtonStyle(
                         color: ColorManager.secondary
                       ),
@@ -58,7 +57,7 @@ class SwiperWidget extends StatelessWidget {
                             color: ColorManager.white
                         ),
                       ),
-                    ): Container(),
+                    ),
                   ],
                 ),
                 isTeacher ? (sliders[index].image == '' ?

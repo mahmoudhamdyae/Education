@@ -94,8 +94,7 @@ class AppStrings {
   // Choose Marhala Dialog
   static const String pleaseChooseMarhala = 'برجاء اختيار المرحلة';
   // Require Auth Dialog
-  static const String pleaseLogIn = 'لاتمام العملية برجاء شراء الكورس';
-  static const String continueButton = 'شراء';
+  static const String pleaseSubscribe = 'لاتمام العملية برجاء الاشتراك';
 
   // Recorded Courses
   static const String recordedCoursesTitleBar = 'مواد';
@@ -122,7 +121,7 @@ class AppStrings {
   static const String noComments = 'لم يتم إضافة اى تعليقات أو روابط على هذا الدرس';
 
   // Subscriptions Screen
-  static const String emptySubscriptions = 'لا يوجد اشتراكات';
+  static const String emptySubscriptions = 'لا يوجد كورسات';
 
   // Lesson Screen
   static const String lessonNote = 'مذكرة الدرس';
@@ -158,6 +157,8 @@ class AppStrings {
   static const String courseTeacher = 'المدرس';
   static const String watchFirstLesson = 'شاهد الدروس';
   static const String buyCourse = 'شراء الكورس';
+  static const String subscribeMonth = 'اشتراك شهرى';
+  static const String subscribeTerm = 'اشتراك ترم';
   static const String notes = 'المذكرات';
   static const String notesTab = 'مذكرات الدرس';
   static const String packages = 'الباقات';
@@ -237,4 +238,6 @@ class AppStrings {
   static const updatedSuccessfully = 'تم تعديل البيانات';
   static const updateTopBar = 'تعديل البيانات الشخصية';
   static const updateProfileButton = 'تعديل البيانات الشخصية';
+
+  static const requireLog = 'يجب عليك تسجيل الدخول أولا';
 }
