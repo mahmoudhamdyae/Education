@@ -53,4 +53,5 @@ abstract class Repository {
   Future<void> addComment(String comment, Lesson video, int teacherId);
   Future<List<Course>> getExamCourses(String marhala, int term);
   Future<Exam> getExamsAndCourses(int courseId, int term);
+  Future<void> pay(int courseId);
 }

@@ -49,6 +49,7 @@ abstract class RemoteDataSource {
       String comment, int userId, Lesson video, int teacherId, String userName);
   Future<List<Course>> getExamCourses(String marhala, int term);
   Future<Exam> getExamsAndCourses(int courseId, int term);
+  Future<void> pay(int courseId, int userId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -339,5 +340,14 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     var response = await _dio.get(url);
     Exam exam = Exam.fromJson(response.data);
     return exam;
+  }
+
+  @override
+  Future<void> pay(int courseId, int userId) async {
+    await _checkNetwork();
+
+    print('===== PAYING =======');
+    // String url = "${Constants.baseUrl}exam";
+    // await _dio.post(url);
   }
 }

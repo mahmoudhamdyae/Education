@@ -197,4 +197,9 @@ class RepositoryImpl extends Repository {
   Future<Exam> getExamsAndCourses(int courseId, int term) async {
     return await _remoteDataSource.getExamsAndCourses(courseId, term);
   }
+
+  @override
+  Future<void> pay(int courseId) async {
+    await _remoteDataSource.pay(courseId, _localDataSource.getUserId());
+  }
 }

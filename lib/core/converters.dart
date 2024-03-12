@@ -45,6 +45,8 @@ String convertSaffToNum(String saff) {
       return '11';
     case AppStrings.saff12:
       return '12';
+    case AppStrings.saff12_2:
+      return '12';
     default:
       return '';
   }

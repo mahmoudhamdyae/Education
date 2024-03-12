@@ -1,5 +1,6 @@
 import 'package:education/core/converters.dart';
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/auth/auth_controller.dart';
 import 'package:education/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,18 +36,20 @@ Future<void> _purchaseIos(
       isMonth,
       isMonth ? course.month.toString() : course.term.toString(),
     )]);
-    await Purchases.purchaseStoreProduct(productList.first)
+    bool isError = false;
+    var c = await Purchases.purchaseStoreProduct(productList.first)
         .then((value) {
-      debugPrint("======= SUCCEEDED $value");
-      // Get.back();
+      debugPrint("======= SUCCEEDED then $value");
     }).whenComplete(() {
       debugPrint("======= COMPLETE");
-    })
-        .catchError((error) {
+    }).catchError((error) {
+      isError = true;
       debugPrint("======= ERROR $error");
-      // Get.back();
     });
     debugPrint("======= after");
+    if (!isError) {
+      Get.find<Repository>().pay(course.id);
+    }
     Get.back();
   } else {
     Get.showSnackbar(

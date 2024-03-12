@@ -43,6 +43,7 @@ class AppStrings {
   static const saff10 = 'الصف العاشر';
   static const saff11 = 'الصف الحادى عشر';
   static const saff12 = 'الصف الثانى عشر';
+  static const saff12_2 = 'الصف الثاني عشر';
   static const saff = 'الصف';
   static const marhalaInvalid = 'يجب اختيار مرحلة';
   static const saffInvalid = 'يجب اختيار صف';
