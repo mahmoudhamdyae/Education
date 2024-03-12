@@ -37,7 +37,7 @@ Future<void> _purchaseIos(
       isMonth ? course.month.toString() : course.term.toString(),
     )]);
     bool isError = false;
-    var c = await Purchases.purchaseStoreProduct(productList.first)
+    await Purchases.purchaseStoreProduct(productList.first)
         .then((value) {
       debugPrint("======= SUCCEEDED then $value");
     }).whenComplete(() {

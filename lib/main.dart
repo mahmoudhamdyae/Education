@@ -1,4 +1,5 @@
 import 'package:education/core/get_x_di.dart';
+import 'package:education/data/local/local_data_source.dart';
 import 'package:education/domain/models/courses/course.dart';
 import 'package:education/presentation/resources/theme_manager.dart';
 import 'package:education/presentation/screens/splash/splash_screen.dart';
@@ -10,9 +11,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'core/local_notification_service.dart';
+import 'domain/repository/repository.dart';
 import 'firebase_options.dart';
 
+// int userId = Get.find<LocalDataSource>().getUserId();
+
 final _configuration = PurchasesConfiguration('appl_koNOphpUsRPZXqWCsbemfLTSqMI');
+// ..appUserID = userId.toString()
+// ..observerMode = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +30,10 @@ void main() async {
   );
   if (GetPlatform.isIOS) {
     await Purchases.configure(_configuration);
+    // Purchases.addCustomerInfoUpdateListener((customerInfo) {
+    //   debugPrint('============ ent $customerInfo');
+    //   updateCustomerStatus();
+    // });
   };
   await LocalNotificationService().init();
   requestPermissions();
@@ -36,6 +46,16 @@ void main() async {
       debugPrint('Token: ${token.toString()}')
   );
   runApp(const MyApp());
+}
+
+Future<void> updateCustomerStatus() async  {
+  final customerInfo = await Purchases.getCustomerInfo();
+  final entitlement = customerInfo.entitlements.all['all_purchases'];
+  debugPrint('============ ent $entitlement');
+  if (entitlement != null && entitlement.isActive) {
+    // Get.find<Repository>().pay();
+    debugPrint('============ ent $entitlement');
+  }
 }
 
 void requestPermissions() async {
