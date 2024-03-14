@@ -5,7 +5,11 @@ import 'package:education/presentation/widgets/dialogs/choose_saff_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
+showChooseMarhalaDialog(
+    BuildContext context,
+    bool isCourses,
+    Function(String, String) onTap,
+    ) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -26,9 +30,8 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                 height: AppSize.s16,
               ),
               // المرحلة الابتدائية
-              InkWell(
+              isCourses ? Container() : InkWell(
                 onTap: () {
-                  // Navigator.of(context).pop();
                   Get.back();
                   showChooseSaffDialog(context, AppStrings.primaryMarhala, (saff) =>
                       onTap(AppStrings.primaryMarhala, saff));
@@ -71,18 +74,18 @@ showChooseMarhalaDialog(BuildContext context, Function(String, String) onTap) {
                   )
               ),
               // القدرات
-              InkWell(
-                  onTap: () {
-                    // Navigator.of(context).pop();
-                    Get.back();
-                    onTap(AppStrings.qodoratMarhala, '');
-                  },
-                  child: ListTile(
-                      title: Text(
-                        AppStrings.qodoratMarhala,
-                        style: getSmallStyle(),)
-                  )
-              ),
+              // InkWell(
+              //     onTap: () {
+              //       // Navigator.of(context).pop();
+              //       Get.back();
+              //       onTap(AppStrings.qodoratMarhala, '');
+              //     },
+              //     child: ListTile(
+              //         title: Text(
+              //           AppStrings.qodoratMarhala,
+              //           style: getSmallStyle(),)
+              //     )
+              // ),
             ],
           ),
         );

@@ -22,17 +22,20 @@ class GridViewItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          if (_item.name == AppStrings.recordedCourses ||
-              _item.name == AppStrings.printedNotes
-          ) {
-            showChooseMarhalaDialog(context, (marhala, saff) {
+          if (_item.name == AppStrings.recordedCourses) {
+            showChooseMarhalaDialog(context, true, (marhala, saff) {
+              _item.action(marhala, saff, '');
+            });
+          } else if (_item.name == AppStrings.printedNotes) {
+            showChooseMarhalaDialog(context, false, (marhala, saff) {
               _item.action(marhala, saff, '');
             });
           } else if (_item.name == AppStrings.examsAndBanks) {
-            showChooseMarhalaDialog(context, (marhala, saff) {
-              showChooseTermDialog(context, saff, (String term) {
-                _item.action(marhala, saff, term);
-              });
+            showChooseMarhalaDialog(context, true, (marhala, saff) {
+              // showChooseTermDialog(context, saff, (String term) {
+              //   _item.action(marhala, saff, term);
+                _item.action(marhala, saff, '2');
+              // });
             });
           } else {
             _item.action('', '', '');

@@ -59,9 +59,9 @@ List<String> _getSfoof(String marhala) {
   switch (marhala) {
     case AppStrings.primaryMarhala:
       return [
-        AppStrings.saff1,
-        AppStrings.saff2,
-        AppStrings.saff3,
+        // AppStrings.saff1,
+        // AppStrings.saff2,
+        // AppStrings.saff3,
         AppStrings.saff4,
         AppStrings.saff5,
       ];
