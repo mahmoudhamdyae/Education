@@ -6,6 +6,7 @@ import 'package:education/presentation/screens/subscription/widgets/subscription
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
@@ -14,7 +15,8 @@ import 'home/home_screen.dart';
 class MainScreen extends StatefulWidget {
 
   final int selectedIndex;
-  const MainScreen({super.key, required this.selectedIndex});
+  final RateMyApp? rateMyApp;
+  const MainScreen({super.key, required this.selectedIndex, this.rateMyApp});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -32,7 +34,18 @@ class _MainScreenState extends State<MainScreen> {
     debugPrint('Selected Tab Index $_selectedIndex');
     _controller = PersistentTabController(initialIndex: _selectedIndex);
     try {
-      versionCheck(context);
+      versionCheck(context, () {
+        if (widget.rateMyApp != null && widget.rateMyApp!.shouldOpenDialog) {
+          widget.rateMyApp?.showRateDialog(
+            context,
+            title: 'قيم هذا التطبيق',
+            message: 'إذا أعجبك هذا التطبيق ، خصص القليل من وقتك لتقييمه',
+            rateButton: 'قيم الآن',
+            noButton: 'لا شكرا',
+            laterButton: 'ذكرنى لاحقا',
+          );
+        }
+      });
     } catch (e) {
       debugPrint(e.toString());
     }

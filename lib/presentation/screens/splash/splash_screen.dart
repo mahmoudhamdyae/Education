@@ -4,13 +4,16 @@ import 'package:education/domain/repository/repository.dart';
 import 'package:education/presentation/screens/auth/login/widgets/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import '../../resources/color_manager.dart';
 import '../auth/auth_controller.dart';
 import '../main_screen.dart';
 import '../onboarding/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+
+  final RateMyApp rateMyApp;
+  const SplashScreen({Key? key, required this.rateMyApp}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -33,10 +36,13 @@ class _SplashScreenState extends State<SplashScreen> {
       } else if (appPreferences.isUserLoggedIn()) {
         // Navigate to main screen
         AuthController controller = Get.find<AuthController>();
-        Get.offAll(() => MainScreen(selectedIndex: controller.isSubscribedAtOneSubjectAtLeast() ? 1 : 0,));
+        Get.offAll(() => MainScreen(
+          selectedIndex: controller.isSubscribedAtOneSubjectAtLeast() ? 1 : 0,
+          rateMyApp: widget.rateMyApp,
+        ));
       } else {
         // Navigate to login screen
-        Get.offAll(const LoginScreen());
+        Get.offAll(LoginScreen(rateMyApp: widget.rateMyApp,));
       }
     });
   }

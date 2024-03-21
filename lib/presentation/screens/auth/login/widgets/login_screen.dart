@@ -9,6 +9,7 @@ import 'package:education/presentation/widgets/coding_site_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 import '../../../../../core/check_version.dart';
 import '../../../../resources/assets_manager.dart';
@@ -19,7 +20,8 @@ import '../../../../widgets/dialogs/error_dialog.dart';
 import '../../../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final RateMyApp? rateMyApp;
+  const LoginScreen({Key? key, this.rateMyApp}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -33,7 +35,19 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     try {
-      versionCheck(context);
+      versionCheck(context, () {
+        print('========== ${widget.rateMyApp!.shouldOpenDialog}');
+        if (widget.rateMyApp != null && widget.rateMyApp!.shouldOpenDialog) {
+          widget.rateMyApp?.showRateDialog(
+            context,
+            title: 'قيم هذا التطبيق',
+            message: 'إذا أعجبك هذا التطبيق ، خصص القليل من وقتك لتقييمه',
+            rateButton: 'قيم الآن',
+            noButton: 'لا شكرا',
+            laterButton: 'ذكرنى لاحقا',
+          );
+        }
+      });
     } catch (e) {
       debugPrint(e.toString());
     }

@@ -8,7 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'constants.dart';
 import 'launch_site.dart';
 
-versionCheck(context) async {
+versionCheck(context, Function openRateDialog) async {
   // Get Current installed version of app
   final PackageInfo info = await PackageInfo.fromPlatform();
   double currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
@@ -25,9 +25,7 @@ versionCheck(context) async {
     await remoteConfig.fetch();
     await remoteConfig.activate();
     String forceUpdateCurrentVersion = remoteConfig.getString(
-        GetPlatform.isAndroid ? 'force_update_current_version'
-            :
-        'ios_force_update_current_version'
+        'force_update_current_version'
     );
     double newVersion = double.parse(forceUpdateCurrentVersion
         .trim()
@@ -36,6 +34,8 @@ versionCheck(context) async {
     debugPrint('Current Version $currentVersion');
     if (newVersion > currentVersion) {
       _showVersionDialog(context);
+    } else {
+      openRateDialog();
     }
   } on Exception catch (exception) {
     // Fetch throttled.

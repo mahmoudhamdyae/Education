@@ -1,24 +1,21 @@
 import 'package:education/core/get_x_di.dart';
-import 'package:education/data/local/local_data_source.dart';
 import 'package:education/domain/models/courses/course.dart';
+import 'package:education/presentation/rate_app_init_widget.dart';
 import 'package:education/presentation/resources/theme_manager.dart';
 import 'package:education/presentation/screens/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 import 'core/local_notification_service.dart';
-import 'domain/repository/repository.dart';
 import 'firebase_options.dart';
 
-// int userId = Get.find<LocalDataSource>().getUserId();
-
 final _configuration = PurchasesConfiguration('appl_koNOphpUsRPZXqWCsbemfLTSqMI');
-// ..appUserID = userId.toString()
-// ..observerMode = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,10 +27,6 @@ void main() async {
   );
   if (GetPlatform.isIOS) {
     await Purchases.configure(_configuration);
-    // Purchases.addCustomerInfoUpdateListener((customerInfo) {
-    //   debugPrint('============ ent $customerInfo');
-    //   updateCustomerStatus();
-    // });
   };
   await LocalNotificationService().init();
   requestPermissions();
@@ -117,7 +110,11 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
-      home: const SplashScreen(),
+      home: RateAppInitWidget(
+          builder: (RateMyApp rateMyApp ) {
+            return SplashScreen(rateMyApp: rateMyApp,);
+          },
+      ),
       initialBinding: GetXDi(),
     );
   }
