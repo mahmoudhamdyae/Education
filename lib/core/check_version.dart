@@ -25,7 +25,9 @@ versionCheck(context, Function openRateDialog) async {
     await remoteConfig.fetch();
     await remoteConfig.activate();
     String forceUpdateCurrentVersion = remoteConfig.getString(
-        'force_update_current_version'
+        GetPlatform.isAndroid ? 'force_update_current_version'
+            :
+        'ios_force_update_current_version'
     );
     double newVersion = double.parse(forceUpdateCurrentVersion
         .trim()
