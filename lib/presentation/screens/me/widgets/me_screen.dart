@@ -1,14 +1,15 @@
 import 'package:education/presentation/screens/auth/auth_controller.dart';
-import 'package:education/presentation/screens/me/me_screen_body.dart';
-import 'package:education/presentation/screens/me/sign_out_dialog.dart';
+import 'package:education/presentation/screens/me/widgets/dialogs/del_acccount_dialog.dart';
+import 'package:education/presentation/screens/me/widgets/me_screen_body.dart';
+import 'package:education/presentation/screens/me/widgets/dialogs/sign_out_dialog.dart';
 import 'package:education/presentation/widgets/require_log_in_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../resources/assets_manager.dart';
-import '../../resources/strings_manager.dart';
-import '../../widgets/dialogs/soon_dialog.dart';
-import '../main_screen.dart';
+import '../../../resources/assets_manager.dart';
+import '../../../resources/strings_manager.dart';
+import '../../../widgets/dialogs/soon_dialog.dart';
+import '../../main_screen.dart';
 import 'me_item.dart';
 
 class MeScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class MeScreen extends StatelessWidget {
         MeItem(
           icon: ImageAssets.delAccount,
           title: AppStrings.delAccount,
-          action: () => showSoonDialog(context),
+          action: () => showDelAccountDialog(context),
         ),
         MeItem(
             icon: ImageAssets.signOut,

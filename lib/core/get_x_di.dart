@@ -9,6 +9,7 @@ import 'package:education/presentation/screens/fav/controller/fav_controller.dar
 import 'package:education/presentation/screens/home/controller/home_controller.dart';
 import 'package:education/presentation/screens/home/exams/controller/exams_controller.dart';
 import 'package:education/presentation/screens/home/printed_notes/controller/printed_notes_controller.dart';
+import 'package:education/presentation/screens/me/controller/me_controller.dart';
 import 'package:education/presentation/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -65,6 +66,7 @@ class GetXDi implements Bindings {
     Get.put<PrintedNotesController>(PrintedNotesController(Get.find<Repository>()), permanent: true);
     Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<ExamsController>(() => ExamsController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<MeController>(() => MeController(Get.find<Repository>()), fenix: true);
     // Get.lazyPut<UpdateProfileController>(() => UpdateProfileController(Get.find<Repository>()), fenix: true);
   }
 }

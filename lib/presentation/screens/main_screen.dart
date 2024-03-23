@@ -1,7 +1,7 @@
 import 'package:education/presentation/resources/assets_manager.dart';
 import 'package:education/presentation/resources/strings_manager.dart';
 import 'package:education/presentation/screens/fav/widgets/fav_screen.dart';
-import 'package:education/presentation/screens/me/me_screen.dart';
+import 'package:education/presentation/screens/me/widgets/me_screen.dart';
 import 'package:education/presentation/screens/subscription/widgets/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -57,6 +57,10 @@ class AppStrings {
   static const String logoutDialogText = 'هل أنت متأكد من تسجيل الخروج؟';
   static const String logoutOk = 'تسجيل الخروج';
   static const String cancel = 'الغاء';
+  // Del Account
+  static const String delAccountDialogTitle = 'حذف الحساب';
+  static const String delAccountDialogText = 'هل أنت متأكد من حذف هذا الحساب؟';
+  static const String delAccountOk = 'حذف الحساب';
 
   // Dialogs
   static const loading = 'جاري التحميل...';
@@ -191,6 +195,7 @@ class AppStrings {
   static const String whoAreWe = 'من نحن';
   static const String delAccount = 'حذف الحساب';
   static const String signOut = 'تسجيل الخروج';
+  static const String delAccountSuccess = 'تم حذف الحساب بنجاح';
   // Notes
   static const String downloadNote = 'عينة المذكرة';
   static const String addToCart = 'إضافة إلى السلة';

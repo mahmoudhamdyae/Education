@@ -202,4 +202,11 @@ class RepositoryImpl extends Repository {
   Future<void> pay(int courseId) async {
     await _remoteDataSource.pay(courseId, _localDataSource.getUserId());
   }
+
+  @override
+  Future<void> delAccount() async {
+    return await _remoteDataSource.delAccount(_localDataSource.getUserId()).then((value) {
+      signOut();
+    });
+  }
 }

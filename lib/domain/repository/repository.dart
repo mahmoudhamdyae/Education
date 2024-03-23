@@ -54,4 +54,5 @@ abstract class Repository {
   Future<List<Course>> getExamCourses(String marhala, int term);
   Future<Exam> getExamsAndCourses(int courseId, int term);
   Future<void> pay(int courseId);
+  Future<void> delAccount();
 }

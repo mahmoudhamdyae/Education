@@ -50,6 +50,7 @@ abstract class RemoteDataSource {
   Future<List<Course>> getExamCourses(String marhala, int term);
   Future<Exam> getExamsAndCourses(int courseId, int term);
   Future<void> pay(int courseId, int userId);
+  Future<void> delAccount(int userId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -349,5 +350,12 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     print('===== PAYING =======');
     // String url = "${Constants.baseUrl}exam";
     // await _dio.post(url);
+  }
+
+  @override
+  Future<void> delAccount(int userId) async {
+    await _checkNetwork();
+
+    await Future.delayed(const Duration(milliseconds: 1500));
   }
 }

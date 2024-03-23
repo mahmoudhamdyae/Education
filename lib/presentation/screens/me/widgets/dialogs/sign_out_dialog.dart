@@ -4,8 +4,8 @@ import 'package:education/presentation/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../auth/auth_controller.dart';
-import '../auth/login/widgets/login_screen.dart';
+import '../../../auth/auth_controller.dart';
+import '../../../auth/login/widgets/login_screen.dart';
 
 showSignOutDialog(BuildContext context) {
   return showDialog(
